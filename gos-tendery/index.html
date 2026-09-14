@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гос. тендеры и закупки — Геномед</title>
+<meta name="description" content="Реквизиты, лицензия и опыт участия в государственных закупках медико-генетического центра Геномед — сведения для проверки контрагента и участия в тендерах по 44-ФЗ и 223-ФЗ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ Геномед design tokens (house-style) ============ */
+:root{
+  --bg:#F4F8FE;--bg-card:#FFFFFF;--bg-deep:#0A2540;--bg-deep-2:#102A4C;
+  --ink:#0A2540;--ink-2:#2E4A6B;--muted:#6E839C;
+  --line:#D8E4F2;--line-soft:#ECF2FB;
+  --blue:#0057FF;--blue-2:#0046CC;--cyan:#00C2FF;--cyan-soft:#B8ECFF;--teal:#00A8B5;
+  --accent-soft:#E6F0FF;
+  --ok:#1AA06D;--ok-soft:#E4F7EF;--warn:#C8791B;--warn-soft:#FFF2E0;--stop:#D2453E;--stop-soft:#FDEBEA;
+  --shadow-sm:0 1px 2px rgba(10,37,64,.04),0 2px 8px rgba(10,37,64,.04);
+  --shadow-md:0 8px 24px rgba(10,37,64,.08);
+  --shadow-lg:0 24px 64px rgba(10,37,64,.12);
+  --r-sm:8px;--r-md:16px;--r-lg:24px;--r-xl:32px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Gilroy","Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;overflow-x:hidden;font-weight:500;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.mono{font-family:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-feature-settings:"tnum"1,"zero"1;letter-spacing:-.01em}
+em{font-style:normal}
+a{color:inherit}
+h1,h2,h3,h4{text-wrap:balance;font-family:"Gilroy","Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:0}
+h2 em,h1 em{color:var(--blue)}
+p{text-wrap:pretty}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:3px}
+
+/* ============ Buttons ============ */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:100px;font-weight:700;font-size:15px;border:none;cursor:pointer;transition:all .2s;font-family:inherit;letter-spacing:-.01em;text-decoration:none}
+.btn svg{flex:none}
+.btn--primary{background:var(--bg-deep);color:#fff!important;position:relative;overflow:hidden}
+.btn--primary::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--blue) 0%,var(--cyan) 120%);opacity:0;transition:opacity .3s}
+.btn--primary:hover::before{opacity:1}
+.btn--primary span,.btn--primary svg{position:relative;z-index:1}
+.btn--primary:hover{transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn--ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn--ghost:hover{border-color:var(--blue);color:var(--blue)!important}
+.btn--large{padding:18px 36px;font-size:17px}
+.btn--cta{background:#fff;color:var(--bg-deep)!important}
+.btn--cta:hover{background:var(--cyan-soft)}
+.btn--cta-secondary{background:transparent;color:#fff!important;border:1.5px solid rgba(255,255,255,.3)}
+.btn--cta-secondary:hover{border-color:#fff}
+
+/* ============ Header ============ */
+.header{position:sticky;top:0;background:rgba(244,248,254,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);padding:11px 0;z-index:50}
+.header::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--blue),var(--cyan),transparent);opacity:.4}
+.header__inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;text-decoration:none;flex:none}
+.logo img{height:38px;width:auto;display:block}
+.nav{display:flex;gap:28px}
+.nav a{color:var(--ink-2);text-decoration:none;font-weight:600;font-size:15px;transition:color .2s}
+.nav a:hover{color:var(--blue)}
+.header__cta{display:flex;align-items:center;gap:22px;flex:none}
+.header__phone{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:13.5px;text-decoration:none;color:var(--ink-2);white-space:nowrap;letter-spacing:-.02em}
+.header__phone:hover{color:var(--blue)}
+@media (max-width:1100px){.nav{display:none}}
+@media (max-width:720px){.logo img{height:32px}.header__phone{display:none}}
+@media (max-width:480px){.wrap{padding:0 20px}.btn--large{padding:15px 24px;font-size:15.5px}}
+
+/* ============ Eyebrows / headings ============ */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--line);border-radius:100px;font-size:13px;font-weight:700;letter-spacing:-.01em;background:#fff}
+.eyebrow::before{content:"";width:6px;height:6px;background:var(--blue);border-radius:50%;box-shadow:0 0 0 4px rgba(0,87,255,.15);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(0,87,255,.15)}50%{box-shadow:0 0 0 8px rgba(0,87,255,.05)}}
+@media (prefers-reduced-motion:reduce){.eyebrow::before{animation:none}}
+.status-chip{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:100px;font-size:13px;font-weight:700;background:var(--ok-soft);color:var(--ok)}
+.status-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.section-eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}
+.section-eyebrow::before{content:"◢ ";color:var(--cyan);opacity:.7}
+.block{padding:80px 0;position:relative}
+.section-head{margin-bottom:44px;max-width:880px}
+.section-head h2{font-size:clamp(30px,3.6vw,48px);margin:0 0 16px;color:var(--ink)}
+.section-head p{font-size:18px;color:var(--ink-2);line-height:1.55;max-width:720px;margin:0}
+
+/* ============ Hero (контентный архетип) ============ */
+.hero{padding:60px 0 56px;position:relative;overflow:hidden}
+.hero__grid{display:block;max-width:820px}
+.hero__deco{position:absolute;top:0;right:0;bottom:0;width:min(58%,760px);pointer-events:none;z-index:0;
+  filter:blur(1.6px);
+  -webkit-mask-image:linear-gradient(to left,rgba(0,0,0,.95) 30%,transparent 96%);
+          mask-image:linear-gradient(to left,rgba(0,0,0,.95) 30%,transparent 96%)}
+.hero__deco svg{width:100%;height:100%;display:block}
+.hero__deco g{color:var(--blue)}
+.hero__deco .d-cy{color:var(--cyan)}
+@media (max-width:900px){.hero__deco{display:none}}
+.hero__eyebrow{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.hero__title{font-size:clamp(34px,4.6vw,58px);line-height:1.04;letter-spacing:-.035em;margin:0 0 18px;max-width:14ch}
+.hero__sub{font-size:17.5px;max-width:600px;margin:0 0 26px;line-height:1.6;color:var(--ink-2)}
+.hero__tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 34px;padding:0}
+.hero__tags li{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--blue);background:var(--accent-soft);border:1px solid #C9DDFF;border-radius:100px;padding:6px 13px}
+.hero__meta{display:grid;grid-template-columns:repeat(3,auto);gap:36px;justify-content:start;border-top:1px solid var(--line);padding-top:26px}
+.meta__num{font-family:"JetBrains Mono",monospace;font-size:clamp(26px,3vw,34px);font-weight:700;letter-spacing:-.03em;background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.meta__label{font-size:13px;font-weight:600;line-height:1.35;color:var(--ink-2);margin-top:9px;max-width:170px}
+@media (max-width:560px){.hero__meta{grid-template-columns:1fr 1fr;gap:22px}}
+
+/* ============ Refs (реквизиты / лицензия / профиль / опыт) ============ */
+.refs{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.ref{background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-md);padding:28px;box-shadow:var(--shadow-sm);min-width:0}
+.ref h3{font-size:16.5px;font-weight:800;letter-spacing:-.01em;margin:0 0 16px;line-height:1.3;display:flex;gap:11px;align-items:flex-start}
+.ref h3 svg{flex:none;color:var(--blue);margin-top:1px}
+.ref dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 14px;font-size:13.5px;line-height:1.5}
+.ref dt{color:var(--muted);font-weight:600;white-space:nowrap}
+.ref dd{margin:0;color:var(--ink-2);font-weight:500}
+.ref dd a{color:var(--blue);text-decoration:none;font-weight:600}
+.ref dd a:hover{text-decoration:underline}
+.ref .status-chip{margin-bottom:2px}
+.ref-note{margin-top:16px;padding:11px 13px;background:var(--accent-soft);border-radius:12px;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.plainlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.plainlist li{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:600;color:var(--ink)}
+.plainlist svg{flex:none;color:var(--ok);margin-top:2px}
+@media (max-width:820px){.refs{grid-template-columns:1fr}}
+
+/* ============ География: адреса ============ */
+.addr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.addr{background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-md);padding:18px 18px 18px 50px;position:relative;box-shadow:var(--shadow-sm);min-width:0;height:100%}
+.addr svg{position:absolute;left:18px;top:19px;width:18px;height:18px;color:var(--teal)}
+.addr b{display:block;font-family:"Gilroy","Montserrat",sans-serif;font-weight:800;font-size:14px;letter-spacing:-.01em;margin-bottom:3px}
+.addr span{color:var(--muted);font-size:12.8px;line-height:1.4;display:block}
+@media (max-width:900px){.addr-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.addr-grid{grid-template-columns:1fr}}
+
+/* ============ Тёмная плашка ============ */
+.deep{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--bg-deep) 0%,var(--bg-deep-2) 100%);border-radius:var(--r-xl);padding:clamp(32px,5vw,56px);color:#fff}
+.deep::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(0,194,255,.18),transparent 60%),radial-gradient(ellipse at bottom left,rgba(0,87,255,.22),transparent 60%)}
+.deep__grid{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,48px);align-items:center}
+.deep__big{font-family:"Gilroy","Montserrat",sans-serif;font-weight:900;font-size:clamp(64px,9vw,120px);color:var(--cyan);line-height:.9;letter-spacing:-.03em}
+.deep h3{color:#fff;font-size:clamp(20px,2.4vw,26px);margin:0 0 10px}
+.deep p{color:rgba(255,255,255,.78);margin:0;font-size:15.5px;line-height:1.6;max-width:56ch}
+@media (max-width:640px){.deep__grid{grid-template-columns:1fr;text-align:left}}
+
+/* ============ Feature cards ============ */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fcard{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--shadow-sm);min-width:0;height:100%;display:flex;flex-direction:column}
+.fcard .badge{width:42px;height:42px;border-radius:var(--r-md);background:var(--accent-soft);color:var(--blue);display:grid;place-items:center;margin-bottom:16px}
+.fcard .badge svg{width:20px;height:20px}
+.fcard h3{font-size:16.5px;margin:0 0 8px}
+.fcard p{color:var(--muted);font-size:14px;line-height:1.55;margin:0}
+@media (max-width:900px){.cards{grid-template-columns:1fr}}
+
+/* ============ Площадки ============ */
+.platforms{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.platform{display:flex;align-items:center;gap:10px;border:1px solid var(--line-soft);border-radius:var(--r-md);padding:15px 16px;background:#fff;font-size:14px;font-weight:700;color:var(--ink);text-decoration:none;box-shadow:var(--shadow-sm);transition:.2s;min-width:0;height:100%}
+.platform svg{flex:none;color:var(--ok)}
+.platform:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+.platform.closed{background:var(--line-soft);color:var(--muted);box-shadow:none}
+.platform.closed svg{color:var(--muted)}
+.platform .tag{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+@media (max-width:820px){.platforms{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.platforms{grid-template-columns:1fr}}
+
+/* ============ CTA ============ */
+.cta{background:linear-gradient(135deg,var(--bg-deep) 0%,var(--bg-deep-2) 100%);border-radius:var(--r-xl);padding:clamp(40px,5vw,60px);color:#fff;position:relative;overflow:hidden;text-align:center}
+.cta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 15%,rgba(0,194,255,.26),transparent 50%),radial-gradient(circle at 12% 90%,rgba(0,87,255,.3),transparent 55%)}
+.cta > *{position:relative;z-index:1}
+.cta h2{font-size:clamp(26px,3.2vw,40px);line-height:1.1;margin:0 auto 14px;max-width:640px}
+.cta p{font-size:16px;color:rgba(255,255,255,.78);line-height:1.55;margin:0 auto 28px;max-width:560px}
+.cta__btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ============ Footer ============ */
+.footer{background:var(--bg-deep);color:rgba(255,255,255,.6);padding:44px 0 34px;margin-top:0}
+.footer__in{display:flex;justify-content:space-between;gap:30px;align-items:flex-start;flex-wrap:wrap}
+.footer__brand{font-weight:800;font-size:18px;color:#fff;letter-spacing:-.02em;margin-bottom:8px}
+.footer p{margin:0;font-size:13px;line-height:1.6;max-width:560px}
+.footer__phone{font-family:"JetBrains Mono",monospace;font-size:17px;font-weight:700;color:#fff;text-decoration:none;letter-spacing:-.02em}
+.footer__disc{margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;color:rgba(255,255,255,.42);line-height:1.6}
+
+/* ============ Reveal ============ */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="wrap header__inner">
+    <a class="logo" href="https://genomed.ru/" aria-label="Геномед — на главную">
+      <img src="data:image/png;base64,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" alt="Геномед" width="140" height="71" style="height:38px;width:auto;display:block">
+    </a>
+    <nav class="nav">
+      <a href="#rekvizity">Реквизиты</a>
+      <a href="#licenziya">Лицензия</a>
+      <a href="#geografiya">География</a>
+      <a href="#torgi">Торги</a>
+      <a href="#kontakt">Контакты</a>
+    </nav>
+    <div class="header__cta">
+      <a class="header__phone mono" href="tel:+74956608377">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        8 (495) 660-83-77
+      </a>
+      <a class="btn btn--primary" href="mailto:e.sysoeva@genomed.ru"><span>Написать по закупкам</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero__deco" aria-hidden="true">
+    <svg viewBox="0 0 760 560" preserveAspectRatio="xMidYMid slice" fill="none"
+         stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(30 50) scale(4.2)" opacity=".15" vector-effect="non-scaling-stroke">
+        <path d="M2 15c6.667-6 13.333 0 20-6" vector-effect="non-scaling-stroke"/>
+        <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993" vector-effect="non-scaling-stroke"/>
+        <path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993" vector-effect="non-scaling-stroke"/>
+        <path d="m17 6-2.5-2.5" vector-effect="non-scaling-stroke"/>
+        <path d="m14 8-1-1" vector-effect="non-scaling-stroke"/>
+        <path d="m7 18 2.5 2.5" vector-effect="non-scaling-stroke"/>
+        <path d="m6.5 12.5 1 1" vector-effect="non-scaling-stroke"/>
+        <path d="m16.5 10.5 1 1" vector-effect="non-scaling-stroke"/>
+        <path d="m10 16 1.5 1.5" vector-effect="non-scaling-stroke"/>
+      </g>
+      <g class="d-cy" transform="translate(430 40) scale(4.4)" opacity=".13" vector-effect="non-scaling-stroke">
+        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" vector-effect="non-scaling-stroke"/>
+        <path d="m9 12 2 2 4-4" vector-effect="non-scaling-stroke"/>
+      </g>
+      <g transform="translate(150 230) scale(3.4)" opacity=".14" vector-effect="non-scaling-stroke">
+        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" vector-effect="non-scaling-stroke"/>
+        <path d="M14 2v4a2 2 0 0 0 2 2h4" vector-effect="non-scaling-stroke"/>
+        <path d="M16 13H8" vector-effect="non-scaling-stroke"/>
+        <path d="M16 17H8" vector-effect="non-scaling-stroke"/>
+        <path d="M10 9H8" vector-effect="non-scaling-stroke"/>
+      </g>
+      <g class="d-cy" transform="translate(560 260) scale(3.1)" opacity=".12" vector-effect="non-scaling-stroke">
+        <path d="M3 7V5a2 2 0 0 1 2-2h2" vector-effect="non-scaling-stroke"/>
+        <path d="M17 3h2a2 2 0 0 1 2 2v2" vector-effect="non-scaling-stroke"/>
+        <path d="M21 17v2a2 2 0 0 1-2 2h-2" vector-effect="non-scaling-stroke"/>
+        <path d="M7 21H5a2 2 0 0 1-2-2v-2" vector-effect="non-scaling-stroke"/>
+        <path d="M7 12h10" vector-effect="non-scaling-stroke"/>
+      </g>
+      <g transform="translate(300 420) scale(3.6)" opacity=".13" vector-effect="non-scaling-stroke">
+        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" vector-effect="non-scaling-stroke"/>
+        <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" vector-effect="non-scaling-stroke"/>
+        <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" vector-effect="non-scaling-stroke"/>
+        <path d="M10 6h4M10 10h4M10 14h4M10 18h4" vector-effect="non-scaling-stroke"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap hero__grid">
+    <div class="hero__eyebrow">
+      <p class="eyebrow">Партнёрам · Гос. закупки</p>
+      <span class="status-chip">Лицензия действует</span>
+    </div>
+    <h1 class="hero__title">Гос. тендеры и <em>закупки</em></h1>
+    <p class="hero__sub">Геномед — медико-генетический центр с лицензией на медицинскую деятельность, включая клиническую лабораторную и лабораторную генетическую диагностику. Ниже — сведения, которые нужны заказчику для проверки контрагента и участия в закупках.</p>
+    <ul class="hero__tags">
+      <li>44-ФЗ</li><li>223-ФЗ</li><li>9 регионов</li><li>лицензия бессрочна</li>
+    </ul>
+    <div class="hero__meta">
+      <div><div class="meta__num">9</div><div class="meta__label">адресов лицензии в России</div></div>
+      <div><div class="meta__num">9</div><div class="meta__label">торговых площадок с аккредитацией</div></div>
+      <div><div class="meta__num">5+</div><div class="meta__label">лет опыта в госзакупках</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= РЕКВИЗИТЫ И ЛИЦЕНЗИЯ ================= -->
+<section class="block" id="rekvizity" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">Для проверки контрагента</span>
+      <h2>Реквизиты <em>и лицензия</em></h2>
+      <p>Полные данные для внесения в заявку и проверки на портале ФНС и в реестре Росздравнадзора.</p>
+    </div>
+    <div class="refs reveal">
+      <div class="ref">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 21v-4h6v4M9 7h.01M14 7h.01M9 11h.01M14 11h.01M9 15h.01M14 15h.01"/></svg>
+          Реквизиты организации
+        </h3>
+        <dl>
+          <dt>Полное наименование</dt><dd>Общество с ограниченной ответственностью «Геномед»</dd>
+          <dt>Сокращённое</dt><dd>ООО Геномед</dd>
+          <dt>ИНН</dt><dd class="mono">7701759381</dd>
+          <dt>КПП</dt><dd class="mono">770101001</dd>
+          <dt>ОГРН</dt><dd class="mono">1077763509977</dd>
+          <dt>Юр. адрес</dt><dd>105005, г. Москва, ул. Бауманская, д. 50/12, стр. 1</dd>
+        </dl>
+      </div>
+      <div class="ref">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          Лицензия на медицинскую деятельность
+        </h3>
+        <span class="status-chip">действует · бессрочно</span>
+        <dl style="margin-top:14px">
+          <dt>Рег. номер</dt><dd class="mono">Л041-01050-61/00589962</dd>
+          <dt>Предоставлена</dt><dd>28.01.2019</dd>
+          <dt>Орган</dt><dd>Департамент здравоохранения г. Москвы</dd>
+          <dt>Переоформление</dt><dd>приказ № 1886-Л от 17.12.2025</dd>
+        </dl>
+        <p class="ref-note">Актуальность можно проверить в реестре лицензий на портале Росздравнадзора (roszdravnadzor.gov.ru) по регистрационному номеру.</p>
+      </div>
+      <div class="ref">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Профиль для участия в торгах
+        </h3>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 14px">При оказании первичной специализированной медико-санитарной помощи в амбулаторных условиях по:</p>
+        <ul class="plainlist">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>клинической лабораторной диагностике</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>лабораторной генетике</li>
+        </ul>
+      </div>
+      <div class="ref">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Опыт закупок
+        </h3>
+        <p style="margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.6">Участвуем в государственных закупках более 5&nbsp;лет — от разовых лотов до контрактов с медицинскими организациями регионального уровня.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ГЕОГРАФИЯ ================= -->
+<section class="block" id="geografiya">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">9 адресов · 6 регионов</span>
+      <h2>География <em>действия лицензии</em></h2>
+      <p>Лицензия распространяется на адреса в шести регионах России — это позволяет исполнять контракты не только в Москве.</p>
+    </div>
+    <div class="addr-grid reveal">
+      <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Москва</b><span>Подольское шоссе, 8, корп. 5</span></div>
+      <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Москва · Сокольники</b><span>ул. Короленко, 8, помещ. 9/1</span></div>
+      <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Москва · Донской</b><span>ул. Донская, 28, помещ. 3/1</span></div>
+      <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Волоколамск</b><span>ул. Ново-Солдатская, 3</span></div>
+      <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Шаховская</b><span>Волочановское шоссе, 8Б</span></div>
+      <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Екатеринбург</b><span>ул. Юмашева, 10</span></div>
+      <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Санкт-Петербург</b><span>ул. Мира, 16, пом. 20Н</span></div>
+      <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Казань</b><span>ул. Юлиуса Фучика, 42</span></div>
+      <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Ростов-на-Дону</b><span>ул. Козлова, 65е</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ТЁМНАЯ ПЛАШКА ================= -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="deep reveal">
+      <div class="deep__grid">
+        <div class="deep__big">9</div>
+        <div>
+          <h3>Регионов, где лицензия уже действует</h3>
+          <p>Заключаем прямые договоры, работаем в ЕИС и через электронный документооборот — можем работать с государственными заказчиками федерального, регионального и муниципального уровня без дополнительного оформления присутствия в регионе.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= КАК РАБОТАЕМ ================= -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="cards reveal">
+      <div class="fcard">
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8M16 17H8M10 9H8"/></svg></span>
+        <h3>Прямые договоры</h3>
+        <p>Заключаем контракты напрямую с заказчиком, без посредников, на условиях 44-ФЗ и 223-ФЗ.</p>
+      </div>
+      <div class="fcard">
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 4v5"/></svg></span>
+        <h3>ЕИС и ЭДО</h3>
+        <p>Работаем в единой информационной системе и в электронном документообороте на всех этапах контракта.</p>
+      </div>
+      <div class="fcard">
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span>
+        <h3>Портал поставщиков и ПИК</h3>
+        <p>Аккредитованы на Портале поставщиков, в системе ПИК и на ряде региональных площадок, включая электронный магазин Московской области.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ПЛОЩАДКИ ================= -->
+<section class="block" id="torgi" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">44-ФЗ / 223-ФЗ</span>
+      <h2>Электронные <em>площадки</em></h2>
+      <p>Аккредитация есть на всех перечисленных площадках.</p>
+    </div>
+    <div class="platforms reveal">
+      <a class="platform" href="https://www.sberbank-ast.ru/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Сбербанк-АСТ</a>
+      <a class="platform" href="https://www.roseltorg.ru/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>РТС / Росэлторг</a>
+      <a class="platform" href="http://etp.zakazrf.ru/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>ЕЭТП zakazrf</a>
+      <a class="platform" href="https://www.rts-tender.ru/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>РТС-тендер</a>
+      <a class="platform" href="https://www.fabrikant.ru/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Фабрикант</a>
+      <a class="platform" href="https://gz.lot-online.ru/etp_front/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Лот-Онлайн</a>
+      <a class="platform" href="https://www.tektorg.ru/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Тектендер</a>
+      <a class="platform" href="https://etpgpb.ru/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>ЭТП ГПБ</a>
+      <a class="platform" href="https://etpgpb.ru/products/strateg/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>ЭТП ГПБ · Стратег</a>
+      <span class="platform closed"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>АСТ ГОЗ<span class="tag">закрытая</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= НОМЕНКЛАТУРА + КОНТАКТ ================= -->
+<section class="block" id="kontakt" style="padding-top:0">
+  <div class="wrap">
+    <div class="refs reveal">
+      <div class="ref">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+          Номенклатура исследований
+        </h3>
+        <p style="margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.6">Полный перечень — в открытом каталоге <a href="https://price.genomed.ru/" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:none">price.genomed.ru</a>. Для технического задания по конкретному направлению уточним состав у профильного менеджера.</p>
+      </div>
+      <div class="ref">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          Контакт по тендерам и закупкам
+        </h3>
+        <dl>
+          <dt>Специалист</dt><dd>Сысоева Елена Сергеевна</dd>
+          <dt>Должность</dt><dd>Специалист по тендерам и закупкам</dd>
+          <dt>Почта</dt><dd><a href="mailto:e.sysoeva@genomed.ru">e.sysoeva@genomed.ru</a></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Готовите заявку — <em>уточним детали</em></h2>
+      <p>Напишите на почту тендерного специалиста: пришлём актуальную выписку из реестра лицензий, реквизиты в нужном формате и состав исследований под ваш лот.</p>
+      <div class="cta__btns">
+        <a class="btn btn--cta btn--large" href="mailto:e.sysoeva@genomed.ru">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          e.sysoeva@genomed.ru
+        </a>
+        <a class="btn btn--cta-secondary btn--large" href="https://price.genomed.ru/">Каталог исследований</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__in">
+      <div>
+        <div class="footer__brand">ООО Геномед</div>
+        <p>Медико-генетический центр. Сведения на странице приведены на основании выписки из реестра лицензий Росздравнадзора и данных ЕГРЮЛ по состоянию на 27 августа 2026 года.</p>
+      </div>
+      <div style="text-align:right">
+        <a class="footer__phone" href="tel:+74956608377">8 (495) 660-83-77</a>
+        <p style="margin-top:6px">Клиентский сервис · 24/7</p>
+      </div>
+    </div>
+    <div class="footer__disc">
+      Информация на странице носит справочный характер и не является публичной офертой. Актуальность реквизитов и лицензии рекомендуем проверять на официальных порталах ФНС и Росздравнадзора перед подачей заявки.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.meta__num');
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      io.unobserve(e.target);
+      var el = e.target, txt = el.textContent.trim(), m = txt.match(/^(\d+)(\+?)$/);
+      if(!m) return;
+      var to = +m[1], suf = m[2] || '', t0 = null;
+      function step(ts){
+        if(!t0) t0 = ts;
+        var p = Math.min((ts - t0)/900, 1), e2 = 1 - Math.pow(1-p, 3);
+        el.textContent = Math.round(to*e2) + suf;
+        if(p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, {threshold:.6});
+  els.forEach(function(el){ io.observe(el); });
+})();
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

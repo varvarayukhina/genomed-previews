@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Подбор ДНК-теста на родство: фильтр по тому, кто может сдать образец, сравнение исследований, сроки и биоматериал. Лаборатория Геномед.">
+<title>Подбор ДНК-теста на родство</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root{
+  color-scheme:light;
+  --bg:#F4F8FE; --bg-card:#FFFFFF; --bg-soft:#F4F8FD; --bg-deep:#0A2540; --bg-deep-2:#102A4C;
+  --ink:#0A2540; --ink-2:#2E4A6B; --muted:#6E839C;
+  --line:#D8E4F2; --line-soft:#ECF2FB;
+  --blue:#0057FF; --blue-2:#0046CC; --cyan:#00C2FF; --accent-soft:#E6F0FF;
+  --ok:#1AA06D; --ok-soft:#E4F7EF; --warn:#C8791B; --warn-soft:#FFF2E0;
+  --shadow-sm:0 1px 2px rgba(10,37,64,.04),0 2px 8px rgba(10,37,64,.04);
+  --shadow-md:0 8px 24px rgba(10,37,64,.08);
+  --shadow-lg:0 24px 64px rgba(10,37,64,.12);
+  --r-sm:8px; --r-md:16px; --r-lg:24px; --r-xl:32px;
+  --disp:"Gilroy","Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --maxw:1460px; --top:76px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--disp);font-weight:500;
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-wrap:break-word}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:2px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
+.mono{font-family:var(--mono);font-feature-settings:"tnum"1,"zero"1;letter-spacing:-.01em}
+h1,h2,h3,h4{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin:0;text-wrap:balance}
+
+/* ── шапка ── */
+header{position:sticky;top:0;z-index:40;background:rgba(244,248,254,.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:1.1rem;height:var(--top);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.7rem;flex:none}
+.brand small{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.02em;
+  border-left:1px solid var(--line);padding-left:.7rem;line-height:1.3;white-space:nowrap}
+.nav .count{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);
+  background:var(--accent-soft);border-radius:100px;padding:.3rem .8rem;white-space:nowrap}
+.nav .tel{margin-left:auto;display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.nav .tel b{font-family:var(--mono);font-weight:700;font-size:.98rem}
+.nav .tel span{font-size:.78rem;color:var(--muted)}
+@media(max-width:720px){.nav{height:auto;padding-block:.7rem}.brand small,.nav .count{display:none}}
+
+/* ── тёмный интро-блок ── */
+.intro{position:relative;overflow:hidden;background:var(--bg-deep);color:#EAF2FB;border-radius:var(--r-xl);
+  padding:clamp(1.5rem,3vw,2.2rem) clamp(1.5rem,3vw,2.4rem);margin-top:1.2rem;
+  display:flex;gap:clamp(1.4rem,3vw,2.6rem);flex-wrap:wrap;align-items:center}
+.intro::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 88% 6%,rgba(0,194,255,.17),transparent 58%),
+             radial-gradient(ellipse at 4% 96%,rgba(0,87,255,.24),transparent 60%)}
+.intro>*{position:relative;z-index:1}
+.intro__text{flex:1 1 420px;min-width:0}
+.intro h1{font-size:clamp(1.5rem,2.6vw,2.05rem);color:#fff}
+.intro h1 em{font-style:normal;color:var(--cyan)}
+.intro p{margin:.7rem 0 0;color:#BBD3EE;font-size:.95rem;max-width:70ch}
+.intro__stats{display:flex;gap:clamp(1rem,2.4vw,2rem);flex:0 1 auto;flex-wrap:wrap}
+.intro__stats b{display:block;font-family:var(--mono);font-weight:700;font-size:1.05rem;color:var(--cyan);white-space:nowrap}
+.intro__stats small{display:block;color:#9CBCE0;font-size:.74rem;margin-top:.35rem;max-width:15ch;line-height:1.35}
+
+/* ── раскладка ── */
+.app{display:grid;grid-template-columns:262px minmax(0,1fr) 340px;gap:1.2rem;align-items:start;
+  margin-top:1.2rem;padding-bottom:3rem}
+.app>*{min-width:0}
+@media(max-width:1300px){.app{grid-template-columns:250px minmax(0,1fr)}.detail{grid-column:1/-1}}
+@media(max-width:920px){.app{grid-template-columns:1fr}}
+.sticky{position:sticky;top:calc(var(--top) + 12px);max-height:calc(100vh - var(--top) - 28px);
+  overflow:auto;scrollbar-width:thin}
+@media(max-width:920px){.sticky{position:static;max-height:none;overflow:visible}}
+
+/* ── панель фильтров ── */
+.filters{display:flex;flex-direction:column;gap:.7rem}
+.fbox{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-md);padding:.85rem .9rem;
+  box-shadow:var(--shadow-sm)}
+.flabel{display:block;font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.search{width:100%;padding:.6rem .75rem;border:1px solid var(--line);border-radius:var(--r-sm);
+  background:var(--bg-soft);font:inherit;font-size:.9rem;font-weight:600;color:var(--ink)}
+.search::placeholder{color:var(--muted);font-weight:500}
+.opts{display:flex;flex-direction:column;gap:.28rem}
+.opt{display:flex;align-items:center;gap:.5rem;width:100%;text-align:left;padding:.42rem .6rem;
+  border-radius:var(--r-sm);font-size:.86rem;font-weight:600;color:var(--ink-2);transition:background .15s,color .15s}
+.opt:hover{background:var(--bg-soft);color:var(--ink)}
+.opt .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted);flex:none}
+.opt[aria-pressed="true"]{background:var(--blue);color:#fff}
+.opt[aria-pressed="true"] .n{color:#BBD3EE}
+.opt[disabled]{opacity:.38;cursor:default}
+.opt[disabled]:hover{background:none;color:var(--ink-2)}
+.chips{display:flex;flex-direction:column;flex-wrap:nowrap;gap:.3rem}
+.chips .opt{padding:.38rem .7rem;border:1px solid var(--line);font-size:.83rem;border-radius:100px}
+.chips .opt[aria-pressed="true"]{border-color:var(--blue)}
+.reset{width:100%;padding:.6rem;border-radius:100px;background:var(--accent-soft);color:var(--ink);
+  font-weight:700;font-size:.85rem}
+.fdrawer{display:flex;flex-direction:column;gap:.7rem;background:none;border:none;padding:0;box-shadow:none}
+.fdrawer>summary{display:none}
+.fdrawer__body{display:flex;flex-direction:column;gap:.7rem}
+@media(max-width:920px){
+  .fdrawer{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-md);
+    padding:.85rem .9rem;box-shadow:var(--shadow-sm);align-self:stretch}
+  .sorts{margin-left:0}
+  .fdrawer>summary{display:flex;font-size:.92rem}
+  .fdrawer__body{margin-top:.85rem}
+}
+.reset:hover{background:#D7E6FF}
+
+/* ── тулбар ── */
+.toolbar{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;background:var(--bg-card);
+  border:1px solid var(--line);border-radius:var(--r-md);padding:.7rem .9rem;box-shadow:var(--shadow-sm);
+  margin-bottom:.9rem}
+.toolbar .found{font-weight:800;font-size:.95rem}
+.toolbar .found span{font-family:var(--mono);color:var(--blue)}
+.active{display:flex;gap:.3rem;flex-wrap:wrap}
+.active button{display:inline-flex;align-items:center;gap:.35rem;font-size:.76rem;font-weight:700;
+  background:var(--accent-soft);color:var(--blue-2);border-radius:100px;padding:.24rem .55rem .24rem .65rem}
+.active button::after{content:"×";font-family:var(--mono);font-size:.9rem;line-height:1}
+.active button:hover{background:#D7E6FF}
+.sorts{margin-left:auto;display:flex;align-items:center;gap:.35rem}
+.sorts span{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sorts button{font-size:.8rem;font-weight:700;color:var(--muted);padding:.24rem .55rem;border-radius:100px}
+.sorts button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* ── сравнение ── */
+.compare{background:var(--bg-card);border:1px solid var(--blue);border-radius:var(--r-md);
+  box-shadow:var(--shadow-md);margin-bottom:.9rem;overflow:hidden}
+.compare__head{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;padding:.75rem .95rem;
+  background:var(--accent-soft);border-bottom:1px solid var(--line)}
+.compare__head strong{font-size:.92rem}
+.compare__head span{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.compare__head button{margin-left:auto;font-size:.78rem;font-weight:700;color:var(--blue-2)}
+.compare__scroll{overflow-x:auto}
+.compare table{border-collapse:collapse;width:100%;min-width:520px;font-size:.85rem}
+.compare th,.compare td{text-align:left;padding:.55rem .95rem;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.compare thead th{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;border-bottom:1px solid var(--line)}
+.compare tbody td:first-child{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;width:1%}
+.compare tbody tr:last-child td{border-bottom:none}
+
+/* ── результаты ── */
+.grp{margin-bottom:1.1rem}
+.grp__head{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;background:var(--bg-deep);color:#fff;
+  border-radius:var(--r-md);padding:.6rem 1rem;margin-bottom:.55rem}
+.grp__head h3{font-size:1rem;color:#fff}
+.grp__head small{font-family:var(--mono);font-size:.68rem;color:#8FB6E4}
+.grp__head .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:#BBD3EE}
+.rows{display:flex;flex-direction:column;gap:.5rem}
+.row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.85rem;align-items:start;
+  background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-md);padding:.8rem .95rem;
+  box-shadow:var(--shadow-sm);transition:border-color .15s,box-shadow .15s}
+.row:hover{border-color:#B9D2F7;box-shadow:var(--shadow-md)}
+.row[data-sel="1"]{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue),var(--shadow-md)}
+.cmp{width:22px;height:22px;border:1.5px solid var(--line);border-radius:6px;display:grid;place-items:center;
+  flex:none;margin-top:.15rem;color:transparent;font-size:.75rem;font-weight:800;transition:.15s}
+.cmp:hover{border-color:var(--blue)}
+.cmp[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.row__main{text-align:left;min-width:0;display:flex;flex-direction:column;gap:.42rem}
+.row__main h4{font-size:.97rem;line-height:1.24}
+.roles{display:flex;flex-wrap:wrap;gap:.28rem;align-items:center}
+.roles i{font-style:normal;background:var(--accent-soft);border-radius:100px;padding:.16rem .55rem;
+  font-size:.78rem;font-weight:700;color:var(--blue-2);white-space:nowrap;max-width:100%}
+@media(max-width:620px){.roles i{white-space:normal;line-height:1.35}}
+.roles u{text-decoration:none;color:var(--blue);font-weight:800;font-size:.75rem}
+.roles em{font-style:normal;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.row__meta{font-family:var(--mono);font-size:.7rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.45rem}
+.row__meta i{font-style:normal}
+.row__meta i::after{content:" ·";color:var(--line)}
+.row__meta i:last-child::after{content:""}
+.row__side{display:flex;flex-direction:column;align-items:flex-end;gap:.35rem;flex:none}
+.term{font-family:var(--mono);font-weight:700;font-size:.76rem;color:var(--blue);background:var(--accent-soft);
+  border:1px solid #C9DCFB;border-radius:100px;padding:.22rem .6rem;white-space:nowrap}
+.tags{display:flex;gap:.25rem;flex-wrap:wrap;justify-content:flex-end}
+.tag{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.06em;border-radius:100px;
+  padding:.16rem .45rem;white-space:nowrap}
+.tag--info{background:#E9F1FF;color:#0046CC}
+.tag--court{background:var(--ok-soft);color:#127A52}
+.tag--express{background:var(--warn-soft);color:#8A5714}
+@media(max-width:560px){.row{grid-template-columns:auto minmax(0,1fr)}
+  .row__side{grid-column:2;flex-direction:row;align-items:center;justify-content:flex-start}}
+
+.empty{background:var(--bg-card);border:1px dashed var(--line);border-radius:var(--r-md);padding:1.6rem;text-align:center}
+.empty strong{display:block;font-family:var(--disp);font-weight:800;font-size:1.05rem;margin-bottom:.5rem}
+.empty p{margin:0 auto 1rem;color:var(--muted);font-size:.9rem;max-width:46ch}
+
+/* ── панель деталей ── */
+.detail{display:flex;flex-direction:column;gap:.7rem}
+.card{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--shadow-sm)}
+.card__head{padding:.9rem 1rem;background:linear-gradient(180deg,#F5F9FF,#fff);border-bottom:1px solid var(--line)}
+.card__head .eyebrow{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--blue);margin-bottom:.4rem}
+.card__head h3{font-size:1.02rem}
+.card__head .facts{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.6rem}
+.card__head .facts span{font-family:var(--mono);font-size:.68rem;background:var(--bg-soft);border:1px solid var(--line-soft);
+  border-radius:100px;padding:.16rem .5rem;color:var(--ink-2)}
+.card__body{padding:.95rem 1rem 1.1rem;display:flex;flex-direction:column;gap:.85rem}
+.field{display:flex;flex-direction:column;gap:.4rem}
+.field>span{font-family:var(--mono);font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.field p{margin:0;font-size:.88rem;color:var(--ink-2)}
+.rline{display:flex;flex-direction:column;gap:.25rem}
+.rline>em{font-style:normal;font-family:var(--mono);font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.detail .roles i{white-space:normal;line-height:1.35}
+.detail p.desc{margin:0;font-size:.9rem;color:var(--ink-2)}
+.detail p.note{margin:0;font-size:.84rem;color:var(--muted);padding-top:.7rem;border-top:1px solid var(--line-soft)}
+.detail .call{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-weight:700;
+  font-size:.82rem;color:var(--blue);align-self:flex-start}
+.hint p{margin:0 0 .7rem;font-size:.86rem;color:var(--ink-2)}
+.hint p:last-child{margin-bottom:0}
+.hint b{color:var(--ink)}
+.hint .sub{margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--line-soft)}
+.hint ol{margin:.5rem 0 0;padding-left:1.1rem;font-size:.85rem;color:var(--muted);display:flex;
+  flex-direction:column;gap:.35rem}
+
+/* ── нижние аккордеоны ── */
+.docs{max-width:var(--maxw);margin-inline:auto;padding:0 24px 3.5rem}
+.docs h2{font-size:clamp(1.4rem,2.4vw,1.9rem);margin-bottom:1rem}
+.docs h2 em{font-style:normal;color:var(--blue)}
+.acc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem}
+@media(max-width:900px){.acc{grid-template-columns:1fr}}
+details{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-md);padding:.9rem 1.1rem;
+  box-shadow:var(--shadow-sm);align-self:start}
+summary{cursor:pointer;font-weight:800;font-size:.95rem;list-style:none;display:flex;gap:.7rem;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-left:auto;color:var(--blue);font-family:var(--mono);font-weight:700;flex:none}
+details[open] summary::after{content:"–"}
+details ul,details ol{margin:.8rem 0 0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.5rem}
+details li{font-size:.87rem;color:var(--ink-2)}
+details li b{color:var(--ink)}
+
+/* ── CTA + футер ── */
+.cta{position:relative;overflow:hidden;background:var(--bg-deep);color:#EAF2FB;border-radius:var(--r-xl);
+  padding:clamp(1.5rem,3vw,2.2rem);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.6rem;
+  align-items:center;margin-top:1.2rem}
+.cta::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 90% 10%,rgba(0,194,255,.16),transparent 60%)}
+.cta>*{position:relative;z-index:1}
+.cta h3{color:#fff;font-size:clamp(1.15rem,2.2vw,1.5rem)}
+.cta p{margin:.6rem 0 0;color:#BBD3EE;font-size:.92rem;max-width:62ch}
+.cta .tel{font-family:var(--mono);font-weight:700;font-size:clamp(1.1rem,2.2vw,1.5rem);color:#fff;white-space:nowrap}
+.cta small{display:block;color:#9CBCE0;font-size:.8rem;margin-top:.3rem}
+@media(max-width:760px){.cta{grid-template-columns:1fr}}
+footer{background:var(--bg-card);border-top:1px solid var(--line);padding-block:2rem;margin-top:2rem}
+.fgrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.6rem;align-items:start}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr}}
+footer p{color:var(--muted);font-size:.8rem;margin:.6rem 0 0;max-width:62ch}
+footer .disc{color:var(--ink-2);font-weight:600}
+</style>
+
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Геномед">
+      <img src="data:image/png;base64,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" alt="Геномед" width="140" height="71" style="height:34px;width:auto">
+      <small>Установление<br>родства</small>
+    </a>
+    <span class="count mono">18 исследований</span>
+    <span class="tel"><b class="mono"><a href="tel:+74956608377">8 (495) 660-83-77</a></b><span>клиентский сервис 24/7</span></span>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+
+  <section class="intro">
+    <div class="intro__text">
+      <h1>Найдите исследование по тому, <em>кто сможет сдать</em> образец</h1>
+      <p>Выберите родственную пару слева — список сузится до подходящих тестов. Нажмите на строку, чтобы увидеть участников, биоматериал и ограничения; отметьте квадрат, чтобы сравнить до трёх исследований.</p>
+    </div>
+    <div class="intro__stats">
+      <div><b>≥&nbsp;23</b><small>маркера в тесте на отцовство</small></div>
+      <div><b>99,9999&nbsp;%</b><small>средняя вероятность вывода</small></div>
+      <div><b>от 1 дня</b><small>срок в экспресс-формате</small></div>
+      <div><b>с 9 недель</b><small>дородовое установление отцовства</small></div>
+    </div>
+  </section>
+
+  <div class="app">
+
+    <aside class="filters sticky" aria-label="Фильтры">
+      <div class="fbox">
+        <label class="flabel" for="q">Поиск</label>
+        <input class="search" id="q" type="search" placeholder="тест, родственник, срок…" autocomplete="off">
+      </div>
+      <details class="fdrawer" id="fdrawer" open>
+      <summary>Фильтры<span class="mono" id="fcount" style="margin-left:.5rem;color:var(--muted);font-size:.78rem"></span></summary>
+      <div class="fdrawer__body">
+      <div class="fbox">
+        <span class="flabel">Кто будет сдавать</span>
+        <div class="opts chips" id="f-scen"></div>
+      </div>
+      <div class="fbox">
+        <span class="flabel">Формат</span>
+        <div class="opts" id="f-fmt"></div>
+      </div>
+      <div class="fbox">
+        <span class="flabel">Срок</span>
+        <div class="opts" id="f-days"></div>
+      </div>
+      <div class="fbox">
+        <span class="flabel">Биоматериал</span>
+        <div class="opts" id="f-bio"></div>
+      </div>
+      <div class="fbox">
+        <span class="flabel">Раздел</span>
+        <div class="opts" id="f-grp"></div>
+      </div>
+      <button class="reset" type="button" id="reset">Сбросить фильтры</button>
+      </div>
+      </details>
+    </aside>
+
+    <div>
+      <div class="toolbar">
+        <span class="found" id="found"></span>
+        <div class="active" id="active"></div>
+        <div class="sorts">
+          <span>сортировка</span>
+          <button type="button" data-sort="group">по разделам</button>
+          <button type="button" data-sort="days">по сроку</button>
+          <button type="button" data-sort="name">по алфавиту</button>
+        </div>
+      </div>
+      <div id="compare"></div>
+      <div id="results"></div>
+    </div>
+
+    <aside class="detail sticky" id="detail" aria-live="polite"></aside>
+  </div>
+</main>
+
+<section class="docs">
+  <h2>Что важно знать <em>до записи</em></h2>
+  <div class="acc">
+    <details open>
+      <summary>Биоматериал и подготовка</summary>
+      <ul>
+        <li><b>Буккальный эпителий.</b> Мазок с внутренней стороны щеки: минимум два зонда от каждого участника, каждый в отдельном подписанном конверте.</li>
+        <li><b>Подготовка к мазку.</b> За полчаса до забора не есть и не пить, непосредственно перед забором прополоскать рот водой.</li>
+        <li><b>Венозная кровь.</b> Не менее 1&nbsp;мл в пробирке с ЭДТА или цитратом натрия; гепарин не подходит. Доставка в лабораторию в течение 2&nbsp;часов, хранение при +2…+8&nbsp;°C — до 48&nbsp;часов.</li>
+        <li><b>Нестандартные образцы.</b> Ногти, волосы, зубная щётка — по предварительному согласованию с лабораторией, кроме костей и зубов; выделение ДНК оформляется отдельной услугой.</li>
+      </ul>
+    </details>
+    <details>
+      <summary>Как пройти исследование</summary>
+      <ol>
+        <li>Определите формат — для себя или для суда — и кто сможет сдать образец. Направление врача не требуется.</li>
+        <li>Запишитесь на забор в медицинском офисе Геномед или у партнёра; возможен выезд специалиста. Для досудебного и судебного теста забор проводит сотрудник лаборатории с идентификацией участников.</li>
+        <li>Сдайте биоматериал: стандартно мазок из щеки, альтернатива — венозная кровь.</li>
+        <li>Получите заключение на электронную почту. Оригинал с печатью и подписью эксперта оформляется по отдельному запросу, судебное заключение эксперт направляет в суд.</li>
+      </ol>
+    </details>
+    <details>
+      <summary>Что учесть заранее</summary>
+      <ul>
+        <li><b>Неопределённый результат возможен</b> при признаках мутации, «молчащем» аллеле, неполном или невоспроизводимом профиле.</li>
+        <li><b>Дальнее родство сложнее:</b> когда родство отличается от пары «родитель — ребёнок», доказательности может не хватить для обоснованного экспертного вывода.</li>
+        <li><b>Информационный формат — не для суда:</b> юридическая процедура забора в нём не соблюдается.</li>
+        <li><b>Повторный забор.</b> В информационных тестах бесплатный повторный забор не предусмотрен; в судебных он бесплатен, если первый забор проводил сотрудник Геномед.</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="cta">
+    <div>
+      <h3>Не уверены, какой тест подходит вашему случаю?</h3>
+      <p>Расскажите, кто кому кем приходится и для чего нужен результат, — специалист подберёт исследование и объяснит порядок забора образцов. Для дальних степеней родства возможность исследования согласуется с лабораторией заранее.</p>
+    </div>
+    <div>
+      <a class="tel mono" href="tel:+74956608377">8&nbsp;(495)&nbsp;660-83-77</a>
+      <small>Клиентский сервис 24/7 · genomed.ru</small>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <img src="data:image/png;base64,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" alt="Геномед" width="140" height="71" style="height:32px;width:auto">
+      <p>ООО Геномед, медико-генетический центр. Установление отцовства и родства, дородовое установление отцовства, исследования для программ ЭКО и ВРТ.</p>
+    </div>
+    <div>
+      <p class="disc">Имеются противопоказания, необходима консультация специалиста.</p>
+      <p>Информация носит справочный характер и не является публичной офертой. Сроки исполнения указаны в рабочих днях и отсчитываются с момента поступления биоматериала в лабораторию.</p>
+      <p class="mono" style="font-size:.74rem">8 (495) 660-83-77 · genomed.ru</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const TESTS = [{"id": "lite", "g": "parent", "name": "Тест на отцовство или материнство ЛАЙТ", "days": 3, "term": "3 дня", "markers": "≥ 19 локусов", "formats": ["info"], "bio": ["swab", "blood"], "rel": ["child-parent"], "lines": [{"sep": "", "items": [{"label": "ребёнок", "plus": ""}, {"label": "предполагаемый родитель", "plus": "+"}]}], "desc": "Базовый формат для личного знания: сравниваются профили ребёнка и одного предполагаемого родителя.", "note": "Заключение отправляется только по электронной почте. Оригинал с печатью и подписью эксперта и бесплатный повторный забор в него не входят и заказываются отдельно.", "extra": "в среднем 99,99 %"}, {"id": "two", "g": "parent", "name": "Тест на отцовство или материнство, 2 участника", "days": 3, "term": "3 дня", "markers": "≥ 23 маркера", "formats": ["info", "court"], "bio": ["swab", "blood"], "rel": ["child-parent"], "lines": [{"sep": "", "items": [{"label": "ребёнок", "plus": ""}, {"label": "предполагаемый родитель", "plus": "+"}]}], "desc": "Основной тест на отцовство. Расширенный набор маркеров даёт более высокую достоверность вывода, чем формат ЛАЙТ.", "note": "Объём исследования в информационном и судебном формате одинаковый — различаются процедура забора и статус документа.", "extra": "в среднем 99,9999 %"}, {"id": "three", "g": "parent", "name": "Тест на отцовство или материнство, 3 участника", "days": 3, "term": "3 дня", "markers": "≥ 23 маркера", "formats": ["info"], "bio": ["swab", "blood"], "rel": ["child-parent", "mother"], "lines": [{"sep": "", "items": [{"label": "ребёнок", "plus": ""}, {"label": "предполагаемый родитель", "plus": "+"}, {"label": "бесспорный родитель", "plus": "+"}]}], "desc": "Бесспорный родитель — тот, в чьём родстве с ребёнком сомнений нет, чаще всего мать. Его образец повышает достоверность вывода.", "note": "Рекомендован, когда результат в паре «отец — ребёнок» вышел неоднозначным, например при несовпадении по одному маркеру. Одновременно отцовство и материнство этот тест не определяет.", "extra": "в среднем 99,9999 %"}, {"id": "pair", "g": "parent", "name": "Тест на отцовство и материнство: родительская пара и ребёнок", "days": 3, "term": "3 дня", "markers": "≥ 23 маркера", "formats": ["info"], "bio": ["swab", "blood"], "rel": ["child-parent", "mother"], "lines": [{"sep": "", "items": [{"label": "ребёнок", "plus": ""}, {"label": "предполагаемая мать", "plus": "+"}, {"label": "предполагаемый отец", "plus": "+"}]}], "desc": "Устанавливает родство пары в отношении одного ребёнка сразу — и отцовство, и материнство.", "note": "Если нужно проверить только одного родителя, достаточно теста на двух участников.", "extra": "в среднем 99,9999 %"}, {"id": "express", "g": "parent", "name": "Экспресс-установление отцовства или материнства", "days": 1, "term": "1 день", "markers": "≥ 23 маркера", "formats": ["info", "express"], "bio": ["swab", "blood"], "rel": ["child-parent"], "lines": [{"sep": "", "items": [{"label": "ребёнок", "plus": ""}, {"label": "предполагаемый родитель", "plus": "+"}]}], "desc": "Тот же объём исследования, что и в тесте на два участника, но результат готовится за один рабочий день.", "note": "Экспресс-выполнение доступно и для досудебных и судебных тестов на родство — уточняйте при записи.", "extra": "в среднем 99,9999 %"}, {"id": "extra", "g": "parent", "name": "Дополнительный участник исследования", "days": 3, "term": "срок теста", "markers": "объём основного теста", "formats": ["info", "express"], "bio": ["swab", "blood"], "rel": ["child-parent", "other"], "lines": [{"sep": "", "items": [{"label": "ещё один предполагаемый родитель", "plus": ""}]}, {"sep": "либо", "items": [{"label": "ещё один родственник", "plus": ""}]}], "desc": "Если предполагаемых отцов несколько или в анализ нужно включить других родственников, каждый следующий образец добавляется к основному тесту отдельной позицией.", "note": "Позиция оформляется вместе с основным исследованием, срок при этом не меняется.", "extra": "—"}, {"id": "kin3", "g": "kin", "name": "Тест на родство до 3 степени, 2 участника", "days": 5, "term": "5 дней", "markers": "23 аутосомных локуса", "formats": ["info", "court"], "bio": ["swab", "blood"], "rel": ["grandparent", "uncle", "siblings"], "lines": [{"sep": "", "items": [{"label": "бабушка или дедушка", "plus": ""}, {"label": "внук или внучка", "plus": "+"}]}, {"sep": "либо", "items": [{"label": "дядя или тётя", "plus": ""}, {"label": "племянник или племянница", "plus": "+"}]}, {"sep": "либо", "items": [{"label": "родные или неполнородные братья и сёстры", "plus": ""}]}], "desc": "Стандартный тест для родства второй и третьей степени по аутосомным маркерам.", "note": "Прабабушки и прадедушки в этот тест не входят — для более далёких степеней родства подбирается другое исследование.", "extra": "в среднем 99,9 %"}, {"id": "kinuni", "g": "kin", "name": "Универсальный тест на родство", "days": 5, "term": "5–7 дней", "markers": "тактику подбирает эксперт", "formats": ["info", "court"], "bio": ["swab", "blood"], "rel": ["grandparent", "uncle", "siblings", "other"], "lines": [{"sep": "", "items": [{"label": "бабушка или дедушка", "plus": ""}, {"label": "внук или внучка", "plus": "+"}]}, {"sep": "либо", "items": [{"label": "дядя или тётя", "plus": ""}, {"label": "племянник или племянница", "plus": "+"}]}, {"sep": "либо", "items": [{"label": "родные или неполнородные братья и сёстры", "plus": ""}]}], "desc": "Тактику и объём исследования подбирает эксперт лаборатории — так, чтобы результат получился максимально информативным для конкретной пары.", "note": "Информационный формат — 5 рабочих дней, досудебный и судебный — 7 рабочих дней.", "extra": "в среднем 99,9 %"}, {"id": "y3", "g": "kin", "name": "Тест на родство по Y-хромосоме, до 3 степени", "days": 5, "term": "5 дней", "markers": "≥ 18 маркеров Y", "formats": ["info", "court"], "bio": ["swab", "blood"], "rel": ["male-line", "siblings", "grandparent", "uncle"], "lines": [{"sep": "только мужчины по мужской линии", "items": [{"label": "родные братья", "plus": ""}]}, {"sep": "либо", "items": [{"label": "дедушка", "plus": ""}, {"label": "внук", "plus": "+"}]}, {"sep": "либо", "items": [{"label": "дядя", "plus": ""}, {"label": "племянник", "plus": "+"}]}], "desc": "Y-хромосома передаётся от отца к сыну почти без изменений, поэтому мужчины одной отцовской линии имеют схожий Y-профиль.", "note": "Тест показывает принадлежность к одной отцовской линии, но не степень родства внутри неё.", "extra": "99,99 % либо исключение"}, {"id": "y4", "g": "kin", "name": "Тест на родство по Y-хромосоме, более 3 степени", "days": 5, "term": "5 дней", "markers": "≥ 18 маркеров Y", "formats": ["info"], "bio": ["swab", "blood"], "rel": ["male-line", "other"], "lines": [{"sep": "только мужчины по мужской линии", "items": [{"label": "двоюродные братья", "plus": ""}, {"label": "другие мужчины одной отцовской линии", "plus": "+"}]}], "desc": "Для дальнего родства по мужской линии — двоюродных братьев и более отдалённых родственников.", "note": "Возможность исследования заявленной степени родства согласуется с лабораторией заранее.", "extra": "в среднем 99 %"}, {"id": "x", "g": "kin", "name": "Тест на родство по X-хромосоме", "days": 5, "term": "5 дней", "markers": "≥ 12 маркеров X", "formats": ["info"], "bio": ["swab", "blood"], "rel": ["female-line", "grandparent", "siblings"], "lines": [{"sep": "", "items": [{"label": "бабушка по отцу", "plus": ""}, {"label": "внучка", "plus": "+"}]}, {"sep": "либо", "items": [{"label": "сёстры по отцу, у которых разные матери", "plus": ""}]}], "desc": "Дочь получает от отца ту же X-хромосому, которую он получил от своей матери, — это и позволяет проверить родство именно в таких парах.", "note": "Для других пар родственниц метод не подходит: нужен тест до 3 степени или универсальный.", "extra": "99,99 % либо исключение"}, {"id": "twins", "g": "kin", "name": "Близнецовый тест", "days": 3, "term": "3 дня", "markers": "определение зиготности", "formats": ["info"], "bio": ["swab", "blood"], "rel": ["twins"], "lines": [{"sep": "", "items": [{"label": "первый близнец", "plus": ""}, {"label": "второй близнец", "plus": "+"}]}], "desc": "Показывает, монозиготные близнецы или дизиготные: монозиготные развиваются из одной оплодотворённой яйцеклетки и генетически идентичны.", "note": "Дизиготные близнецы различаются между собой так же, как обычные братья и сёстры.", "extra": "—"}, {"id": "profile", "g": "kin", "name": "ДНК-профилирование, 1 участник", "days": 3, "term": "3 дня", "markers": "23 маркера в аутосомах", "formats": ["info"], "bio": ["swab", "blood"], "rel": ["single"], "lines": [{"sep": "", "items": [{"label": "один человек", "plus": ""}]}], "desc": "Определяется индивидуальный ДНК-профиль. Его можно сохранить и позже сравнить с профилем другого участника.", "note": "Сравнение профилей и расчёт родства оформляются отдельной услугой.", "extra": "—"}, {"id": "nipt", "g": "prenatal", "name": "Неинвазивное дородовое установление отцовства", "days": 10, "term": "10 дней", "markers": "секвенирование NGS", "formats": ["info"], "bio": ["blood"], "rel": ["pregnant"], "lines": [{"sep": "", "items": [{"label": "беременная женщина — венозная кровь", "plus": ""}, {"label": "предполагаемый отец — кровь или мазок из щеки", "plus": "+"}]}], "desc": "Анализируется свободно циркулирующая ДНК плода, выделенная из плазмы крови матери. Процедура безопасна: забирается только кровь, не ранее 9 недель одноплодной беременности, срок подтверждается по УЗИ.", "note": "Тест неинформативен при донорской яйцеклетке, редукции эмбриона в анамнезе, суррогатном материнстве, онкологическом заболевании матери, пересадке костного мозга или стволовых клеток.", "extra": "с 9 недель беременности"}, {"id": "invasive", "g": "prenatal", "name": "Инвазивное дородовое установление отцовства", "days": 7, "term": "7 дней", "markers": "аутосомные маркеры", "formats": ["info"], "bio": ["fetal", "blood", "swab"], "rel": ["pregnant"], "lines": [{"sep": "", "items": [{"label": "плод — материал забирает врач", "plus": ""}, {"label": "мать", "plus": "+"}, {"label": "предполагаемый отец", "plus": "+"}]}], "desc": "Материал плода получают под контролем УЗИ: биопсия ворсин хориона на 9,5–12 неделе, амниоцентез на 16–20 неделе или кордоцентез на 21–24 неделе.", "note": "Инвазивные процедуры сопряжены с рисками, о которых родителей предупреждает врач. Достоверность результата такая же, как при исследовании образцов уже родившегося ребёнка.", "extra": "достоверность 99,9 %"}, {"id": "single-mother", "g": "ivf", "name": "Установление одинокой женщины в качестве генетической матери", "days": 3, "term": "3 дня", "markers": "≥ 19 маркеров", "formats": ["info", "express"], "bio": ["swab", "blood"], "rel": ["ivf", "child-parent"], "lines": [{"sep": "", "items": [{"label": "женщина", "plus": ""}, {"label": "ребёнок", "plus": "+"}]}], "desc": "Заключение оформляется в отношении одного ребёнка и направляется заказчику на указанную электронную почту.", "note": "Биоматериал всех участников предоставляется в лабораторию единовременно. Есть ускоренный формат — один рабочий день.", "extra": "—"}, {"id": "ivf-pair", "g": "ivf", "name": "Установление потенциальных родителей в качестве генетических матери и отца", "days": 3, "term": "3 дня", "markers": "≥ 19 маркеров", "formats": ["info", "express"], "bio": ["swab", "blood"], "rel": ["ivf", "child-parent", "mother"], "lines": [{"sep": "", "items": [{"label": "потенциальная мать", "plus": ""}, {"label": "потенциальный отец", "plus": "+"}, {"label": "ребёнок", "plus": "+"}]}], "desc": "Заключение оформляется в отношении одного ребёнка. Биоматериал всех участников предоставляется в лабораторию единовременно.", "note": "Передача биоматериала ребёнка суррогатной матери, потенциальным родителям или донору не допускается.", "extra": "—"}, {"id": "donor", "g": "ivf", "name": "Генетическое профилирование донора половых клеток", "days": 3, "term": "3 дня", "markers": "≥ 19 маркеров", "formats": ["info", "express"], "bio": ["swab", "blood"], "rel": ["ivf", "single"], "lines": [{"sep": "", "items": [{"label": "донор половых клеток", "plus": ""}]}], "desc": "Профилирование донора для банка спермы и протокола ЭКО или ВРТ. В исследовании участвует один человек.", "note": "Если образец уже готов, частичная обработка возможна в рамках отдельной услуги по выделению и хранению ДНК.", "extra": "—"}];
+
+const GROUPS = [
+  {id:"parent",   name:"Отцовство и материнство",        hint:"аутосомные STR-локусы + маркер пола"},
+  {id:"kin",      name:"Родство между родственниками",   hint:"степень родства определяет метод"},
+  {id:"prenatal", name:"Дородовое установление отцовства",hint:"во время беременности"},
+  {id:"ivf",      name:"Программы ЭКО и ВРТ",            hint:"подтверждение генетического родства"}
+];
+const SCENARIOS = [
+  {id:"child-parent",label:"ребёнок и родитель"},
+  {id:"mother",      label:"с участием матери"},
+  {id:"grandparent", label:"бабушка/дедушка и внук"},
+  {id:"uncle",       label:"дядя/тётя и племянник"},
+  {id:"siblings",    label:"братья и сёстры"},
+  {id:"male-line",   label:"мужчины одной линии"},
+  {id:"female-line", label:"женщины по отцу"},
+  {id:"twins",       label:"близнецы"},
+  {id:"pregnant",    label:"беременность"},
+  {id:"ivf",         label:"ЭКО и ВРТ"},
+  {id:"single",      label:"один человек"},
+  {id:"other",       label:"другой случай"}
+];
+const FORMATS = [
+  {id:"info",   label:"Информационный",       short:"ИНФО"},
+  {id:"court",  label:"Досудебный и судебный",short:"СУД"},
+  {id:"express",label:"Экспресс",             short:"ЭКСПРЕСС"}
+];
+const BIO = [
+  {id:"swab", label:"Мазок из щеки"},
+  {id:"blood",label:"Венозная кровь"},
+  {id:"fetal",label:"Материал плода"}
+];
+const DAYS = [
+  {id:"1", label:"1 рабочий день",   test:t=>t.days<=1},
+  {id:"3", label:"до 3 рабочих дней",test:t=>t.days<=3},
+  {id:"5", label:"до 5 рабочих дней",test:t=>t.days<=5},
+  {id:"10",label:"до 10 рабочих дней",test:t=>t.days<=10}
+];
+const BIO_TEXT = {
+  swab:"Буккальный эпителий — мазок с внутренней стороны щеки, минимум два зонда от каждого участника.",
+  blood:"Венозная кровь — не менее 1 мл в пробирке с ЭДТА или цитратом натрия.",
+  fetal:"Материал плода — ворсины хориона, амниотическая жидкость или пуповинная кровь; забор выполняет врач под контролем УЗИ."
+};
+
+const state = {q:"", scen:new Set(), fmt:new Set(), bio:new Set(), days:new Set(), grp:new Set(),
+               sort:"group", sel:null, cmp:[]};
+
+const $  = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const groupName = id => (GROUPS.find(g => g.id === id) || {}).name || "";
+const flatRoles = t => t.lines.flatMap(l => l.items.map(i => i.label)).join(" ");
+
+function matches(t, skip){
+  if(state.q){
+    const q = state.q.toLowerCase();
+    const hay = (t.name+" "+flatRoles(t)+" "+t.term+" "+t.markers+" "+t.desc+" "+t.note+" "+groupName(t.g)).toLowerCase();
+    if(!hay.includes(q)) return false;
+  }
+  if(skip!=="scen" && state.scen.size && !t.rel.some(r => state.scen.has(r))) return false;
+  if(skip!=="fmt"  && state.fmt.size  && !t.formats.some(f => state.fmt.has(f))) return false;
+  if(skip!=="bio"  && state.bio.size  && !t.bio.some(b => state.bio.has(b))) return false;
+  if(skip!=="grp"  && state.grp.size  && !state.grp.has(t.g)) return false;
+  if(skip!=="days" && state.days.size){
+    const ok = [...state.days].some(d => DAYS.find(x => x.id === d).test(t));
+    if(!ok) return false;
+  }
+  return true;
+}
+const visible = () => TESTS.filter(t => matches(t));
+const countFor = (skip, pred) => TESTS.filter(t => matches(t, skip) && pred(t)).length;
+
+function optButton(id, label, n, active, kind){
+  return `<button class="opt" type="button" data-kind="${kind}" data-id="${id}" aria-pressed="${active}"${n===0&&!active?" disabled":""}>`+
+         `<span>${esc(label)}</span><span class="n">${n}</span></button>`;
+}
+function renderFilters(){
+  $("#f-scen").innerHTML = SCENARIOS.map(s =>
+    optButton(s.id, s.label, countFor("scen", t => t.rel.includes(s.id)), state.scen.has(s.id), "scen")).join("");
+  $("#f-fmt").innerHTML = FORMATS.map(f =>
+    optButton(f.id, f.label, countFor("fmt", t => t.formats.includes(f.id)), state.fmt.has(f.id), "fmt")).join("");
+  $("#f-days").innerHTML = DAYS.map(d =>
+    optButton(d.id, d.label, countFor("days", d.test), state.days.has(d.id), "days")).join("");
+  $("#f-bio").innerHTML = BIO.map(b =>
+    optButton(b.id, b.label, countFor("bio", t => t.bio.includes(b.id)), state.bio.has(b.id), "bio")).join("");
+  $("#f-grp").innerHTML = GROUPS.map(g =>
+    optButton(g.id, g.name, countFor("grp", t => t.g === g.id), state.grp.has(g.id), "grp")).join("");
+  document.querySelectorAll(".sorts button").forEach(b =>
+    b.setAttribute("aria-pressed", b.dataset.sort === state.sort));
+}
+
+function renderActive(){
+  const chips = [];
+  const push = (kind, id, label) => chips.push(`<button type="button" data-kind="${kind}" data-id="${id}">${esc(label)}</button>`);
+  state.scen.forEach(id => push("scen", id, SCENARIOS.find(s => s.id === id).label));
+  state.fmt .forEach(id => push("fmt",  id, FORMATS.find(f => f.id === id).label));
+  state.days.forEach(id => push("days", id, DAYS.find(d => d.id === id).label));
+  state.bio .forEach(id => push("bio",  id, BIO.find(b => b.id === id).label));
+  state.grp .forEach(id => push("grp",  id, groupName(id)));
+  if(state.q) push("q", "q", `«${state.q}»`);
+  $("#active").innerHTML = chips.join("");
+}
+
+function rolesHTML(t, short){
+  const line = t.lines[0];
+  let html = line.items.map(i =>
+    (i.plus ? `<u>${i.plus}</u>` : "") + `<i>${esc(i.label)}</i>`).join("");
+  if(short){
+    const more = t.lines.length - 1;
+    if(more > 0) html += `<em>+ ещё ${more} ${more === 1 ? "вариант" : "варианта"}</em>`;
+  }
+  return html;
+}
+function tagsHTML(t){
+  return t.formats.map(f => {
+    const meta = FORMATS.find(x => x.id === f);
+    return `<span class="tag tag--${f}" title="${esc(meta.label)}">${meta.short}</span>`;
+  }).join("");
+}
+
+function renderResults(){
+  const list = visible();
+  $("#found").innerHTML = `Найдено <span>${list.length}</span> из ${TESTS.length}`;
+  const box = $("#results");
+  if(!list.length){
+    box.innerHTML = `<div class="empty"><strong>Под такие условия исследований нет</strong>`+
+      `<p>Снимите часть фильтров или опишите случай специалисту — для дальних степеней родства тест подбирает эксперт лаборатории.</p>`+
+      `<button class="reset" type="button" id="reset2" style="max-width:220px;margin-inline:auto">Сбросить фильтры</button></div>`;
+    $("#reset2").onclick = resetAll;
+    return;
+  }
+  const row = t => `<article class="row" data-sel="${state.sel === t.id ? 1 : 0}">
+      <button class="cmp" type="button" data-cmp="${t.id}" aria-pressed="${state.cmp.includes(t.id)}"
+              title="Добавить к сравнению" aria-label="Добавить «${esc(t.name)}» к сравнению">✓</button>
+      <button class="row__main" type="button" data-open="${t.id}">
+        <h4>${esc(t.name)}</h4>
+        <div class="roles">${rolesHTML(t, true)}</div>
+        <div class="row__meta"><i>${esc(t.markers)}</i>${t.extra !== "—" ? `<i>${esc(t.extra)}</i>` : ""}</div>
+      </button>
+      <div class="row__side"><span class="term">${esc(t.term)}</span><div class="tags">${tagsHTML(t)}</div></div>
+    </article>`;
+
+  if(state.sort === "group"){
+    box.innerHTML = GROUPS.map(g => {
+      const items = list.filter(t => t.g === g.id);
+      if(!items.length) return "";
+      return `<section class="grp"><div class="grp__head"><h3>${esc(g.name)}</h3>`+
+             `<small>${esc(g.hint)}</small><span class="n">${items.length}</span></div>`+
+             `<div class="rows">${items.map(row).join("")}</div></section>`;
+    }).join("");
+  } else {
+    const sorted = [...list].sort((a, b) =>
+      state.sort === "days" ? a.days - b.days || a.name.localeCompare(b.name, "ru")
+                            : a.name.localeCompare(b.name, "ru"));
+    box.innerHTML = `<div class="rows">${sorted.map(row).join("")}</div>`;
+  }
+}
+
+function renderCompare(){
+  const box = $("#compare");
+  if(state.cmp.length < 2){ box.innerHTML = ""; return; }
+  const cols = state.cmp.map(id => TESTS.find(t => t.id === id));
+  const rows = [
+    ["раздел",       t => groupName(t.g)],
+    ["кто сдаёт",    t => t.lines.map(l => (l.sep ? l.sep + ": " : "") + l.items.map(i => i.label).join(" + ")).join("; ")],
+    ["срок",         t => t.term],
+    ["объём",        t => t.markers],
+    ["вероятность",  t => t.extra],
+    ["форматы",      t => t.formats.map(f => FORMATS.find(x => x.id === f).label).join(", ")],
+    ["биоматериал",  t => t.bio.map(b => BIO.find(x => x.id === b).label).join(", ")]
+  ];
+  box.innerHTML = `<div class="compare"><div class="compare__head"><strong>Сравнение</strong>`+
+    `<span class="mono">${cols.length} из 3</span><button type="button" id="clear-cmp">Очистить</button></div>`+
+    `<div class="compare__scroll"><table><thead><tr><th>параметр</th>`+
+    cols.map(c => `<th>${esc(c.name)}</th>`).join("") + `</tr></thead><tbody>`+
+    rows.map(([label, fn]) => `<tr><td>${label}</td>` +
+      cols.map(c => `<td>${esc(fn(c))}</td>`).join("") + `</tr>`).join("") +
+    `</tbody></table></div></div>`;
+  $("#clear-cmp").onclick = () => { state.cmp = []; render(); };
+}
+
+function renderDetail(){
+  const box = $("#detail");
+  const t = TESTS.find(x => x.id === state.sel);
+  if(!t){
+    box.innerHTML = `<div class="card"><div class="card__head"><span class="eyebrow">Что решить сразу</span>
+        <h3>Информационный или судебный</h3></div>
+      <div class="card__body hint">
+        <p><b>Информационный</b> — для личного знания. Юридическая процедура при заборе не соблюдается, заключение приходит на электронную почту и может не иметь силы в суде.</p>
+        <p><b>Досудебный и судебный</b> — забор по установленной процедуре с идентификацией участников, заключение готовит сертифицированный эксперт и направляет в суд.</p>
+        <p><b>Экспресс</b> — тот же объём анализа за один рабочий день.</p>
+        <div class="sub"><span class="flabel">Как пользоваться</span>
+          <ol><li>Выберите слева, кто сможет сдать образец, — список сузится.</li>
+              <li>Нажмите на строку — здесь появятся участники, биоматериал и ограничения.</li>
+              <li>Квадрат слева от названия добавляет тест к сравнению, до трёх сразу.</li></ol>
+        </div>
+      </div></div>`;
+    return;
+  }
+  const lines = t.lines.map(l =>
+    `<div class="rline">${l.sep ? `<em>${esc(l.sep)}</em>` : ""}<div class="roles">`+
+    l.items.map(i => (i.plus ? `<u>${i.plus}</u>` : "") + `<i>${esc(i.label)}</i>`).join("") +
+    `</div></div>`).join("");
+  box.innerHTML = `<div class="card">
+      <div class="card__head">
+        <span class="eyebrow">${esc(groupName(t.g))}</span>
+        <h3>${esc(t.name)}</h3>
+        <div class="facts"><span>${esc(t.term)}</span><span>${esc(t.markers)}</span>${t.extra !== "—" ? `<span>${esc(t.extra)}</span>` : ""}</div>
+      </div>
+      <div class="card__body">
+        <div class="field"><span>Кто сдаёт образец</span>${lines}</div>
+        <div class="field"><span>Биоматериал</span><p>${t.bio.map(b => BIO_TEXT[b]).join(" ")}</p></div>
+        <div class="field"><span>Форматы</span><p>${t.formats.map(f => FORMATS.find(x => x.id === f).label).join(" · ")}</p></div>
+        <p class="desc">${esc(t.desc)}</p>
+        <p class="note">${esc(t.note)}</p>
+        <a class="call" href="tel:+74956608377">Уточнить по телефону →</a>
+      </div></div>`;
+}
+
+function activeCount(){
+  return state.scen.size + state.fmt.size + state.bio.size + state.days.size + state.grp.size + (state.q ? 1 : 0);
+}
+function render(){
+  renderFilters(); renderActive(); renderResults(); renderCompare(); renderDetail();
+  const n = activeCount();
+  $("#fcount").textContent = n ? `· выбрано ${n}` : "";
+}
+
+function toggle(kind, id){
+  if(kind === "q"){ state.q = ""; $("#q").value = ""; return; }
+  const set = state[kind === "scen" ? "scen" : kind];
+  set.has(id) ? set.delete(id) : set.add(id);
+}
+function resetAll(){
+  state.q = ""; $("#q").value = "";
+  ["scen","fmt","bio","days","grp"].forEach(k => state[k].clear());
+  state.sel = null; state.cmp = [];
+  render();
+}
+
+document.addEventListener("click", e => {
+  const opt = e.target.closest(".opt, .active button");
+  if(opt){ toggle(opt.dataset.kind, opt.dataset.id); render(); return; }
+  const cmp = e.target.closest("[data-cmp]");
+  if(cmp){
+    const id = cmp.dataset.cmp;
+    if(state.cmp.includes(id)) state.cmp = state.cmp.filter(x => x !== id);
+    else if(state.cmp.length < 3) state.cmp.push(id);
+    render(); return;
+  }
+  const open = e.target.closest("[data-open]");
+  if(open){
+    state.sel = state.sel === open.dataset.open ? null : open.dataset.open;
+    render();
+    if(state.sel && window.innerWidth <= 1300) $("#detail").scrollIntoView({behavior:"smooth", block:"nearest"});
+    return;
+  }
+  const sort = e.target.closest("[data-sort]");
+  if(sort){ state.sort = sort.dataset.sort; render(); }
+});
+$("#q").addEventListener("input", e => { state.q = e.target.value.trim(); render(); });
+$("#reset").addEventListener("click", resetAll);
+if(window.matchMedia("(max-width:920px)").matches) $("#fdrawer").open = false;
+render();
+</script>
+
+</body>
+</html>

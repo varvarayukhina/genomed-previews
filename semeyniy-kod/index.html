@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Семейный код — Геномед</title>
+<meta name="description" content="Семейная история — это не приговор. Это подсказка. Врач-генетик разберёт вашу семейную историю и подскажет, есть ли смысл в генетическом исследовании — приём генетика, нужные исследования Геномед и понятное заключение.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ Геномед design tokens (из дизайн-системы Геноскоп) ============ */
+:root{
+  --bg:#F4F8FE;--bg-card:#FFFFFF;--bg-deep:#0A2540;--bg-deep-2:#102A4C;
+  --ink:#0A2540;--ink-2:#2E4A6B;--muted:#6E839C;
+  --line:#D8E4F2;--line-soft:#ECF2FB;
+  --blue:#0057FF;--blue-2:#0046CC;--cyan:#00C2FF;--cyan-soft:#B8ECFF;--teal:#00A8B5;
+  --accent-soft:#E6F0FF;--warm:#FFE7D1;--warm-ink:#B6754A;
+  --shadow-sm:0 1px 2px rgba(10,37,64,.04),0 2px 8px rgba(10,37,64,.04);
+  --shadow-md:0 8px 24px rgba(10,37,64,.08);
+  --shadow-lg:0 24px 64px rgba(10,37,64,.12);
+  --r-sm:8px;--r-md:16px;--r-lg:24px;--r-xl:32px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Gilroy","Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;overflow-x:hidden;font-weight:500;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.mono{font-family:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-feature-settings:"tnum"1,"zero"1;letter-spacing:-.01em}
+em{font-style:normal}
+a{color:inherit}
+
+/* ============ Buttons ============ */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:100px;font-weight:700;font-size:15px;border:none;cursor:pointer;transition:all .2s;font-family:inherit;letter-spacing:-.01em;text-decoration:none}
+.btn--primary{background:var(--bg-deep);color:#fff!important;position:relative;overflow:hidden}
+.btn--primary::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--blue) 0%,var(--cyan) 120%);opacity:0;transition:opacity .3s}
+.btn--primary:hover::before{opacity:1}
+.btn--primary span{position:relative;z-index:1}
+.btn--primary:hover{transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn--ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn--ghost:hover{border-color:var(--blue);color:var(--blue)!important}
+.btn--large{padding:18px 36px;font-size:17px}
+.btn--cta{background:#fff;color:var(--bg-deep)!important;width:100%;justify-content:center}
+.btn--cta:hover{background:var(--cyan-soft)}
+.btn--cta-secondary{background:transparent;color:#fff!important;border:1.5px solid rgba(255,255,255,.3);width:100%;justify-content:center}
+.btn--cta-secondary:hover{border-color:#fff}
+
+/* ============ Header ============ */
+.header{position:sticky;top:0;background:rgba(244,248,254,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line-soft);padding:14px 0;z-index:50}
+.header::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--blue),var(--cyan),transparent);opacity:.4}
+.header__inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:21px;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+.logo__icon{position:relative;width:34px;height:34px;border-radius:9px;overflow:hidden;flex:none}
+.logo__icon::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--blue) 0%,var(--cyan) 100%)}
+.logo__icon svg{position:relative;z-index:1}
+.logo small{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--muted)}
+.nav{display:flex;gap:30px}
+.nav a{color:var(--ink-2);text-decoration:none;font-weight:600;font-size:15px;transition:color .2s}
+.nav a:hover{color:var(--blue)}
+.header__cta{display:flex;align-items:center;gap:14px}
+
+/* ============ Eyebrows / headings ============ */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--line);border-radius:100px;font-size:13px;font-weight:700;letter-spacing:-.01em;background:#fff}
+.eyebrow::before{content:"";width:6px;height:6px;background:var(--blue);border-radius:50%;box-shadow:0 0 0 4px rgba(0,87,255,.15);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(0,87,255,.15)}50%{box-shadow:0 0 0 8px rgba(0,87,255,.05)}}
+.section-eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}
+.section-eyebrow::before{content:"◢ ";color:var(--cyan);opacity:.7}
+.block{padding:80px 0;position:relative}
+.section-head{margin-bottom:44px;max-width:880px}
+.section-head h2{font-size:clamp(34px,4vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:0 0 18px;color:var(--ink)}
+.section-head h2 em{color:var(--blue)}
+.section-head p{font-size:19px;color:var(--ink-2);line-height:1.5;max-width:700px;margin:0}
+
+/* ============ Hero ============ */
+.hero{padding:56px 0 64px;position:relative}
+.hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero__eyebrow{margin-bottom:30px}
+.hero__title{font-size:clamp(38px,5.4vw,72px);font-weight:800;line-height:1.0;letter-spacing:-.04em;margin:0 0 26px}
+.hero__title em{background:linear-gradient(135deg,var(--blue) 0%,var(--cyan) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero__sub{font-size:20px;max-width:620px;margin:0 0 36px;line-height:1.45;color:var(--ink-2)}
+.hero__sub strong{font-weight:700;color:var(--ink)}
+.hero__cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:36px}
+.hero__meta{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:36px;border-top:1px solid var(--line)}
+.hero__meta>div{position:relative;padding:10px 0 0}
+.hero__meta>div::before{content:"";position:absolute;top:-1px;left:0;width:30px;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:2px;box-shadow:0 0 8px rgba(0,194,255,.4)}
+.meta__num{font-size:clamp(30px,3.2vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1;display:flex;align-items:baseline}
+.meta__num-unit{font-size:.46em;margin-left:7px;color:var(--blue)}
+.meta__label{font-size:13px;font-weight:600;line-height:1.35;color:var(--ink-2);margin-top:9px}
+
+/* ============ DNA tape ============ */
+.tape{position:relative;background:var(--bg-deep);color:rgba(255,255,255,.4);overflow:hidden;padding:11px 0;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;letter-spacing:.3em;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);user-select:none}
+.tape::before,.tape::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
+.tape::before{left:0;background:linear-gradient(to right,var(--bg-deep),transparent)}
+.tape::after{right:0;background:linear-gradient(to left,var(--bg-deep),transparent)}
+.tape__track{display:inline-block;white-space:nowrap;animation:tape-scroll 70s linear infinite;padding-right:60px}
+.tape__track .a{color:#6BFFB3}.tape__track .t{color:#FF6B9D}.tape__track .c{color:#6BD6FF}.tape__track .g{color:#FFD86B}
+.tape__track .sep{color:rgba(255,255,255,.25);margin:0 .4em}
+@keyframes tape-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============ Hero DNA helix ============ */
+.hero__helix{position:relative;display:flex;justify-content:center;align-items:center;padding:8px 0}
+.hero__helix svg{width:auto;height:clamp(360px,44vw,500px);max-width:100%;display:block;overflow:visible;animation:dna-float 9s ease-in-out infinite;filter:drop-shadow(0 20px 50px rgba(0,87,255,.16))}
+.dnaStrand{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.dnaStrand--a{stroke:var(--cyan);filter:drop-shadow(0 0 6px rgba(0,194,255,.45))}
+.dnaStrand--b{stroke:var(--blue);opacity:.85}
+.dnaRungs line{animation:rung-pulse 3.4s ease-in-out infinite}
+.dnaRungs line:nth-child(odd){animation-delay:.15s}
+.dnaRungs line:nth-child(3n){animation-delay:.6s}
+.dnaRungs line:nth-child(5n){animation-delay:1.1s}
+.dnaRungs line:nth-child(7n){animation-delay:1.8s}
+.dnaNodes circle{animation:node-twinkle 2.6s ease-in-out infinite}
+.dnaNodes circle:nth-child(even){animation-delay:.7s}
+@keyframes dna-float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(-1.5deg)}}
+@keyframes rung-pulse{0%,100%{opacity:.28}50%{opacity:.9}}
+@keyframes node-twinkle{0%,100%{opacity:.5}50%{opacity:1}}
+@media (max-width:1024px){.hero__helix{display:none}}
+.live-pill{display:inline-flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);font-weight:600;font-size:11px}
+.live-pill::before{content:"";width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse-dot 1.6s ease-in-out infinite;box-shadow:0 0 0 4px rgba(0,194,255,.18),0 0 12px var(--cyan)}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.9)}}
+
+/* ============ Principles (dark) ============ */
+.principles{padding:76px 0;background:var(--bg-deep);color:#fff;position:relative;overflow:hidden}
+.principles::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(0,194,255,.15),transparent 60%),radial-gradient(ellipse at bottom left,rgba(0,87,255,.2),transparent 60%)}
+.principles .wrap{max-width:1100px}
+.principles .section-eyebrow{color:var(--cyan)}
+.principles h2{font-size:clamp(32px,4.2vw,54px);font-weight:800;letter-spacing:-.03em;line-height:1.06;margin:0 0 44px;max-width:860px}
+.principles h2 em{color:var(--cyan)}
+.principles__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px 48px}
+.principle{border-top:1px solid rgba(255,255,255,.2);padding-top:22px}
+.principle h3{font-size:21px;font-weight:800;letter-spacing:-.01em;margin:0 0 10px}
+.principle p{font-size:15.5px;color:rgba(255,255,255,.72);line-height:1.55;margin:0}
+
+/* ============ Quiz / router ============ */
+.quiz{background:#fff;border-radius:var(--r-xl);border:1px solid var(--line-soft);box-shadow:var(--shadow-lg);overflow:hidden;position:relative}
+.quiz::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,transparent,var(--cyan),var(--blue),transparent);opacity:.8}
+.quiz__head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 40px 0;flex-wrap:wrap}
+.quiz__steps{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.06em}
+.quiz__steps b{color:var(--blue)}
+.quiz__bar{height:5px;background:var(--line-soft);border-radius:6px;margin:14px 40px 0;overflow:hidden}
+.quiz__bar-fill{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.quiz__body{padding:30px 40px 40px}
+.quiz__q{font-size:clamp(24px,2.6vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:0 0 8px;max-width:680px}
+.quiz__hint{color:var(--muted);font-size:14.5px;margin:0 0 26px}
+.quiz__opts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.quiz__opt{text-align:left;background:var(--bg-card);border:1.5px solid var(--line);border-radius:var(--r-md);padding:20px 22px;cursor:pointer;transition:all .22s;font-family:inherit;display:flex;gap:15px;align-items:flex-start}
+.quiz__opt:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.quiz__opt-ic{flex:none;width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--blue);display:grid;place-items:center;transition:.22s}
+.quiz__opt:hover .quiz__opt-ic{background:var(--blue);color:#fff}
+.quiz__opt-t{display:block;font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-.01em;line-height:1.25;margin-bottom:4px}
+.quiz__opt-s{display:block;font-size:13.5px;color:var(--ink-2);line-height:1.4}
+.quiz__nav{display:flex;align-items:center;gap:14px;margin-top:24px}
+.quiz__back{background:none;border:none;color:var(--muted);font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;padding:8px 4px;display:inline-flex;align-items:center;gap:6px}
+.quiz__back:hover{color:var(--blue)}
+.quiz__back[hidden]{display:none}
+.quiz__stage{animation:cat-expand .4s ease-out}
+@keyframes cat-expand{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+/* result */
+.quiz__result{padding:0}
+.qr__top{padding:34px 40px;background:linear-gradient(135deg,var(--bg-deep) 0%,var(--bg-deep-2) 100%);color:#fff;position:relative;overflow:hidden}
+.qr__top::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(0,194,255,.28),transparent 50%),radial-gradient(circle at 10% 90%,rgba(0,87,255,.3),transparent 55%)}
+.qr__top>*{position:relative;z-index:1}
+.qr__kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+.qr__title{font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:0 0 12px}
+.qr__msg{font-size:17px;font-weight:700;color:var(--cyan);margin:0 0 6px;line-height:1.35}
+.qr__desc{font-size:15.5px;color:rgba(255,255,255,.8);line-height:1.5;margin:0;max-width:620px}
+.qr__body{padding:30px 40px 36px}
+.qr__lbl{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+.qr__list{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:11px}
+.qr__list li{display:flex;gap:13px;align-items:flex-start;font-size:15px;color:var(--ink);font-weight:600;line-height:1.4}
+.qr__list li svg{flex:none;margin-top:2px;color:var(--blue)}
+.qr__list li span{font-weight:500;color:var(--ink-2)}
+.qr__note{font-size:13px;color:var(--muted);background:var(--bg);border:1px dashed var(--line);border-radius:var(--r-sm);padding:14px 16px;margin:0 0 24px;line-height:1.5}
+.qr__cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============ Track cards ============ */
+.tracks{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.track{position:relative;background:var(--bg-card);border-radius:var(--r-lg);padding:34px;border:1px solid var(--line-soft);transition:all .3s;overflow:hidden;display:flex;flex-direction:column}
+.track::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),var(--blue),transparent);opacity:0;transition:opacity .4s}
+.track:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--cyan-soft)}
+.track:hover::after{opacity:1}
+.track__num{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;color:var(--cyan);letter-spacing:.08em;margin-bottom:18px}
+.track__icon{width:54px;height:54px;border-radius:14px;background:var(--accent-soft);display:grid;place-items:center;margin-bottom:20px;color:var(--blue);transition:.25s}
+.track:hover .track__icon{border-radius:50%}
+.track h3{font-size:23px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px}
+.track__for{font-size:13px;font-weight:700;color:var(--muted);margin:0 0 14px}
+.track__msg{font-size:16px;font-weight:700;color:var(--blue);line-height:1.4;letter-spacing:-.01em;margin:0 0 18px;padding:14px 16px;background:var(--accent-soft);border-radius:var(--r-sm)}
+.track__rows{list-style:none;margin:0 0 22px;padding:0;flex:1}
+.track__rows li{position:relative;padding:11px 0 11px 19px;font-size:14.5px;color:var(--ink);font-weight:600;border-top:1px dashed var(--line);line-height:1.45}
+.track__rows li:first-child{border-top:none}
+.track__rows li::before{content:"";position:absolute;left:0;top:18px;width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.track__rows li b{font-weight:800}
+.track__btn{margin-top:auto}
+
+/* ============ Flow ============ */
+.flow{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:8px 0 0;padding:8px 0}
+.flow::before{content:"";position:absolute;top:36px;left:12%;right:12%;height:2px;background:var(--line);z-index:0}
+.flow::after{content:"";position:absolute;top:33px;left:12%;width:80px;height:8px;border-radius:8px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);filter:blur(1px);z-index:1;animation:flowPulse 4.5s linear infinite}
+@keyframes flowPulse{0%{transform:translateX(0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateX(680%);opacity:0}}
+.flow__node{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 14px;z-index:2}
+.flow__icon{width:72px;height:72px;border-radius:20px;display:grid;place-items:center;background:var(--bg-card);border:1px solid var(--line);color:var(--blue);box-shadow:var(--shadow-sm);position:relative;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .4s}
+.flow__node:hover .flow__icon{transform:translateY(-6px);border-color:var(--cyan);box-shadow:0 12px 28px rgba(0,87,255,.16)}
+.flow__step-num{position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,87,255,.35)}
+.flow__label{margin-top:16px;font-weight:800;font-size:15.5px;color:var(--ink);line-height:1.25}
+.flow__sub{margin-top:7px;font-size:13.5px;color:var(--muted);line-height:1.4}
+
+/* ============ Family tree (interactive) ============ */
+.famtree-band{background:linear-gradient(160deg,var(--bg-deep-2) 0%,#071427 100%);position:relative;overflow:hidden}
+.famtree-band::before{content:"";position:absolute;inset:0;background:radial-gradient(1100px 620px at 72% 12%,rgba(0,87,255,.16),transparent 60%),radial-gradient(900px 700px at 12% 96%,rgba(0,194,255,.08),transparent 55%);pointer-events:none}
+.famtree-band .wrap{position:relative;z-index:1}
+.famtree{margin-top:8px}
+.famtree__hint{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;color:rgba(190,212,236,.55);letter-spacing:.02em;display:flex;align-items:center;gap:9px;margin-bottom:16px}
+.famtree__hint svg{flex:none;color:var(--cyan);opacity:.85}
+.famtree .stage{position:relative;display:grid;grid-template-columns:1.85fr 1fr;gap:clamp(16px,3vw,40px);align-items:center;border:1px solid rgba(126,170,214,.12);border-radius:20px;background:radial-gradient(620px 360px at 38% 50%,rgba(20,98,176,.14),transparent 70%),rgba(7,20,39,.4);padding:clamp(18px,3vw,34px);overflow:hidden}
+.famtree .stage::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(126,170,214,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(126,170,214,.05) 1px,transparent 1px);background-size:34px 34px;-webkit-mask-image:radial-gradient(circle at 38% 50%,#000 30%,transparent 78%);mask-image:radial-gradient(circle at 38% 50%,#000 30%,transparent 78%)}
+.famtree .tree-wrap{position:relative;z-index:1}
+.famtree svg.tree{width:100%;height:auto;display:block;overflow:visible}
+.famtree .gen-label{font-family:"JetBrains Mono",monospace;font-size:11px;fill:rgba(190,212,236,.4);letter-spacing:.12em}
+.famtree .anno{font-family:"JetBrains Mono",monospace;font-size:11px;fill:#CFEBFF;letter-spacing:.01em;opacity:0;transition:opacity .42s ease}
+.famtree .anno.show{opacity:.95}
+.famtree .anno.tick{fill:var(--cyan)}
+.famtree .anno-plate{fill:rgba(6,17,33,.9);stroke:rgba(0,194,255,.16);stroke-width:1;opacity:0;transition:opacity .42s ease}
+.famtree .anno-plate.show{opacity:1}
+.famtree .base{fill:none;stroke:rgba(126,170,214,.2);stroke-width:1.5;stroke-linecap:round;transition:stroke .4s ease,opacity .4s ease}
+.famtree .stage.dim .base{stroke:rgba(126,170,214,.12)}
+.famtree .trace{fill:none;stroke:var(--cyan);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(0,194,255,.55));stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 360ms cubic-bezier(.4,0,.2,1)}
+.famtree .trace.draw{stroke-dashoffset:0}
+.famtree .node-shape{fill:rgba(13,38,68,.85);stroke:rgba(150,190,230,.55);stroke-width:1.6;transition:stroke .42s ease,fill .42s ease,opacity .42s ease,filter .42s ease}
+.famtree .node-hit{fill:transparent;cursor:pointer}
+.famtree .stage.dim .node:not(.on) .node-shape{opacity:.3}
+.famtree .node.on .node-shape{stroke:var(--cyan);stroke-width:2;fill:rgba(0,194,255,.1);filter:drop-shadow(0 0 7px rgba(0,194,255,.5))}
+.famtree .node.origin .node-shape{stroke:#BFEBFF}
+.famtree #marker{opacity:0;transition:opacity .35s ease;transform-box:fill-box;transform-origin:center}
+.famtree #marker.show{opacity:1;animation:fc-pulse 1.6s ease-in-out infinite}
+.famtree #marker circle{fill:none;stroke:var(--cyan);stroke-width:1.4}
+@keyframes fc-pulse{0%,100%{transform:scale(.92);opacity:.85}50%{transform:scale(1.12);opacity:.35}}
+.famtree #hint{opacity:0;transition:opacity .3s ease;pointer-events:none}
+.famtree #hint.show{opacity:1}
+.famtree #hint rect{fill:rgba(8,26,48,.92);stroke:rgba(0,194,255,.5);stroke-width:1}
+.famtree #hint text{font-family:"JetBrains Mono",monospace;font-size:11.5px;fill:#CFEBFF;letter-spacing:.02em}
+.famtree .card-col{position:relative;z-index:2;min-height:230px;display:flex;align-items:center}
+.famtree .card{width:100%;border:1px solid rgba(0,194,255,.22);border-radius:16px;background:linear-gradient(165deg,rgba(13,40,72,.92),rgba(8,22,42,.92));box-shadow:0 24px 60px -28px rgba(0,87,255,.5),inset 0 1px 0 rgba(255,255,255,.04);padding:22px 22px 20px;opacity:0;transform:translateY(10px);transition:opacity .42s cubic-bezier(.4,0,.2,1),transform .42s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.famtree .card.show{opacity:1;transform:translateY(0)}
+.famtree .c-eyebrow{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:8px;margin-bottom:13px;white-space:nowrap}
+.famtree .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 9px rgba(0,194,255,.9);animation:fc-dot 1.8s ease-in-out infinite}
+@keyframes fc-dot{0%,100%{opacity:1}50%{opacity:.35}}
+.famtree .c-title{font-family:"Gilroy","Manrope",sans-serif;font-weight:700;font-size:18px;line-height:1.26;margin-bottom:10px;color:#EAF3FC}
+.famtree .c-clue{display:flex;flex-direction:column;gap:7px;font-size:12.5px;line-height:1.5;color:#D6ECFF;border-left:2px solid var(--cyan);background:linear-gradient(90deg,rgba(0,194,255,.1),transparent);border-radius:0 8px 8px 0;padding:9px 12px;margin-bottom:14px}
+.famtree .c-clue-tag{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);align-self:flex-start}
+.famtree .c-body{font-size:13px;line-height:1.55;color:rgba(190,212,236,.72);margin-bottom:16px}
+.famtree .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.famtree .chip{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.04em;color:#BFE6FF;border:1px solid rgba(126,170,214,.28);border-radius:999px;padding:5px 11px;background:rgba(20,98,176,.12)}
+.famtree .c-foot{font-family:"JetBrains Mono",monospace;font-size:11px;color:rgba(190,212,236,.45);display:flex;align-items:center;gap:8px;padding-top:13px;border-top:1px solid rgba(126,170,214,.14)}
+.famtree .c-foot svg{flex:none}
+.famtree .idle{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:rgba(190,212,236,.45);letter-spacing:.04em;text-align:center;width:100%;opacity:.7;line-height:1.6;position:absolute;left:0;right:0}
+.famtree .idle .blink{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cyan);margin-right:7px;vertical-align:middle;animation:fc-dot 1.8s ease-in-out infinite}
+.famtree .legend{display:flex;gap:16px;font-family:"JetBrains Mono",monospace;font-size:10.5px;color:rgba(190,212,236,.4);letter-spacing:.05em;margin-top:10px;flex-wrap:wrap}
+.famtree .legend span{display:flex;align-items:center;gap:7px}
+.famtree .lg-sq{width:11px;height:11px;border:1.4px solid rgba(150,190,230,.55)}
+.famtree .lg-ci{width:12px;height:12px;border:1.4px solid rgba(150,190,230,.55);border-radius:50%}
+.famtree .lg-on{width:12px;height:12px;border:1.6px solid var(--cyan);border-radius:50%;background:rgba(0,194,255,.12)}
+.famtree__foot{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:28px}
+.famtree__points{list-style:none;margin:0;padding:0;display:flex;gap:22px;flex-wrap:wrap}
+.famtree__points li{position:relative;padding-left:24px;font-size:14px;color:rgba(232,241,251,.82);line-height:1.4;max-width:260px}
+.famtree__points li::before{content:"";position:absolute;left:0;top:4px;width:14px;height:14px;border-radius:50%;background:rgba(0,194,255,.14);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2300C2FF' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+@media (max-width:860px){
+  .famtree .stage{grid-template-columns:1fr;gap:8px}
+  .famtree .card-col{min-height:0}
+  .famtree .idle{position:static}
+}
+@media (prefers-reduced-motion:reduce){
+  .famtree .trace{transition:none}
+  .famtree #marker.show{animation:none}
+  .famtree .dot,.famtree .idle .blink{animation:none}
+}
+
+/* ============ Loyalty / cabinet (3D dashboard) ============ */
+.demo{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center}
+.demo__text h2{font-size:clamp(30px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.07;margin:0 0 18px}
+.demo__text h2 em{color:var(--blue)}
+.demo__text p{color:var(--ink-2);font-size:16px;line-height:1.6;margin:0 0 18px}
+.demo__list{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.demo__list li{position:relative;padding-left:30px;font-size:15px;color:var(--ink-2);line-height:1.45}
+.demo__list li::before{content:"";position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:50%;background:var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230057FF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/12px no-repeat}
+.browser{border-radius:var(--r-lg);overflow:hidden;background:var(--bg-card);border:1px solid var(--line);box-shadow:var(--shadow-lg);transform:perspective(1600px) rotateY(-6deg) rotateX(2deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.demo:hover .browser{transform:perspective(1600px) rotateY(-2deg) rotateX(1deg)}
+.browser__bar{display:flex;align-items:center;gap:14px;padding:12px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+.browser__dots{display:flex;gap:6px}.browser__dots i{width:11px;height:11px;border-radius:50%;background:var(--line)}
+.browser__url{flex:1;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted);background:var(--bg-card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;display:flex;align-items:center;gap:7px}
+.browser__url svg{flex:none;color:var(--teal)}
+.browser__body{padding:22px;background:linear-gradient(180deg,var(--bg-card),var(--bg))}
+.dash__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.dash__hello{font-size:13px;color:var(--muted)}
+.dash__name{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.dash__badge{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;color:var(--teal);background:rgba(0,168,181,.1);border:1px solid rgba(0,168,181,.25);border-radius:20px;padding:5px 12px}
+.dash__level{border:1px solid var(--line);border-radius:var(--r-md);padding:16px;background:var(--bg-card);margin-bottom:14px}
+.dash__level-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.dash__level-name{font-size:14px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:8px}
+.dash__level-name .star{color:var(--cyan)}
+.dash__level-next{font-size:11.5px;color:var(--muted)}
+.dash__level-track{height:8px;border-radius:8px;background:var(--line);overflow:hidden}
+.dash__level-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,var(--blue),var(--cyan));width:64%}
+.dash__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.dash__stat{border:1px solid var(--line);border-radius:var(--r-md);padding:13px;background:var(--bg-card)}
+.dash__stat-num{font-family:"JetBrains Mono",monospace;font-size:23px;font-weight:700;color:var(--blue);letter-spacing:-.03em;line-height:1}
+.dash__stat-label{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.3}
+.dash__rows{display:flex;flex-direction:column;gap:9px}
+.dash__row{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:var(--r-md);padding:11px 13px;background:var(--bg-card)}
+.dash__row-ic{flex:none;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--accent-soft);color:var(--blue)}
+.dash__row-main{flex:1;min-width:0}
+.dash__row-title{font-size:13.5px;font-weight:700;color:var(--ink)}
+.dash__row-sub{font-size:11.5px;color:var(--muted);margin-top:2px}
+.dash__row-tag{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;color:var(--teal);background:rgba(0,168,181,.1);border:1px solid rgba(0,168,181,.22);border-radius:20px;padding:4px 10px;flex:none}
+
+/* ============ Compliance (dark) ============ */
+.compliance{background:linear-gradient(135deg,var(--bg-deep) 0%,var(--bg-deep-2) 100%);border-radius:var(--r-xl);padding:72px;color:#fff;position:relative;overflow:hidden}
+.compliance::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 20%,rgba(0,194,255,.15),transparent 50%),radial-gradient(circle at 82% 82%,rgba(0,87,255,.2),transparent 60%)}
+.compliance__inner{position:relative;z-index:1;max-width:1080px;margin:0 auto}
+.compliance__head{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center;margin-bottom:48px}
+.compliance__head h2{font-size:clamp(30px,3.6vw,50px);font-weight:800;letter-spacing:-.03em;line-height:1.07;margin:0}
+.compliance__head h2 em{color:var(--cyan)}
+.compliance__head p{font-size:17px;color:rgba(255,255,255,.78);line-height:1.55;margin:0}
+.compliance__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.cmp{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-md);padding:26px 30px;backdrop-filter:blur(20px)}
+.cmp__ic{width:42px;height:42px;border-radius:12px;background:rgba(0,194,255,.15);display:grid;place-items:center;color:var(--cyan);margin-bottom:16px}
+.cmp h4{font-size:17px;font-weight:800;letter-spacing:-.01em;margin:0 0 8px}
+.cmp p{font-size:14.5px;color:rgba(255,255,255,.72);line-height:1.55;margin:0}
+
+/* ============ FAQ ============ */
+.faq{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.faq__item{background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:0;transition:all .3s;overflow:hidden}
+.faq__item:hover{border-color:var(--blue);box-shadow:var(--shadow-md)}
+.faq__q{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:flex-start;padding:26px 28px;font-size:16.5px;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.3}
+.faq__q::-webkit-details-marker{display:none}
+.faq__q-num{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--blue);font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.faq__q-ic{margin-left:auto;flex:none;color:var(--blue);font-size:22px;font-weight:400;line-height:1;transition:transform .3s}
+.faq__item[open] .faq__q-ic{transform:rotate(45deg)}
+.faq__a{padding:0 28px 26px 70px;font-size:15px;color:var(--ink-2);line-height:1.6}
+.faq__a p{margin:0 0 10px}.faq__a p:last-child{margin:0}
+
+/* ============ Final CTA ============ */
+.cta{background:linear-gradient(135deg,var(--bg-deep) 0%,var(--bg-deep-2) 100%);border-radius:var(--r-xl);padding:72px;color:#fff;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(0,194,255,.25),transparent 50%),radial-gradient(circle at 20% 80%,rgba(0,87,255,.3),transparent 50%)}
+.cta__inner{position:relative;z-index:1;display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:center}
+.cta h2{font-size:clamp(32px,4.2vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.06;margin:0 0 18px}
+.cta h2 em{color:var(--cyan)}
+.cta p{font-size:17px;opacity:.82;margin:0;line-height:1.5}
+.cta__card{background:rgba(255,255,255,.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.15);border-radius:var(--r-lg);padding:34px}
+.cta__card .live-pill{margin-bottom:18px}
+.cta__entry{font-size:22px;font-weight:800;letter-spacing:-.01em;line-height:1.2;margin:0 0 6px;background:linear-gradient(135deg,#fff 30%,var(--cyan) 120%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cta__entry-sub{font-size:14px;opacity:.72;margin:0 0 22px;line-height:1.45}
+.cta__perks{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:10px}
+.cta__perks li{position:relative;padding-left:26px;font-size:14.5px;line-height:1.4;color:rgba(255,255,255,.9)}
+.cta__perks li::before{content:"✓";position:absolute;left:0;top:0;color:var(--cyan);font-weight:800}
+.cta__buttons{display:flex;flex-direction:column;gap:12px}
+
+/* ============ Footer ============ */
+.footer{background:var(--bg-deep);color:rgba(255,255,255,.72);padding:60px 0 30px;font-size:14px;line-height:1.55}
+.footer__grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:44px;padding-bottom:38px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer__brand-name{font-weight:800;font-size:21px;letter-spacing:-.01em;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.footer__brand-desc{font-size:13.5px;line-height:1.55;margin-bottom:16px;max-width:320px}
+.footer__col-title{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px}
+.footer__nav{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.footer__nav a{color:rgba(255,255,255,.78);text-decoration:none;font-weight:600;font-size:14px;transition:color .15s}
+.footer__nav a:hover{color:var(--cyan)}
+.footer__contacts{display:grid;gap:12px}
+.footer__contacts a{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;transition:color .15s}
+.footer__contacts a:hover{color:var(--cyan)}
+.footer__contacts svg{flex:none;opacity:.85}
+.footer__bottom{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;padding-top:26px;flex-wrap:wrap}
+.footer__copy{font-size:12.5px;opacity:.62;max-width:760px;line-height:1.6}
+.footer__copy strong{color:#fff;opacity:.85;font-weight:700}
+.footer__age{flex:none;font-family:"JetBrains Mono",monospace;font-weight:700;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:6px 10px;font-size:12px}
+
+/* ============ Reveal ============ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.is-visible{opacity:1;transform:none}
+
+/* ============ Responsive ============ */
+@media (max-width:1024px){
+  .hero__grid{grid-template-columns:1fr;gap:40px}
+  .tracks{grid-template-columns:1fr}
+  .quiz__opts{grid-template-columns:1fr}
+  .album,.demo,.compliance__head,.cta__inner{grid-template-columns:1fr;gap:36px}
+  .browser{transform:none}.demo:hover .browser{transform:none}
+  .flow{grid-template-columns:1fr;gap:6px}.flow::before,.flow::after{display:none}
+  .flow__node{flex-direction:row;gap:16px;text-align:left;padding:14px 0;border-top:1px solid var(--line-soft)}
+  .flow__node:first-child{border-top:none}
+  .flow__icon{width:56px;height:56px;flex:none}.flow__label{margin-top:0}.flow__sub{margin-top:4px}
+  .faq,.principles__grid,.compliance__grid{grid-template-columns:1fr}
+  .nav{display:none}
+  .compliance,.cta{padding:48px 36px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 20px}.block{padding:56px 0}
+  .hero__meta{grid-template-columns:repeat(2,1fr);gap:22px}
+  .quiz__head,.quiz__body{padding-left:24px;padding-right:24px}
+  .quiz__bar{margin-left:24px;margin-right:24px}
+  .qr__top,.qr__body{padding-left:24px;padding-right:24px}
+  .compliance,.cta{padding:40px 24px;border-radius:var(--r-lg)}
+  .pedigree{padding:22px}
+  .header__cta .btn--ghost{display:none}
+  .footer__grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer__bottom{flex-direction:column;gap:14px}
+}
+@media (max-width:420px){.footer__grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.05ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="wrap header__inner">
+    <a class="logo" href="#top">
+      <span class="logo__icon">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M11 8c5 4 7 8 12 18M23 8c-5 4-7 8-12 18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M12 12h10M11.5 17h11M12 22h10" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".85"/></svg>
+      </span>
+      <span>Геномед<small>медико-генетическая лаборатория</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#router">С чего начать</a>
+      <a href="#tracks">Три направления</a>
+      <a href="#how">Как проходит</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <div class="header__cta">
+      <a class="btn btn--ghost" href="tel:+74956608377">+7 495 660-83-77</a>
+      <a class="btn btn--primary" href="#router"><span>Пройти тест</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div>
+      <div class="eyebrow hero__eyebrow">МГЦ Геномед · Семейный код</div>
+      <h1 class="hero__title">Семейная история может подсказать больше,<br><em>чем кажется.</em></h1>
+      <p class="hero__sub">Если у родственников были схожие диагнозы или вы не знаете, передаётся ли заболевание по наследству, — <strong>врач-генетик подробно изучит вашу семейную историю</strong> и поможет понять, какое генетическое исследование необходимо именно в вашем случае.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary btn--large" href="#router"><span>Пройти короткий тест →</span></a>
+        <a class="btn btn--ghost btn--large" href="tel:+74956608377">Поговорить с генетиком</a>
+      </div>
+      <div class="hero__meta">
+        <div><div class="meta__num mono" data-count="3">0</div><div class="meta__label">направления — под разные ситуации</div></div>
+        <div><div class="meta__num mono" data-count="14">0<span class="meta__num-unit">млн+</span></div><div class="meta__label">генетических маркеров при анализе всего генома</div></div>
+        <div><div class="meta__num mono" data-count="1">0</div><div class="meta__label">приём генетика, с которого начинается обследование</div></div>
+      </div>
+    </div>
+
+    <!-- Signature visual: DNA double helix -->
+    <div class="hero__helix reveal" aria-hidden="true">
+      <svg viewBox="0 0 220 460" role="img" aria-label="Двойная спираль ДНК">
+        <g class="dnaRungs">
+          <line x1="143.2" y1="14" x2="76.8" y2="14" stroke="#6BFFB3" stroke-width="2.2" stroke-linecap="round" opacity="0.51"/>
+          <line x1="169.8" y1="29" x2="50.2" y2="29" stroke="#FF6B9D" stroke-width="2.2" stroke-linecap="round" opacity="0.75"/>
+          <line x1="180.0" y1="44" x2="40.0" y2="44" stroke="#6BD6FF" stroke-width="2.2" stroke-linecap="round" opacity="0.84"/>
+          <line x1="171.0" y1="59" x2="49.0" y2="59" stroke="#FFD86B" stroke-width="2.2" stroke-linecap="round" opacity="0.76"/>
+          <line x1="145.4" y1="74" x2="74.6" y2="74" stroke="#6BFFB3" stroke-width="2.2" stroke-linecap="round" opacity="0.53"/>
+          <line x1="74.6" y1="104" x2="145.4" y2="104" stroke="#6BD6FF" stroke-width="2.2" stroke-linecap="round" opacity="0.53"/>
+          <line x1="49.0" y1="119" x2="171.0" y2="119" stroke="#FFD86B" stroke-width="2.2" stroke-linecap="round" opacity="0.76"/>
+          <line x1="40.0" y1="134" x2="180.0" y2="134" stroke="#6BFFB3" stroke-width="2.2" stroke-linecap="round" opacity="0.84"/>
+          <line x1="50.2" y1="149" x2="169.8" y2="149" stroke="#FF6B9D" stroke-width="2.2" stroke-linecap="round" opacity="0.75"/>
+          <line x1="76.8" y1="164" x2="143.2" y2="164" stroke="#6BD6FF" stroke-width="2.2" stroke-linecap="round" opacity="0.51"/>
+          <line x1="147.5" y1="194" x2="72.5" y2="194" stroke="#6BFFB3" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+          <line x1="172.2" y1="209" x2="47.8" y2="209" stroke="#FF6B9D" stroke-width="2.2" stroke-linecap="round" opacity="0.77"/>
+          <line x1="179.9" y1="224" x2="40.1" y2="224" stroke="#6BD6FF" stroke-width="2.2" stroke-linecap="round" opacity="0.84"/>
+          <line x1="168.5" y1="239" x2="51.5" y2="239" stroke="#FFD86B" stroke-width="2.2" stroke-linecap="round" opacity="0.74"/>
+          <line x1="141.0" y1="254" x2="79.0" y2="254" stroke="#6BFFB3" stroke-width="2.2" stroke-linecap="round" opacity="0.49"/>
+          <line x1="70.5" y1="284" x2="149.5" y2="284" stroke="#6BD6FF" stroke-width="2.2" stroke-linecap="round" opacity="0.57"/>
+          <line x1="46.7" y1="299" x2="173.3" y2="299" stroke="#FFD86B" stroke-width="2.2" stroke-linecap="round" opacity="0.78"/>
+          <line x1="40.3" y1="314" x2="179.7" y2="314" stroke="#6BFFB3" stroke-width="2.2" stroke-linecap="round" opacity="0.84"/>
+          <line x1="52.9" y1="329" x2="167.1" y2="329" stroke="#FF6B9D" stroke-width="2.2" stroke-linecap="round" opacity="0.73"/>
+          <line x1="81.2" y1="344" x2="138.8" y2="344" stroke="#6BD6FF" stroke-width="2.2" stroke-linecap="round" opacity="0.47"/>
+          <line x1="151.5" y1="374" x2="68.5" y2="374" stroke="#6BFFB3" stroke-width="2.2" stroke-linecap="round" opacity="0.59"/>
+          <line x1="174.3" y1="389" x2="45.7" y2="389" stroke="#FF6B9D" stroke-width="2.2" stroke-linecap="round" opacity="0.79"/>
+          <line x1="179.5" y1="404" x2="40.5" y2="404" stroke="#6BD6FF" stroke-width="2.2" stroke-linecap="round" opacity="0.84"/>
+          <line x1="165.6" y1="419" x2="54.4" y2="419" stroke="#FFD86B" stroke-width="2.2" stroke-linecap="round" opacity="0.71"/>
+          <line x1="136.5" y1="434" x2="83.5" y2="434" stroke="#6BFFB3" stroke-width="2.2" stroke-linecap="round" opacity="0.45"/>
+        </g>
+        <polyline class="dnaStrand dnaStrand--b" points="110.0,0 97.7,5 85.8,10 74.6,15 64.6,20 55.9,25 49.0,30 43.9,35 40.9,40 40.0,45 41.3,50 44.8,55 50.2,60 57.5,65 66.5,70 76.8,75 88.1,80 100.1,85 112.5,90 124.7,95 136.5,100 147.5,105 157.3,110 165.6,115 172.2,120 176.9,125 179.5,130 179.9,135 178.2,140 174.3,145 168.5,150 160.8,155 151.5,160 141.0,165 129.5,170 117.4,175 105.1,180 92.9,185 81.2,190 70.5,195 60.9,200 52.9,205 46.7,210 42.4,215 40.3,220 40.3,225 42.4,230 46.7,235 52.9,240 60.9,245 70.5,250 81.2,255 92.9,260 105.1,265 117.4,270 129.5,275 141.0,280 151.5,285 160.8,290 168.5,295 174.3,300 178.2,305 179.9,310 179.5,315 176.9,320 172.2,325 165.6,330 157.3,335 147.5,340 136.5,345 124.7,350 112.5,355 100.1,360 88.1,365 76.8,370 66.5,375 57.5,380 50.2,385 44.8,390 41.3,395 40.0,400 40.9,405 43.9,410 49.0,415 55.9,420 64.6,425 74.6,430 85.8,435 97.7,440 110.0,445 122.3,450 134.2,455 145.4,460"/>
+        <polyline class="dnaStrand dnaStrand--a" points="110.0,0 122.3,5 134.2,10 145.4,15 155.4,20 164.1,25 171.0,30 176.1,35 179.1,40 180.0,45 178.7,50 175.2,55 169.8,60 162.5,65 153.5,70 143.2,75 131.9,80 119.9,85 107.5,90 95.3,95 83.5,100 72.5,105 62.7,110 54.4,115 47.8,120 43.1,125 40.5,130 40.1,135 41.8,140 45.7,145 51.5,150 59.2,155 68.5,160 79.0,165 90.5,170 102.6,175 114.9,180 127.1,185 138.8,190 149.5,195 159.1,200 167.1,205 173.3,210 177.6,215 179.7,220 179.7,225 177.6,230 173.3,235 167.1,240 159.1,245 149.5,250 138.8,255 127.1,260 114.9,265 102.6,270 90.5,275 79.0,280 68.5,285 59.2,290 51.5,295 45.7,300 41.8,305 40.1,310 40.5,315 43.1,320 47.8,325 54.4,330 62.7,335 72.5,340 83.5,345 95.3,350 107.5,355 119.9,360 131.9,365 143.2,370 153.5,375 162.5,380 169.8,385 175.2,390 180.0,400 179.1,405 176.1,410 171.0,415 164.1,420 155.4,425 145.4,430 134.2,435 122.3,440 110.0,445 97.7,450 85.8,455 74.6,460"/>
+        <g class="dnaNodes">
+          <circle cx="180.0" cy="44.5" r="4.4" fill="#fff" opacity=".9"/>
+          <circle cx="40.0" cy="44.5" r="4.4" fill="#00C2FF" opacity=".9"/>
+          <circle cx="40.0" cy="133.5" r="4.4" fill="#fff" opacity=".9"/>
+          <circle cx="180.0" cy="133.5" r="4.4" fill="#00C2FF" opacity=".9"/>
+          <circle cx="180.0" cy="222.5" r="4.4" fill="#fff" opacity=".9"/>
+          <circle cx="40.0" cy="222.5" r="4.4" fill="#00C2FF" opacity=".9"/>
+          <circle cx="40.0" cy="311.5" r="4.4" fill="#fff" opacity=".9"/>
+          <circle cx="180.0" cy="311.5" r="4.4" fill="#00C2FF" opacity=".9"/>
+          <circle cx="180.0" cy="400.5" r="4.4" fill="#fff" opacity=".9"/>
+          <circle cx="40.0" cy="400.5" r="4.4" fill="#00C2FF" opacity=".9"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- DNA tape -->
+<div class="tape" aria-hidden="true">
+  <div class="tape__track">
+    <span class="a">A</span><span class="t">T</span><span class="g">G</span><span class="c">C</span><span class="sep">·</span><span class="t">T</span><span class="a">A</span><span class="c">C</span><span class="g">G</span><span class="sep">·</span> семейная история — это подсказка <span class="sep">·</span> <span class="g">G</span><span class="c">C</span><span class="a">A</span><span class="t">T</span><span class="sep">·</span><span class="c">C</span><span class="g">G</span><span class="t">T</span><span class="a">A</span><span class="sep">·</span> наследственность — это повод задать врачу точные вопросы <span class="sep">·</span> <span class="a">A</span><span class="t">T</span><span class="g">G</span><span class="c">C</span><span class="sep">·</span><span class="t">T</span><span class="a">A</span><span class="c">C</span><span class="g">G</span><span class="sep">·</span> семейная история — это подсказка <span class="sep">·</span> <span class="g">G</span><span class="c">C</span><span class="a">A</span><span class="t">T</span><span class="sep">·</span><span class="c">C</span><span class="g">G</span><span class="t">T</span><span class="a">A</span><span class="sep">·</span> наследственность — это повод задать врачу точные вопросы <span class="sep">·</span>
+  </div>
+</div>
+
+<!-- ============ PRINCIPLES ============ -->
+<section class="principles">
+  <div class="wrap">
+    <span class="section-eyebrow reveal">Что стоит понимать заранее</span>
+    <h2 class="reveal">Генетика отвечает не на все вопросы. <em>Но на правильно заданные — отвечает хорошо.</em></h2>
+    <div class="principles__grid">
+      <div class="principle reveal"><h3>Анализ не ставит диагноз</h3><p>Генетическое исследование показывает особенности и предрасположенности. Поставить диагноз и назначить лечение может только врач — с учётом осмотра, анамнеза и, если нужно, этих данных.</p></div>
+      <div class="principle reveal"><h3>Похожие случаи в семье — ещё не болезнь</h3><p>Если у нескольких родственников был один диагноз, это повод обсудить ситуацию с генетиком. Иногда такие совпадения важны, иногда — случайны. Разобраться лучше, чем строить догадки.</p></div>
+      <div class="principle reveal"><h3>Результат — это вероятности</h3><p>Генетика говорит на языке рисков: что-то более вероятно, что-то менее. Это не предсказание того, что обязательно случится с вами или с вашими детьми.</p></div>
+      <div class="principle reveal"><h3>Данные остаются у вас</h3><p>Результаты хранятся в личном кабинете. Их можно пересмотреть позже: наука движется вперёд, и со временем из тех же данных врач может увидеть больше.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ / ROUTER ============ -->
+<section class="block" id="router">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">С чего начать</span>
+      <h2>Не знаете, <em>с чего начать?</em></h2>
+      <p>Три коротких вопроса, чтобы понять, какое из направлений ближе к вашей ситуации и о каких исследованиях Геномед стоит спросить генетика. Это не диагностика — просто помощь сориентироваться.</p>
+    </div>
+
+    <div class="quiz reveal" id="quiz">
+      <!-- question stage -->
+      <div id="quizFlow">
+        <div class="quiz__head">
+          <span class="quiz__steps">Вопрос <b id="qStep">1</b> / 3</span>
+          <span class="live-pill">подбор направления</span>
+        </div>
+        <div class="quiz__bar"><div class="quiz__bar-fill" id="qBar"></div></div>
+        <div class="quiz__body">
+          <div class="quiz__stage" id="qStage"></div>
+          <div class="quiz__nav">
+            <button class="quiz__back" id="qBack" type="button" hidden>← Назад</button>
+          </div>
+        </div>
+      </div>
+      <!-- result stage -->
+      <div class="quiz__result" id="quizResult" hidden></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRACKS ============ -->
+<section class="block" id="tracks" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">Три направления одной кампании</span>
+      <h2>Три ситуации, <em>с которыми чаще всего приходят</em></h2>
+      <p>В каждой работа начинается одинаково — с приёма генетика. А дальше назначают только те исследования из линейки Геномед, которые действительно нужны в вашем случае.</p>
+    </div>
+    <div class="tracks">
+
+      <!-- Track 1 -->
+      <article class="track reveal" id="track-family">
+        <div class="track__num">ТРЕК 01</div>
+        <div class="track__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-7-9.5A4 4 0 0 1 12 8a4 4 0 0 1 7 3.5C19 16.65 12 21 12 21z"/></svg>
+        </div>
+        <h3>Семейный код</h3>
+        <p class="track__for">Для тех, у кого есть семейный анамнез и тревога за наследственные заболевания</p>
+        <p class="track__msg">«В семье были похожие диагнозы? Возможно, это повод не гадать, а обсудить риски со специалистом».</p>
+        <ul class="track__rows">
+          <li><b>Консультация генетика</b> — разбираем семейную историю</li>
+          <li>Панель <b>«Наследственный рак»</b> или панели наследственных заболеваний</li>
+          <li>При показаниях — <b>экзом или геном</b> (вплоть до полного WGS)</li>
+          <li>Заключение с разбором результатов</li>
+        </ul>
+        <a class="btn btn--ghost track__btn" href="#router">Подойдёт ли мне →</a>
+      </article>
+
+      <!-- Track 2 -->
+      <article class="track reveal" id="track-parents">
+        <div class="track__num">ТРЕК 02</div>
+        <div class="track__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M12 12v3"/></svg>
+        </div>
+        <h3>Код будущих родителей</h3>
+        <p class="track__for">Для тех, кто планирует беременность</p>
+        <p class="track__msg">«Планирование начинается не с тревоги, а с информации».</p>
+        <ul class="track__rows">
+          <li>Скрининг носительства <b>«РепроПлан»</b></li>
+          <li><b>Консультация генетика</b> для пары</li>
+          <li>Направим к партнёрским клиникам и репродуктологам</li>
+          <li>При ЭКО по показаниям — <b>ПГТ</b> в партнёрских клиниках</li>
+        </ul>
+        <a class="btn btn--ghost track__btn" href="#router">Подойдёт ли мне →</a>
+      </article>
+
+      <!-- Track 3 -->
+      <article class="track reveal" id="track-therapy">
+        <div class="track__num">ТРЕК 03</div>
+        <div class="track__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 3.5 3.5 10.5a5 5 0 0 0 7 7l7-7a5 5 0 0 0-7-7z"/><path d="m7 7 7 7"/></svg>
+        </div>
+        <h3>Код лечения</h3>
+        <p class="track__for">Для тех, кто уже лечится или регулярно принимает препараты</p>
+        <p class="track__msg">«Иногда вопрос не только в том, что назначено, а и в том, как организм может на это реагировать».</p>
+        <ul class="track__rows">
+          <li><b>Фармакогенетические исследования</b> — когда это клинически уместно</li>
+          <li>Только в связке с <b>лечащим врачом</b></li>
+          <li>Объяснение результатов понятным языком</li>
+          <li>Помощь в постановке вопросов специалисту</li>
+        </ul>
+        <a class="btn btn--ghost track__btn" href="#router">Подойдёт ли мне →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="block" id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">Как проходит обследование</span>
+      <h2>Четыре шага — <em>и на каждом рядом врач</em></h2>
+      <p>От первого приёма до разбора результатов вас сопровождает генетик. Вы не остаётесь наедине с непонятным заключением.</p>
+    </div>
+    <div class="flow reveal">
+      <div class="flow__node">
+        <div class="flow__icon"><span class="flow__step-num">1</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="flow__label">Приём генетика</div>
+        <div class="flow__sub">Врач расспрашивает о болезнях в семье и о том, что вас беспокоит. По итогам понятно, нужно ли исследование.</div>
+      </div>
+      <div class="flow__node">
+        <div class="flow__icon"><span class="flow__step-num">2</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6l-5 9a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-9V3"/><path d="M7 3h10"/></svg></div>
+        <div class="flow__label">Выбор исследования</div>
+        <div class="flow__sub">Если анализ оправдан, генетик подбирает подходящий — от отдельной панели до анализа всего генома.</div>
+      </div>
+      <div class="flow__node">
+        <div class="flow__icon"><span class="flow__step-num">3</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-10 2 5h6"/></svg></div>
+        <div class="flow__label">Сдача анализа</div>
+        <div class="flow__sub">Обычно это кровь или мазок из полости рта. Анализ выполняет лаборатория Геномед.</div>
+      </div>
+      <div class="flow__node">
+        <div class="flow__icon"><span class="flow__step-num">4</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
+        <div class="flow__label">Заключение и разбор</div>
+        <div class="flow__sub">Вы получаете заключение с объяснением результатов и рекомендациями, что обсудить с лечащим врачом.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAMILY TREE (interactive signature) ============ -->
+<section class="block famtree-band" id="family-history">
+  <div class="wrap">
+    <div class="section-head reveal" style="max-width:780px">
+      <span class="section-eyebrow" style="color:var(--cyan)">Что показывает родословная</span>
+      <h2 style="color:#fff">Что может рассказать <em style="color:var(--cyan)">семейная история</em></h2>
+      <p style="color:rgba(255,255,255,.78)">Часто важные детали уже есть в семье: схожие диагнозы у родственников, ранние случаи заболеваний, повторяющиеся особенности. По отдельности они мало что значат — но вместе подсказывают, о чём спросить генетика. На приёме врач собирает их в родословную, по которой видно, передаётся ли что-то по одной линии.</p>
+    </div>
+
+    <div class="famtree reveal" id="famtree">
+      <div class="famtree__hint">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Наведите на любого человека — раскроется его случай. Или просто смотрите: разбор идёт сам.
+      </div>
+      <div class="stage" id="stage">
+        <div class="tree-wrap">
+          <svg class="tree" id="tree" viewBox="0 0 740 410" role="img" aria-label="Родословная: интерактивный анализ наследственной линии">
+            <text class="gen-label" x="20" y="74">I</text>
+            <text class="gen-label" x="20" y="214">II</text>
+            <text class="gen-label" x="20" y="354">III</text>
+            <g id="base-layer"></g>
+            <g id="trace-layer"></g>
+            <g id="anno-plate-layer"></g>
+            <g id="node-layer"></g>
+            <g id="anno-layer"></g>
+            <g id="marker"><circle cx="0" cy="0" r="23"/></g>
+            <g id="hint"><rect x="0" y="0" rx="6" ry="6" width="118" height="22"></rect><text x="0" y="0">Проследить линию</text></g>
+          </svg>
+          <div class="legend">
+            <span><i class="lg-sq"></i> мужчина</span>
+            <span><i class="lg-ci"></i> женщина</span>
+            <span><i class="lg-on"></i> в этой линии</span>
+          </div>
+        </div>
+        <div class="card-col">
+          <div class="idle" id="idle"><span class="blink"></span>Анализ семейной истории</div>
+          <div class="card" id="card">
+            <div class="c-eyebrow"><span class="dot"></span><span id="c-eyebrow">Родословная</span></div>
+            <div class="c-title" id="c-title"></div>
+            <div class="c-clue" id="c-clue"><span class="c-clue-tag">зацепка</span><span id="c-clue-text"></span></div>
+            <div class="c-body" id="c-body"></div>
+            <div class="chips" id="c-chips"></div>
+            <div class="c-foot">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#7EAAD6" stroke-width="1.4" opacity=".5"/><path d="M9 12l2 2 4-5" stroke="#00C2FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span id="c-foot">Повод обсудить с генетиком — не диагноз</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="famtree__foot">
+        <ul class="famtree__points">
+          <li>Видно, у кого и в каком возрасте были заболевания</li>
+          <li>Видно, передаётся ли что-то по одной линии</li>
+          <li>Понятно, есть ли смысл в исследовании — и в каком именно</li>
+        </ul>
+        <a class="btn btn--primary" href="tel:+74956608377"><span>Записаться к генетику →</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOYALTY / CABINET (gamified) ============ -->
+<section class="block" style="padding-top:0">
+  <div class="wrap demo">
+    <div class="demo__text reveal">
+      <span class="section-eyebrow">Личный кабинет</span>
+      <h2>Анализ сдают один раз — <em>а пользоваться им можно годами</em></h2>
+      <p>Геном не меняется в течение жизни. Появляются новые исследования — и из тех же результатов врач со временем может узнать больше. Поэтому данные не теряют смысл после первого заключения.</p>
+      <p>В личном кабинете видно, что уже сделано, какие родственники есть в семейной схеме и что логично сделать дальше. Без напоминаний «купите ещё».</p>
+      <ul class="demo__list">
+        <li>Программа лояльности: чем больше пройдено этапов, тем выгоднее условия</li>
+        <li>Семейные и каскадные скидки для близких</li>
+        <li>Обследование можно проходить по частям, а не всё сразу</li>
+        <li>Повторный анализ уже полученных данных, когда появляются новые методы</li>
+      </ul>
+    </div>
+    <div class="demo__frame reveal">
+      <div class="browser">
+        <div class="browser__bar">
+          <div class="browser__dots"><i></i><i></i><i></i></div>
+          <div class="browser__url"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>lk.genomed.ru</div>
+        </div>
+        <div class="browser__body">
+          <div class="dash__top">
+            <div><div class="dash__hello">Личный кабинет</div><div class="dash__name">Ваш семейный код</div></div>
+            <div class="dash__badge">● синхронизировано</div>
+          </div>
+          <div class="dash__level">
+            <div class="dash__level-top">
+              <div class="dash__level-name"><span class="star">★</span> Программа лояльности · уровень 3</div>
+              <div class="dash__level-next">до следующего уровня — 1 этап</div>
+            </div>
+            <div class="dash__level-track"><div class="dash__level-fill"></div></div>
+          </div>
+          <div class="dash__grid">
+            <div class="dash__stat"><div class="dash__stat-num">3</div><div class="dash__stat-label">этапа пройдено</div></div>
+            <div class="dash__stat"><div class="dash__stat-num">4</div><div class="dash__stat-label">близких в карте</div></div>
+            <div class="dash__stat"><div class="dash__stat-num">∞</div><div class="dash__stat-label">реанализ данных</div></div>
+          </div>
+          <div class="dash__rows">
+            <div class="dash__row">
+              <div class="dash__row-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+              <div class="dash__row-main"><div class="dash__row-title">Приём генетика</div><div class="dash__row-sub">семейная история разобрана</div></div>
+              <div class="dash__row-tag">готово</div>
+            </div>
+            <div class="dash__row">
+              <div class="dash__row-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 8c4 3 5 6 9 13M19 8c-4 3-5 6-9 13"/></svg></div>
+              <div class="dash__row-main"><div class="dash__row-title">Исследование Геномед</div><div class="dash__row-sub">заключение в кабинете</div></div>
+              <div class="dash__row-tag">готово</div>
+            </div>
+            <div class="dash__row">
+              <div class="dash__row-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+              <div class="dash__row-main"><div class="dash__row-title">Обследование для близких</div><div class="dash__row-sub">семейная скидка активна</div></div>
+              <div class="dash__row-tag">доступно</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPLIANCE ============ -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="compliance reveal">
+      <div class="compliance__inner">
+        <div class="compliance__head">
+          <h2>О чём <em>важно помнить</em></h2>
+          <p>Генетика говорит о вероятностях и контексте, а не о гарантиях. Поэтому мы стараемся формулировать аккуратно — и в рекламе, и на приёме.</p>
+        </div>
+        <div class="compliance__grid">
+          <div class="cmp">
+            <div class="cmp__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
+            <h4>Это не диагноз</h4>
+            <p>Генетический анализ не ставит диагноз сам по себе и не заменяет обследование у врача. Он не предотвращает заболевания, а даёт информацию о предрасположенностях.</p>
+          </div>
+          <div class="cmp">
+            <div class="cmp__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+            <h4>И не предсказание</h4>
+            <p>Предрасположенность не означает, что заболевание обязательно разовьётся. А диагноз у родственников — что он точно будет у вас.</p>
+          </div>
+          <div class="cmp">
+            <div class="cmp__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <h4>Решения — с лечащим врачом</h4>
+            <p>Выбор лечения и профилактики остаётся за врачом. Мы помогаем понять, что означают результаты, и сформулировать вопросы к приёму.</p>
+          </div>
+          <div class="cmp">
+            <div class="cmp__ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <h4>Данные под защитой</h4>
+            <p>Генетические данные — чувствительная информация. Доступ к результатам есть только у вас, в личном кабинете.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="block" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">Частые вопросы</span>
+      <h2>Коротко <em>о главном</em></h2>
+    </div>
+    <div class="faq">
+      <details class="faq__item reveal"><summary class="faq__q"><span class="faq__q-num">01</span>«Семейный код» — это про страшные диагнозы?<span class="faq__q-ic">+</span></summary><div class="faq__a"><p>Нет. Скорее наоборот — про то, как меньше тревожиться. Когда понятно, что именно в семейной истории имеет значение, становится спокойнее, а вопросы к врачу — точнее.</p></div></details>
+      <details class="faq__item reveal"><summary class="faq__q"><span class="faq__q-num">02</span>Если в семье были болезни — у меня точно будет?<span class="faq__q-ic">+</span></summary><div class="faq__a"><p>Нет. Если у нескольких родственников был один диагноз — это повод провести более глубокое исследование. Иногда совпадения важны, иногда случайны. Что это значит для вас — поможет понять генетик.</p></div></details>
+      <details class="faq__item reveal"><summary class="faq__q"><span class="faq__q-num">03</span>Не уверен, что мне это нужно. С чего начать?<span class="faq__q-ic">+</span></summary><div class="faq__a"><p>С приёма генетика. На нём можно спокойно обсудить семейную историю и понять, оправдано ли исследование. Если нет — врач так и скажет, без лишних назначений.</p></div></details>
+      <details class="faq__item reveal"><summary class="faq__q"><span class="faq__q-num">04</span>Сколько это стоит?<span class="faq__q-ic">+</span></summary><div class="faq__a"><p>Зависит от того, что именно понадобится. Единой «цены за всё» нет: набор исследований подбирают индивидуально на приёме. Есть семейные и пакетные скидки, а обследование можно проходить по частям.</p></div></details>
+      <details class="faq__item reveal"><summary class="faq__q"><span class="faq__q-num">05</span>Что будет с моими генетическими данными?<span class="faq__q-ic">+</span></summary><div class="faq__a"><p>Это чувствительная информация, и мы храним её бережно. Доступ к результатам есть только у вас, в личном кабинете. Со временем их можно пересмотреть — когда появляются новые методы анализа.</p></div></details>
+      <details class="faq__item reveal"><summary class="faq__q"><span class="faq__q-num">06</span>Это заменяет визит к врачу?<span class="faq__q-ic">+</span></summary><div class="faq__a"><p>Нет. Заключение — это материал для разговора с вашим лечащим врачом. Диагноз и назначения остаются за ним; генетик помогает понять, что значат результаты.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta reveal">
+      <div class="cta__inner">
+        <div>
+          <h2>Не знаете, с чего начать? <em>Начните с разговора</em></h2>
+          <p>Запишитесь на приём к генетику. На нём можно без спешки обсудить семейную историю, задать вопросы и понять, есть ли смысл в исследовании именно в вашем случае. Решать всё сразу не нужно.</p>
+        </div>
+        <div class="cta__card">
+          <span class="live-pill">с чего начать</span>
+          <div class="cta__entry">Приём генетика</div>
+          <p class="cta__entry-sub">Набор исследований и стоимость подбирают на приёме, под ваш случай. Есть семейные и пакетные скидки.</p>
+          <ul class="cta__perks">
+            <li>Разбор семейной истории</li>
+            <li>Только те исследования Геномед, что действительно нужны</li>
+            <li>Заключение с объяснением результатов</li>
+          </ul>
+          <div class="cta__buttons">
+            <a class="btn btn--cta" href="tel:+74956608377">Записаться · +7 495 660-83-77</a>
+            <a class="btn btn--cta-secondary" href="#router">Сначала пройти тест</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-name">
+          <span class="logo__icon" style="width:30px;height:30px"><svg width="30" height="30" viewBox="0 0 34 34" fill="none"><path d="M11 8c5 4 7 8 12 18M23 8c-5 4-7 8-12 18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          Геномед
+        </div>
+        <p class="footer__brand-desc">Медико-генетическая лаборатория. Кампания «Семейный код»: от семейной истории — к понятным данным. Приём генетика, нужные исследования и заключение, с которым можно идти к врачу.</p>
+        <span class="footer__age">18+</span>
+      </div>
+      <div>
+        <div class="footer__col-title">Направления</div>
+        <ul class="footer__nav">
+          <li><a href="#router">Пройти тест</a></li>
+          <li><a href="#track-family">Семейный код</a></li>
+          <li><a href="#track-parents">Код будущих родителей</a></li>
+          <li><a href="#track-therapy">Код лечения</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Информация</div>
+        <ul class="footer__nav">
+          <li><a href="#how">Как проходит обследование</a></li>
+          <li><a href="#faq">Частые вопросы</a></li>
+          <li><a href="https://genomed.ru" target="_blank" rel="noopener">genomed.ru</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Контакты</div>
+        <div class="footer__contacts">
+          <a href="tel:+74956608377"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+7 495 660-83-77</a>
+          <a href="https://genomed.ru" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg>genomed.ru</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy"><strong>Имеются противопоказания. Необходима консультация специалиста.</strong> Информация на странице носит справочный характер и не является публичной офертой, медицинским заключением, постановкой диагноза или назначением лечения. Генетические исследования не предотвращают заболевания, не гарантируют результата терапии и не заменяют консультацию врача. Решения о диагностике и лечении принимаются совместно с лечащим врачом. Кампания «Семейный код» — внутренний рабочий материал Геномед; финальные тексты, состав и стоимость треков уточняются.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ====== Quiz / router engine ====== */
+(function(){
+  var TRACKS = {
+    A: {
+      id:'A', name:'Семейный код', kicker:'Ваше направление · 01',
+      msg:'«В семье были похожие диагнозы? Не гадать, а обсудить риски со специалистом».',
+      desc:'Это про вас, если у родственников были схожие диагнозы или онкозаболевания. Начинают с приёма генетика — он разбирает семейную историю и говорит, оправдано ли исследование.',
+      items:[
+        ['Приём генетика','разбирает семейную историю и ваши вопросы'],
+        ['Панель «Наследственный рак» или панели наследственных заболеваний','подбирают под ваш случай'],
+        ['При показаниях — экзом или геном','вплоть до полного анализа генома (WGS)'],
+        ['Заключение','с разбором результатов и рекомендациями для врача']
+      ],
+      anchor:'#track-family'
+    },
+    B: {
+      id:'B', name:'Код будущих родителей', kicker:'Ваше направление · 02',
+      msg:'«Планирование начинается не с тревоги, а с информации».',
+      desc:'Это про вас, если вы планируете беременность. Начинают со скрининга носительства и приёма генетика — чтобы спокойно подготовиться заранее.',
+      items:[
+        ['Скрининг носительства «РепроПлан»','для пары на этапе планирования'],
+        ['Приём генетика','помогает понять, что означают результаты'],
+        ['Направление к партнёрским клиникам','репродуктологи и профильные специалисты'],
+        ['При ЭКО по показаниям — ПГТ','в партнёрских клиниках']
+      ],
+      anchor:'#track-parents'
+    },
+    C: {
+      id:'C', name:'Код лечения', kicker:'Ваше направление · 03',
+      msg:'«Вопрос не только в том, что назначено, а и в том, как организм может реагировать».',
+      desc:'Это про вас, если вы уже лечитесь или постоянно принимаете препараты. Работают только вместе с вашим лечащим врачом.',
+      items:[
+        ['Фармакогенетические исследования','когда это клинически уместно'],
+        ['Только с лечащим врачом','исследование дополняет приём, а не заменяет его'],
+        ['Разбор результатов','понятным языком'],
+        ['Помощь с вопросами к врачу','чтобы разговор на приёме был точнее']
+      ],
+      anchor:'#track-therapy'
+    }
+  };
+
+  var QUESTIONS = [
+    {
+      q:'Что ближе всего к вашей ситуации?',
+      hint:'Выберите то, что откликается сильнее.',
+      opts:[
+        {t:'В семье повторяются диагнозы',s:'онкозаболевания или схожие болезни у родственников',ic:'heart',w:{A:2}},
+        {t:'Мы планируем ребёнка',s:'думаем о беременности сейчас или в ближайшее время',ic:'user',w:{B:2}},
+        {t:'Я уже лечусь или принимаю препараты',s:'постоянная терапия, наблюдаюсь у врача',ic:'pill',w:{C:2}},
+        {t:'Пока не решил, нужно ли вообще',s:'хочу сначала разобраться',ic:'compass',w:{A:1,B:1,C:1}}
+      ]
+    },
+    {
+      q:'Что вам сейчас важнее всего?',
+      hint:'Это поможет точнее подобрать направление.',
+      opts:[
+        {t:'Понять, что важно держать под наблюдением',s:'наследственные риски',ic:'shield',w:{A:2}},
+        {t:'Спокойно подготовиться к беременности',s:'разобраться заранее, а не переживать потом',ic:'user',w:{B:2}},
+        {t:'Понять, как организм реагирует на лечение',s:'вместе с лечащим врачом',ic:'pill',w:{C:2}},
+        {t:'Получить понятные рекомендации',s:'простыми словами',ic:'compass',w:{A:1,B:1}}
+      ]
+    },
+    {
+      q:'Кого ещё это касается?',
+      hint:'Семейная история часто касается не только вас.',
+      opts:[
+        {t:'Меня и старших родственников',s:'история болезней в семье',ic:'heart',w:{A:2}},
+        {t:'Меня и партнёра',s:'планируем вместе',ic:'user',w:{B:2}},
+        {t:'Только меня и моего врача',s:'мой курс лечения',ic:'pill',w:{C:2}},
+        {t:'Всю семью — хочу позаботиться о близких',s:'чтобы у них было меньше поводов тревожиться',ic:'family',w:{A:1,B:1}}
+      ]
+    }
+  ];
+
+  var ICONS = {
+    heart:'<path d="M12 21s-7-4.35-7-9.5A4 4 0 0 1 12 8a4 4 0 0 1 7 3.5C19 16.65 12 21 12 21z"/>',
+    user:'<circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/>',
+    pill:'<path d="M10.5 3.5 3.5 10.5a5 5 0 0 0 7 7l7-7a5 5 0 0 0-7-7z"/><path d="m7 7 7 7"/>',
+    compass:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',
+    shield:'<path d="M12 3 5 6v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/>',
+    family:'<circle cx="8" cy="9" r="2.4"/><circle cx="16" cy="9" r="2.4"/><path d="M3.5 20a4.5 4.5 0 0 1 9 0M11.5 20a4.5 4.5 0 0 1 9 0"/>'
+  };
+
+  var step = 0, scores = {A:0,B:0,C:0}, history = [];
+  var stageEl = document.getElementById('qStage');
+  var barEl = document.getElementById('qBar');
+  var stepEl = document.getElementById('qStep');
+  var backEl = document.getElementById('qBack');
+  var flowEl = document.getElementById('quizFlow');
+  var resultEl = document.getElementById('quizResult');
+
+  function svgIcon(name){
+    return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[name]||ICONS.compass)+'</svg>';
+  }
+
+  function render(){
+    var Q = QUESTIONS[step];
+    stepEl.textContent = step+1;
+    barEl.style.width = ((step)/QUESTIONS.length*100)+'%';
+    backEl.hidden = step===0;
+    var html = '<div class="quiz__stage"><h3 class="quiz__q">'+Q.q+'</h3><p class="quiz__hint">'+Q.hint+'</p><div class="quiz__opts">';
+    Q.opts.forEach(function(o,i){
+      html += '<button class="quiz__opt" data-i="'+i+'" type="button"><span class="quiz__opt-ic">'+svgIcon(o.ic)+'</span><span><span class="quiz__opt-t">'+o.t+'</span><span class="quiz__opt-s">'+o.s+'</span></span></button>';
+    });
+    html += '</div></div>';
+    stageEl.innerHTML = html;
+    Array.prototype.forEach.call(stageEl.querySelectorAll('.quiz__opt'), function(btn){
+      btn.addEventListener('click', function(){ choose(parseInt(btn.getAttribute('data-i'),10)); });
+    });
+  }
+
+  function choose(i){
+    var o = QUESTIONS[step].opts[i];
+    history.push(o.w);
+    for(var k in o.w){ scores[k]+=o.w[k]; }
+    if(step < QUESTIONS.length-1){ step++; render(); }
+    else { showResult(); }
+  }
+
+  backEl.addEventListener('click', function(){
+    if(step===0) return;
+    var last = history.pop();
+    if(last){ for(var k in last){ scores[k]-=last[k]; } }
+    step--; render();
+  });
+
+  function winner(){
+    var best='A', bestv=-1, tie=false;
+    ['A','B','C'].forEach(function(k){
+      if(scores[k]>bestv){bestv=scores[k];best=k;tie=false;}
+      else if(scores[k]===bestv){tie=true;}
+    });
+    return {key:best, tie:tie};
+  }
+
+  function showResult(){
+    barEl.style.width='100%';
+    var w = winner();
+    var T = TRACKS[w.key];
+    var items = T.items.map(function(it){
+      return '<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b style="color:var(--ink);font-weight:700">'+it[0]+'</b> — '+it[1]+'</span></li>';
+    }).join('');
+    var tieNote = w.tie ? 'Ответы подошли сразу нескольким направлениям — так бывает часто. На приёме генетик поможет выбрать точнее.' : 'Это не поспешная постановка диагноза, а отправная точка. Врач-генетик проведет исчерпывающую консультацию и подскажет, какой план исследований подходит именно вамы.';
+    resultEl.innerHTML =
+      '<div class="qr__top">'+
+        '<div class="qr__kicker">'+T.kicker+'</div>'+
+        '<h3 class="qr__title">'+T.name+'</h3>'+
+        '<p class="qr__msg">'+T.msg+'</p>'+
+        '<p class="qr__desc">'+T.desc+'</p>'+
+      '</div>'+
+      '<div class="qr__body">'+
+        '<p class="qr__lbl">Что обсудить с генетиком</p>'+
+        '<ul class="qr__list">'+items+'</ul>'+
+        '<p class="qr__note">'+tieNote+'</p>'+
+        '<div class="qr__cta">'+
+          '<a class="btn btn--primary btn--large" href="tel:+74956608377"><span>Записаться на приём →</span></a>'+
+          '<a class="btn btn--ghost" href="'+T.anchor+'">Подробнее о направлении</a>'+
+          '<button class="btn btn--ghost" id="qRestart" type="button">Пройти заново</button>'+
+        '</div>'+
+      '</div>';
+    flowEl.hidden = true; resultEl.hidden = false;
+    document.getElementById('qRestart').addEventListener('click', restart);
+  }
+
+  function restart(){
+    step=0; scores={A:0,B:0,C:0}; history=[];
+    resultEl.hidden=true; flowEl.hidden=false; render();
+    document.getElementById('quiz').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  render();
+})();
+
+/* ====== Interactive family tree (родословная) ====== */
+(function(){
+  "use strict";
+  if(!document.getElementById('tree')) return;
+
+  const HALF = 15;
+  const NODES = {
+    A1:{s:'m',g:1,x:355,y:70,partner:'A2'},
+    A2:{s:'f',g:1,x:415,y:70,partner:'A1'},
+    B1:{s:'f',g:2,x:180,y:210,parents:['A1','A2'],partner:'B2'},
+    B2:{s:'m',g:2,x:120,y:210,marriedIn:true,partner:'B1'},
+    B3:{s:'m',g:2,x:385,y:210,parents:['A1','A2'],partner:'B4'},
+    B4:{s:'f',g:2,x:445,y:210,marriedIn:true,partner:'B3'},
+    B5:{s:'f',g:2,x:620,y:210,parents:['A1','A2'],partner:'B6'},
+    B6:{s:'m',g:2,x:680,y:210,marriedIn:true,partner:'B5'},
+    C1:{s:'f',g:3,x:120,y:350,parents:['B1','B2']},
+    C2:{s:'m',g:3,x:240,y:350,parents:['B1','B2']},
+    C3:{s:'f',g:3,x:355,y:350,parents:['B3','B4']},
+    C4:{s:'m',g:3,x:445,y:350,parents:['B3','B4']},
+    C5:{s:'f',g:3,x:650,y:350,parents:['B5','B6']},
+  };
+  const SEG = {
+    m_A:"M370,70 L400,70", d_A_v:"M385,70 L385,140",
+    s_B_L:"M385,140 L180,140", s_B_R:"M385,140 L620,140",
+    drop_B1:"M180,140 L180,195", drop_B3:"M385,140 L385,195", drop_B5:"M620,140 L620,195",
+    m_B1:"M165,210 L135,210", d_B1_v:"M150,210 L150,290",
+    s_C12a:"M150,290 L120,290", s_C12b:"M150,290 L240,290",
+    drop_C1:"M120,290 L120,335", drop_C2:"M240,290 L240,335",
+    m_B3:"M400,210 L430,210", d_B3_v:"M415,210 L415,290",
+    s_C34a:"M415,290 L355,290", s_C34b:"M415,290 L445,290",
+    drop_C3:"M355,290 L355,335", drop_C4:"M445,290 L445,335",
+    m_B5:"M635,210 L665,210", d_B5_v:"M650,210 L650,335",
+  };
+  const EDGE = {
+    B1:['m_A','d_A_v','s_B_L','drop_B1'], B3:['m_A','d_A_v','drop_B3'], B5:['m_A','d_A_v','s_B_R','drop_B5'],
+    C1:['m_B1','d_B1_v','s_C12a','drop_C1'], C2:['m_B1','d_B1_v','s_C12b','drop_C2'],
+    C3:['m_B3','d_B3_v','s_C34a','drop_C3'], C4:['m_B3','d_B3_v','s_C34b','drop_C4'], C5:['m_B5','d_B5_v'],
+  };
+  const CASE = {
+    cancer:{no:'01',theme:'Наследственный рак',title:'Один тип — по женской линии',
+      clue:'Одна и та же опухоль повторяется в трёх поколениях по женской линии — и в раннем возрасте.',
+      body:'Ранний возраст и повторение одного типа из поколения в поколение — повод обсудить наследственный рак с генетиком. Это ещё не диагноз, а основание присмотреться.',
+      chips:['по женской линии','ранний возраст','3 поколения'],
+      anno:{A2:'рак МЖ, 52',B1:'рак МЖ, 45',C1:'под наблюдением'}},
+    cardio:{no:'02',theme:'Наследственная кардиология',title:'Сердце — по прямой линии',
+      clue:'Сердечные находки идут от деда к отцу и к сыну — по прямой линии, без пропусков.',
+      body:'Когда одно и то же повторяется по прямой линии в нескольких поколениях, генетик проверяет наследственные кардиопатии. Спокойно и заранее — чтобы понять, нужно ли наблюдение.',
+      chips:['прямая передача','мужская линия','3 поколения'],
+      anno:{A1:'кардиомиопатия, 50',B3:'нарушение ритма, 38',C4:'под наблюдением'}},
+    carrier:{no:'03',theme:'Скрытое носительство',title:'Признак, который шёл тихо',
+      clue:'В семье никто не болел — но один и тот же признак тихо передавался через поколения.',
+      body:'Так выглядит носительство: человек здоров, но может передать признак дальше. Это важно знать заранее при планировании семьи — об этом и говорят с генетиком.',
+      chips:['носительство','планирование семьи','скрытая линия'],
+      anno:{C5:'носитель выявлен'}},
+    overview:{no:'00',theme:'Семейная история',title:'Вся картина — в одной схеме',
+      clue:'Три разных сигнала в одной семье. Генетик смотрит, какие из них стоит проверить.',
+      body:'Семейная история, собранная целиком, показывает: какие признаки повторяются, по каким линиям идут и где есть смысл в исследовании. Без диагнозов — как основа для разговора с врачом.',
+      chips:['3 линии','3 поколения','вся семья'],anno:{}}
+  };
+  function caseKey(id){
+    if(id==='A1'||id==='A2') return 'overview';
+    if(id==='B1'||id==='B2'||id==='C1'||id==='C2') return 'cancer';
+    if(id==='B3'||id==='B4'||id==='C3'||id==='C4') return 'cardio';
+    return 'carrier';
+  }
+  function cardFor(key){
+    const c=CASE[key];
+    const eyebrow = key==='overview' ? 'Семейная история · обзор' : 'Случай '+c.no+' · '+c.theme;
+    return {eyebrow,title:c.title,clue:c.clue,body:c.body,chips:c.chips,anno:c.anno};
+  }
+  const SCEN = [
+    {key:'cancer',origin:'A2',route:['m_A','d_A_v','s_B_L','drop_B1','@B1','m_B1','d_B1_v','s_C12a','drop_C1','@C1']},
+    {key:'cardio',origin:'A1',route:['m_A','d_A_v','drop_B3','@B3','m_B3','d_B3_v','s_C34b','drop_C4','@C4']},
+    {key:'carrier',origin:'A2',route:['m_A','d_A_v','s_B_R','drop_B5','@B5','m_B5','d_B5_v','@C5']},
+  ];
+
+  const svgNS="http://www.w3.org/2000/svg";
+  const baseLayer=document.getElementById('base-layer');
+  const traceLayer=document.getElementById('trace-layer');
+  const nodeLayer=document.getElementById('node-layer');
+  const stage=document.getElementById('stage');
+  const TRACE={},LEN={},NODEEL={};
+  function mkPath(d,cls){const p=document.createElementNS(svgNS,'path');p.setAttribute('d',d);p.setAttribute('class',cls);return p;}
+
+  Object.keys(SEG).forEach(id=>{
+    baseLayer.appendChild(mkPath(SEG[id],'base'));
+    const t=mkPath(SEG[id],'trace');traceLayer.appendChild(t);
+    const len=t.getTotalLength();t.style.setProperty('--len',len);
+    TRACE[id]=t;LEN[id]=len;
+  });
+  Object.keys(NODES).forEach(id=>{
+    const n=NODES[id];
+    const g=document.createElementNS(svgNS,'g');g.setAttribute('class','node');g.dataset.id=id;
+    let shape;
+    if(n.s==='m'){shape=document.createElementNS(svgNS,'rect');shape.setAttribute('x',n.x-HALF);shape.setAttribute('y',n.y-HALF);shape.setAttribute('width',HALF*2);shape.setAttribute('height',HALF*2);shape.setAttribute('rx',2.5);}
+    else{shape=document.createElementNS(svgNS,'circle');shape.setAttribute('cx',n.x);shape.setAttribute('cy',n.y);shape.setAttribute('r',HALF);}
+    shape.setAttribute('class','node-shape');
+    const hit=document.createElementNS(svgNS,'circle');hit.setAttribute('cx',n.x);hit.setAttribute('cy',n.y);hit.setAttribute('r',26);hit.setAttribute('class','node-hit');
+    g.appendChild(shape);g.appendChild(hit);nodeLayer.appendChild(g);NODEEL[id]=g;
+    hit.addEventListener('pointerenter',()=>enterNode(id));
+  });
+  const cur="url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='15' cy='15' r='9' fill='none' stroke='%2300C2FF' stroke-width='1.3'/%3E%3Ccircle cx='15' cy='15' r='1.4' fill='%2300C2FF'/%3E%3Cline x1='15' y1='2' x2='15' y2='7' stroke='%2300C2FF' stroke-width='1.3'/%3E%3Cline x1='15' y1='23' x2='15' y2='28' stroke='%2300C2FF' stroke-width='1.3'/%3E%3Cline x1='2' y1='15' x2='7' y2='15' stroke='%2300C2FF' stroke-width='1.3'/%3E%3Cline x1='23' y1='15' x2='28' y2='15' stroke='%2300C2FF' stroke-width='1.3'/%3E%3C/svg%3E\") 15 15, crosshair";
+  document.querySelectorAll('.node-hit').forEach(h=>h.style.cursor=cur);
+
+  const marker=document.getElementById('marker');
+  const hint=document.getElementById('hint');
+  const hintRect=hint.querySelector('rect');
+  const hintText=hint.querySelector('text');
+  const card=document.getElementById('card');
+  const idle=document.getElementById('idle');
+  const cEyebrow=document.getElementById('c-eyebrow');
+  const cTitle=document.getElementById('c-title');
+  const cClueText=document.getElementById('c-clue-text');
+  const cBody=document.getElementById('c-body');
+  const cChips=document.getElementById('c-chips');
+  const annoLayer=document.getElementById('anno-layer');
+  const annoPlateLayer=document.getElementById('anno-plate-layer');
+
+  function lightNode(id){NODEEL[id].classList.add('on');}
+  function originNode(id){NODEEL[id].classList.add('on','origin');}
+  function drawSeg(id,dur){const el=TRACE[id];el.style.transition=`stroke-dashoffset ${dur}ms cubic-bezier(.4,0,.2,1)`;el.classList.add('draw');}
+  function undrawSeg(id){const el=TRACE[id];el.style.transition='';el.classList.remove('draw');}
+  function segDur(id){return Math.max(200,Math.min(560,Math.round(LEN[id]*1.5)));}
+  function showMarker(id){const n=NODES[id];marker.querySelector('circle').setAttribute('cx',n.x);marker.querySelector('circle').setAttribute('cy',n.y);marker.classList.add('show');}
+  function hideMarker(){marker.classList.remove('show');}
+  function showCard(c){idle.style.opacity='0';cEyebrow.textContent=c.eyebrow;cTitle.textContent=c.title;cClueText.textContent=c.clue;cBody.textContent=c.body;cChips.innerHTML='';c.chips.forEach(ch=>{const e=document.createElement('span');e.className='chip';e.textContent=ch;cChips.appendChild(e);});card.classList.add('show');}
+  function hideCard(){card.classList.remove('show');setTimeout(()=>{if(!card.classList.contains('show'))idle.style.opacity='';},420);}
+
+  function clearAnno(){
+    while(annoLayer.firstChild)annoLayer.removeChild(annoLayer.firstChild);
+    while(annoPlateLayer.firstChild)annoPlateLayer.removeChild(annoPlateLayer.firstChild);
+  }
+  function setAnno(annoMap,litSet,originId){
+    clearAnno();
+    Object.keys(annoMap).forEach(id=>{
+      if(litSet && !litSet.has(id)) return;
+      const n=NODES[id];
+      const below=(id===originId);
+      const txt=annoMap[id];
+      const x=Math.max(54,Math.min(686,n.x));
+      const y=below ? n.y+HALF+18 : n.y-HALF-9;
+      const w=txt.length*6.55+14;                    // backing plate lifts text off the lines
+      const r=document.createElementNS(svgNS,'rect');
+      r.setAttribute('class','anno-plate');
+      r.setAttribute('x',x-w/2);r.setAttribute('y',y-12.5);
+      r.setAttribute('width',w);r.setAttribute('height',17);r.setAttribute('rx',4.5);
+      annoPlateLayer.appendChild(r);
+      const t=document.createElementNS(svgNS,'text');
+      t.setAttribute('class', id===originId?'anno tick':'anno');
+      t.setAttribute('x',x);t.setAttribute('y',y);t.setAttribute('text-anchor','middle');
+      t.textContent=txt;annoLayer.appendChild(t);
+      requestAnimationFrame(()=>{r.classList.add('show');t.classList.add('show');});
+    });
+  }
+  function placeHint(id){
+    const n=NODES[id];const w=118;
+    let cx=Math.max(64,Math.min(676,n.x));let y=n.y-HALF-30;
+    if(y<8) y=n.y+HALF+12;
+    hintRect.setAttribute('x',cx-w/2);hintRect.setAttribute('y',y);
+    hintText.setAttribute('x',cx);hintText.setAttribute('y',y+15);hintText.setAttribute('text-anchor','middle');
+    hint.classList.add('show');
+  }
+  function hideHint(){hint.classList.remove('show');}
+
+  function resetVisuals(){Object.keys(TRACE).forEach(undrawSeg);Object.values(NODEEL).forEach(g=>g.classList.remove('on','origin'));hideMarker();clearAnno();}
+
+  let timers=[];
+  function clearTimers(){timers.forEach(clearTimeout);timers=[];}
+  function at(fn,delay){timers.push(setTimeout(fn,delay));}
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let mode='auto',idx=0,leaveTimer=null;
+  function runAuto(i){
+    clearTimers();mode='auto';idx=i;
+    const sc=SCEN[i];const cardData=cardFor(sc.key);
+    const litSet=new Set([sc.origin]);sc.route.forEach(s=>{if(s[0]==='@')litSet.add(s.slice(1));});
+    resetVisuals();hideCard();stage.classList.add('dim');
+    if(reduced){
+      sc.route.forEach(s=>{if(s[0]==='@')lightNode(s.slice(1));else drawSeg(s,0);});
+      originNode(sc.origin);showCard(cardData);setAnno(cardData.anno,litSet,null);return;
+    }
+    at(()=>{showMarker(sc.origin);originNode(sc.origin);},420);
+    let t=420+820;
+    sc.route.forEach(step=>{
+      if(step[0]==='@'){const id=step.slice(1);at(()=>lightNode(id),t);}
+      else{const dur=segDur(step);at(()=>drawSeg(step,dur),t);t+=Math.round(dur*0.80);}
+    });
+    const cardAt=t+260;
+    at(()=>{hideMarker();showCard(cardData);setAnno(cardData.anno,litSet,null);},cardAt);
+    const endAt=cardAt+2900;
+    at(()=>{resetVisuals();hideCard();},endAt);
+    at(()=>{runAuto((i+1)%SCEN.length);},endAt+1000);
+  }
+
+  function up(id,acc){acc.add(id);const n=NODES[id];if(n.parents)n.parents.filter(p=>!NODES[p].marriedIn).forEach(p=>up(p,acc));return acc;}
+  function down(id,acc){acc.add(id);Object.keys(NODES).forEach(k=>{const n=NODES[k];if(n.parents&&n.parents.indexOf(id)>=0&&!acc.has(k))down(k,acc);});return acc;}
+  function lineage(id){const set=new Set();up(id,set);down(id,set);const n=NODES[id];if(n.marriedIn&&n.partner){up(n.partner,set);down(n.partner,set);}return set;}
+  function lineageSegs(set){const segs=new Set();Object.keys(EDGE).forEach(child=>{if(!set.has(child))return;const bp=(NODES[child].parents||[]).filter(p=>!NODES[p].marriedIn);if(bp.some(p=>set.has(p)))EDGE[child].forEach(s=>segs.add(s));});return segs;}
+
+  function enterNode(id){
+    clearTimers();if(leaveTimer){clearTimeout(leaveTimer);leaveTimer=null;}
+    mode='hover';hideMarker();stage.classList.add('dim');
+    const set=lineage(id);const segs=lineageSegs(set);
+    Object.keys(NODEEL).forEach(k=>{NODEEL[k].classList.toggle('on',set.has(k));NODEEL[k].classList.remove('origin');});
+    NODEEL[id].classList.add('origin');
+    Object.keys(TRACE).forEach(s=>{if(segs.has(s))drawSeg(s,420);else undrawSeg(s);});
+    const cardData=cardFor(caseKey(id));
+    placeHint(id);showCard(cardData);setAnno(cardData.anno,set,id);
+  }
+  function scheduleResume(){if(leaveTimer)clearTimeout(leaveTimer);leaveTimer=setTimeout(()=>{hideHint();runAuto((idx+1)%SCEN.length);},1900);}
+  stage.addEventListener('pointerleave',()=>{if(mode==='hover')scheduleResume();});
+
+  if(reduced){runAuto(0);}
+  else{at(()=>runAuto(0),300);}
+})();
+
+/* ====== Scroll reveal ====== */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('is-visible');}); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-visible'); io.unobserve(en.target); } });
+  },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){ io.observe(e); });
+})();
+
+/* ====== Hero count-up ====== */
+(function(){
+  var nums = document.querySelectorAll('.meta__num[data-count]');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el = en.target, target = parseInt(el.getAttribute('data-count'),10), unit = el.querySelector('.meta__num-unit');
+      var t0=null, dur=1100;
+      function tick(ts){
+        if(!t0) t0=ts;
+        var p=Math.min((ts-t0)/dur,1), val=Math.round(target*(1-Math.pow(1-p,3)));
+        el.firstChild.nodeValue = val;
+        if(p<1) requestAnimationFrame(tick);
+        else el.firstChild.nodeValue = target;
+      }
+      // ensure first text node exists
+      if(el.firstChild && el.firstChild.nodeType===3){ requestAnimationFrame(tick); }
+      io.unobserve(el);
+    });
+  },{threshold:.6});
+  nums.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>

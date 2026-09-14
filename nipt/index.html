@@ -1,0 +1,1263 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>НИПТ — скрининг хромосомных аномалий плода · Геномед</title>
+<meta name="description" content="НИПТ в лаборатории Геномед: скрининг хромосомных аномалий плода по крови мамы с 10 полных недель, без прокола. Пять панелей, заключение врача-генетика за 8 дней.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Дисплейный шрифт: Gilroy (платный, подключается на стороне сайта), фолбэк — Montserrat 800/900 -->
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F8FE; --bg-card:#FFFFFF; --bg-deep:#0A2540; --bg-deep-2:#102A4C;
+  --ink:#0A2540; --ink-2:#2E4A6B; --muted:#6E839C;
+  --line:#D8E4F2; --line-soft:#ECF2FB;
+  --blue:#0057FF; --blue-2:#0046CC; --cyan:#00C2FF; --cyan-soft:#B8ECFF; --teal:#00A8B5;
+  --accent-soft:#E6F0FF;
+  --ok:#1AA06D; --ok-soft:#E4F7EF; --warn:#C8791B; --warn-soft:#FFF2E0; --stop:#D2453E; --stop-soft:#FDEBEA;
+  --shadow-sm:0 1px 2px rgba(10,37,64,.04),0 2px 8px rgba(10,37,64,.04);
+  --shadow-md:0 8px 24px rgba(10,37,64,.08);
+  --shadow-lg:0 24px 64px rgba(10,37,64,.12);
+  --r-sm:8px; --r-md:16px; --r-lg:24px; --r-xl:32px;
+  --disp:"Gilroy","Onest","Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body:"Gilroy","Onest","Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --maxw:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:500;
+  font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-wrap:break-word}
+img{max-width:100%;display:block} a{color:inherit;text-decoration:none}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:3px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
+section{padding-block:clamp(3rem,6vw,5.5rem)}
+.mono{font-family:var(--mono);font-feature-settings:"tnum"1,"zero"1;letter-spacing:-.01em}
+
+h1,h2,h3,h4{font-family:var(--disp);font-weight:800;letter-spacing:-.022em;line-height:1.06;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.1rem,4.4vw,3.3rem);line-height:1.05}
+h2{font-size:clamp(30px,4vw,54px);margin:0 0 18px}
+h3{font-size:1.15rem}
+h1 em,h2 em,h3 em{font-style:normal;color:var(--blue)}
+.lead{color:var(--ink-2);font-size:clamp(1rem,1.5vw,1.16rem);max-width:64ch;margin:1.1rem 0 0;font-weight:500}
+.muted{color:var(--muted)}
+.center{text-align:center}
+.center .lead{margin-inline:auto}
+
+/* eyebrows */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--line);
+  border-radius:100px;font-size:13px;font-weight:700;letter-spacing:-.01em;background:#fff;margin:0 0 1.4rem;
+  box-shadow:var(--shadow-sm)}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue);
+  box-shadow:0 0 0 4px rgba(0,87,255,.15);animation:pulse 2s infinite;flex:none}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(0,87,255,.15)}50%{box-shadow:0 0 0 7px rgba(0,87,255,.05)}}
+@media(prefers-reduced-motion:reduce){.eyebrow::before{animation:none}}
+.section-eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+.section-head h2{max-width:780px}
+.section-head .lead{max-width:64ch}
+.section-head.center h2,.section-head.center .lead{margin-inline:auto}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:100px;
+  font-weight:700;font-size:15px;letter-spacing:-.01em;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;
+  font-family:inherit;text-align:center}
+.btn--primary{background:var(--bg-deep);color:#fff;position:relative;overflow:hidden}
+.btn--primary::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--blue),var(--cyan) 120%);opacity:0;transition:opacity .3s}
+.btn--primary:hover::before{opacity:1}
+.btn--primary>*{position:relative;z-index:1}
+.btn--primary:hover,.btn--secondary:hover{transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn--secondary{background:var(--accent-soft);color:var(--ink)}
+.btn--light{background:#fff;color:var(--ink)}
+.btn--sm{padding:11px 18px;font-size:14px}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(244,248,254,.88);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-soft)}
+.nav{display:flex;align-items:center;gap:1.5rem;height:72px}
+.brand{display:flex;align-items:center;gap:.7rem;flex:none}
+.brand img{height:34px;width:auto}
+.brand small{font-family:var(--mono);font-size:.66rem;font-weight:600;color:var(--muted);
+  letter-spacing:.06em;text-transform:uppercase;border-left:1px solid var(--line);padding-left:.7rem}
+.menu{display:flex;gap:1.5rem;margin-inline:auto;font-weight:600;font-size:.94rem;color:var(--ink-2)}
+.menu a:hover{color:var(--blue)}
+@media(max-width:1000px){.menu{display:none}.brand small{display:none}.nav .btn{margin-left:auto}}
+@media(max-width:520px){.nav{height:64px;gap:.8rem}.nav .btn{padding:11px 16px;font-size:13.5px}}
+
+/* hero */
+.hero{padding:clamp(2.5rem,5vw,4.5rem) 0 clamp(3rem,5vw,4.5rem);
+  background:linear-gradient(180deg,#F4F8FE 0%,#FFFFFF 100%)}
+.nw{white-space:nowrap}
+.hero__grid{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(2rem,4vw,3.5rem);align-items:center}
+.hero__grid>*{min-width:0}
+@media(max-width:940px){.hero__grid{grid-template-columns:1fr}}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.4rem;
+  border-top:1px solid var(--line);padding-top:1.5rem}
+.stats>div{min-width:0}
+.stats .n{font-family:var(--mono);font-feature-settings:"tnum"1;font-weight:700;font-size:clamp(1.3rem,2.4vw,1.75rem);
+  color:var(--blue);line-height:1}
+.stats .c{color:var(--muted);font-size:.8rem;margin-top:.45rem;line-height:1.35}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr);gap:1.2rem}}
+
+/* карточка-отчёт */
+.report{background:var(--bg-card);border-radius:var(--r-lg);padding:1.6rem;box-shadow:var(--shadow-lg);
+  border:1px solid var(--line-soft);min-width:0}
+.report .rhead{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  border-bottom:1px solid var(--line);padding-bottom:.95rem;margin-bottom:1.1rem}
+.report .rhead b{font-family:var(--disp);font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
+.report .rhead small{font-family:var(--mono);color:var(--muted);font-size:.68rem;white-space:nowrap;
+  letter-spacing:.02em;text-transform:uppercase}
+.rrow{margin:.95rem 0}
+.rrow .rl{display:flex;justify-content:space-between;align-items:center;gap:.6rem;font-size:.86rem;
+  margin-bottom:.4rem;font-weight:600}
+.rrow .rl span:first-child{min-width:0}
+.chip{font-weight:700;font-size:.68rem;padding:.2rem .6rem;border-radius:100px;white-space:nowrap;flex:none;
+  letter-spacing:.01em}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.stop{background:var(--stop-soft);color:var(--stop)}
+.chip.blue{background:var(--accent-soft);color:var(--blue)}
+.bar{height:7px;border-radius:100px;background:var(--line-soft);overflow:hidden}
+.bar>i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.bar.calm>i{background:linear-gradient(90deg,var(--ok),#5CD1A4)}
+.rfoot{margin-top:1.2rem;padding-top:.95rem;border-top:1px solid var(--line-soft);
+  font-size:.74rem;color:var(--muted);line-height:1.5}
+.rfoot b{color:var(--ink-2)}
+
+/* тёмная плашка */
+.deep{position:relative;overflow:hidden;background:var(--bg-deep);color:#fff;border-radius:var(--r-xl);
+  padding:clamp(1.8rem,4vw,3rem)}
+.deep::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at top right,rgba(0,194,255,.16),transparent 60%),
+             radial-gradient(ellipse at bottom left,rgba(0,87,255,.22),transparent 60%)}
+.deep>*{position:relative}
+.deep h2,.deep h3{color:#fff}
+.deep p{color:#CFE0FF}
+.deep .big{font-family:var(--disp);font-weight:800;font-size:clamp(3.4rem,9vw,6rem);color:var(--cyan);
+  line-height:.92;letter-spacing:-.04em;white-space:nowrap}
+.deep-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.4rem,4vw,3rem);align-items:center}
+.deep-grid>*{min-width:0}
+@media(max-width:720px){.deep-grid{grid-template-columns:1fr}}
+
+/* карточки */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.cards.c2{grid-template-columns:repeat(2,1fr)}
+.cards>*{min-width:0}
+@media(max-width:860px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.cards,.cards.c2{grid-template-columns:1fr}}
+.fcard{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.7rem;
+  box-shadow:var(--shadow-sm);min-width:0;transition:transform .2s,box-shadow .2s}
+.fcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.fcard .n{font-family:var(--mono);font-weight:700;font-size:.78rem;color:var(--blue);letter-spacing:.06em;
+  text-transform:uppercase}
+.fcard h3{margin:.75rem 0 .55rem}
+.fcard p{color:var(--muted);font-size:.95rem;margin:0}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;
+  border-radius:var(--r-md);background:var(--accent-soft);color:var(--blue);border:1px solid #D3E3FF;flex:none}
+.badge svg{width:22px;height:22px}
+
+/* блок PPV/NPV */
+.risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.risk-grid>*{min-width:0}
+@media(max-width:760px){.risk-grid{grid-template-columns:1fr}}
+.risk{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:1.7rem;box-shadow:var(--shadow-sm);
+  position:relative;overflow:hidden}
+.risk::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+.risk.hi::after{background:linear-gradient(180deg,var(--warn),#E9A64B)}
+.risk.lo::after{background:linear-gradient(180deg,var(--ok),#5CD1A4)}
+.risk .tag{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase}
+.risk.hi .tag{color:var(--warn)} .risk.lo .tag{color:var(--ok)}
+.risk .thr{font-family:var(--mono);font-weight:700;font-size:clamp(1.5rem,3vw,2rem);margin:.7rem 0 .1rem;
+  letter-spacing:-.02em}
+.risk p{color:var(--muted);font-size:.93rem;margin:.7rem 0 0}
+.risk .metric{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--line-soft);font-size:.9rem;color:var(--ink-2)}
+.risk .metric b{font-family:var(--mono);font-weight:700}
+
+.ppv{margin-top:1.6rem;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:1.7rem;box-shadow:var(--shadow-sm)}
+.ppv h3{margin:0 0 .35rem}
+.ppv .sub{color:var(--muted);font-size:.9rem;margin:0 0 1.4rem}
+.ppv-row{display:grid;grid-template-columns:1fr 84px;gap:1rem;align-items:center;margin:.95rem 0}
+.ppv-row>*{min-width:0}
+.ppv-row .lbl{font-weight:600;font-size:.93rem}
+.ppv-row .lbl small{display:block;color:var(--muted);font-weight:500;font-size:.78rem;margin-top:.1rem}
+.ppv-row .val{font-family:var(--mono);font-weight:700;font-size:1rem;text-align:right;color:var(--blue)}
+.ppv-row .track{grid-column:1/-1;height:7px;border-radius:100px;background:var(--line-soft);overflow:hidden;margin-top:-.35rem}
+.ppv-row .track>i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.note{display:flex;gap:.9rem;align-items:flex-start;margin-top:1.6rem;background:var(--warn-soft);
+  border:1px solid #F3DFC0;border-radius:var(--r-md);padding:1.15rem 1.3rem}
+.note svg{width:20px;height:20px;color:var(--warn);flex:none;margin-top:.15rem}
+.note p{margin:0;font-size:.92rem;color:#7A4E12;line-height:1.55}
+.note p b{color:#5E3A0A}
+
+/* сравнение НИПТ vs биохимия */
+.cmp{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.cmp>*{min-width:0}
+@media(max-width:900px){.cmp{grid-template-columns:1fr}}
+.cmp-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:1.7rem;box-shadow:var(--shadow-md)}
+.cmp-item{margin:1.5rem 0}
+.cmp-item:first-child{margin-top:0} .cmp-item:last-child{margin-bottom:0}
+.cmp-item .t{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;margin-bottom:.85rem}
+.cmp-item .t b{font-size:.95rem} .cmp-item .t small{color:var(--muted);font-size:.75rem;font-family:var(--mono)}
+.cmp-line{display:grid;grid-template-columns:1fr 68px;gap:.7rem;align-items:center;margin:.4rem 0}
+.cmp-line>*{min-width:0}
+.cmp-line .bar2{height:22px;border-radius:6px;background:var(--line-soft);overflow:hidden}
+.cmp-line .bar2>i{display:block;height:100%;border-radius:6px}
+.cmp-line.a .bar2>i{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.cmp-line.b .bar2>i{background:#A9BDD6}
+.cmp-line .v{font-family:var(--mono);font-weight:700;font-size:.82rem;text-align:right}
+.cmp-line.a .v{color:var(--blue)} .cmp-line.b .v{color:var(--muted)}
+.cmp-legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid var(--line-soft);
+  font-size:.78rem;color:var(--muted)}
+.cmp-legend span{display:inline-flex;align-items:center;gap:.45rem}
+.cmp-legend i{width:12px;height:12px;border-radius:4px;display:inline-block}
+.src{font-size:.76rem;color:var(--muted);margin-top:1.2rem;line-height:1.5}
+
+/* панели */
+.panels{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;align-items:stretch}
+@media(max-width:1120px){.panels{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:820px){.panels{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.panels{grid-template-columns:1fr}}
+.panels>*{min-width:0}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:1.5rem 1.25rem;
+  display:flex;flex-direction:column;box-shadow:var(--shadow-sm);position:relative;transition:transform .2s,box-shadow .2s}
+.panel:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.panel.pop{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,87,255,.09),var(--shadow-md)}
+.panel .flag{position:absolute;top:-11px;left:1.4rem;background:var(--blue);color:#fff;font-size:.66rem;
+  font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.3rem .7rem;border-radius:100px;
+  font-family:var(--mono)}
+.panel .code{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.panel h3{margin:.5rem 0 .3rem;font-size:1.15rem}
+.panel .desc{color:var(--muted);font-size:.85rem;margin:0 0 1.1rem;line-height:1.45}
+.panel ul{list-style:none;margin:0 0 1.3rem;padding:0;display:grid;gap:.55rem}
+.panel li{position:relative;padding-left:1.35rem;font-size:.83rem;color:var(--ink-2);line-height:1.4}
+.panel li::before{content:"";position:absolute;left:0;top:.42em;width:13px;height:9px;
+  border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg) scale(.85);
+  transform-origin:left center;border-radius:1px}
+.panel li.plus{color:var(--ok);font-weight:600}
+.panel li.plus::before{border-color:var(--ok)}
+.panel .price{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line-soft)}
+.panel .price .p{font-family:var(--mono);font-weight:700;font-size:1.4rem;letter-spacing:-.02em}
+.panel .price .term{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.05em;
+  text-transform:uppercase;margin-top:.3rem}
+.panel .btn{margin-top:1rem;width:100%}
+.panels-note{margin-top:1.4rem;background:var(--accent-soft);border-radius:var(--r-md);padding:1.15rem 1.3rem;
+  font-size:.9rem;color:var(--ink-2)}
+.panels-note b{font-weight:700}
+
+/* таблица */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;
+  box-shadow:var(--shadow-sm);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.88rem}
+th,td{padding:.85rem 1rem;text-align:center;border-bottom:1px solid var(--line-soft)}
+thead th{background:#FAFCFF;font-family:var(--disp);font-weight:800;font-size:.9rem;position:sticky;top:0;
+  border-bottom:1px solid var(--line)}
+thead th .pr{display:block;font-family:var(--mono);font-size:.75rem;color:var(--blue);font-weight:700;margin-top:.2rem}
+tbody th{text-align:left;font-weight:600;color:var(--ink-2);font-size:.87rem;background:#FCFDFF}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:none}
+td.y{color:var(--ok);font-weight:700}
+td.n{color:#C3D2E4}
+td .mono{font-size:.82rem}
+.thint{font-size:.78rem;color:var(--muted);margin-top:.8rem}
+
+/* шаги */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;counter-reset:s}
+.steps>*{min-width:0}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:1.5rem;box-shadow:var(--shadow-sm)}
+.step .n{font-family:var(--mono);font-weight:700;font-size:.8rem;color:#fff;background:var(--bg-deep);
+  width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.step h3{font-size:1.02rem;margin:0 0 .45rem}
+.step p{color:var(--muted);font-size:.9rem;margin:0}
+
+/* где сдать */
+.where{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:1.4rem}
+.where>*{min-width:0}
+@media(max-width:860px){.where{grid-template-columns:1fr}}
+.wcard{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:1.6rem;box-shadow:var(--shadow-sm)}
+.wcard h3{font-size:1.05rem;margin:.9rem 0 .5rem}
+.wcard p{color:var(--muted);font-size:.9rem;margin:0 0 1rem}
+.wcard .tagline{font-family:var(--mono);font-size:.7rem;font-weight:700;color:var(--blue);letter-spacing:.06em;
+  text-transform:uppercase}
+
+/* доверие */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;text-align:center}
+.trust>*{min-width:0}
+@media(max-width:760px){.trust{grid-template-columns:repeat(2,1fr);gap:2rem 1rem}}
+.trust .n{font-family:var(--mono);font-weight:700;font-size:clamp(1.6rem,3.4vw,2.4rem);color:var(--cyan);line-height:1}
+.trust .c{color:#B9CDE8;font-size:.84rem;margin-top:.6rem;line-height:1.4}
+
+/* отзывы */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.revs>*{min-width:0}
+@media(max-width:900px){.revs{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.revs{grid-template-columns:1fr}}
+.rev{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:1.6rem;box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column}
+.rev .stars{color:#F0A81E;font-size:.9rem;letter-spacing:.1em;margin-bottom:.9rem}
+.rev p{margin:0 0 1.3rem;font-size:.94rem;color:var(--ink-2);line-height:1.6}
+.rev .who{margin-top:auto;display:flex;align-items:center;gap:.8rem;padding-top:1rem;border-top:1px solid var(--line-soft)}
+.rev .av{width:38px;height:38px;border-radius:50%;background:var(--accent-soft);color:var(--blue);
+  display:flex;align-items:center;justify-content:center;font-weight:800;flex:none;font-family:var(--disp)}
+.rev .who b{display:block;font-size:.9rem}
+.rev .who small{color:var(--muted);font-size:.76rem;font-family:var(--mono)}
+
+/* faq */
+.faq{display:grid;gap:.7rem;max-width:880px}
+details{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:0;box-shadow:var(--shadow-sm)}
+details[open]{border-color:#BFD5F2}
+summary{cursor:pointer;list-style:none;padding:1.15rem 1.4rem;display:flex;gap:1rem;align-items:flex-start;
+  font-weight:700;font-size:1rem;letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary .faq__n{font-family:var(--mono);color:var(--blue);font-size:.8rem;flex:none;padding-top:.15rem}
+summary .q{flex:1;min-width:0}
+summary .ic{flex:none;width:20px;height:20px;color:var(--muted);transition:transform .2s}
+details[open] summary .ic{transform:rotate(45deg)}
+details .a{padding:0 1.4rem 1.3rem 3.35rem;color:var(--ink-2);font-size:.95rem;line-height:1.65;margin:0}
+@media(max-width:520px){details .a{padding-left:1.4rem}}
+
+/* cta */
+.cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(1.6rem,4vw,3rem);align-items:center}
+.cta-grid>*{min-width:0}
+@media(max-width:820px){.cta-grid{grid-template-columns:1fr}}
+.contacts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+.contacts a{display:inline-flex;align-items:center;gap:.5rem;padding:12px 20px;border-radius:100px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:700;font-size:.9rem;
+  transition:background .2s}
+.contacts a:hover{background:rgba(255,255,255,.2)}
+.contacts a.tel{background:#fff;color:var(--bg-deep);font-family:var(--mono);border-color:#fff}
+.pricebox{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);padding:1.7rem}
+.pricebox .l{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-soft)}
+.pricebox .p{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,5vw,2.7rem);color:#fff;letter-spacing:-.022em;
+  margin:.4rem 0 .3rem}
+.pricebox p{font-size:.87rem;margin:0;color:#CFE0FF}
+
+/* footer */
+footer{background:#fff;border-top:1px solid var(--line);padding-block:3rem 2.2rem;margin-top:0}
+.fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:2rem}
+.fgrid>*{min-width:0}
+@media(max-width:860px){.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.fgrid{grid-template-columns:1fr}}
+footer h4{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 1rem;
+  font-family:var(--mono);font-weight:700}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;font-size:.9rem;color:var(--ink-2)}
+footer ul a:hover{color:var(--blue)}
+footer .fbrand img{height:36px;width:auto;margin-bottom:1rem}
+footer .fbrand p{font-size:.86rem;color:var(--muted);margin:0;line-height:1.6}
+.disclaimer{margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--line-soft);
+  font-size:.76rem;color:var(--muted);line-height:1.65}
+.disclaimer b{color:var(--ink-2);font-weight:700}
+
+/* ---------- строка фактов в hero ---------- */
+.herofacts{list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem 0;
+  margin:2.2rem 0 0;padding:1.4rem 0 0;border-top:1px solid var(--line);font-size:.93rem;color:var(--muted)}
+.herofacts li{display:inline-flex;align-items:baseline;gap:.42rem;min-width:0;flex-wrap:wrap}
+.herofacts li:not(:last-child)::after{content:"\00B7";margin:0 .85rem;color:#BFD2E8}
+.herofacts b{color:var(--blue);font-weight:700;white-space:nowrap}
+@media(max-width:560px){
+  .herofacts{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+  .herofacts li{display:block}
+  .herofacts li::after{display:none}
+  .herofacts b{display:block;margin-bottom:.15rem;white-space:normal}
+}
+
+/* ---------- полоса «важно» ---------- */
+.notice{display:flex;gap:1.1rem;align-items:flex-start;background:#fff;border:1px solid var(--line);
+  border-left:4px solid var(--blue);border-radius:var(--r-md);padding:1.2rem 1.5rem;box-shadow:var(--shadow-sm)}
+.notice svg{width:21px;height:21px;color:var(--blue);flex:none;margin-top:.15rem}
+.notice p{margin:0;font-size:.95rem;color:var(--ink-2);line-height:1.6}
+.notice b{color:var(--ink)}
+
+/* ---------- подбор панели (квиз) ---------- */
+.quiz{background:#fff;border:1px solid var(--line);border-radius:var(--r-xl);
+  padding:clamp(1.5rem,4vw,2.6rem);box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.quiz::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at top right,rgba(0,194,255,.09),transparent 55%)}
+.quiz>*{position:relative}
+.quiz__prog{display:flex;gap:.45rem;margin-bottom:1.7rem}
+.quiz__prog i{height:4px;flex:1;border-radius:100px;background:var(--line-soft);transition:background .3s}
+.quiz__prog i.on{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.qstep,.qres{display:none}
+.qstep.on,.qres.on{display:block;animation:qin .32s ease}
+@keyframes qin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.qstep.on,.qres.on{animation:none}}
+.qn{font-family:var(--mono);font-size:.72rem;color:var(--blue);letter-spacing:.08em;text-transform:uppercase}
+.qstep h3,.qres h3{font-size:clamp(1.15rem,2.5vw,1.55rem);margin:.55rem 0 1.4rem}
+.qopts{display:grid;gap:.6rem}
+.qopt{display:flex;align-items:flex-start;gap:.9rem;width:100%;text-align:left;background:#FAFCFF;
+  border:1px solid var(--line);border-radius:var(--r-md);padding:1rem 1.2rem;font-family:inherit;
+  font-weight:600;font-size:.97rem;color:var(--ink);cursor:pointer;transition:border-color .18s,background .18s,transform .18s}
+.qopt:hover{border-color:#A9C7FF;background:var(--accent-soft);transform:translateX(2px)}
+.qopt .k{font-family:var(--mono);font-size:.72rem;color:var(--blue);flex:none;padding-top:.18rem;min-width:1.1rem}
+.qopt span.tx{min-width:0}
+.qopt small{display:block;font-weight:500;color:var(--muted);font-size:.83rem;margin-top:.2rem;line-height:1.45}
+.qfoot{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;
+  margin-top:1.6rem;padding-top:1.3rem;border-top:1px solid var(--line-soft)}
+.qfoot p{margin:0;font-size:.79rem;color:var(--muted);max-width:60ch;line-height:1.5}
+.qlink{background:none;border:none;font-family:inherit;font-weight:700;font-size:.88rem;color:var(--blue);
+  cursor:pointer;padding:0;display:inline-flex;align-items:center;gap:.4rem}
+.qlink:hover{color:var(--blue-2)}
+.qres__box{background:linear-gradient(135deg,#F4F8FE,#FFFFFF);border:1px solid #C9DDFB;border-radius:var(--r-lg);
+  padding:1.6rem;display:grid;grid-template-columns:1fr auto;gap:1.4rem;align-items:center}
+.qres__box>*{min-width:0}
+@media(max-width:700px){.qres__box{grid-template-columns:1fr}}
+.qres__tag{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.7rem;
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:.6rem}
+.qres__name{font-family:var(--disp);font-weight:800;font-size:clamp(1.3rem,3vw,1.75rem);letter-spacing:-.022em}
+.qres__why{color:var(--ink-2);font-size:.94rem;margin:.7rem 0 0;line-height:1.6}
+.qres__price{text-align:right}
+@media(max-width:700px){.qres__price{text-align:left}}
+.qres__price .p{font-family:var(--mono);font-weight:700;font-size:1.6rem;letter-spacing:-.02em}
+.qres__price .t{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.05em;
+  text-transform:uppercase;margin-top:.25rem}
+.qres__cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}
+
+/* ---------- «что вы получите» ---------- */
+.bens{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+.bens>*{min-width:0}
+@media(max-width:1020px){.bens{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.bens{grid-template-columns:1fr}}
+.ben{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:1.5rem 1.2rem;
+  box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s}
+.ben:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.ben h3{font-size:.98rem;margin:.95rem 0 .4rem}
+.ben p{font-size:.87rem;color:var(--muted);margin:0;line-height:1.5}
+
+/* ---------- микро-CTA ---------- */
+.mcta{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;align-items:center;justify-content:space-between;
+  background:var(--accent-soft);border-radius:var(--r-lg);padding:1.3rem 1.6rem;margin-top:1.6rem}
+.mcta p{margin:0;font-weight:600;font-size:.97rem;min-width:0;color:var(--ink)}
+.mcta p small{display:block;font-weight:500;color:var(--ink-2);font-size:.87rem;margin-top:.2rem}
+
+/* ---------- раскрывающийся научный блок ---------- */
+details.acc{border-radius:var(--r-lg)}
+details.acc>summary{padding:1.35rem 1.6rem;font-size:1.05rem}
+details.acc .body{padding:0 1.6rem 1.7rem}
+@media(max-width:520px){details.acc>summary{padding:1.15rem 1.2rem}details.acc .body{padding:0 1.2rem 1.4rem}}
+
+/* ---------- таблица: строка CTA ---------- */
+tfoot td,tfoot th{border-bottom:none;padding-top:1.1rem;padding-bottom:1.2rem;background:#FCFDFF}
+tfoot .btn{width:100%;padding:10px 12px;font-size:13px}
+tbody td.price-cell{font-family:var(--mono);font-weight:700;font-size:.95rem;color:var(--ink)}
+
+/* ---------- липкий CTA на мобиле ---------- */
+.sticky-cta{display:none}
+@media(max-width:720px){
+  .sticky-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:.55rem;
+    padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));background:rgba(255,255,255,.95);
+    backdrop-filter:blur(14px);border-top:1px solid var(--line);box-shadow:0 -4px 20px rgba(10,37,64,.07)}
+  .sticky-cta .btn{flex:1;padding:13px 10px;font-size:14px;min-width:0}
+  body{padding-bottom:80px}
+}
+</style>
+</head>
+<body id="top">
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Геномед">
+      <img src="data:image/png;base64,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" alt="Геномед" width="140" height="71">
+      <small>НИПТ</small>
+    </a>
+    <nav class="menu">
+      <a href="#about">О НИПТ</a>
+      <a href="#panels">Панели и цены</a>
+      <a href="#how">Как проходит</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a class="btn btn--primary btn--sm" href="#quiz"><span>Подобрать НИПТ</span></a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">Пренатальный скрининг · с 10 полных недель</p>
+      <h1>НИПТ с 10 недель — точный скрининг <em>хромосомных аномалий</em> по крови мамы</h1>
+      <p class="lead">Не нужно самостоятельно разбираться в пяти панелях. Ответьте на три вопроса — подскажем подходящий вариант, а врач-генетик подтвердит выбор на бесплатной консультации.</p>
+      <div class="hero-cta">
+        <a class="btn btn--primary" href="#quiz"><span>Подобрать НИПТ →</span></a>
+        <a class="btn btn--secondary" href="#panels">Панели и цены</a>
+      </div>
+      <ul class="herofacts">
+        <li><b>Без риска</b> для беременности</li>
+        <li><b class="mono">от 16 000 ₽</b> пять панелей</li>
+        <li><b class="mono">от 8 дней</b> до заключения</li>
+        <li><b>Консультация генетика</b> бесплатно</li>
+      </ul>
+    </div>
+
+    <aside class="report" aria-label="Схема заключения по НИПТ">
+      <div class="rhead">
+        <b>Заключение врача-генетика</b>
+        <small>схема отчёта</small>
+      </div>
+      <div class="rrow">
+        <div class="rl"><span>Плодная фракция</span><span class="chip ok">≥ 4 %</span></div>
+        <div class="bar"><i style="width:74%"></i></div>
+      </div>
+      <div class="rrow">
+        <div class="rl"><span>Трисомия 21 · синдром Дауна</span><span class="chip ok">низкий риск</span></div>
+        <div class="bar calm"><i style="width:12%"></i></div>
+      </div>
+      <div class="rrow">
+        <div class="rl"><span>Трисомия 18 · синдром Эдвардса</span><span class="chip ok">низкий риск</span></div>
+        <div class="bar calm"><i style="width:9%"></i></div>
+      </div>
+      <div class="rrow">
+        <div class="rl"><span>Трисомия 13 · синдром Патау</span><span class="chip ok">низкий риск</span></div>
+        <div class="bar calm"><i style="width:8%"></i></div>
+      </div>
+      <div class="rrow">
+        <div class="rl"><span>Половые хромосомы</span><span class="chip blue">без особенностей</span></div>
+        <div class="bar calm"><i style="width:14%"></i></div>
+      </div>
+      <div class="rfoot">
+        Каждую строку заключения врач-генетик разбирает с вами — по телефону или на приёме.
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section style="padding-top:0;padding-bottom:clamp(2rem,4vw,3rem)">
+  <div class="wrap">
+    <div class="notice">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <p><b>Важно.</b> НИПТ — скрининговое исследование, а не диагноз. Оно оценивает вероятность хромосомных аномалий у плода. При высоком риске результат требует подтверждения диагностическим исследованием — амниоцентезом или биопсией ворсин хориона.</p>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" style="padding-top:0">
+  <div class="wrap section-head">
+    <span class="section-eyebrow">Подбор исследования</span>
+    <h2>Не знаете, какой НИПТ <em>выбрать</em>?</h2>
+    <p class="lead">Ответьте на три вопроса — подскажем подходящую панель. Это займёт меньше минуты, никаких контактов вводить не нужно.</p>
+  </div>
+
+  <div class="wrap" style="margin-top:2.2rem">
+    <div class="quiz" id="q">
+      <div class="quiz__prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+
+      <div class="qstep on" data-step="1">
+        <div class="qn">Вопрос 1 из 3</div>
+        <h3>Какой у вас срок беременности?</h3>
+        <div class="qopts">
+          <button class="qopt" data-k="term" data-v="lt10"><span class="k">01</span><span class="tx">Меньше 10 недель<small>Ещё не наступил минимальный срок для исследования</small></span></button>
+          <button class="qopt" data-k="term" data-v="ok"><span class="k">02</span><span class="tx">10–13 недель<small>Оптимальное время для пренатального скрининга</small></span></button>
+          <button class="qopt" data-k="term" data-v="ok"><span class="k">03</span><span class="tx">14 недель и больше<small>Исследование выполняется, верхней границы срока практически нет</small></span></button>
+        </div>
+      </div>
+
+      <div class="qstep" data-step="2">
+        <div class="qn">Вопрос 2 из 3</div>
+        <h3>Сколько плодов?</h3>
+        <div class="qopts">
+          <button class="qopt" data-k="fetus" data-v="one"><span class="k">01</span><span class="tx">Одноплодная беременность</span></button>
+          <button class="qopt" data-k="fetus" data-v="twin"><span class="k">02</span><span class="tx">Двойня</span></button>
+          <button class="qopt" data-k="fetus" data-v="multi"><span class="k">03</span><span class="tx">Тройня и больше</span></button>
+          <button class="qopt" data-k="fetus" data-v="unknown"><span class="k">04</span><span class="tx">Пока не знаю<small>УЗИ ещё не делали</small></span></button>
+        </div>
+        <div class="qfoot"><button class="qlink" data-back="1">← Назад</button></div>
+      </div>
+
+      <div class="qstep" data-step="3">
+        <div class="qn">Вопрос 3 из 3</div>
+        <h3>Что важнее всего в вашей ситуации?</h3>
+        <div class="qopts">
+          <button class="qopt" data-k="case" data-v="first"><span class="k">01</span><span class="tx">Обычный скрининг, ничего не настораживает<small>Плановое обследование при нормально протекающей беременности</small></span></button>
+          <button class="qopt" data-k="case" data-v="risk"><span class="k">02</span><span class="tx">Скрининг или УЗИ показали повышенный риск<small>Нужно уточнить картину без прокола</small></span></button>
+          <button class="qopt" data-k="case" data-v="anamnesis"><span class="k">03</span><span class="tx">Возраст 35+, беременность после ЭКО или потери в анамнезе</span></button>
+          <button class="qopt" data-k="case" data-v="max"><span class="k">04</span><span class="tx">Хочу максимально широкий анализ<small>Все хромосомы плода и носительство у родителей</small></span></button>
+          <button class="qopt" data-k="case" data-v="budget"><span class="k">05</span><span class="tx">Нужен базовый скрининг по минимальной цене</span></button>
+        </div>
+        <div class="qfoot"><button class="qlink" data-back="2">← Назад</button></div>
+      </div>
+
+      <div class="qres" id="qres" role="status" aria-live="polite">
+        <div class="qn" id="qres-eyebrow">Рекомендация</div>
+        <h3 id="qres-title">Подходящий вариант</h3>
+        <div class="qres__box">
+          <div>
+            <div class="qres__tag" id="qres-tag">Рекомендуем</div>
+            <div class="qres__name" id="qres-name"></div>
+            <p class="qres__why" id="qres-why"></p>
+          </div>
+          <div class="qres__price" id="qres-price"></div>
+        </div>
+        <div class="qres__cta">
+          <a class="btn btn--primary" href="#cta"><span>Записаться на консультацию →</span></a>
+          <a class="btn btn--secondary" href="#panels">Сравнить все панели</a>
+        </div>
+        <div class="qfoot">
+          <button class="qlink" id="qrestart">← Пройти заново</button>
+          <p>Рекомендация носит справочный характер и не заменяет консультацию врача-генетика. Окончательный объём исследования определяет врач.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="padding-top:0">
+  <div class="wrap section-head" style="max-width:1240px">
+    <span class="section-eyebrow">Почему НИПТ</span>
+    <h2>Что вы <em>получаете</em></h2>
+    <p class="lead">Одна пробирка венозной крови вместо процедуры, которую многие боятся, — и заключение, которое разбирают вместе с вами.</p>
+  </div>
+  <div class="wrap bens" style="max-width:1240px;margin-top:2.4rem">
+    <div class="ben">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><rect x="7" y="12" width="3" height="6" rx="1"/><rect x="13" y="8" width="3" height="10" rx="1"/><rect x="19" y="5" width="2" height="13" rx="1"/></svg></span>
+      <h3>Скрининг основных хромосомных аномалий</h3>
+      <p>Трисомии 21, 18, 13 и половые хромосомы</p>
+    </div>
+    <div class="ben">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7Z"/></svg></span>
+      <h3>Только венозная кровь матери</h3>
+      <p>20 мл из вены, без подготовки</p>
+    </div>
+    <div class="ben">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+      <h3>С 10 полных недель</h3>
+      <p>Раньше биохимического скрининга</p>
+    </div>
+    <div class="ben">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg></span>
+      <h3>Заключение врача-генетика</h3>
+      <p>С разбором результата, входит в стоимость</p>
+    </div>
+    <div class="ben">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+      <h3>Без вмешательства в полость матки</h3>
+      <p>Ни амниоцентеза, ни биопсии хориона</p>
+    </div>
+  </div>
+
+  <div class="wrap" style="max-width:1240px;margin-top:1.6rem">
+    <div class="notice" style="border-left-color:var(--cyan)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--teal)"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2Z"/><path d="M12 6h2a2 2 0 0 0 2-2 2 2 0 0 0-2-2h-2"/></svg>
+      <p><b>Как это работает.</b> В крови матери циркулируют фрагменты внеклеточной ДНК плацентарного происхождения. Их анализ методом высокопроизводительного секвенирования позволяет оценить вероятность некоторых хромосомных аномалий плода.</p>
+    </div>
+  </div>
+</section>
+
+<section id="panels" style="background:linear-gradient(180deg,#FFFFFF 0%,#F4F8FE 100%)">
+  <div class="wrap section-head center" style="max-width:1240px">
+    <span class="section-eyebrow">Панели и цены</span>
+    <h2>Пять вариантов <em>одного</em> исследования</h2>
+    <p class="lead">Забор крови во всех случаях одинаковый — 20 мл из вены. Различается объём анализа и, соответственно, срок и стоимость.</p>
+  </div>
+
+  <div class="wrap panels" style="max-width:1240px;margin-top:2.6rem">
+
+    <article class="panel">
+      <div class="code">Код 1110</div>
+      <h3>НИПТ Т21</h3>
+      <p class="desc">Базовый скрининг на синдром Дауна</p>
+      <ul>
+        <li>Трисомия 21 · синдром Дауна</li>
+      </ul>
+      <div class="price">
+        <div class="p">16 000 ₽</div>
+        <div class="term">8 календарных дней</div>
+      </div>
+      <a class="btn btn--secondary btn--sm" href="#cta">Выбрать Т21</a>
+    </article>
+
+    <article class="panel">
+      <div class="code">Код 2255</div>
+      <h3>НИПТ Базовая</h3>
+      <p class="desc">Основные трисомии и пол плода</p>
+      <ul>
+        <li>Трисомия 21 · синдром Дауна</li>
+        <li>Трисомия 18 · синдром Эдвардса</li>
+        <li>Трисомия 13 · синдром Патау</li>
+        <li>Определение пола плода</li>
+      </ul>
+      <div class="price">
+        <div class="p">19 000 ₽</div>
+        <div class="term">8 календарных дней</div>
+      </div>
+      <a class="btn btn--secondary btn--sm" href="#cta">Выбрать базовую</a>
+    </article>
+
+    <article class="panel pop">
+      <span class="flag">Оптимальный баланс</span>
+      <div class="code">Код 1438</div>
+      <h3>НИПТ Стандартная</h3>
+      <p class="desc">Трисомии и анеуплоидии половых хромосом</p>
+      <ul>
+        <li>Трисомии 21, 18 и 13</li>
+        <li>Синдром Тернера · моносомия X</li>
+        <li>Синдром Клайнфельтера</li>
+        <li>Синдром Якобса</li>
+        <li>Трисомия X</li>
+        <li>Определение пола плода</li>
+      </ul>
+      <div class="price">
+        <div class="p">23 000 ₽</div>
+        <div class="term">8 календарных дней</div>
+      </div>
+      <a class="btn btn--primary btn--sm" href="#cta"><span>Выбрать стандартную</span></a>
+    </article>
+
+    <article class="panel">
+      <div class="code">Код 1724</div>
+      <h3>НИПТ Расширенная</h3>
+      <p class="desc">Со скринингом микроделеционных синдромов</p>
+      <ul>
+        <li>Всё из стандартной панели</li>
+        <li>Синдром Ди Джорджи · 22q11</li>
+        <li>Синдром Прадера — Вилли</li>
+        <li>Синдром Ангельмана</li>
+        <li>Синдром кошачьего крика</li>
+        <li>Синдром делеции 1p36</li>
+        <li class="plus">Инвазивная диагностика при высоком риске — бесплатно</li>
+      </ul>
+      <div class="price">
+        <div class="p">34 000 ₽</div>
+        <div class="term">8 рабочих дней</div>
+      </div>
+      <a class="btn btn--secondary btn--sm" href="#cta">Выбрать расширенную</a>
+    </article>
+
+    <article class="panel">
+      <div class="code">Код 2789</div>
+      <h3>НИПТ Экспертная</h3>
+      <p class="desc">Все хромосомы плода и 31 синдром</p>
+      <ul>
+        <li>Анализ всех хромосом плода</li>
+        <li>31 микроделеционный синдром</li>
+        <li>Скрининг носительства аутосомно-рецессивных заболеваний у родителей</li>
+        <li>Оценка репродуктивных рисков семьи</li>
+        <li class="plus">Инвазивная диагностика при высоком риске — бесплатно</li>
+      </ul>
+      <div class="price">
+        <div class="p">40 000 ₽</div>
+        <div class="term">8 рабочих дней</div>
+      </div>
+      <a class="btn btn--secondary btn--sm" href="#cta">Выбрать экспертную</a>
+    </article>
+
+  </div>
+
+  <div class="wrap" style="max-width:1240px">
+    <div class="mcta">
+      <p>Сомневаетесь между двумя панелями?<small>Врач-генетик разберёт вашу ситуацию и подскажет объём исследования — бесплатно, до оплаты.</small></p>
+      <a class="btn btn--primary" href="#quiz"><span>Подобрать с генетиком →</span></a>
+    </div>
+    <div class="panels-note" style="margin-top:1rem">
+      <b>Нужен более широкий охват?</b> В лаборатории Геномед доступны импортные панели Panorama (Natera, США) — от 32 000 ₽ и Vistara — скрининг на 25 моногенных синдромов. Подберём вариант на консультации.
+    </div>
+
+    <div class="faq" style="margin-top:1rem;max-width:100%">
+      <details>
+        <summary><span class="faq__n">01</span><span class="q">Чем стандартная панель отличается от расширенной?</span>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p class="a">Стандартная панель охватывает трисомии 21, 18 и 13, анеуплоидии половых хромосом и определение пола плода. Расширенная добавляет к этому скрининг пяти микроделеционных синдромов, а также бесплатную инвазивную диагностику, если результат покажет высокий риск. Срок при этом считается в рабочих днях, а не в календарных.</p>
+      </details>
+      <details>
+        <summary><span class="faq__n">02</span><span class="q">Что будет, если результат покажет высокий риск?</span>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p class="a">Высокий риск по НИПТ — не диагноз, а основание для подтверждающего исследования: амниоцентеза или биопсии ворсин хориона с последующим хромосомным анализом. Врач-генетик разбирает заключение вместе с вами и объясняет, какие шаги возможны. В расширенной и экспертной панелях хромосомный микроматричный анализ при высоком риске выполняется бесплатно.</p>
+      </details>
+      <details>
+        <summary><span class="faq__n">03</span><span class="q">Можно ли сдать НИПТ после ЭКО?</span>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <p class="a">Да, исследование выполняется и при беременности, наступившей после экстракорпорального оплодотворения, в том числе с донорской яйцеклеткой. Сообщите об этом при записи — генетик учтёт это при выборе панели и интерпретации результата.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="compare" style="padding-top:0">
+  <div class="wrap section-head" style="max-width:1240px">
+    <span class="section-eyebrow">Сравнение</span>
+    <h2>Чем панели <em>отличаются</em></h2>
+    <p class="lead">Только те строки, которые действительно влияют на выбор.</p>
+  </div>
+  <div class="wrap" style="max-width:1240px;margin-top:2rem">
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:left;min-width:230px">Что входит в исследование</th>
+            <th>Т21</th>
+            <th>Базовая</th>
+            <th>Стандартная</th>
+            <th>Расширенная</th>
+            <th>Экспертная</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>Синдром Дауна · трисомия 21</th><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><th>Синдромы Эдвардса и Патау</th><td class="n">—</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><th>Анеуплоидии половых хромосом</th><td class="n">—</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><th>Определение пола плода</th><td class="n">—</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><th>Микроделеционные синдромы</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td><span class="mono">5</span></td><td><span class="mono">31</span></td></tr>
+          <tr><th>Все хромосомы плода и носительство у родителей</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><th>Инвазивная диагностика при высоком риске</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="y">бесплатно</td><td class="y">бесплатно</td></tr>
+          <tr><th>Срок выполнения</th><td><span class="mono">8 кал. дн.</span></td><td><span class="mono">8 кал. дн.</span></td><td><span class="mono">8 кал. дн.</span></td><td><span class="mono">8 раб. дн.</span></td><td><span class="mono">8 раб. дн.</span></td></tr>
+          <tr><th>Стоимость</th><td class="price-cell">16 000 ₽</td><td class="price-cell">19 000 ₽</td><td class="price-cell">23 000 ₽</td><td class="price-cell">34 000 ₽</td><td class="price-cell">40 000 ₽</td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <td><a class="btn btn--secondary" href="#cta">Выбрать</a></td>
+            <td><a class="btn btn--secondary" href="#cta">Выбрать</a></td>
+            <td><a class="btn btn--primary" href="#cta"><span>Выбрать</span></a></td>
+            <td><a class="btn btn--secondary" href="#cta">Выбрать</a></td>
+            <td><a class="btn btn--secondary" href="#cta">Выбрать</a></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="thint">При установлении высокого риска хромосомный микроматричный анализ в расширенной и экспертной панелях выполняется бесплатно. На узких экранах таблица прокручивается вбок.</p>
+  </div>
+</section>
+
+<section id="why" style="padding-top:0">
+  <div class="wrap">
+    <div class="deep">
+      <span class="section-eyebrow" style="color:var(--cyan)">Почему Геномед</span>
+      <h2 style="font-size:clamp(26px,3.4vw,42px);margin-bottom:2.2rem">Лаборатория, которая <em style="color:var(--cyan)">объясняет</em> результат</h2>
+      <div class="trust">
+        <div><div class="n">с 2013</div><div class="c">года в медико-генетической диагностике</div></div>
+        <div><div class="n">ISO 15189</div><div class="c">международный стандарт медицинских лабораторий</div></div>
+        <div><div class="n">Генетик</div><div class="c">интерпретирует заключение и отвечает на вопросы</div></div>
+        <div><div class="n">50+</div><div class="c">медицинских офисов и партнёры в 40+ городах</div></div>
+      </div>
+      <p style="margin-top:2rem;font-size:.95rem">Более 100 000 исследований выполнено с 2013 года. Забор крови доступен в медицинском офисе, у партнёра в вашем городе или с выездом медсестры на дом.</p>
+    </div>
+  </div>
+</section>
+
+<section id="how" style="padding-top:0">
+  <div class="wrap section-head">
+    <span class="section-eyebrow">Как проходит</span>
+    <h2>От записи до заключения — <em>четыре</em> шага</h2>
+    <p class="lead">Специальная подготовка не требуется, сдавать кровь можно не натощак.</p>
+  </div>
+  <div class="wrap steps" style="margin-top:2.4rem">
+    <div class="step"><div class="n">01</div><h3>Консультация</h3><p>Запись по телефону или онлайн. Врач-генетик помогает выбрать панель под срок беременности и анамнез.</p></div>
+    <div class="step"><div class="n">02</div><h3>Забор крови</h3><p>20 мл венозной крови с 10 полных недель беременности. Процедура ничем не отличается от обычного анализа.</p></div>
+    <div class="step"><div class="n">03</div><h3>Секвенирование ДНК</h3><p>Выделение внеклеточной ДНК из плазмы и высокопроизводительное секвенирование. Каждый этап проходит внутрилабораторный контроль качества.</p></div>
+    <div class="step"><div class="n">04</div><h3>Заключение генетика</h3><p>Через 8 дней результат приходит на электронную почту, указанную в договоре. При необходимости — разбор заключения с врачом.</p></div>
+  </div>
+
+  <div class="wrap where">
+    <div class="wcard">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+      <h3>В медицинском офисе Геномед</h3>
+      <p>Забор крови выполняет персонал лаборатории. Здесь же можно задать вопросы врачу перед исследованием.</p>
+      <div class="tagline">50+ офисов по России</div>
+    </div>
+    <div class="wcard">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01"/></svg></span>
+      <h3>У партнёра в вашем городе</h3>
+      <p>Партнёрская сеть медицинских центров позволяет сдать кровь рядом с домом — ехать в Москву не нужно.</p>
+      <div class="tagline">40+ городов</div>
+    </div>
+    <div class="wcard">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21v-6h6v6"/></svg></span>
+      <h3>С выездом медсестры на дом</h3>
+      <p>Удобный вариант при токсикозе, угрозе прерывания или ограниченной мобильности. Набор для забора крови привозит медсестра.</p>
+      <div class="tagline">Выезд по договорённости</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="mcta">
+      <p>Готовы записаться?<small>Подскажем ближайшее место сдачи и время — по телефону или в мессенджере.</small></p>
+      <a class="btn btn--primary" href="#cta"><span>Записаться →</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="accuracy" style="padding-top:0">
+  <div class="wrap cmp">
+    <div>
+      <span class="section-eyebrow">Насколько точен НИПТ</span>
+      <h2>Более точный скрининг <em>частых трисомий</em></h2>
+      <p class="lead">НИПТ и комбинированный биохимический скрининг решают разные задачи. НИПТ отличается более высокой выявляемостью частых трисомий и меньшей частотой ложноположительных результатов — то есть реже направляет женщину на инвазивную процедуру без необходимости.</p>
+      <p class="lead" style="font-size:1rem">Оба метода безопасны для беременности и оба остаются скринингом: ни один из них не ставит диагноз. Разница — в сроке начала (с 10 полных недель против 11–13 недель) и в цене ошибки.</p>
+      <p class="src">Показатели выявляемости приведены по опубликованным данным для комбинированного биохимического скрининга первого триместра и скрининга по внеклеточной ДНК.</p>
+    </div>
+
+    <div class="cmp-card">
+      <div class="cmp-item">
+        <div class="t"><b>Трисомия 21 · синдром Дауна</b><small>выявляемость</small></div>
+        <div class="cmp-line a"><div class="bar2"><i style="width:99%"></i></div><div class="v">&gt; 99 %</div></div>
+        <div class="cmp-line b"><div class="bar2"><i style="width:85%"></i></div><div class="v">85 %</div></div>
+      </div>
+      <div class="cmp-item">
+        <div class="t"><b>Трисомия 18 · синдром Эдвардса</b><small>выявляемость</small></div>
+        <div class="cmp-line a"><div class="bar2"><i style="width:98%"></i></div><div class="v">&gt; 98 %</div></div>
+        <div class="cmp-line b"><div class="bar2"><i style="width:75%"></i></div><div class="v">75 %</div></div>
+      </div>
+      <div class="cmp-item">
+        <div class="t"><b>Ложноположительные результаты</b><small>меньше — лучше</small></div>
+        <div class="cmp-line a"><div class="bar2"><i style="width:2%"></i></div><div class="v">&lt; 0,1 %</div></div>
+        <div class="cmp-line b"><div class="bar2"><i style="width:100%"></i></div><div class="v">до 5 %</div></div>
+      </div>
+      <div class="cmp-legend">
+        <span><i style="background:linear-gradient(90deg,var(--blue),var(--cyan))"></i> НИПТ</span>
+        <span><i style="background:#A9BDD6"></i> биохимический скрининг</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap faq" style="margin-top:2.4rem;max-width:100%">
+    <details class="acc">
+      <summary><span class="faq__n">01</span><span class="q">Как читается заключение: высокий и низкий риск, PPV и NPV</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <div class="body">
+        <p style="margin:0 0 1.5rem;color:var(--ink-2);font-size:.97rem;line-height:1.65">Результатом исследования является заключение врача-генетика, в котором определён высокий или низкий риск по каждой исследованной хромосоме. Порог, который делит результат надвое, — <b>1 : 100</b>.</p>
+
+        <div class="risk-grid">
+          <div class="risk hi">
+            <span class="tag">Высокий риск</span>
+            <div class="thr">1 : 100 и выше</div>
+            <p>Такие значения выражаются в виде положительной прогностической ценности (PPV, positive predictive value) — вероятности того, что при высоком риске по тесту аномалия действительно есть у плода.</p>
+            <div class="metric">Требует подтверждения инвазивной диагностикой — амниоцентезом или биопсией ворсин хориона с последующим хромосомным анализом.</div>
+          </div>
+          <div class="risk lo">
+            <span class="tag">Низкий риск</span>
+            <div class="thr">ниже 1 : 100</div>
+            <p>Такие значения выражаются в виде отрицательной прогностической ценности (NPV, negative predictive value). В заключении NPV представлен как остаточный риск — вероятность ложноотрицательного результата.</p>
+            <div class="metric">NPV исследования составляет <b>&gt; 99,9 %</b> — то есть остаточный риск при низком результате крайне мал.</div>
+          </div>
+        </div>
+
+        <div class="ppv" style="box-shadow:none;background:#FAFCFF">
+          <h3>PPV — уверенность в положительном результате</h3>
+          <p class="sub">Значения различаются по нозологиям: чем реже встречается аномалия, тем ниже прогностическая ценность положительного результата.</p>
+          <div class="ppv-row">
+            <div class="lbl">Трисомия 21 <small>синдром Дауна</small></div>
+            <div class="val">&gt; 97 %</div>
+            <div class="track"><i style="width:97%"></i></div>
+          </div>
+          <div class="ppv-row">
+            <div class="lbl">Трисомия 18 <small>синдром Эдвардса</small></div>
+            <div class="val">&gt; 91 %</div>
+            <div class="track"><i style="width:91%"></i></div>
+          </div>
+          <div class="ppv-row">
+            <div class="lbl">Трисомия 13 и анеуплоидии половых хромосом <small>синдром Патау, синдромы Тернера, Клайнфельтера, Якобса, трисомия X</small></div>
+            <div class="val">&gt; 60 %</div>
+            <div class="track"><i style="width:60%"></i></div>
+          </div>
+          <div class="ppv-row">
+            <div class="lbl">Микроделеционные синдромы <small>доступны в расширенной и экспертной панелях</small></div>
+            <div class="val" style="font-size:.8rem;color:var(--muted)">индивид.</div>
+            <div class="track"><i style="width:0"></i></div>
+          </div>
+          <p class="src" style="margin-top:1.4rem">Значения высокого риска микроделеционных синдромов определяются индивидуально. NPV по всем позициям — более 99,9 %.</p>
+          <div class="note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+            <p><b>Важно.</b> Вычисленный риск может не отражать реальный PPV для конкретной пациентки: в исследовании не учитываются дополнительные факторы риска — результаты других скринингов, данные УЗИ, личный и семейный анамнез. Итоговую интерпретацию всегда делает врач.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary><span class="faq__n">02</span><span class="q">Как устроен анализ</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <div class="body">
+        <div class="cards">
+          <div class="fcard" style="box-shadow:none;background:#FAFCFF">
+            <div class="n mono">01 · биология</div>
+            <h3>Внеклеточная ДНК в крови матери</h3>
+            <p>С ранних сроков беременности в материнском кровотоке циркулируют фрагменты внеклеточной ДНК плацентарного происхождения. Их доля называется плодной фракцией и определяется в ходе исследования.</p>
+          </div>
+          <div class="fcard" style="box-shadow:none;background:#FAFCFF">
+            <div class="n mono">02 · технология</div>
+            <h3>Секвенирование пересчитывает хромосомы</h3>
+            <p>ДНК выделяют из плазмы и читают методом высокопроизводительного секвенирования. Программа считает, сколько прочтений приходится на каждую хромосому.</p>
+          </div>
+          <div class="fcard" style="box-shadow:none;background:#FAFCFF">
+            <div class="n mono">03 · результат</div>
+            <h3>Отклонение видно в цифрах</h3>
+            <p>Если прочтений по хромосоме больше или меньше ожидаемого, это указывает на вероятную анеуплоидию. Лишняя 21-я хромосома — синдром Дауна, лишняя 18-я — синдром Эдвардса.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="limits" style="padding-top:0">
+  <div class="wrap">
+    <div class="deep">
+      <span class="section-eyebrow" style="color:var(--cyan)">Ограничения</span>
+      <h2 style="font-size:clamp(26px,3.4vw,42px)">Когда исследование <em style="color:var(--cyan)">не выполняется</em></h2>
+      <p style="max-width:66ch;margin:1rem 0 2.2rem">Часть ограничений связана с биологией метода: в этих ситуациях внеклеточная ДНК в крови не отражает генотип плода или её недостаточно для надёжного анализа.</p>
+      <div class="cards c2" style="gap:1rem">
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-md);padding:1.4rem">
+          <h3 style="font-size:1.02rem;color:#fff">Многоплодная беременность</h3>
+          <p style="font-size:.92rem;margin:.5rem 0 0">При тройне и большем числе плодов исследование не проводится: разделить вклад каждого плода в общий пул ДНК невозможно.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-md);padding:1.4rem">
+          <h3 style="font-size:1.02rem;color:#fff">Онкологическое заболевание у матери</h3>
+          <p style="font-size:.92rem;margin:.5rem 0 0">Опухолевая ДНК попадает в кровоток и искажает результат подсчёта хромосом.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-md);padding:1.4rem">
+          <h3 style="font-size:1.02rem;color:#fff">Недавние трансплантация органа или переливание крови</h3>
+          <p style="font-size:.92rem;margin:.5rem 0 0">В крови присутствует чужеродная ДНК донора, поэтому корректно интерпретировать результат нельзя.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-md);padding:1.4rem">
+          <h3 style="font-size:1.02rem;color:#fff">Плодная фракция ниже 4 %</h3>
+          <p style="font-size:.92rem;margin:.5rem 0 0">Доля ДНК плода определяется в процессе исследования. Если её меньше 4 %, результат не выдаётся — потребуется повторный забор крови на большем сроке.</p>
+        </div>
+      </div>
+      <p style="margin-top:1.8rem;font-size:.92rem">Все ограничения врач-генетик разбирает индивидуально на консультации перед исследованием.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ОТЗЫВЫ — ПЛЕЙСХОЛДЕР. Тексты взяты из макета заказчика.
+     Перед публикацией: либо заменить на реальные отзывы с указанием
+     источника (Яндекс Карты / Продокторов / карточка организации),
+     либо удалить секцию целиком. Публиковать вымышленные отзывы
+     на сайте медицинской организации нельзя.
+     ============================================================ -->
+<section id="reviews" style="padding-top:0">
+  <div class="wrap section-head">
+    <span class="section-eyebrow">Отзывы</span>
+    <h2>Что рассказывают <em>будущие мамы</em></h2>
+  </div>
+  <div class="wrap revs" style="margin-top:2.2rem">
+    <div class="rev">
+      <div class="stars">★★★★★</div>
+      <p>Сдавала в 11 недель, нервничала жутко, если честно. В офисе всё спокойно объяснили, кровь взяли за пару минут. Результат пришёл на седьмой день, всё хорошо. До сих пор выдыхаю.</p>
+      <div class="who"><div class="av">А</div><div><b>Анна М.</b><small>Москва</small></div></div>
+    </div>
+    <div class="rev">
+      <div class="stars">★★★★★</div>
+      <p>Брали расширенную панель, хотелось знать по максимуму. Отдельное спасибо врачу-генетику: потом всё по полочкам разложил, а то я бы сама в этих хромосомах не разобралась.</p>
+      <div class="who"><div class="av">Е</div><div><b>Екатерина С.</b><small>Санкт-Петербург</small></div></div>
+    </div>
+    <div class="rev">
+      <div class="stars">★★★★★</div>
+      <p>Живём не в Москве, сдали у партнёров в своём городе — никуда ехать не пришлось. Пришло всё в срок, без задержек. Рекомендую.</p>
+      <div class="who"><div class="av">М</div><div><b>Марина Г.</b><small>Казань</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap section-head">
+    <span class="section-eyebrow">Вопросы</span>
+    <h2>Что чаще всего <em>спрашивают</em></h2>
+  </div>
+  <div class="wrap faq" style="margin-top:2rem">
+    <details open>
+      <summary><span class="faq__n">01</span><span class="q">НИПТ действительно безопасен для беременности?</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p class="a">Да. Для исследования берут венозную кровь у матери — процедура ничем не отличается от обычного анализа крови. В отличие от амниоцентеза и биопсии ворсин хориона, НИПТ не требует прокола плодных оболочек и не несёт риска для беременности.</p>
+    </details>
+    <details>
+      <summary><span class="faq__n">02</span><span class="q">С какого срока можно сдавать?</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p class="a">С 10 полных недель беременности: к этому сроку доля ДНК плода в материнской крови обычно достигает необходимых 4 % и выше. Верхней границы срока практически нет. Плодная фракция определяется в процессе исследования — если она оказалась ниже 4 %, потребуется повторный забор крови позже.</p>
+    </details>
+    <details>
+      <summary><span class="faq__n">03</span><span class="q">Заменяет ли НИПТ инвазивную диагностику?</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p class="a">Нет. НИПТ — скрининговое исследование: оно оценивает вероятность хромосомной аномалии, но не устанавливает диагноз. При высоком риске результат подтверждают инвазивной диагностикой с последующим хромосомным анализом. В расширенной и экспертной панелях Геномед такое подтверждение выполняется бесплатно.</p>
+    </details>
+    <details>
+      <summary><span class="faq__n">04</span><span class="q">Что означает «остаточный риск» в заключении?</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p class="a">Так в заключении представлена отрицательная прогностическая ценность теста (NPV) — вероятность того, что низкий результат окажется ложноотрицательным. NPV исследования превышает 99,9 %, то есть остаточный риск крайне мал, но формально не равен нулю.</p>
+    </details>
+    <details>
+      <summary><span class="faq__n">05</span><span class="q">Нужно ли готовиться к сдаче крови?</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p class="a">Специальная подготовка не требуется. Сдавать кровь можно не натощак, диета и отмена препаратов не нужны. Для исследования берут 20 мл венозной крови.</p>
+    </details>
+    <details>
+      <summary><span class="faq__n">06</span><span class="q">Когда и как приходит результат?</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p class="a">Через 8 дней после забора крови заключение врача-генетика приходит на электронную почту, указанную в договоре. Для панелей Т21, базовой и стандартной срок считается в календарных днях, для расширенной и экспертной — в рабочих. Разбор заключения с врачом-генетиком входит в стоимость.</p>
+    </details>
+  </div>
+</section>
+
+<section id="cta" style="padding-top:0">
+  <div class="wrap">
+    <div class="deep cta-grid">
+      <div>
+        <span class="section-eyebrow" style="color:var(--cyan)">Записаться</span>
+        <h2 style="font-size:clamp(26px,3.4vw,42px)">Подберём НИПТ <em style="color:var(--cyan)">под ваш срок</em> беременности</h2>
+        <p style="max-width:58ch;margin-top:1rem">Ответьте на несколько вопросов или сразу свяжитесь с генетиком — поможем выбрать подходящую панель, подскажем ближайшее место сдачи и ответим на вопросы. Консультация перед исследованием бесплатна.</p>
+        <div class="contacts">
+          <!-- ПОДСТАВИТЬ РЕАЛЬНЫЕ ССЫЛКИ МЕССЕНДЖЕРОВ -->
+          <a class="tel" href="tel:+74956608377">8 (495) 660-83-77</a>
+          <a href="#" data-todo="ссылка Telegram">Telegram</a>
+          <a href="#" data-todo="ссылка WhatsApp">WhatsApp</a>
+          <a href="#" data-todo="ссылка MAX">MAX</a>
+        </div>
+      </div>
+      <div class="pricebox">
+        <div class="l">Панели НИПТ</div>
+        <div class="p">от 16 000 ₽</div>
+        <p>Т21 — базовый скрининг на синдром Дауна. До 40 000 ₽ за экспертную панель с анализом всех хромосом плода.</p>
+        <a class="btn btn--light" href="#quiz" style="margin-top:1.4rem;width:100%">Подобрать НИПТ →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <img src="data:image/png;base64,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" alt="Геномед" width="140" height="71">
+      <p>Медико-генетическая лаборатория. Пренатальная диагностика, репродуктивная и онкологическая генетика.</p>
+    </div>
+    <div>
+      <h4>Исследование</h4>
+      <ul>
+        <li><a href="#quiz">Подобрать НИПТ</a></li>
+        <li><a href="#about">Что вы получаете</a></li>
+        <li><a href="#panels">Панели и цены</a></li>
+        <li><a href="#accuracy">Насколько точен</a></li>
+        <li><a href="#limits">Ограничения</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Как сдать</h4>
+      <ul>
+        <li><a href="#how">Порядок проведения</a></li>
+        <li><a href="#how">Медицинские офисы</a></li>
+        <li><a href="#how">Выезд на дом</a></li>
+        <li><a href="#faq">Частые вопросы</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Контакты</h4>
+      <ul>
+        <li><a class="mono" href="tel:+74956608377">8 (495) 660-83-77</a></li>
+        <li><a href="mailto:info@genomed.ru">info@genomed.ru</a></li>
+        <li><a href="https://genomed.ru">genomed.ru</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap disclaimer">
+    <p>ООО Геномед. Лаборатория сертифицирована по стандарту ISO 15189.</p>
+    <p>НИПТ — скрининговое исследование: оно оценивает вероятность хромосомных аномалий у плода и не является окончательным диагнозом. При высоком риске требуется подтверждающая инвазивная диагностика. Объём исследования определяет лечащий врач. <b>Имеются противопоказания, необходима консультация специалиста.</b></p>
+    <p>Информация на странице носит справочный характер и не является публичной офертой. Цены и сроки указаны на момент публикации; актуальные — на genomed.ru.</p>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a class="btn btn--primary" href="#quiz"><span>Подобрать НИПТ</span></a>
+  <a class="btn btn--secondary" href="tel:+74956608377">Позвонить</a>
+</div>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  if(!q) return;
+  var answers = {}, current = 1;
+  var steps = q.querySelectorAll('.qstep');
+  var res = document.getElementById('qres');
+  var prog = q.querySelectorAll('.quiz__prog i');
+
+  var PANELS = {
+    standard: {name:'НИПТ Стандартная', price:'23 000 ₽', term:'8 календарных дней',
+      why:'Покрывает трисомии 21, 18 и 13, анеуплоидии половых хромосом и определение пола плода. Это самый широкий вариант из тех, что выполняются за 8 календарных дней.'},
+    extended: {name:'НИПТ Расширенная', price:'34 000 ₽', term:'8 рабочих дней',
+      why:'Дополнительно к стандартной панели включает скрининг микроделеционных синдромов. Главное для вашей ситуации: при высоком риске подтверждающая инвазивная диагностика выполняется бесплатно.'},
+    expert: {name:'НИПТ Экспертная', price:'40 000 ₽', term:'8 рабочих дней',
+      why:'Анализ всех хромосом плода, 31 микроделеционный синдром и скрининг носительства аутосомно-рецессивных заболеваний у родителей. Подтверждающая диагностика при высоком риске — бесплатно.'},
+    basic: {name:'НИПТ Базовая', price:'19 000 ₽', term:'8 календарных дней',
+      why:'Скрининг трёх основных трисомий — синдромов Дауна, Эдвардса и Патау — плюс определение пола плода. Самый доступный вариант, покрывающий все частые трисомии.'}
+  };
+
+  function show(el){
+    steps.forEach(function(s){ s.classList.remove('on') });
+    res.classList.remove('on');
+    if(el === 'res'){ res.classList.add('on'); setProg(3); }
+    else { q.querySelector('.qstep[data-step="'+el+'"]').classList.add('on'); current = el; setProg(el); }
+  }
+  function setProg(n){
+    prog.forEach(function(p,i){ p.classList.toggle('on', i < n) });
+  }
+
+  function render(kind, data){
+    var eb = document.getElementById('qres-eyebrow');
+    var ti = document.getElementById('qres-title');
+    var tg = document.getElementById('qres-tag');
+    var nm = document.getElementById('qres-name');
+    var wh = document.getElementById('qres-why');
+    var pr = document.getElementById('qres-price');
+    if(kind === 'panel'){
+      eb.textContent = 'Рекомендация';
+      ti.textContent = 'Скорее всего, вам подойдёт';
+      tg.textContent = 'Рекомендуем';
+      nm.textContent = data.name;
+      wh.textContent = data.why;
+      pr.innerHTML = '<div class="p">' + data.price + '</div><div class="t">' + data.term + '</div>';
+    } else {
+      eb.textContent = 'Нужна консультация';
+      ti.textContent = data.title;
+      tg.textContent = 'Что делать';
+      nm.textContent = data.name;
+      wh.textContent = data.why;
+      pr.innerHTML = '';
+    }
+  }
+
+  function terminal(){
+    return answers.term === 'lt10'
+      || answers.fetus === 'multi'
+      || answers.fetus === 'twin'
+      || answers.fetus === 'unknown';
+  }
+
+  function finish(){
+    if(answers.term === 'lt10'){
+      render('info', {title:'Пока рано сдавать', name:'НИПТ выполняется с 10 полных недель',
+        why:'До этого срока доля ДНК плода в крови матери обычно меньше 4 %, и надёжный результат получить нельзя. Запишитесь на консультацию — генетик подскажет, когда прийти, и заранее подберёт панель.'});
+      return show('res');
+    }
+    if(answers.fetus === 'multi'){
+      render('info', {title:'Исследование не выполняется', name:'При тройне и большем числе плодов НИПТ не проводится',
+        why:'Разделить вклад каждого плода в общий пул внеклеточной ДНК невозможно. Обсудите с врачом-генетиком, какие методы пренатального обследования подойдут в вашем случае.'});
+      return show('res');
+    }
+    if(answers.fetus === 'twin' || answers.fetus === 'unknown'){
+      render('info', {title:'Подберём панель на консультации', name:'Нужен разбор ситуации с генетиком',
+        why:'При двойне объём исследования определяется индивидуально, а если число плодов ещё не подтверждено на УЗИ, выбор панели лучше сделать после него. Консультация бесплатна и ни к чему не обязывает.'});
+      return show('res');
+    }
+    var map = {first:'standard', risk:'extended', anamnesis:'extended', max:'expert', budget:'basic'};
+    render('panel', PANELS[map[answers.case] || 'standard']);
+    show('res');
+  }
+
+  q.addEventListener('click', function(e){
+    var opt = e.target.closest('.qopt');
+    if(opt){
+      answers[opt.dataset.k] = opt.dataset.v;
+      if(terminal() || current === 3) finish(); else show(current + 1);
+      return;
+    }
+    var back = e.target.closest('[data-back]');
+    if(back){ show(parseInt(back.dataset.back, 10)); return; }
+    if(e.target.closest('#qrestart')){ answers = {}; show(1); }
+  });
+})();
+</script>
+
+</body>
+</html>

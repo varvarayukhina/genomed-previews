@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Второе мнение по биопсии + молекулярный профиль — Геномед</title>
+<meta name="description" content="Пересмотр биопсии сетью экспертов-патоморфологов и молекулярный профиль опухоли (NGS, FISH, маркеры) в одном отчёте за фиксированный срок. Сервис запускается — ранний доступ.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<!--
+  ============================================================
+  SMOKE-TEST LANDING · «Второе мнение по биопсии + молекулярный профиль»
+  Проект A+D под лицензией лаборатории Genomed.
+  ЦЕЛЬ СТРАНИЦЫ: проверить спрос и готовность платить, а НЕ оказать услугу.
+  Статус честно указан как «ранний доступ / лист ожидания» (fake-door).
+
+  Маппинг полей формы (name -> лид в CRM):
+    fio        -> Имя
+    contact    -> Контакт (телефон / мессенджер / e-mail)
+    city       -> Город (метрика: Москва vs регион — логистика)
+    segment    -> Сегмент: patient | clinic | pharma  (A+D: два рынка)
+    interest[] -> Что интересует (закрытый список, НЕ данные о здоровье)
+    price      -> Готовность обсудить стоимость (метрика WTP)  true/false
+    consent    -> Согласие на обработку ПДн (152-ФЗ, обязательно) true/false
+    source     -> служебное: "Smoke-test / лист ожидания"
+
+  ВАЖНО (юр. безопасность, см. бриф):
+   • НЕ собираем диагнозы/жалобы/данные о здоровье → уходим от спец. категории 152-ФЗ.
+   • Обязательна плашка «Имеются противопоказания…» (ст. 24 ФЗ «О рекламе»).
+   • До сбора данных — уведомление оператора ПДн в Роскомнадзор, хранение в РФ.
+   • Разработчику: задать LEAD_ENDPOINT в <script> ниже (POST application/json).
+  ============================================================
+-->
+<style>
+  :root{
+    --ink:#0A2540; --ink-2:#33465c; --ink-3:#5b6b80;
+    --blue:#0057FF; --blue-600:#0047d1; --cyan:#00C2FF;
+    --paper:#ffffff; --stripe:#F4F8FE; --stripe-2:#eaf1fd;
+    --line:#dbe6f5; --line-2:#e8eefb;
+    --ok:#1aa06d; --warn:#c8791b;
+    --shadow:0 1px 2px rgba(10,37,64,.05), 0 12px 32px rgba(10,37,64,.07);
+    --shadow-sm:0 1px 2px rgba(10,37,64,.06), 0 6px 18px rgba(10,37,64,.06);
+    --radius:14px; --radius-sm:10px;
+    --wrap:1180px;
+    --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans:"Manrope", -apple-system, "Segoe UI", Roboto, sans-serif;
+    --display:"Montserrat", var(--sans);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:70px}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden;
+  }
+  a{color:var(--blue); text-decoration:none}
+  img{max-width:100%; display:block}
+  .wrap{max-width:var(--wrap); margin:0 auto; padding:0 24px}
+  h1,h2,h3{font-family:var(--display); color:var(--ink); margin:0; line-height:1.09; letter-spacing:-.01em}
+  p{margin:0}
+
+  .eyebrow{
+    font-family:var(--mono); font-size:.78rem; font-weight:500; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--blue); display:inline-flex; align-items:center; gap:.55em;
+  }
+  .eyebrow::before{content:"//"; color:var(--cyan); font-weight:700}
+
+  /* ===== HEADER ===== */
+  .topbar{border-bottom:1px solid var(--line-2); background:var(--paper)}
+  .topbar__in{max-width:var(--wrap); margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:24px}
+  .brand{display:flex; align-items:center; gap:11px}
+  .brand__mark{width:34px; height:34px; flex:none}
+  .brand__txt{display:flex; flex-direction:column; line-height:1}
+  .brand__name{font-family:var(--display); font-weight:800; font-size:1.18rem; color:var(--ink); letter-spacing:-.01em}
+  .brand__sub{font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin-top:3px}
+  .topnav{display:flex; align-items:center; gap:26px}
+  .topnav a{font-family:var(--display); font-weight:600; font-size:.82rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-2)}
+  .topnav a:hover{color:var(--blue)}
+  .burger{display:none}
+
+  /* ===== STICKY SUB-NAV ===== */
+  .subnav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.9); backdrop-filter:saturate(160%) blur(10px); border-bottom:1px solid var(--line-2)}
+  .subnav__in{max-width:var(--wrap); margin:0 auto; padding:0 24px; display:flex; align-items:center; gap:6px; overflow-x:auto; scrollbar-width:none}
+  .subnav__in::-webkit-scrollbar{display:none}
+  .subnav a{font-family:var(--mono); font-size:.76rem; letter-spacing:.03em; white-space:nowrap; color:var(--ink-3); padding:14px 12px; border-bottom:2px solid transparent; transition:.15s}
+  .subnav a:hover{color:var(--ink)}
+  .subnav a.is-active{color:var(--blue); border-bottom-color:var(--blue)}
+  .subnav__cta{margin-left:auto; padding:8px 0}
+  .subnav__cta a{background:var(--blue); color:#fff; padding:9px 16px; border-radius:8px; font-family:var(--display); font-weight:600; font-size:.8rem}
+  .subnav__cta a:hover{background:var(--blue-600)}
+
+  /* ===== BUTTONS ===== */
+  .btn{display:inline-flex; align-items:center; gap:.55em; cursor:pointer; font-family:var(--display); font-weight:600; font-size:1rem; letter-spacing:.01em; padding:15px 26px; border-radius:var(--radius-sm); border:1.5px solid transparent; transition:transform .12s ease, background .15s, border-color .15s, box-shadow .15s}
+  .btn svg{width:18px; height:18px}
+  .btn--primary{background:var(--blue); color:#fff; box-shadow:0 8px 20px rgba(0,87,255,.22)}
+  .btn--primary:hover{background:var(--blue-600); transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,87,255,.28)}
+  .btn--ghost{background:#fff; color:var(--ink); border-color:var(--ink)}
+  .btn--ghost:hover{border-color:var(--blue); color:var(--blue); transform:translateY(-2px)}
+  .btn--lg{padding:17px 30px; font-size:1.05rem}
+  .btn:focus-visible{outline:3px solid var(--cyan); outline-offset:2px}
+
+  /* ===== HERO ===== */
+  .hero{position:relative; padding:70px 0 44px; overflow:hidden; background:
+    radial-gradient(1200px 420px at 80% -10%, rgba(0,194,255,.10), transparent 60%),
+    linear-gradient(180deg,#fff 0%, var(--stripe) 100%);}
+  .hero__grid{display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center}
+  .hero__col{min-width:0}
+  .prelaunch{display:inline-flex; align-items:center; gap:.5em; font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--warn); background:#fff5e9; border:1px solid #f4dcbb; border-radius:999px; padding:5px 12px; margin-bottom:16px}
+  .prelaunch::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--warn)}
+  .hero h1{font-size:clamp(2.3rem,4.8vw,3.9rem); font-weight:800; margin:6px 0 0}
+  .hero h1 .hl{color:var(--blue)}
+  .hero__sub{margin-top:22px; font-size:clamp(1.05rem,1.5vw,1.24rem); color:var(--ink-2); max-width:36em}
+  .hero__cta{display:flex; flex-wrap:wrap; gap:14px; margin-top:30px}
+  .hero__scope{margin-top:30px; display:flex; flex-wrap:wrap; gap:9px; align-items:center; font-family:var(--mono); font-size:.78rem}
+  .chip{display:inline-flex; align-items:center; gap:.45em; padding:6px 12px; border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ink-2)}
+  .chip b{color:var(--blue); font-weight:700}
+
+  /* hero visual card */
+  .rev-head{display:flex; align-items:center; justify-content:space-between; gap:10px; font-family:var(--mono); font-size:.72rem; color:var(--ink-3)}
+  .rev-slide{margin:14px 0 4px; height:96px; border-radius:12px; border:1px solid var(--line-2); overflow:hidden; position:relative;
+    background:
+      radial-gradient(circle at 20% 40%, rgba(0,87,255,.18) 0 5px, transparent 6px),
+      radial-gradient(circle at 46% 66%, rgba(0,194,255,.22) 0 6px, transparent 7px),
+      radial-gradient(circle at 70% 30%, rgba(0,87,255,.15) 0 7px, transparent 8px),
+      radial-gradient(circle at 84% 74%, rgba(10,37,64,.14) 0 4px, transparent 5px),
+      radial-gradient(circle at 33% 82%, rgba(0,87,255,.12) 0 5px, transparent 6px),
+      linear-gradient(120deg,#f7dbe6,#f3e6f0 55%,#e9eef9);}
+  .rev-scan{position:absolute; top:0; bottom:0; width:36%; background:linear-gradient(90deg,transparent, rgba(0,194,255,.30), transparent); animation:scan 3.4s ease-in-out infinite}
+  @keyframes scan{0%{left:-36%} 60%,100%{left:100%}}
+  .rev-rows{display:grid; gap:9px; margin-top:14px}
+  .rev-row{display:flex; align-items:center; justify-content:space-between; gap:10px; font-family:var(--mono); font-size:.8rem; color:var(--ink-2)}
+  .rev-row .k{color:var(--ink-3)}
+  .rev-row .v{font-weight:700; color:var(--ink)}
+  .rev-row .v.pos{color:var(--ok)} .rev-row .v.neg{color:var(--ink-3)} .rev-row .v.hi{color:var(--blue)}
+  .rev-foot{margin-top:16px; padding-top:14px; border-top:1px dashed var(--line); display:flex; align-items:center; justify-content:space-between; gap:10px; font-family:var(--mono); font-size:.76rem; color:var(--ink-2)}
+  .rev-foot .pct{font-weight:700; color:var(--ok)}
+
+  /* ===== SECTION SHELL ===== */
+  .sec{padding:72px 0}
+  .sec--stripe{background:var(--stripe)}
+  .sec__head{max-width:46rem; margin-bottom:38px}
+  .sec h2{font-size:clamp(1.9rem,3.4vw,2.6rem); font-weight:700; margin-top:14px}
+  .sec__lead{margin-top:16px; color:var(--ink-2); font-size:1.1rem}
+
+  /* stats */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm)}
+  .stat{padding:26px 22px; border-left:1px solid var(--line-2)}
+  .stat:first-child{border-left:0}
+  .stat b{display:block; font-family:var(--display); font-weight:800; font-size:2.1rem; color:var(--blue); line-height:1; letter-spacing:-.01em}
+  .stat span{display:block; margin-top:9px; color:var(--ink-3); font-size:.9rem; line-height:1.4}
+  .stats__note{margin-top:14px; font-family:var(--mono); font-size:.72rem; color:var(--ink-3)}
+
+  /* steps */
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; counter-reset:step}
+  .step{position:relative; padding:26px 22px; background:#fff; border:1px solid var(--line); border-radius:var(--radius)}
+  .step__n{font-family:var(--mono); font-size:.8rem; color:var(--blue); font-weight:700; letter-spacing:.08em}
+  .step h3{font-size:1.1rem; margin:12px 0 8px; font-family:var(--display); font-weight:700}
+  .step p{color:var(--ink-2); font-size:.96rem}
+  .step__line{position:absolute; top:34px; right:-16px; width:16px; height:2px; background:var(--line); z-index:1}
+  .steps .step:last-child .step__line{display:none}
+
+  /* feature cards */
+  .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
+  .feat{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px; transition:transform .15s, box-shadow .15s, border-color .15s}
+  .feat:hover{transform:translateY(-3px); box-shadow:var(--shadow-sm); border-color:var(--blue)}
+  .feat__ic{width:44px; height:44px; border-radius:12px; background:var(--stripe); display:grid; place-items:center; margin-bottom:14px}
+  .feat__ic svg{width:22px; height:22px; color:var(--blue)}
+  .feat h3{font-size:1.24rem; margin-bottom:8px}
+  .feat p{color:var(--ink-2); font-size:1rem}
+  .feat__gain{margin-top:11px; padding-top:11px; border-top:1px solid var(--line-2); font-size:.93rem; color:var(--ink-2)}
+  .feat__gain b{color:var(--ink)}
+  .feat__eg{margin-top:11px; font-size:.92rem; color:var(--ink-2); background:var(--stripe); border-left:3px solid var(--cyan); border-radius:0 8px 8px 0; padding:9px 12px}
+  .feat__eg b{color:var(--ink)}
+  /* timeline (сроки) */
+  .tl-head{font-family:var(--display); font-weight:700; font-size:1.2rem; margin:36px 0 14px; color:var(--ink)}
+  .timeline{display:grid; gap:10px}
+  .tl-row{display:flex; align-items:center; justify-content:space-between; gap:16px; background:#fff; border:1px solid var(--line); border-radius:var(--radius-sm); padding:14px 18px}
+  .tl-row__n{width:26px; height:26px; flex:none; border-radius:50%; background:var(--stripe); color:var(--blue); font-family:var(--mono); font-weight:700; font-size:.8rem; display:grid; place-items:center; margin-right:2px}
+  .tl-stage{flex:1; font-weight:600; color:var(--ink); font-size:1rem}
+  .tl-time{font-family:var(--mono); font-size:.82rem; color:var(--blue); text-align:right; flex:none; max-width:46%}
+  .tl-note{margin-top:14px; font-size:.92rem; color:var(--ink-3)}
+  @media (max-width:560px){ .tl-row{flex-wrap:wrap} .tl-time{text-align:left; max-width:none; width:100%; padding-left:34px} }
+  /* form steps (после заявки) */
+  .form-steps{list-style:none; counter-reset:fs; margin:18px 0 0; padding:0; display:grid; gap:13px}
+  .form-steps li{counter-increment:fs; position:relative; padding-left:38px; color:var(--ink-2); font-size:.95rem; line-height:1.4}
+  .form-steps li::before{content:counter(fs); position:absolute; left:0; top:-3px; width:26px; height:26px; border-radius:50%; background:#fff; border:1.5px solid var(--blue); color:var(--blue); font-family:var(--display); font-weight:700; font-size:.82rem; display:grid; place-items:center}
+  /* price block */
+  .price{background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow-sm); padding:34px 34px 30px; margin-bottom:30px}
+  .price__head h2{font-size:clamp(1.6rem,2.6vw,2.1rem); font-weight:700}
+  .price__head p{margin-top:12px; color:var(--ink-2); font-size:1.05rem; max-width:54em}
+  .price__grid{display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:24px}
+  .price__label{font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:12px}
+  .price__col ul{margin:0; padding-left:20px; color:var(--ink-2); font-size:.98rem; display:grid; gap:8px}
+  .price__rows{display:grid; gap:8px}
+  .price__row{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:11px 14px; background:var(--stripe); border:1px solid var(--line-2); border-radius:10px; font-size:.96rem; color:var(--ink-2)}
+  .price__row b{color:var(--ink-3); font-family:var(--mono); font-size:.82rem; font-weight:500}
+  .price__note{margin-top:12px; font-size:.86rem; color:var(--ink-3)}
+  @media (max-width:760px){ .price__grid{grid-template-columns:1fr} .price{padding:28px 22px} }
+  .feat--accent{grid-column:1 / -1; display:flex; align-items:center; gap:22px; background:linear-gradient(120deg,#eaf1fd,#dbeafe); border-color:#cfe0ff}
+  .feat--accent .feat__ic{margin-bottom:0; width:58px; height:58px; background:#fff; flex:none}
+  .feat--accent .feat__ic svg{width:28px; height:28px}
+  .feat--accent h3{font-size:1.34rem; margin-bottom:6px}
+  .feat--accent p{font-size:1.02rem; max-width:62ch}
+  .feat__badge{display:inline-block; font-family:var(--mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); background:#fff; border:1px solid #cfe0ff; border-radius:999px; padding:3px 9px; margin-bottom:9px}
+  @media (max-width:600px){ .feat--accent{flex-direction:column; text-align:center; align-items:center} }
+  .flow__node--opt{border-style:dashed; background:linear-gradient(180deg,#fff,var(--stripe))}
+  .flow__tag{font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); background:#eef4ff; border:1px solid #cfe0ff; border-radius:999px; padding:2px 9px}
+
+  /* segments (для кого) */
+  .segs{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+  .seg{background:linear-gradient(160deg,#eaf1fd 0%, #dbeafe 100%); border:1px solid var(--line); border-radius:var(--radius); padding:34px}
+  .seg--b{background:#fff}
+  .seg__tag{font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--cyan)}
+  .seg h3{font-size:1.4rem; margin:12px 0 10px; font-weight:700}
+  .seg p{color:var(--ink-2); font-size:1rem}
+  .seg ul{margin:16px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+  .seg li{display:flex; gap:.6em; align-items:flex-start; color:var(--ink-2); font-size:.98rem}
+  .seg li svg{width:18px; height:18px; color:var(--ok); flex:none; margin-top:2px}
+
+  /* ===== FORM ===== */
+  .form-sec{background:linear-gradient(180deg,var(--stripe) 0%, #fff 100%); padding:80px 0}
+  .form-shell{background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow); overflow:hidden; display:grid; grid-template-columns:.82fr 1.18fr}
+  .form-aside{background:linear-gradient(165deg,#eef4ff 0%, #d9e8ff 100%); padding:44px 38px; display:flex; flex-direction:column}
+  .form-aside h2{font-size:1.85rem; margin:14px 0 14px; font-weight:700; line-height:1.15}
+  .form-aside p{color:var(--ink-2); font-size:1.02rem}
+  .form-aside__list{margin:20px 0 0; padding:0; list-style:none; display:grid; gap:12px}
+  .form-aside__list li{display:flex; gap:.6em; align-items:flex-start; color:var(--ink-2); font-size:.95rem}
+  .form-aside__list svg{width:17px; height:17px; color:var(--blue); flex:none; margin-top:3px}
+  .form-aside__seq{margin-top:auto; padding-top:28px; font-family:var(--mono); font-size:.72rem; letter-spacing:.16em; color:rgba(10,37,64,.12); word-break:break-all; line-height:1.9}
+  .form{padding:40px 38px}
+  .field{margin-bottom:22px}
+  .label{display:flex; align-items:baseline; gap:.5em; margin-bottom:8px; font-family:var(--display); font-weight:600; font-size:.95rem; color:var(--ink)}
+  .label .req{color:var(--blue); font-family:var(--mono); font-size:.85em}
+  .hint{font-weight:400; font-size:.82rem; color:var(--ink-3)}
+  .input{width:100%; font-family:var(--sans); font-size:1rem; color:var(--ink); background:var(--stripe); border:1.5px solid var(--line); border-radius:var(--radius-sm); padding:13px 15px; transition:border-color .15s, background .15s, box-shadow .15s}
+  .input::placeholder{color:#9aa9bd}
+  .input:focus{outline:none; border-color:var(--blue); background:#fff; box-shadow:0 0 0 4px rgba(0,87,255,.10)}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+
+  .chips{display:flex; flex-wrap:wrap; gap:9px}
+  .mchip{display:inline-flex; align-items:center; gap:.5em; cursor:pointer; font-family:var(--sans); font-size:.92rem; color:var(--ink-2); background:var(--stripe); border:1.5px solid var(--line); border-radius:999px; padding:9px 14px; transition:.14s; user-select:none}
+  .mchip:hover{border-color:#b9cdec}
+  .mchip.is-on{background:#eef4ff; border-color:var(--blue); color:var(--blue); font-weight:600}
+  .mchip__box{width:16px; height:16px; border-radius:5px; border:1.6px solid #b9cdec; flex:none; display:grid; place-items:center; transition:.14s}
+  .mchip.is-on .mchip__box{background:var(--blue); border-color:var(--blue)}
+  .mchip__box svg{width:11px; height:11px; color:#fff; opacity:0}
+  .mchip.is-on .mchip__box svg{opacity:1}
+  .mchip:focus-visible{outline:3px solid var(--cyan); outline-offset:2px}
+
+  .seg-radio{display:flex; flex-wrap:wrap; gap:9px}
+  .rchip{cursor:pointer}
+  .rchip input{position:absolute; opacity:0; pointer-events:none}
+  .rchip span{display:inline-flex; align-items:center; gap:.4em; font-size:.92rem; color:var(--ink-2); background:var(--stripe); border:1.5px solid var(--line); border-radius:999px; padding:9px 15px; transition:.14s}
+  .rchip input:checked + span{background:#eef4ff; border-color:var(--blue); color:var(--blue); font-weight:600}
+  .rchip input:focus-visible + span{outline:3px solid var(--cyan); outline-offset:2px}
+
+  .consent{display:flex; align-items:flex-start; gap:11px; margin:8px 0 4px; cursor:pointer}
+  .consent input{margin-top:3px; width:18px; height:18px; accent-color:var(--blue); flex:none; cursor:pointer}
+  .consent span{font-size:.88rem; color:var(--ink-2)}
+  .consent a{text-decoration:underline}
+  .submit-row{display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin-top:22px}
+  .submit-note{font-family:var(--mono); font-size:.72rem; color:var(--ink-3); max-width:20em}
+  .error{color:#d23; font-size:.85rem; margin-top:6px; display:none}
+  .error.is-shown{display:block}
+
+  .success{display:none; text-align:center; padding:30px 10px}
+  .success.is-shown{display:block}
+  .success__ic{width:64px; height:64px; border-radius:50%; background:#e9f8f1; display:grid; place-items:center; margin:0 auto 16px}
+  .success__ic svg{width:30px; height:30px; color:var(--ok)}
+  .success h3{font-size:1.5rem; font-weight:700}
+  .success p{color:var(--ink-2); margin-top:10px; max-width:28em; margin-left:auto; margin-right:auto}
+
+  /* legal strip */
+  .legal{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; margin-top:26px; display:flex; gap:.7em; align-items:flex-start; font-size:.82rem; color:var(--ink-3); line-height:1.55}
+  .legal svg{width:18px; height:18px; color:var(--ink-3); flex:none; margin-top:2px}
+
+  /* ===== HERO hi-tech background ===== */
+  .hero .wrap{position:relative; z-index:1}
+  .hero::after{content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
+    background-image:linear-gradient(rgba(0,87,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,87,255,.06) 1px, transparent 1px);
+    background-size:46px 46px;
+    -webkit-mask-image:radial-gradient(720px 420px at 82% -5%, #000, transparent 72%);
+            mask-image:radial-gradient(720px 420px at 82% -5%, #000, transparent 72%);}
+  .hero__blob{position:absolute; z-index:0; width:520px; height:520px; right:-140px; top:-170px; pointer-events:none;
+    background:radial-gradient(circle at 50% 50%, rgba(0,194,255,.22), rgba(0,87,255,.10) 45%, transparent 70%);
+    filter:blur(8px); animation:float 15s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translate(0,0)} 50%{transform:translate(-28px,24px)}}
+
+  /* ===== CONSOLE (hero visual) ===== */
+  .console{background:#0b1f3a; border:1px solid #16325c; border-radius:18px; box-shadow:0 22px 54px rgba(10,37,64,.30); overflow:hidden}
+  .console__bar{display:flex; align-items:center; gap:8px; padding:12px 16px; background:#0a1a30; border-bottom:1px solid #16325c}
+  .console__bar .dot{width:11px; height:11px; border-radius:50%}
+  .dot--r{background:#ff5f57} .dot--y{background:#febc2e} .dot--g{background:#28c840}
+  .console__title{font-family:var(--mono); font-size:.72rem; color:#7f97b8; margin-left:6px; letter-spacing:.04em}
+  .console__live{margin-left:auto; font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; color:#00e0a4; display:inline-flex; align-items:center; gap:.55em}
+  .console__live::before{content:""; width:7px; height:7px; border-radius:50%; background:#00e0a4; animation:pulse 1.9s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,224,164,.55)} 70%{box-shadow:0 0 0 7px rgba(0,224,164,0)} 100%{box-shadow:0 0 0 0 rgba(0,224,164,0)}}
+  .console__body{padding:18px}
+  .console .rev-head{color:#7f97b8; margin-bottom:12px}
+  .console .rev-slide{border-color:#16325c; margin:0 0 14px; height:88px}
+
+  .track{position:relative; height:72px; border:1px solid #16325c; border-radius:10px; background:#0a1a30; overflow:hidden; padding:8px 10px}
+  .track svg{width:100%; height:100%; display:block}
+  .track__cursor{position:absolute; top:0; bottom:0; width:2px; background:linear-gradient(180deg,#00c2ff, transparent); box-shadow:0 0 10px #00c2ff; left:6%; animation:cursorX 4.4s linear infinite}
+  @keyframes cursorX{0%{left:6%; opacity:.2} 12%{opacity:1} 100%{left:95%; opacity:.2}}
+  .track__var{position:absolute; top:2px; left:64%; transform:translateX(-50%); z-index:2; font-family:var(--mono); font-size:.58rem; color:#00e0a4; background:rgba(10,26,48,.94); border:1px solid rgba(0,224,164,.45); border-radius:4px; padding:1px 6px; white-space:nowrap}
+  .track__cap{position:absolute; bottom:4px; right:9px; font-family:var(--mono); font-size:.56rem; color:#5f7aa0; letter-spacing:.1em}
+
+  .markers{list-style:none; margin:14px 0 0; padding:0; display:grid; gap:8px}
+  .markers li{display:flex; align-items:center; justify-content:space-between; gap:10px; font-family:var(--mono); font-size:.8rem; padding:8px 12px; background:#0a1a30; border:1px solid #16325c; border-radius:8px; transition:border-color .3s}
+  .markers li span{color:#9db3d4; letter-spacing:.05em}
+  .markers li em{font-style:normal; color:#febc2e}
+  .markers li.is-done{border-color:#1c5c46}
+  .markers li.is-done em{color:#00e0a4}
+
+  .meter{display:flex; align-items:center; gap:10px; margin-top:14px; font-family:var(--mono); font-size:.72rem; color:#9db3d4}
+  .meter__bar{flex:1; height:7px; border-radius:5px; background:#0a1a30; border:1px solid #16325c; overflow:hidden}
+  .meter__bar i{display:block; height:100%; width:10%; background:linear-gradient(90deg,#0057FF,#00c2ff); border-radius:5px; animation:fill 2.6s ease forwards; animation-delay:.5s}
+  @keyframes fill{to{width:100%}}
+  .meter b{color:#00e0a4}
+  .console__cap{font-family:var(--mono); font-size:.66rem; color:var(--ink-3); margin-top:12px; text-align:center}
+
+  /* ===== TRUST STRIP ===== */
+  .trust{background:var(--stripe); border-top:1px solid var(--line-2); border-bottom:1px solid var(--line-2)}
+  .trust__row{display:grid; grid-template-columns:repeat(4,1fr)}
+  .trust__item{display:flex; align-items:center; gap:.65em; padding:20px 18px; border-left:1px solid var(--line-2); font-size:.9rem; color:var(--ink-2); font-weight:500; line-height:1.35}
+  .trust__item:first-child{border-left:0}
+  .trust__item b{color:var(--ink); font-weight:700}
+  .trust__item svg{width:23px; height:23px; color:var(--blue); flex:none}
+  @media (max-width:760px){ .trust__row{grid-template-columns:1fr 1fr} .trust__item{border-left:0; border-top:1px solid var(--line-2)} .trust__item:first-child,.trust__item:nth-child(2){border-top:0} }
+  @media (max-width:420px){ .trust__row{grid-template-columns:1fr} .trust__item:nth-child(2){border-top:1px solid var(--line-2)} }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero__blob, .track__cursor, .console__live::before{animation:none}
+    .meter__bar i{animation:none; width:100%}
+  }
+
+  /* ===== SAMPLE REPORT (hero visual) ===== */
+  .report{position:relative; background:#fff; border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); overflow:hidden}
+  .report__hd{display:flex; align-items:center; gap:10px; padding:14px 18px; border-bottom:1px solid var(--line-2); background:var(--stripe)}
+  .report__hd > svg{width:26px; height:26px; flex:none}
+  .report__hd b{font-family:var(--display); font-weight:700; font-size:.9rem; color:var(--ink); line-height:1.15}
+  .report__hd b small{display:block; font-family:var(--mono); font-weight:400; font-size:.58rem; color:var(--ink-3); letter-spacing:.06em; margin-top:2px}
+  .report__stamp{margin-left:auto; transform:rotate(-7deg); border:2px solid rgba(26,160,109,.55); color:#1aa06d; font-family:var(--display); font-weight:800; font-size:.6rem; letter-spacing:.06em; padding:4px 8px; border-radius:7px; text-transform:uppercase; white-space:nowrap}
+  .report__wm{position:absolute; inset:0; display:grid; place-items:center; pointer-events:none; z-index:0}
+  .report__wm span{font-family:var(--display); font-weight:800; font-size:clamp(1.2rem,2.6vw,1.7rem); letter-spacing:.22em; color:rgba(10,37,64,.055); transform:rotate(-16deg); white-space:nowrap; text-transform:uppercase}
+  .report__body{padding:16px 18px; position:relative; z-index:1}
+  .report__meta{display:grid; grid-template-columns:1fr 1fr; gap:9px 16px; margin-bottom:15px}
+  .report__meta div{display:flex; align-items:center; gap:7px; font-size:.72rem; color:var(--ink-3); font-family:var(--mono)}
+  .redact{display:inline-block; height:10px; border-radius:3px; background:repeating-linear-gradient(90deg,#c7d3e6 0 6px,#d8e2f1 6px 12px); vertical-align:middle}
+  .report__sec{margin-bottom:14px}
+  .report__label{font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:7px}
+  .report__diag{display:flex; align-items:center; gap:9px; flex-wrap:wrap}
+  .report__diag .redact{height:13px; flex:1; min-width:120px}
+  .report__badge{display:inline-flex; align-items:center; gap:.4em; font-family:var(--display); font-weight:700; font-size:.7rem; color:#1aa06d; background:#e9f8f1; border:1px solid #bce8d5; border-radius:999px; padding:3px 9px; white-space:nowrap}
+  .report__badge svg{width:13px; height:13px}
+  .report__mol{display:grid; gap:6px}
+  .report__mol .r{display:flex; align-items:center; justify-content:space-between; gap:10px; font-family:var(--mono); font-size:.72rem; padding:7px 11px; background:var(--stripe); border:1px solid var(--line-2); border-radius:8px; color:var(--ink-2)}
+  .report__mol .r em{font-style:normal; color:#1aa06d; display:inline-flex; align-items:center; gap:.35em; white-space:nowrap}
+  .report__mol .r em svg{width:12px; height:12px}
+  .report__sign{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; padding-top:14px; border-top:1px dashed var(--line)}
+  .report__sign small{display:block; font-family:var(--mono); font-size:.58rem; color:var(--ink-3); margin-bottom:2px; letter-spacing:.04em}
+  .report__sign .sig{width:100%; height:22px; color:var(--ink-2)}
+  .report__sign .name{margin-top:4px; padding-top:5px; border-top:1px solid var(--line); display:flex; align-items:center; gap:6px; font-size:.62rem; color:var(--ink-3); font-family:var(--mono)}
+  .report__cap{font-family:var(--mono); font-size:.66rem; color:var(--ink-3); margin-top:12px; text-align:center}
+
+  /* ===== PROCESS FLOW ===== */
+  .flow{display:flex; align-items:stretch; gap:8px}
+  .flow__node{flex:1; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px 18px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px; transition:transform .15s, box-shadow .15s, border-color .15s}
+  .flow__node:hover{transform:translateY(-3px); box-shadow:var(--shadow-sm); border-color:var(--blue)}
+  .flow__ic{width:52px; height:52px; border-radius:14px; background:var(--stripe); display:grid; place-items:center}
+  .flow__ic svg{width:26px; height:26px; color:var(--blue)}
+  .flow__node h3{font-size:1.04rem; font-weight:700}
+  .flow__node p{color:var(--ink-2); font-size:.9rem}
+  .flow__arrow{align-self:center; display:grid; place-items:center; color:var(--blue); flex:none}
+  .flow__arrow svg{width:26px; height:26px}
+  @media (max-width:820px){ .flow{flex-direction:column} .flow__arrow{transform:rotate(90deg)} }
+  .flow-note{margin:20px 0 0; display:flex; align-items:center; gap:.75em; justify-content:center; text-align:left; flex-wrap:nowrap; background:#eef4ff; border:1px solid #cfe0ff; border-radius:var(--radius); padding:16px 22px; font-size:1rem; color:var(--ink-2)}
+  .flow-note b{color:var(--ink)}
+  .flow-note svg{width:22px; height:22px; color:var(--blue); flex:none}
+  @media (max-width:520px){ .flow-note{align-items:flex-start} }
+
+  /* ===== OBJECTIONS ===== */
+  .obj{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  .obj__item{background:#fff; border:1px solid var(--line); border-left:4px solid var(--blue); border-radius:var(--radius); padding:24px}
+  .obj__q{display:flex; gap:.6em; align-items:flex-start; font-family:var(--display); font-weight:700; font-size:1.08rem; color:var(--ink); margin-bottom:10px; line-height:1.25}
+  .obj__q svg{width:20px; height:20px; color:var(--blue); flex:none; margin-top:2px}
+  .obj__a{color:var(--ink-2); font-size:.98rem}
+  @media (max-width:760px){ .obj{grid-template-columns:1fr} }
+
+  /* ===== FAQ ===== */
+  .faq{display:grid; gap:12px; max-width:820px}
+  .faq details{background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:border-color .15s}
+  .faq details[open]{border-color:var(--blue)}
+  .faq summary{list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:18px 22px; font-family:var(--display); font-weight:600; font-size:1.04rem; color:var(--ink)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pl{position:relative; width:20px; height:20px; flex:none; transition:transform .2s}
+  .faq details[open] summary .pl{transform:rotate(45deg)}
+  .faq summary .pl::before, .faq summary .pl::after{content:""; position:absolute; background:var(--blue); border-radius:2px}
+  .faq summary .pl::before{left:50%; top:2px; bottom:2px; width:2px; transform:translateX(-50%)}
+  .faq summary .pl::after{top:50%; left:2px; right:2px; height:2px; transform:translateY(-50%)}
+  .faq details > p{padding:0 22px 20px; color:var(--ink-2); font-size:1rem; line-height:1.6}
+  @media (prefers-reduced-motion: reduce){ .faq summary .pl{transition:none} }
+
+  /* ===== FOOTER ===== */
+  .foot{background:var(--stripe); border-top:1px solid var(--line-2); padding:44px 0 30px}
+  .foot__in{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px}
+  .foot__mid{font-size:.92rem; color:var(--ink-2); max-width:34em}
+  .foot__bottom{margin-top:26px; padding-top:18px; border-top:1px solid var(--line-2); display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:space-between; font-size:.8rem; color:var(--ink-3); font-family:var(--mono)}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease}
+  .reveal.is-visible{opacity:1; transform:none}
+  .no-js .reveal{opacity:1; transform:none}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none} .rev-scan{animation:none} }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:1000px){
+    .hero__grid{grid-template-columns:1fr; gap:34px}
+    .card{max-width:520px}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .step__line{display:none}
+    .segs{grid-template-columns:1fr}
+    .form-shell{grid-template-columns:1fr}
+    .form-aside__seq{display:none}
+  }
+  @media (max-width:760px){
+    body{font-size:16px}
+    .topnav{display:none}
+    .burger{display:grid; place-items:center; width:40px; height:40px; border:1px solid var(--line); border-radius:9px; background:#fff; cursor:pointer}
+    .burger svg{width:20px; height:20px; color:var(--ink)}
+    .stats{grid-template-columns:1fr 1fr}
+    .cards{grid-template-columns:1fr}
+    .hero{padding:50px 0 30px}
+    .sec{padding:56px 0}
+    .form, .form-aside{padding:30px 22px}
+    .grid2{grid-template-columns:1fr}
+    .subnav__cta{display:none}
+    .foot__in{flex-direction:column; align-items:flex-start}
+  }
+  @media (max-width:420px){
+    .wrap{padding:0 16px}
+    .hero__cta{flex-direction:column}
+    .hero__cta .btn{width:100%; justify-content:center}
+    .stats{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="brand" href="#top" aria-label="На главную">
+      <svg class="brand__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="38" height="38" rx="11" fill="#0057FF"/>
+        <path d="M13 11c0 7 14 11 14 18M27 11c0 7-14 11-14 18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M14.5 15h11M14.5 25h11" stroke="#00C2FF" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="brand__txt">
+        <span class="brand__name">Геномед</span>
+        <span class="brand__sub">Патоморфология + генетика</span>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="Основная навигация">
+      <a href="#problem">Зачем</a>
+      <a href="#how">Как работает</a>
+      <a href="#objections">Сомнения</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== STICKY SUB-NAV ===== -->
+<div class="subnav" id="top">
+  <div class="subnav__in">
+    <a href="#problem" data-nav>Проблема</a>
+    <a href="#how" data-nav>Как работает</a>
+    <a href="#included" data-nav>Что входит</a>
+    <a href="#objections" data-nav>Сомнения</a>
+    <a href="#faq" data-nav>Вопросы</a>
+    <a href="#form" data-nav>Заявка</a>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <span class="hero__blob" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="hero__grid">
+      <div class="hero__col">
+        <span class="eyebrow" style="display:flex;margin-bottom:6px">На базе лицензированной лаборатории «Геномед»</span>
+        <h1>Убедитесь, что диагноз поставлен <span class="hl">правильно</span>, прежде чем начинать лечение</h1>
+        <p class="hero__sub">Независимый пересмотр биопсии двумя экспертами и молекулярное исследование опухоли — в одном заключении. Обычно по уже готовым стёклам, без повторного забора.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="#form">Оставить заявку
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn--ghost btn--lg" href="#how">Как это работает</a>
+        </div>
+        <div class="hero__scope">
+          <span class="chip"><b>консенсус</b> 2 экспертов</span>
+          <span class="chip"><b>NGS</b> · FISH · маркеры</span>
+          <span class="chip">логистика стёкол · <b>регионы</b></span>
+          <span class="chip">один отчёт · <b>фиксированный срок</b></span>
+          <span class="chip"><b>+ забор биопсии</b>, если ещё не делали</span>
+        </div>
+      </div>
+
+      <div class="hero__col">
+        <div class="report" role="img" aria-label="Образец экспертного заключения: согласованный диагноз двух патоморфологов и молекулярный профиль опухоли; данные пациента скрыты">
+          <div class="report__hd">
+            <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="11" fill="#0057FF"/><path d="M13 11c0 7 14 11 14 18M27 11c0 7-14 11-14 18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M14.5 15h11M14.5 25h11" stroke="#00C2FF" stroke-width="2.2" stroke-linecap="round"/></svg>
+            <b>Экспертное заключение<small>пересмотр биопсии · «Геномед»</small></b>
+            <span class="report__stamp">Согласовано</span>
+          </div>
+          <div class="report__wm" aria-hidden="true"><span>образец</span></div>
+          <div class="report__body">
+            <div class="report__meta">
+              <div>Пациент:&nbsp;<span class="redact" style="width:72px"></span></div>
+              <div>Случай:&nbsp;ГМ-<span class="redact" style="width:40px"></span></div>
+              <div>Материал:&nbsp;<span class="redact" style="width:58px"></span></div>
+              <div>Дата:&nbsp;<span class="redact" style="width:54px"></span></div>
+            </div>
+            <div class="report__sec">
+              <div class="report__label">Согласованный диагноз</div>
+              <div class="report__diag">
+                <span class="redact"></span>
+                <span class="report__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>консенсус 2 из 2</span>
+              </div>
+            </div>
+            <div class="report__sec">
+              <div class="report__label">Молекулярный профиль</div>
+              <div class="report__mol">
+                <div class="r"><b>Панель мутаций (NGS)</b><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>проанализирована</em></div>
+                <div class="r"><b>Микросателлиты (MSI)</b><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>определены</em></div>
+                <div class="r"><b>HER2 (FISH)</b><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>определён</em></div>
+              </div>
+            </div>
+            <div class="report__sign">
+              <div>
+                <small>Врач-патоморфолог</small>
+                <svg class="sig" viewBox="0 0 120 22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 15c8-12 12 6 18-2s6-9 11-1 9 8 15 0 10-6 16 2 12-1 18-6" stroke-linecap="round"/></svg>
+                <div class="name"><span class="redact" style="width:66px;height:8px"></span>·&nbsp;подпись</div>
+              </div>
+              <div>
+                <small>Врач-патоморфолог</small>
+                <svg class="sig" viewBox="0 0 120 22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12c6 8 10-8 16-2s8 9 13 1 8-7 14 1 11 5 16-4 8 3 14 1" stroke-linecap="round"/></svg>
+                <div class="name"><span class="redact" style="width:66px;height:8px"></span>·&nbsp;подпись</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="report__cap">образец заключения · данные пациента скрыты · не медицинский документ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST STRIP ===== -->
+<section class="trust" aria-label="Доверие и гарантии">
+  <div class="wrap">
+    <div class="trust__row">
+      <div class="trust__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Под лицензией лаборатории <b>Геномед</b></span>
+      </div>
+      <div class="trust__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M3 20c0-2.8 2.2-5 5-5M21 20c0-2.8-2.2-5-5-5" stroke-linecap="round"/></svg>
+        <span>Консенсус <b>≥2 экспертов</b></span>
+      </div>
+      <div class="trust__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 4c0 6 8 8 8 14M16 4c0 6-8 8-8 14" stroke-linecap="round"/><path d="M9 8h6M9 16h6" stroke-linecap="round"/></svg>
+        <span><b>NGS · FISH · ИГХ</b> в одном потоке</span>
+      </div>
+      <div class="trust__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M8 9V7a4 4 0 018 0v2" stroke-linecap="round"/></svg>
+        <span><b>152-ФЗ</b> · данные в РФ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section class="sec sec--stripe reveal" id="problem">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="eyebrow">Зачем это нужно</span>
+      <h2>Даже опытные патоморфологи могут по-разному прочитать один и тот же материал</h2>
+      <p class="sec__lead">От того, как именно прочитают вашу биопсию, зависит всё дальнейшее лечение. А чтение — это во многом опыт и субъективность конкретного врача. Независимое второе мнение убирает этот риск.</p>
+    </div>
+    <div class="stats" id="stats">
+      <div class="stat"><b data-num="15" data-tpl="11–{n}%">11–15%</b><span>крупных расхождений при независимом пересмотре онкозаключений</span></div>
+      <div class="stat"><b data-num="43" data-tpl="до {n}%">до 43%</b><span>случаев, где второе мнение меняет диагноз или тактику лечения</span></div>
+      <div class="stat"><b>&gt;1/3</b><span>пациентов — клинически значимое изменение терапии после пересмотра</span></div>
+      <div class="stat"><b data-num="3000" data-tpl="~{n}">~3 000</b><span>дефицит патоморфологов в РФ — узкое место и очереди</span></div>
+    </div>  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="sec reveal" id="how">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="eyebrow">Как это работает</span>
+      <h2>Путь от биопсии до понятного заключения</h2>
+      <p class="sec__lead">Мы работаем с готовым материалом — или, при необходимости, выполняем биопсию сами. Каждый этап проходит в лицензированной лаборатории «Геномед».</p>
+    </div>
+    <div class="flow">
+      <div class="flow__node flow__node--opt">
+        <span class="flow__tag">при необходимости</span>
+        <div class="flow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6M10 2v14a2 2 0 104 0V2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 10h4" stroke-linecap="round"/></svg></div>
+        <h3>Забор биопсии</h3>
+        <p>Если биопсия ещё не выполнена, забор проводится в лаборатории «Геномед».</p>
+      </div>
+      <div class="flow__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="flow__node">
+        <div class="flow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="16" rx="2"/><circle cx="12" cy="10" r="2.4"/><path d="M8 15h8" stroke-linecap="round"/></svg></div>
+        <h3>Подготовка препаратов</h3>
+        <p>Из материала аккуратно и в срок готовятся гистологические стёкла. Готовые стёкла или блок можно передать самостоятельно или через нас — в том числе из других регионов.</p>
+      </div>
+      <div class="flow__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="flow__node">
+        <div class="flow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M3 20c0-2.8 2.2-5 5-5M21 20c0-2.8-2.2-5-5-5" stroke-linecap="round"/></svg></div>
+        <h3>Гистологическое исследование</h3>
+        <p>Основной этап диагностики: два независимых врача-патоморфолога изучают препараты и согласуют заключение.</p>
+      </div>
+      <div class="flow__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="flow__node">
+        <div class="flow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4c0 6 8 8 8 14M16 4c0 6-8 8-8 14" stroke-linecap="round"/><path d="M9 8h6M9 16h6" stroke-linecap="round"/></svg></div>
+        <h3>Молекулярные исследования</h3>
+        <p>По показаниям — ИГХ, FISH и NGS: уточняют диагноз и помогают подобрать лечение.</p>
+      </div>
+      <div class="flow__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="flow__node">
+        <div class="flow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h7l5 5v13a1 1 0 01-1 1H7a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M14 3v5h5M9 13h5M9 17h3" stroke-linecap="round"/><path d="M15.5 16.5l1.3 1.3 2.7-2.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Единое заключение</h3>
+        <p>Понятный документ с подписями врачей; при необходимости передаётся вашему онкологу.</p>
+      </div>
+    </div>
+
+    <div class="tl-head">Сроки</div>
+    <div class="timeline">
+      <!-- точные вилки впишите после согласования с лабораторией — редактируйте текст в .tl-time -->
+      <div class="tl-row"><span class="tl-row__n">1</span><span class="tl-stage">Заявка и консультация координатора</span><span class="tl-time">в день заявки / следующий рабочий день</span></div>
+      <div class="tl-row"><span class="tl-row__n">2</span><span class="tl-stage">Передача или забор материала</span><span class="tl-time">1–3 дня</span></div>
+      <div class="tl-row"><span class="tl-row__n">3</span><span class="tl-stage">Подготовка препаратов и гистологическое исследование</span><span class="tl-time">несколько рабочих дней</span></div>
+      <div class="tl-row"><span class="tl-row__n">4</span><span class="tl-stage">Молекулярные исследования (ИГХ / FISH / NGS)</span><span class="tl-time">по показаниям, зависит от метода</span></div>
+      <div class="tl-row"><span class="tl-row__n">5</span><span class="tl-stage">Единое заключение</span><span class="tl-time">по готовности всех этапов</span></div>
+      <div class="tl-row"><span class="tl-row__n">6</span><span class="tl-stage">Возврат стёкол и блоков</span><span class="tl-time">до 10 рабочих дней по РФ</span></div>
+    </div>
+    <p class="tl-note">Точные сроки и состав исследований координатор согласует с вами после заявки — они зависят от вашего случая. Пересмотр по готовым стёклам, как правило, занимает меньше времени, чем повторная биопсия.</p>
+  </div>
+</section>
+
+<!-- ===== INCLUDED ===== -->
+<section class="sec sec--stripe reveal" id="included">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="eyebrow">Что входит</span>
+      <h2>Уверенность в диагнозе, скорость и полная картина опухоли — в одном месте</h2>
+    </div>
+    <div class="cards">
+      <div class="feat feat--accent">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6M10 2v14a2 2 0 104 0V2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 10h4" stroke-linecap="round"/></svg></div>
+        <div>
+          <span class="feat__badge">под лицензией «Геномед»</span>
+          <h3>Забор биопсии — можем сделать сами</h3>
+          <p>Нет готового материала? Не нужно искать, где сделать биопсию: проведём забор у себя и сразу запустим пересмотр двумя экспертами и молекулярный анализ — всё в одном месте.</p>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Пересмотр-консенсус</h3>
+        <p>Не одно мнение, а согласованный вердикт нескольких экспертов. Снимает главный риск — субъективность диагноза.</p>
+      </div>
+      <div class="feat">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4c0 6 8 8 8 14M16 4c0 6-8 8-8 14" stroke-linecap="round"/><path d="M9 8h6M9 16h6" stroke-linecap="round"/></svg></div>
+        <h3>Молекулярный профиль</h3>
+        <p>NGS, FISH и поиск значимых мутаций на том же материале — то, что часто вообще не делают на этапе биопсии.</p>
+      </div>
+      <div class="feat">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h3>Бережная логистика материала</h3>
+        <p>Организуем передачу стёкол и блоков, в том числе между регионами. Оригиналы возвращаем — ориентир до 10 рабочих дней по РФ.</p>
+      </div>
+      <div class="feat">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h7l5 5v13a1 1 0 01-1 1H7a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M14 3v5h5M9 13h6M9 17h4" stroke-linecap="round"/></svg></div>
+        <h3>Единый отчёт и расшифровка</h3>
+        <p>Один документ вместо разрозненных заключений, с понятным объяснением, что находки значат для лечения.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOLECULAR (NGS/FISH explainer) ===== -->
+<section class="sec reveal" id="molecular">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="eyebrow">Молекулярные исследования</span>
+      <h2>NGS, FISH и маркеры — простыми словами и зачем это вам</h2>
+      <p class="sec__lead">Именно молекулярные тесты определяют, какое лечение сработает. На этапе биопсии в госклинике их чаще всего не делают вовсе — а мы делаем сразу, на том же материале.</p>
+    </div>
+    <div class="cards">
+      <div class="feat">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4c0 6 8 8 8 14M16 4c0 6-8 8-8 14" stroke-linecap="round"/><path d="M9 8h6M9 16h6" stroke-linecap="round"/></svg></div>
+        <h3>NGS — секвенирование</h3>
+        <p>«Читает» гены опухоли и находит поломки (мутации), от которых зависит, какой препарат сработает. За один анализ — сотни генов сразу; глазом под микроскопом это увидеть нельзя.</p>
+        <p class="feat__eg"><b>Например:</b> при раке лёгкого мутация EGFR означает, что подойдёт таргетная таблетка вместо химиотерапии — совсем другая схема лечения.</p>
+        <p class="feat__gain"><b>Что даёт:</b> подбор точной таргетной терапии, доступ к клиническим исследованиям и уточнение самого диагноза.</p>
+      </div>
+      <div class="feat">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke-linecap="round"/></svg></div>
+        <h3>FISH</h3>
+        <p>Подсвечивает конкретные поломки в генах — например, лишние копии HER2 или перестройку ALK. Именно от этого зависит, подойдёт ли герцептин, ALK-ингибитор и подобные препараты.</p>
+        <p class="feat__eg"><b>Например:</b> HER2-позитивный рак молочной железы лечат герцептином, HER2-негативный — нет. Именно FISH это и решает.</p>
+        <p class="feat__gain"><b>Что даёт:</b> точное подтверждение мишени; золотой стандарт, когда обычный анализ дал спорный результат.</p>
+      </div>
+      <div class="feat">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3s6 6.2 6 11a6 6 0 01-12 0c0-4.8 6-11 6-11z"/><path d="M9.5 13.5a2.5 2.5 0 002.5 2.5" stroke-linecap="round"/></svg></div>
+        <h3>ИГХ и маркеры</h3>
+        <p>Окрашивает белки-маркеры в ткани — помогает точно определить тип и подтип опухоли и отличить друг от друга похожие варианты.</p>
+        <p class="feat__eg"><b>Например:</b> по трём маркерам (ER, PR, HER2) рак молочной железы делят на «трижды позитивный» и «трижды негативный» — это принципиально разные схемы лечения.</p>
+        <p class="feat__gain"><b>Что даёт:</b> уточнение диагноза, определение источника опухоли и показаний к терапии.</p>
+      </div>
+    </div>
+
+    <div class="stats" style="margin-top:28px">
+      <div class="stat"><b>40–65%</b><span>пациентов с распространёнными опухолями — NGS находит изменение, под которое есть конкретный препарат</span></div>
+      <div class="stat"><b>56% / 32%</b><span>ответ на лечение, подобранное по биомаркеру, против стандартного (рак лёгкого)</span></div>
+      <div class="stat"><b>66% / 41%</b><span>годичная выживаемость при терапии по биомаркеру против стандартной</span></div>
+      <div class="stat"><b>81%</b><span>случаев «опухоль без ясного источника», где молекулярный тест подсказал лечение</span></div>
+    </div>
+
+    <p class="flow-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-7-10a4 4 0 018-1 4 4 0 018 1c0 5.5-7 10-7 10z" stroke-linejoin="round"/></svg><span><b>Ваш онколог остаётся главным.</b> Мы не заменяем лечащего врача — даём ему точную молекулярную картину опухоли, а решение о лечении принимает он. Заключение и профиль можно передать вашему онкологу.</span></p>
+  </div>
+</section>
+
+<!-- ===== WHO ===== -->
+<section class="sec sec--stripe reveal" id="who">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="eyebrow">Кому это</span>
+      <h2>Для пациентов — и для клиник, лабораторий, исследований</h2>
+    </div>
+    <div class="segs">
+      <div class="seg">
+        <span class="seg__tag">пациентам и семьям</span>
+        <h3>Хочу быть уверен(а) в диагнозе и не терять время</h3>
+        <p>Когда решается схема лечения, важны и скорость, и второе мнение — чтобы не начать не ту терапию.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Независимый пересмотр вашей биопсии</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Молекулярный профиль для подбора терапии</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Понятный срок вместо неопределённого ожидания</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Заключение передадим вашему лечащему онкологу</li>
+        </ul>
+      </div>
+      <div class="seg seg--b">
+        <span class="seg__tag">клиникам · лабораториям · фарме</span>
+        <h3>Нужна экспертная диагностика и молекулярно-генетические исследования без своей лаборатории</h3>
+        <p>Подключаем экспертный пересмотр и генетику к вашему потоку — без затрат на собственную лабораторию и штат.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Экспертный пересмотр для клиник без своей патоморфологической лаборатории</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Централизованный пересмотр и биомаркеры для исследований</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Единый партнёр на пересмотр + генетику</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OBJECTIONS ===== -->
+<section class="sec reveal" id="objections">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="eyebrow">Сомнения — это нормально</span>
+      <h2>Отвечаем на то, что обычно останавливает</h2>
+    </div>
+    <div class="obj">
+      <div class="obj__item">
+        <div class="obj__q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.5M12 17h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>Если диагноз уже поставлен — зачем второе мнение?</div>
+        <p class="obj__a">Именно поэтому и стоит перепроверить — до начала лечения. При независимом пересмотре диагноз или тактику меняют в заметной доле случаев, а переигрывать уже начатую терапию куда сложнее.</p>
+      </div>
+      <div class="obj__item">
+        <div class="obj__q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.5M12 17h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>Что если стёкла плохого качества?</div>
+        <p class="obj__a">Сначала оценим пригодность материала. Часто из того же парафинового блока можно сделать новые срезы и окраски — повторная биопсия нужна далеко не всегда. Если материал непригоден, скажем сразу и честно.</p>
+      </div>
+      <div class="obj__item">
+        <div class="obj__q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.5M12 17h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>Что если материал закончился?</div>
+        <p class="obj__a">Тогда пересмотр по стёклам невозможен — и мы прямо об этом скажем, а не возьмём деньги за то, что нельзя сделать. Проверим, остался ли блок или архив в лаборатории, где делали биопсию.</p>
+      </div>
+      <div class="obj__item">
+        <div class="obj__q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.5M12 17h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>Если диагноз подтвердится — что дальше?</div>
+        <p class="obj__a">Это хороший исход: вы получаете уверенность, что лечитесь правильно, плюс молекулярный профиль опухоли — он иногда открывает дополнительные варианты терапии. Подтверждение — не «зря», а спокойствие.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec sec--stripe reveal" id="faq">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="eyebrow">Частые вопросы</span>
+      <h2>Коротко о главном</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Нужно ли повторно делать биопсию?<span class="pl"></span></summary>
+        <p>Обычно нет. Мы работаем с уже готовыми стёклами или парафиновым блоком — тем, что остался после вашей биопсии. Повторный забор нужен редко: только если материала не осталось или он непригоден.</p>
+      </details>
+      <details>
+        <summary>А если биопсию ещё не делали?<span class="pl"></span></summary>
+        <p>Тогда можем взять её сами: под лицензией лаборатории «Геномед» проведём забор, а дальше — пересмотр двумя экспертами и, по показаниям, молекулярный анализ. Всё в одном месте, без беготни между клиниками.</p>
+      </details>
+      <details>
+        <summary>Нужно ли направление от онколога?<span class="pl"></span></summary>
+        <p>Направление не обязательно. Но мы за то, чтобы вы шли рука об руку с лечащим врачом: заключение и молекулярный профиль передадим вашему онкологу, чтобы решение о лечении он принял с полной картиной. Мы дополняем вашего врача, а не заменяем его.</p>
+      </details>
+      <details>
+        <summary>Как передать стёкла?<span class="pl"></span></summary>
+        <p>Можно привезти лично или отправить. Мы подскажем, как правильно упаковать хрупкий материал, и поможем с доставкой. Оригиналы вернём.</p>
+      </details>
+      <details>
+        <summary>Сколько занимает пересмотр?<span class="pl"></span></summary>
+        <p>Срок фиксируем и называем заранее. Пересмотр по готовым стёклам обычно быстрее повторной биопсии; молекулярные исследования добавляют время в зависимости от метода.</p>
+      </details>
+      <details>
+        <summary>Что делать, если материал в другом городе?<span class="pl"></span></summary>
+        <p>Это не проблема. Поможем забрать стёкла или блок из лаборатории в вашем городе и организовать безопасную пересылку — логистику берём на себя.</p>
+      </details>
+      <details>
+        <summary>Какие опухоли подходят?<span class="pl"></span></summary>
+        <p>Пересмотр применим практически к любым опухолям, где диагноз ставится по гистологии. Молекулярное исследование особенно полезно там, где от мутаций зависит выбор лечения. По вашему случаю подскажем на заявке.</p>
+      </details>
+      <details>
+        <summary>Когда нужен NGS?<span class="pl"></span></summary>
+        <p>Когда выбор лечения зависит от конкретных мутаций опухоли — например, для подбора таргетной терапии или подготовки к клиническому исследованию. Если он не нужен, навязывать не будем.</p>
+      </details>
+      <details>
+        <summary>Кто подписывает заключение?<span class="pl"></span></summary>
+        <p>Два независимых врача-патоморфолога, чьи мнения были согласованы. Молекулярную часть подписывает специалист лаборатории «Геномед». Вы всегда видите, кто отвечает за результат.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORM / WAITLIST ===== -->
+<section class="form-sec" id="form">
+  <div class="wrap">
+    <div class="price reveal">
+      <div class="price__head">
+        <h2>Стоимость</h2>
+        <p>Стоимость координатор рассчитывает индивидуально и называет до оплаты. Назначаются только те исследования, которые действительно нужны в вашем случае.</p>
+      </div>
+      <div class="price__grid">
+        <div class="price__col">
+          <div class="price__label">От чего зависит</div>
+          <ul>
+            <li>нужен только пересмотр стёкол или ещё молекулярные исследования;</li>
+            <li>есть ли готовые стёкла и блоки;</li>
+            <li>какие исследования показаны: ИГХ, FISH, NGS;</li>
+            <li>требуется ли передача материала между регионами;</li>
+            <li>нужен ли забор биопсии.</li>
+          </ul>
+        </div>
+        <div class="price__col">
+          <div class="price__label">Ориентир стоимости</div>
+          <div class="price__rows">
+            <!-- впишите примерные цифры после согласования с лабораторией -->
+            <div class="price__row"><span>Гистологический пересмотр (2 эксперта)</span><b>уточняется</b></div>
+            <div class="price__row"><span>ИГХ</span><b>уточняется</b></div>
+            <div class="price__row"><span>FISH</span><b>уточняется</b></div>
+            <div class="price__row"><span>NGS</span><b>уточняется</b></div>
+          </div>
+          <p class="price__note">Точную стоимость по вашему случаю координатор назовёт до оплаты.</p>
+        </div>
+      </div>
+    </div>
+    <div class="form-shell reveal">
+      <aside class="form-aside">
+        <span class="eyebrow">После заявки</span>
+        <h2>Разберём ваш случай</h2>
+        <p>Оставьте контакт — координатор поможет понять, что именно нужно, и рассчитает стоимость до оплаты. Медицинские данные через форму не передаются.</p>
+        <ol class="form-steps">
+          <li>Координатор связывается с вами.</li>
+          <li>Уточняет, есть ли стёкла или блоки и какие документы уже есть.</li>
+          <li>Подсказывает, какие исследования действительно нужны.</li>
+          <li>Называет предварительные сроки и стоимость — до оплаты.</li>
+          <li>Помогает передать материал и возвращает оригиналы.</li>
+          <li>Вы получаете заключение и можете передать его онкологу.</li>
+        </ol>
+        <div class="form-aside__seq">ATGC·GATTACA·NGS·FISH·HER2·KRAS·BRAF·MSI·EGFR·ALK·TP53·PD-L1·ATGC·GATTACA</div>
+      </aside>
+
+      <form class="form" id="waitlist" novalidate>
+        <div id="formBody">
+          <div class="field">
+            <label class="label" for="fio">Имя <span class="req">*</span></label>
+            <input class="input" type="text" id="fio" name="fio" placeholder="Как к вам обращаться" autocomplete="name">
+            <div class="error" data-for="fio">Укажите имя</div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="contact">Контакт <span class="req">*</span> <span class="hint">телефон, мессенджер или e-mail</span></label>
+            <input class="input" type="text" id="contact" name="contact" placeholder="+7… / @telegram / e-mail" autocomplete="off">
+            <div class="error" data-for="contact">Оставьте способ связи</div>
+          </div>
+
+          <div class="grid2">
+            <div class="field">
+              <label class="label" for="city">Город</label>
+              <input class="input" type="text" id="city" name="city" placeholder="Например, Москва" autocomplete="address-level2">
+            </div>
+            <div class="field">
+              <label class="label">Вы</label>
+              <div class="seg-radio">
+                <label class="rchip"><input type="radio" name="segment" value="patient" checked><span>пациент</span></label>
+                <label class="rchip"><input type="radio" name="segment" value="relative"><span>родственник</span></label>
+                <label class="rchip"><input type="radio" name="segment" value="doctor"><span>врач</span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Есть ли готовые стёкла или блоки?</label>
+            <div class="seg-radio">
+              <label class="rchip"><input type="radio" name="slides" value="да"><span>да</span></label>
+              <label class="rchip"><input type="radio" name="slides" value="нет"><span>нет</span></label>
+              <label class="rchip"><input type="radio" name="slides" value="не знаю" checked><span>не знаю</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Где сейчас материал?</label>
+            <div class="seg-radio">
+              <label class="rchip"><input type="radio" name="location" value="у меня"><span>у меня на руках</span></label>
+              <label class="rchip"><input type="radio" name="location" value="в клинике"><span>в клинике</span></label>
+              <label class="rchip"><input type="radio" name="location" value="в другом городе"><span>в другом городе</span></label>
+              <label class="rchip"><input type="radio" name="location" value="не знаю" checked><span>не знаю</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">С чем помочь? <span class="hint">можно несколько</span></label>
+            <div class="chips" id="interests" role="group" aria-label="С чем помочь">
+              <button type="button" class="mchip" data-val="Перепроверить диагноз"><span class="mchip__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Перепроверить диагноз</button>
+              <button type="button" class="mchip" data-val="Молекулярные исследования"><span class="mchip__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Молекулярные исследования (ИГХ/FISH/NGS)</button>
+              <button type="button" class="mchip" data-val="Понять, что нужно"><span class="mchip__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Понять, что нужно</button>
+              <button type="button" class="mchip" data-val="Передать материал"><span class="mchip__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Передать материал</button>
+              <button type="button" class="mchip" data-val="Забор биопсии"><span class="mchip__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Забор биопсии</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Как удобнее связаться?</label>
+            <div class="seg-radio">
+              <label class="rchip"><input type="radio" name="channel" value="Телефон" checked><span>Телефон</span></label>
+              <label class="rchip"><input type="radio" name="channel" value="WhatsApp"><span>WhatsApp</span></label>
+              <label class="rchip"><input type="radio" name="channel" value="Telegram"><span>Telegram</span></label>
+              <label class="rchip"><input type="radio" name="channel" value="Email"><span>Email</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="consent" for="consent" style="margin-top:0">
+              <input type="checkbox" id="consent" name="consent" value="true">
+              <span>Согласен(на) на обработку персональных данных в целях обратной связи в соответствии с <a href="#privacy">Политикой конфиденциальности</a> (152-ФЗ). <span class="req">*</span></span>
+            </label>
+            <div class="error" data-for="consent">Нужно согласие на обработку данных</div>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn btn--primary btn--lg">Оставить заявку
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <span class="submit-note">Оплата не требуется. Это заявка на консультацию, не запись на процедуру.</span>
+          </div>
+        </div>
+
+        <div class="success" id="success">
+          <div class="success__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Заявка принята</h3>
+          <p>Спасибо. Координатор свяжется с вами, спокойно во всём разберётся и подскажет по срокам и стоимости — до оплаты. Медицинских данных мы не запрашиваем.</p>
+        </div>
+      </form>
+    </div>
+
+    <!-- LEGAL STRIP (обязательно для медрекламы) -->
+    <div class="legal" id="privacy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <b>Имеются противопоказания, необходима консультация специалиста.</b>
+        Страница информационная и не является публичной офертой, медицинским заключением или записью на процедуру; сервис находится в стадии запуска. Медицинские услуги оказываются лицензированной лабораторией Genomed и партнёрами. Персональные данные обрабатываются в целях обратной связи согласно 152-ФЗ; оператор — <span style="font-family:var(--mono)">[указать юрлицо и реквизиты]</span>. Здесь будет ссылка на полную Политику конфиденциальности и согласие на обработку ПДн.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__in">
+      <a class="brand" href="#top" aria-label="На главную">
+        <svg class="brand__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="38" height="38" rx="11" fill="#0057FF"/>
+          <path d="M13 11c0 7 14 11 14 18M27 11c0 7-14 11-14 18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M14.5 15h11M14.5 25h11" stroke="#00C2FF" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span class="brand__txt"><span class="brand__name">Геномед</span><span class="brand__sub">Патоморфология + генетика</span></span>
+      </a>
+      <p class="foot__mid">Гистологический пересмотр биопсии и молекулярные исследования опухоли под лицензированной лабораторией «Геномед».</p>
+      <a class="btn btn--ghost" href="#form">Оставить заявку</a>
+    </div>
+    <div class="foot__bottom">
+      <span>© <span id="yr">2026</span> «Геномед»</span>
+      <span>[юрлицо] · [ИНН] · [лицензия Genomed] · оператор ПДн: [реквизиты]</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.remove('no-js');
+
+  /* multi-select chips */
+  document.querySelectorAll('#interests .mchip').forEach(function(b){
+    b.addEventListener('click', function(){
+      b.classList.toggle('is-on');
+      b.setAttribute('aria-pressed', b.classList.contains('is-on'));
+    });
+  });
+
+  /* burger -> reveal topnav on mobile */
+  var burger = document.getElementById('burger');
+  if (burger){
+    burger.addEventListener('click', function(){
+      var nav = document.querySelector('.topnav');
+      var open = nav.style.display === 'flex';
+      nav.style.display = open ? '' : 'flex';
+      nav.style.cssText += open ? '' : ';position:absolute;left:0;right:0;top:66px;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line-2);padding:8px 24px;z-index:60';
+    });
+  }
+
+  /* reveal on scroll */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* sticky subnav active state */
+  var navLinks = [].slice.call(document.querySelectorAll('.subnav a[data-nav]'));
+  var targets = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        navLinks.forEach(function(a){ a.classList.toggle('is-active', a.getAttribute('href') === '#'+e.target.id); });
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  targets.forEach(function(t){ spy.observe(t); });
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* live marker ticker in hero console */
+  (function(){
+    var items = [].slice.call(document.querySelectorAll('#markers li'));
+    if(!items.length) return;
+    function settle(li){ li.classList.add('is-done'); li.querySelector('em').textContent = li.dataset.res; }
+    if(reduceMotion){ items.forEach(settle); return; }
+    var dots = ['·','··','···'], di = 0;
+    var pulse = setInterval(function(){
+      di = (di+1) % dots.length;
+      items.forEach(function(li){ if(!li.classList.contains('is-done')) li.querySelector('em').textContent = 'анализ'+dots[di]; });
+    }, 380);
+    function run(){
+      items.forEach(function(li){ li.classList.remove('is-done'); li.querySelector('em').textContent='анализ·'; });
+      items.forEach(function(li,i){ setTimeout(function(){ settle(li); }, 900 + i*820); });
+    }
+    run();
+    setInterval(run, 900 + items.length*820 + 4200);
+  })();
+
+  /* count-up numbers in stats */
+  (function(){
+    var box = document.getElementById('stats');
+    if(!box) return;
+    var nums = [].slice.call(box.querySelectorAll('[data-num]'));
+    function fmt(n){ return n >= 1000 ? n.toLocaleString('ru-RU') : String(n); }
+    function render(el, n){ el.textContent = el.dataset.tpl.replace('{n}', fmt(n)); }
+    if(reduceMotion){ nums.forEach(function(el){ render(el, +el.dataset.num); }); return; }
+    nums.forEach(function(el){ render(el, 0); });
+    var started = false;
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting && !started){
+          started = true;
+          nums.forEach(function(el){
+            var to = +el.dataset.num, dur = 1200, t0 = null;
+            function tick(ts){
+              if(!t0) t0 = ts;
+              var p = Math.min(1, (ts - t0) / dur);
+              var eased = 1 - Math.pow(1 - p, 3);
+              render(el, Math.round(to * eased));
+              if(p < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+          });
+          io2.disconnect();
+        }
+      });
+    }, {threshold:.4});
+    io2.observe(box);
+  })();
+
+  /* form submit — SMOKE TEST: собрать лид, показать успех */
+  var LEAD_ENDPOINT = ''; // <-- задать URL приёма лида (POST application/json). Пусто = только показать успех.
+  var form = document.getElementById('waitlist');
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var fio = form.fio.value.trim();
+    var contact = form.contact.value.trim();
+    var consent = form.consent.checked;
+    var ok = true;
+    function mark(name, bad){
+      var el = form.querySelector('.error[data-for="'+name+'"]');
+      if(el) el.classList.toggle('is-shown', bad);
+      if(bad) ok = false;
+    }
+    mark('fio', !fio);
+    mark('contact', !contact);
+    mark('consent', !consent);
+    if(!ok) return;
+
+    var payload = {
+      fio: fio,
+      contact: contact,
+      city: form.city.value.trim(),
+      role: (form.querySelector('input[name=segment]:checked')||{}).value || '',
+      slides: (form.querySelector('input[name=slides]:checked')||{}).value || '',
+      location: (form.querySelector('input[name=location]:checked')||{}).value || '',
+      need: [].slice.call(document.querySelectorAll('#interests .mchip.is-on')).map(function(b){ return b.dataset.val; }),
+      channel: (form.querySelector('input[name=channel]:checked')||{}).value || '',
+      consent: consent,
+      source: 'Заявка / разбор случая',
+      ts: new Date().toISOString()
+    };
+
+    function done(){
+      document.getElementById('formBody').style.display = 'none';
+      var s = document.getElementById('success');
+      s.classList.add('is-shown');
+      s.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+
+    if(LEAD_ENDPOINT){
+      fetch(LEAD_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)})
+        .then(done).catch(function(){ console.warn('lead send failed', payload); done(); });
+    } else {
+      console.log('[SMOKE-TEST LEAD]', payload); // временно: подключите LEAD_ENDPOINT
+      done();
+    }
+  });
+</script>
+</body>
+</html>
