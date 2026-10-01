@@ -1,0 +1,615 @@
+<!--
+  © Варвара Юхина, дизайн-система лендингов Геномед (макет «Партнёрам — медицинским центрам», v2).
+  Дата создания: 2026-10-01. Все права на макет и дизайн-систему принадлежат автору;
+  использование без письменного разрешения автора не допускается.
+-->
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Партнёрам — Геномед</title>
+<meta name="description" content="Подключение медицинского центра к лаборатории Геномед: до 3 дней от запроса до договора, персональный менеджер, чат поддержки 24/7, забор биоматериала по России и СНГ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F8FE; --bg-card:#FFFFFF; --bg-deep:#0A2540; --bg-deep-2:#102A4C;
+  --ink:#0A2540; --ink-2:#2E4A6B; --muted:#6E839C;
+  --line:#D8E4F2; --line-soft:#ECF2FB;
+  --blue:#0057FF; --blue-2:#0046CC; --cyan:#00C2FF; --cyan-soft:#B8ECFF; --teal:#00A8B5;
+  --accent-soft:#E6F0FF;
+  --ok:#1AA06D; --ok-soft:#E4F7EF;
+  --shadow-sm:0 1px 2px rgba(10,37,64,.04),0 2px 8px rgba(10,37,64,.04);
+  --shadow-md:0 8px 24px rgba(10,37,64,.08);
+  --shadow-lg:0 24px 64px rgba(10,37,64,.12);
+  --r-sm:8px; --r-md:16px; --r-lg:24px; --r-xl:32px;
+  --disp:"Gilroy","Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body:"Gilroy","Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --maxw:1160px;
+  /* шапка основного сайта genomed.ru */
+  --site-cyan:#009FE3; --site-menu:#555;
+  /* z-шкала: подложка 1 · выпадающее меню 70 */
+  --z-base:1; --z-drop:70;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:500;
+  font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-wrap:break-word}
+img{max-width:100%;display:block} a{color:inherit;text-decoration:none}
+p{text-wrap:pretty}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:3px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
+@media(max-width:560px){.wrap{padding-inline:16px}}
+section{padding-block:clamp(3rem,6vw,5rem)}
+.mono{font-family:var(--mono);font-feature-settings:"tnum"1,"zero"1;letter-spacing:-.01em}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+h1,h2,h3{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.4rem,5.4vw,4.2rem)}
+h2{font-size:clamp(32px,4vw,52px);margin:0 0 18px}
+h1 em,h2 em{font-style:normal;color:var(--blue)}
+.lead{color:var(--ink-2);font-size:clamp(1rem,1.5vw,1.15rem);max-width:58ch;margin:1.1rem 0 0}
+
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--line);
+  border-radius:100px;font-size:13px;font-weight:700;letter-spacing:-.01em;background:#fff;margin:0 0 22px}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue);
+  box-shadow:0 0 0 4px rgba(0,87,255,.15);animation:pulse 2s infinite;flex:none}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(0,87,255,.15)}50%{box-shadow:0 0 0 7px rgba(0,87,255,.05)}}
+.section-eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--blue);margin-bottom:18px}
+.section-head{max-width:760px;margin-bottom:clamp(2rem,4vw,3rem)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-feature-settings:"tnum"1;font-weight:700;font-size:.74rem;
+  padding:.3rem .65rem;border-radius:100px;white-space:nowrap}
+.pill--blue{background:var(--accent-soft);color:var(--blue)}
+
+/* кнопки */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:100px;
+  font-weight:700;font-size:15px;letter-spacing:-.01em;border:none;cursor:pointer;transition:background-color .2s,transform .2s;font-family:inherit;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn svg.i{width:18px;height:18px}
+.btn--primary{background:var(--bg-deep);color:#fff;position:relative;overflow:hidden;isolation:isolate}
+.btn--primary::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(135deg,var(--blue),var(--cyan) 120%);opacity:0;transition:opacity .2s ease-out}
+.btn--primary:hover::before{opacity:1}
+.btn--secondary{background:var(--accent-soft);color:var(--ink)}
+.btn--secondary:hover{background:#D6E6FF}
+.btn--blue{background:var(--blue);color:#fff}
+.btn--blue:hover{background:var(--blue-2)}
+
+/* ── шапка: копия шапки основного сайта genomed.ru ── */
+.site-header{background:#fff;border-bottom:1px solid #E6E9EE;padding-top:env(safe-area-inset-top,0px);position:relative;z-index:var(--z-drop)}
+.site-header__row{max-width:1320px;margin-inline:auto;padding:14px 24px;display:flex;align-items:center;gap:2rem}
+.site-logo img{height:84px;width:auto}
+.site-header__center{flex:1;display:flex;flex-direction:column;align-items:center;gap:.55rem;min-width:0}
+.site-tagline{margin:0;color:var(--site-cyan);font-size:17px;font-weight:600;text-align:center}
+.site-menu{display:flex;align-items:center;gap:clamp(2rem,5vw,5rem)}
+.site-menu>a,.site-more summary{text-transform:uppercase;font-weight:700;font-size:17px;color:var(--site-menu);white-space:nowrap;cursor:pointer;transition:color .15s}
+.site-menu>a:hover,.site-more summary:hover{color:var(--site-cyan)}
+.site-more{position:relative}
+.site-more summary{list-style:none}
+.site-more summary::-webkit-details-marker{display:none}
+.site-more__panel,.site-burger__panel{position:absolute;top:calc(100% + 14px);right:0;min-width:240px;background:#fff;border:1px solid #ddd;border-radius:10px;
+  box-shadow:var(--shadow-md);padding:.6rem;display:grid}
+.site-more__panel a,.site-burger__panel a{padding:.55rem .8rem;border-radius:8px;font-size:15px;font-weight:600;color:#333}
+.site-more__panel a:hover,.site-burger__panel a:hover{background:var(--bg);color:var(--site-cyan)}
+.site-header__right{display:flex;flex-direction:column;align-items:center;gap:.25rem;flex:none}
+.site-social{display:flex;align-items:center;gap:10px;margin-bottom:.2rem}
+.site-social a{display:block;width:30px;height:30px}
+.site-social svg{width:30px;height:30px;display:block}
+.site-service{font-weight:700;font-size:16px;color:#222}
+.site-phone{font-weight:700;font-size:17px;color:#1E88E5;letter-spacing:.02em}
+.site-service:hover,.site-phone:hover{color:var(--site-cyan)}
+.site-burger{display:none;position:relative}
+.site-burger summary{list-style:none;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;color:#222}
+.site-burger summary::-webkit-details-marker{display:none}
+.site-burger summary svg{width:34px;height:34px;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;fill:none}
+@media(max-width:1100px){
+  .site-header__center{display:none}
+  .site-header__right{margin-left:auto}
+  .site-burger{display:block}
+}
+@media(max-width:560px){
+  .site-header__row{padding:10px 16px;gap:.8rem}
+  .site-logo img{height:56px}
+  .site-social a,.site-social svg{width:26px;height:26px}
+  .site-service{font-size:13px} .site-phone{font-size:14px}
+}
+@media(max-width:400px){.site-header__row{gap:.4rem;padding-inline:12px}.site-logo img{height:46px}.site-social{gap:7px}.site-burger summary{width:38px}}
+
+/* ── hero: центр + анимированный путь на фоне ── */
+.hero{position:relative;overflow:hidden;text-align:center;padding:clamp(3rem,7vw,5.5rem) 0 clamp(3rem,6vw,4.5rem);
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 85%,rgba(0,194,255,.13),transparent 70%),
+    radial-gradient(ellipse 40% 50% at 10% 10%,rgba(0,87,255,.07),transparent 70%),
+    linear-gradient(180deg,#fff,var(--bg))}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(0,87,255,.13) 1px,transparent 1.2px);background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 70%,#000,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 70%,#000,transparent 75%)}
+.hero>*{position:relative;z-index:var(--z-base)}
+.hero h1{max-width:17ch;margin-inline:auto}
+.hero .lead{margin-inline:auto}
+.hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin-top:2rem}
+
+.route{position:relative;display:grid;grid-template-columns:repeat(3,1fr);max-width:900px;margin:clamp(3rem,6vw,4.5rem) auto 0;--st:84px}
+.route__rail{position:absolute;left:16.667%;right:16.667%;top:calc(var(--st)/2 - 2px);height:4px;border-radius:100px;
+  background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 14px)}
+.route__fill{position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,var(--blue),var(--cyan));
+  transform-origin:left;transform:scaleX(1);animation:fill 7.5s infinite}
+.route__run{position:absolute;inset:0;opacity:0;animation:run 7.5s infinite}
+.route__run::after{content:"";position:absolute;left:-8px;top:-6px;width:16px;height:16px;border-radius:50%;background:#fff;
+  border:4px solid var(--cyan);box-shadow:0 0 0 6px rgba(0,194,255,.18),0 0 22px rgba(0,194,255,.75)}
+.station{display:flex;flex-direction:column;align-items:center;gap:.4rem;min-width:0;padding-inline:.4rem}
+.st-ic{position:relative;width:var(--st);height:var(--st);border-radius:50%;display:grid;place-items:center;background:#fff;
+  border:1px solid var(--line);box-shadow:var(--shadow-md);color:#9DB6DA;margin-bottom:.6rem}
+.st-ic>svg.i{width:34px;height:34px}
+.st-on{position:absolute;inset:-1px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 12px 30px rgba(0,87,255,.3)}
+.st-on svg.i{width:34px;height:34px}
+.st-ring{position:absolute;inset:-1px;border-radius:50%;border:2px solid var(--cyan);opacity:0}
+.st-mini{position:absolute;right:-6px;bottom:-4px;width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--blue);box-shadow:var(--shadow-sm);z-index:2}
+.st-mini svg.i{width:16px;height:16px}
+.station b{font-weight:800;font-size:1rem;letter-spacing:-.02em;line-height:1.2}
+.station small{color:var(--muted);font-size:.84rem;font-weight:600}
+.s1 .st-on{animation:on1 7.5s infinite} .s2 .st-on{animation:on2 7.5s infinite} .s3 .st-on{animation:on3 7.5s infinite}
+.s2 .st-ring{animation:ring2 7.5s infinite} .s3 .st-ring{animation:ring3 7.5s infinite}
+@keyframes fill{0%,8%{transform:scaleX(0);opacity:1}36%,44%{transform:scaleX(.5)}70%,88%{transform:scaleX(1);opacity:1}96%{transform:scaleX(1);opacity:0}100%{transform:scaleX(0);opacity:0}}
+@keyframes run{0%,6%{transform:translateX(0);opacity:0}9%{opacity:1}36%,44%{transform:translateX(50%)}70%{transform:translateX(100%);opacity:1}76%,100%{transform:translateX(100%);opacity:0}}
+@keyframes on1{0%{opacity:0;transform:scale(.6)}5%,88%{opacity:1;transform:scale(1)}96%,100%{opacity:0;transform:scale(1)}}
+@keyframes on2{0%,34%{opacity:0;transform:scale(.6)}39%,88%{opacity:1;transform:scale(1)}96%,100%{opacity:0;transform:scale(1)}}
+@keyframes on3{0%,68%{opacity:0;transform:scale(.6)}73%,88%{opacity:1;transform:scale(1)}96%,100%{opacity:0;transform:scale(1)}}
+@keyframes ring2{0%,37%{opacity:0;transform:scale(1)}40%{opacity:.8}55%,100%{opacity:0;transform:scale(1.7)}}
+@keyframes ring3{0%,71%{opacity:0;transform:scale(1)}74%{opacity:.8}89%,100%{opacity:0;transform:scale(1.7)}}
+@media(max-width:640px){
+  .route{--st:62px}
+  .st-ic>svg.i,.st-on svg.i{width:26px;height:26px}
+  .st-mini{width:26px;height:26px;right:-8px}
+  .st-mini svg.i{width:13px;height:13px}
+  .station b{font-size:.84rem} .station small{font-size:.74rem}
+}
+
+/* о лаборатории */
+.about__head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:end;margin-bottom:clamp(2rem,4vw,2.8rem)}
+.about__head>*{min-width:0}
+.about__head h2{margin:0}
+.about__head .lead{margin:0}
+.methods{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
+@media(max-width:860px){.about__head{grid-template-columns:1fr}}
+.bento{display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:1.1rem}
+.tile{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.5rem;box-shadow:var(--shadow-sm);
+  min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:1.2rem}
+.tile__n{font-family:var(--mono);font-feature-settings:"tnum"1,"zero"1;font-weight:700;font-size:clamp(1.7rem,2.8vw,2.4rem);line-height:1;color:var(--blue);letter-spacing:-.03em;white-space:nowrap}
+.tile p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.45}
+.tile p b{color:var(--ink);font-weight:800}
+.tile.deep{grid-row:span 2;border:0;border-radius:var(--r-lg);padding:clamp(1.6rem,3vw,2.2rem)}
+.tile.deep .big{font-size:clamp(3.5rem,5.5vw,5.2rem)}
+.tile.deep p{color:#CFE0FF;font-size:1.05rem;max-width:26ch}
+.tile.deep a{display:inline-flex;align-items:center;gap:.5rem;color:var(--cyan);font-weight:700;font-size:.95rem}
+.tile.deep a svg.i{width:18px;height:18px;transition:transform .2s ease-out}
+.tile.deep a:hover svg.i{transform:translateX(3px)}
+@media(max-width:1000px){.bento{grid-template-columns:repeat(3,1fr)}.tile.deep{grid-row:auto;grid-column:1/-1}}
+@media(max-width:700px){.bento{grid-template-columns:1fr 1fr}}
+
+/* что получает партнёр */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+@media(max-width:820px){.cards{grid-template-columns:1fr}}
+.fcard{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.7rem;box-shadow:var(--shadow-sm);min-width:0}
+.badge{width:48px;height:48px;border-radius:var(--r-md);display:grid;place-items:center;background:var(--accent-soft);color:var(--blue);margin-bottom:1.3rem}
+.fcard h3{font-size:1.22rem;margin:0 0 .55rem}
+.fcard p{color:var(--muted);font-size:.96rem;margin:0}
+
+/* подключение — тёмная секция */
+.deep{position:relative;overflow:hidden;background:var(--bg-deep);color:#fff;border-radius:var(--r-xl);padding:clamp(1.8rem,5vw,3.5rem)}
+.deep::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at top right,rgba(0,194,255,.15),transparent 60%),radial-gradient(ellipse at bottom left,rgba(0,87,255,.2),transparent 60%)}
+.deep>*{position:relative;z-index:var(--z-base)}
+.deep .section-eyebrow{color:var(--cyan)}
+.deep h2{color:#fff} .deep h2 em{color:var(--cyan)}
+.deep p{color:#CFE0FF}
+.speed{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.5rem,5vw,4rem);align-items:center;margin-bottom:clamp(2rem,4vw,3rem)}
+.speed>*{min-width:0}
+.big{font-family:var(--disp);font-weight:900;font-size:clamp(5.5rem,13vw,10rem);line-height:.8;letter-spacing:-.05em;color:var(--cyan);display:flex;align-items:flex-start;gap:.15em}
+.big small{font-size:.24em;letter-spacing:-.02em;line-height:1.05;color:#fff;font-weight:800;margin-top:.35em}
+.speed h2{margin-bottom:.7rem}
+.speed p{margin:0;max-width:52ch;font-size:1.05rem}
+@media(max-width:700px){.speed{grid-template-columns:1fr}}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;list-style:none;margin:0;padding:0}
+.flow li{min-width:0;padding:1.3rem 1.25rem 1.4rem;border-radius:var(--r-md);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.flow li:last-child{background:rgba(0,194,255,.1);border-color:rgba(0,194,255,.35)}
+.flow .n{font-family:var(--mono);font-weight:700;font-size:.85rem;color:var(--cyan)}
+.flow h3{font-size:1.08rem;color:#fff;margin:.7rem 0 .45rem;letter-spacing:-.02em}
+.flow p{font-size:.88rem;margin:0;color:#B9CCE6}
+@media(max-width:900px){.flow{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.flow{grid-template-columns:1fr}}
+
+/* документы, логистика, реквизиты */
+.duo{display:grid;grid-template-columns:1fr 1.15fr;gap:1.1rem}
+.duo>*{min-width:0}
+@media(max-width:860px){.duo{grid-template-columns:1fr}}
+.duo .fcard{padding:clamp(1.5rem,3vw,2.2rem)}
+.duo h3,.req h3{font-size:1.45rem;margin-bottom:1.3rem}
+.doc{display:flex;gap:1rem;align-items:flex-start;padding:1.05rem 0;border-top:1px solid var(--line-soft)}
+.doc:first-of-type{border-top:0;padding-top:0}
+.doc .badge{margin:0;width:44px;height:44px}
+.doc b{display:block;font-size:1.02rem;font-weight:800}
+.doc>div>span{display:block;color:var(--muted);font-size:.9rem;margin-top:.15rem}
+.note{display:flex;gap:.6rem;align-items:center;margin-top:1.1rem;padding:.8rem 1rem;border-radius:var(--r-md);background:var(--ok-soft);color:#11704C;font-size:.9rem;font-weight:600}
+.note svg.i{width:18px;height:18px}
+.lroute{display:grid;grid-template-columns:auto 1fr auto 1fr auto;align-items:center;gap:.6rem;margin:.4rem 0 1.4rem}
+.node{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;font-size:.8rem;font-weight:700;color:var(--ink-2);line-height:1.2;max-width:96px}
+.node .badge{margin:0;width:56px;height:56px;border-radius:18px}
+.node--lab .badge{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff}
+.link{height:2px;background:repeating-linear-gradient(90deg,var(--blue) 0 6px,transparent 6px 12px);opacity:.45;margin-bottom:1.6rem}
+.geo{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.geo .pill{font-size:.78rem;padding:.4rem .8rem}
+.fcard p.muted{color:var(--muted);font-size:.95rem;margin:0}
+@media(max-width:520px){.lroute{gap:.4rem}.node{font-size:.74rem;max-width:80px}.node .badge{width:48px;height:48px;border-radius:14px}}
+.req{margin-top:1.1rem;padding:clamp(1.5rem,3vw,2.2rem)}
+.req__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:1rem 2rem;margin-bottom:1.4rem}
+.req__head h3{margin-bottom:.35rem}
+.req__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0 2rem;margin:0}
+.req__grid>div{padding:.85rem 0;border-top:1px solid var(--line-soft);min-width:0}
+.req__grid dt{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
+.req__grid dd{margin:0;font-size:.95rem;font-weight:600;color:var(--ink)}
+.req__grid dd.mono{font-size:.92rem}
+.req__grid .wide{grid-column:span 2}
+@media(max-width:900px){.req__grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.req__grid{grid-template-columns:1fr}.req__grid .wide{grid-column:auto}}
+
+/* CTA */
+.cta{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,5vw,4rem);align-items:center}
+.cta>*{min-width:0}
+@media(max-width:860px){.cta{grid-template-columns:1fr}}
+.cta h2{margin-bottom:.8rem}
+.cta p{margin:0;max-width:46ch}
+.phone{display:inline-flex;align-items:center;gap:.7rem;margin-top:1.6rem;color:#fff;font-weight:700}
+.phone .mono{font-size:1.2rem}
+.phone small{display:block;color:#93A9C8;font-size:.78rem;font-weight:600}
+.phone svg.i{color:var(--cyan)}
+form{display:grid;gap:.75rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);padding:clamp(1.2rem,3vw,1.6rem)}
+label{display:grid;gap:.35rem;font-size:.8rem;font-weight:700;color:#B9CCE6}
+input{font:inherit;font-size:16px;font-weight:600;color:#fff;background:rgba(10,37,64,.55);border:1px solid rgba(255,255,255,.18);
+  border-radius:12px;padding:.85rem 1rem;width:100%;transition:border-color .15s}
+input::placeholder{color:#6F88AA}
+input:focus{outline:none;border-color:var(--cyan)}
+form .btn{justify-content:center;margin-top:.3rem}
+.consent{font-size:.74rem;color:#8EA3C2;line-height:1.4;margin:0}
+.consent a{text-decoration:underline;text-underline-offset:2px}
+
+/* ── расширенный подвал (как на лендинге MEMA) ── */
+.site-footer{background:var(--bg-deep);color:#B9C9DC;padding:clamp(3rem,6vw,4.2rem) 0 calc(1.8rem + env(safe-area-inset-bottom,0px));font-size:.94rem}
+.footer-grid{display:grid;grid-template-columns:1.3fr .9fr .9fr 1fr;gap:2.4rem}
+.footer-grid>*{min-width:0}
+.footer-logo{display:inline-block;background:#fff;border-radius:var(--r-md);padding:8px 14px}
+.footer-logo img{height:44px;width:auto}
+.footer-brand p{margin:1rem 0 1.2rem;line-height:1.5;max-width:30ch}
+.site-footer h3{color:#fff;font-size:.9rem;letter-spacing:-.01em;margin:0 0 .9rem}
+.site-footer nav a,.footer-contacts a{display:block;color:#DCE8F5;margin:.5rem 0}
+.site-footer nav a:hover,.footer-contacts a:hover{color:var(--cyan)}
+.footer-contacts .mono{font-size:1.05rem;color:#fff}
+.footer-contacts small{display:block;color:#8EA3C2;font-size:.78rem;margin-top:-.35rem}
+.footer-legal{margin-top:2.6rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12);font-size:.78rem;line-height:1.55;color:#8EA3C2}
+.footer-legal p{margin:.3rem 0}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem 1.5rem}.footer-brand{grid-column:1/-1}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .eyebrow::before,.route__fill,.route__run,.st-on,.st-ring{animation:none}
+  .btn,.btn--primary::before{transition:none}
+}
+</style>
+</head>
+<body id="top">
+
+<header class="site-header">
+  <div class="site-header__row">
+    <a class="site-logo" href="https://genomed.ru/" aria-label="Геномед — на главную"><img src="data:image/png;base64,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" alt="Геномед" width="184" height="93"></a>
+    <div class="site-header__center">
+      <p class="site-tagline">Диагностика генетических заболеваний быстро и&nbsp;точно</p>
+      <nav class="site-menu" aria-label="Основное меню">
+        <a href="https://price.genomed.ru/">Услуги и цены</a>
+        <a href="https://genomed.ru/gde-sdat-test/">Где сдать тест</a>
+        <a href="https://price.genomed.ru/doctor/index">Врачи</a>
+        <details class="site-more">
+          <summary>Ещё</summary>
+          <div class="site-more__panel">
+            <a href="https://genomed.ru/about/">О&nbsp;нас</a>
+            <a href="https://genomed.ru/partners/">Партнёрам</a>
+            <a href="https://genomed.ru/vracham/">Врачам</a>
+            <a href="https://genomed.ru/career/vakansii/">Карьера в&nbsp;Геномед</a>
+            <a href="https://genomed.ru/yuridicheskij-adres-i-rekvizity/">Правовая информация</a>
+          </div>
+        </details>
+      </nav>
+    </div>
+    <div class="site-header__right">
+      <div class="site-social">
+        <a href="https://max.ru/id7701759381_bot" target="_blank" rel="noopener" aria-label="Написать в Max"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAydpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMS1jMDAxIDc5LjE0NjI4OTk3NzcsIDIwMjMvMDYvMjUtMjM6NTc6MTQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjM2OUI0NjQzRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjM2OUI0NjQyRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNS4wIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkM4MUVGMzU2Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkM4MUVGMzU3Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+PnVEWAAAB3lJREFUeNqc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" alt="" width="30" height="30"></a>
+        <a href="https://wa.me/74956608377" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+        <a href="https://t.me/genomed_b2c_bot" target="_blank" rel="noopener" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#27A7E8" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      </div>
+      <a class="site-service" href="https://genomed.ru/klientskij-servis-24-7/">Клиентский сервис 24/7</a>
+      <a class="site-phone" href="tel:84956608377">8 (495) 660-83-77</a>
+    </div>
+    <details class="site-burger">
+      <summary aria-label="Открыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></summary>
+      <nav class="site-burger__panel" aria-label="Меню">
+        <a href="https://price.genomed.ru/">Услуги и цены</a>
+        <a href="https://genomed.ru/gde-sdat-test/">Где сдать тест</a>
+        <a href="https://price.genomed.ru/doctor/index">Врачи</a>
+        <a href="https://genomed.ru/about/">О&nbsp;нас</a>
+        <a href="https://genomed.ru/partners/">Партнёрам</a>
+        <a href="https://genomed.ru/vracham/">Врачам</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Для медицинских центров и&nbsp;клиник</p>
+    <h1>Подключим вашу клинику к&nbsp;лаборатории Геномед <em>за&nbsp;3&nbsp;дня</em></h1>
+    <p class="lead">800+ генетических исследований для ваших пациентов, персональный менеджер и&nbsp;чат поддержки, который отвечает круглосуточно. Биоматериал забираем сами&nbsp;— по&nbsp;всей России и&nbsp;в&nbsp;странах СНГ.</p>
+    <div class="hero-cta">
+      <a class="btn btn--primary" href="#request"><span>Запросить КП</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="btn btn--secondary" href="#start">Как проходит подключение</a>
+    </div>
+
+    <div class="route" aria-hidden="true">
+      <div class="route__rail"><i class="route__fill"></i><i class="route__run"></i></div>
+      <div class="station s1">
+        <span class="st-ic">
+          <svg class="i" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span class="st-on"><svg class="i" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+          <span class="st-mini"><svg class="i" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        </span>
+        <b>Письмо или звонок</b><small>запрос КП</small>
+      </div>
+      <div class="station s2">
+        <span class="st-ic">
+          <svg class="i" viewBox="0 0 24 24"><path d="M20 19.5v.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8.5L18 5.5"/><path d="M8 18h1"/><path d="M18.42 9.61a2.1 2.1 0 1 1 2.97 2.97L16.95 17 13 18l.99-3.95 4.43-4.44Z"/></svg>
+          <span class="st-on"><svg class="i" viewBox="0 0 24 24"><path d="M20 19.5v.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8.5L18 5.5"/><path d="M8 18h1"/><path d="M18.42 9.61a2.1 2.1 0 1 1 2.97 2.97L16.95 17 13 18l.99-3.95 4.43-4.44Z"/></svg></span>
+          <span class="st-ring"></span>
+        </span>
+        <b>Договор</b><small>до&nbsp;3&nbsp;дней</small>
+      </div>
+      <div class="station s3">
+        <span class="st-ic">
+          <svg class="i" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          <span class="st-on"><svg class="i" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></span>
+          <span class="st-ring"></span>
+        </span>
+        <b>Забор биоматериала</b><small>Россия и&nbsp;СНГ</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about__head">
+      <div>
+        <span class="section-eyebrow">О&nbsp;лаборатории</span>
+        <h2>С&nbsp;нами уже работают <em>500+ клиник</em></h2>
+      </div>
+      <div>
+        <p class="lead">Геномед на&nbsp;рынке с&nbsp;2007 года. В&nbsp;собственной лаборатории работаем с&nbsp;секвенированием нового поколения, хромосомным микроматричным анализом, FISH и&nbsp;ПЦР, а&nbsp;по&nbsp;ряду исследований сотрудничаем с&nbsp;мировыми лидерами молекулярной диагностики.</p>
+        <div class="methods" aria-label="Методы лаборатории"><span class="pill pill--blue">NGS</span><span class="pill pill--blue">ХМА</span><span class="pill pill--blue">FISH</span><span class="pill pill--blue">ПЦР</span><span class="pill pill--blue">таргетное секвенирование</span></div>
+      </div>
+    </div>
+    <div class="bento">
+      <article class="tile deep">
+        <div class="big">500+</div>
+        <div>
+          <p>клиник-партнёров уже работают с&nbsp;лабораторией Геномед</p>
+          <p style="margin-top:1.2rem"><a href="#request">Стать партнёром<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p>
+        </div>
+      </article>
+      <article class="tile"><div class="tile__n">2007</div><p><b>Год основания.</b> Почти два десятилетия в&nbsp;генетической диагностике</p></article>
+      <article class="tile"><div class="tile__n">800+</div><p><b>Генетических исследований</b> в&nbsp;каталоге для ваших пациентов</p></article>
+      <article class="tile"><div class="tile__n">40</div><p><b>Городов России</b> с&nbsp;медицинскими офисами Геномед</p></article>
+      <article class="tile"><div class="tile__n">2000</div><p><b>м² лабораторных площадей</b> с&nbsp;современным оборудованием</p></article>
+      <article class="tile"><div class="tile__n">300+</div><p><b>Врачей-генетиков и&nbsp;онкологов</b> сотрудничают с&nbsp;лабораторией</p></article>
+      <article class="tile"><div class="tile__n">ISO&nbsp;15189</div><p><b>Стандарт качества.</b> Соответствие ISO&nbsp;15189:2022 и&nbsp;ГОСТ&nbsp;Р&nbsp;ИСО&nbsp;15189-2024</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="offer" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">Что получает партнёр</span>
+      <h2>Условия под вашу клинику и&nbsp;<em>свой человек</em> в&nbsp;лаборатории</h2>
+    </div>
+    <div class="cards">
+      <article class="fcard">
+        <span class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span>
+        <h3>Коммерческое предложение</h3>
+        <p>Условия сотрудничества собираем под профиль вашей клиники и&nbsp;согласовываем с&nbsp;вами до&nbsp;подписания договора.</p>
+      </article>
+      <article class="fcard">
+        <span class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></span>
+        <h3>Персональный менеджер</h3>
+        <p>За&nbsp;клиникой закрепляется курирующий менеджер, который сопровождает вас с&nbsp;самого начала работы.</p>
+      </article>
+      <article class="fcard">
+        <span class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+        <h3>Чат поддержки 24/7</h3>
+        <p>Вопрос по&nbsp;заказу, образцу или результату можно задать в&nbsp;любое время, включая ночь и&nbsp;выходные.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="start" style="padding-top:0">
+  <div class="wrap">
+    <div class="deep">
+      <div class="speed">
+        <div class="big" aria-hidden="true">3<small>дня<br>максимум</small></div>
+        <div>
+          <span class="section-eyebrow">Подключение</span>
+          <h2>От&nbsp;запроса до&nbsp;договора&nbsp;— <em>не&nbsp;больше трёх дней</em></h2>
+          <p>Четыре шага, и&nbsp;на&nbsp;каждом рядом менеджер. После подписания договора клиника сразу начинает работу.</p>
+        </div>
+      </div>
+      <ol class="flow">
+        <li><span class="n">01</span><h3>Запрос КП</h3><p>Оставляете заявку на&nbsp;этой странице или звоните на&nbsp;горячую линию.</p></li>
+        <li><span class="n">02</span><h3>Согласование условий</h3><p>Менеджер присылает коммерческое предложение и&nbsp;обсуждает с&nbsp;вами условия.</p></li>
+        <li><span class="n">03</span><h3>Договор</h3><p>Подписываем договор. Из&nbsp;документов нужны только лицензия и&nbsp;карточка организации.</p></li>
+        <li><span class="n">04</span><h3>Старт работы</h3><p>Клиника направляет пациентов на&nbsp;исследования, мы&nbsp;забираем биоматериал.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="docs" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">Документы и&nbsp;логистика</span>
+      <h2>Минимум бумаг, <em>забор по&nbsp;России и&nbsp;СНГ</em></h2>
+    </div>
+    <div class="duo">
+      <article class="fcard">
+        <h3>От&nbsp;клиники нужны</h3>
+        <div class="doc">
+          <span class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <div><b>Медицинская лицензия</b><span>лицензия клиники на&nbsp;медицинскую деятельность</span></div>
+        </div>
+        <div class="doc">
+          <span class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>
+          <div><b>Карточка организации</b><span>реквизиты юридического лица</span></div>
+        </div>
+        <div class="note"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Других документов для подключения не&nbsp;требуется</div>
+      </article>
+
+      <article class="fcard">
+        <h3>Забираем биоматериал сами</h3>
+        <div class="lroute" aria-hidden="true">
+          <div class="node"><span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M12 6v4"/><path d="M14 14h-4"/><path d="M14 18h-4"/><path d="M14 8h-4"/><path d="M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h2"/><path d="M18 22V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18"/></svg></span>Ваша клиника</div>
+          <div class="link"></div>
+          <div class="node"><span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></span>Курьер</div>
+          <div class="link"></div>
+          <div class="node node--lab"><span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span>Лаборатория Геномед</div>
+        </div>
+        <div class="geo"><span class="pill pill--blue">Вся Россия</span><span class="pill pill--blue">Страны СНГ</span></div>
+        <p class="muted">Курьер приезжает за&nbsp;образцами в&nbsp;клинику и&nbsp;доставляет их&nbsp;в&nbsp;лабораторию. Сроки доставки из&nbsp;вашего города менеджер назовёт на&nbsp;этапе согласования условий.</p>
+      </article>
+    </div>
+
+    <article class="fcard req" id="requisites">
+      <div class="req__head">
+        <div><h3>Карточка организации Геномед</h3><p class="muted">Реквизиты для договора и&nbsp;закрывающих документов</p></div>
+        <button class="btn btn--secondary" type="button" id="copy-req" aria-live="polite">Скопировать реквизиты</button>
+      </div>
+      <dl class="req__grid">
+        <div class="wide"><dt>Полное наименование</dt><dd>Общество с&nbsp;ограниченной ответственностью «ГЕНОМЕД»</dd></div>
+        <div><dt>Краткое наименование</dt><dd>ООО «ГЕНОМЕД»</dd></div>
+        <div><dt>ИНН</dt><dd class="mono">7701759381</dd></div>
+        <div><dt>КПП</dt><dd class="mono">770101001</dd></div>
+        <div><dt>ОГРН</dt><dd class="mono">1077763509977</dd></div>
+        <div class="wide"><dt>Юридический адрес</dt><dd>105005, г.&nbsp;Москва, ул.&nbsp;Бауманская, дом №&nbsp;50/12, стр.&nbsp;1</dd></div>
+        <div><dt>Банк</dt><dd>ПАО «ПРОМСВЯЗЬБАНК»</dd></div>
+        <div class="wide"><dt>Почтовый адрес</dt><dd>Российская Федерация, город Москва, вн.тер.г. муниципальный округ Сокольники, улица Короленко, дом&nbsp;8, помещение 9/1</dd></div>
+        <div><dt>БИК</dt><dd class="mono">044525555</dd></div>
+        <div><dt>Расчётный счёт</dt><dd class="mono">40702810920300727001</dd></div>
+        <div><dt>Корр. счёт</dt><dd class="mono">30101810400000000555</dd></div>
+        <div><dt>Телефон · e-mail</dt><dd><span class="mono">8 (495) 660-83-77</span> · callcenter@genomed.ru</dd></div>
+        <div class="wide"><dt>Лицензия на&nbsp;медицинскую деятельность</dt><dd>№&nbsp;Л041-01050-61/00589962 от&nbsp;28.01.2019, бессрочно. Выдана Департаментом здравоохранения города Москвы</dd></div>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section id="request" style="padding-top:0">
+  <div class="wrap">
+    <div class="deep cta">
+      <div>
+        <span class="section-eyebrow">Стать партнёром</span>
+        <h2>Запросите <em>коммерческое предложение</em></h2>
+        <p>Оставьте контакты&nbsp;— менеджер свяжется с&nbsp;вами, пришлёт КП и&nbsp;проведёт подключение от&nbsp;начала до&nbsp;конца.</p>
+        <a class="phone" href="tel:+74956608377">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span><span class="mono">8 (495) 660-83-77</span><small>горячая линия, круглосуточно</small></span>
+        </a>
+      </div>
+      <!-- ФОРМА: подключить к обработчику заявок сайта (как на genomed.ru/stat-partnerom/) -->
+      <form action="#" method="post">
+        <label>Название клиники<input name="clinic" autocomplete="organization" placeholder="ООО «Клиника»" required></label>
+        <label>Город<input name="city" autocomplete="address-level2" placeholder="Например, Казань" required></label>
+        <label>Телефон<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 ___ ___-__-__" required></label>
+        <button class="btn btn--blue" type="submit">Запросить КП<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+        <p class="consent">Нажимая кнопку, вы&nbsp;соглашаетесь с&nbsp;<a href="https://genomed.ru/yuridicheskij-adres-i-rekvizity/">политикой обработки персональных данных</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="footer-logo" href="https://genomed.ru/" aria-label="Геномед — на главную"><img src="data:image/png;base64,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" alt="Геномед" width="184" height="93"></a>
+        <p>Медико-генетический центр и&nbsp;лаборатория. Диагностика генетических заболеваний быстро и&nbsp;точно.</p>
+        <div class="site-social">
+          <a href="https://max.ru/id7701759381_bot" target="_blank" rel="noopener" aria-label="Написать в Max"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAydpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMS1jMDAxIDc5LjE0NjI4OTk3NzcsIDIwMjMvMDYvMjUtMjM6NTc6MTQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjM2OUI0NjQzRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjM2OUI0NjQyRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNS4wIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkM4MUVGMzU2Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkM4MUVGMzU3Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+PnVEWAAAB3lJREFUeNqcV2uMXVUV/vY++zzuY1440w6dPmwHKtQ+UmKJEegPIjEWaAzUkBjRYGx4tD/UtEQSCYlAAItGf9gSxFgTSPiDBGhBKdQ0xoSoWKjVtKUpSZkOnWEy7dzOzH2cc/by2+fcmd47nRJlJ2vO4+6zvvX49lprFB4QzF2LE6DbAn28X6h4L1AlwaZQcIsPrNfAMl/QzWf4kIkA9rSBes9YvOWJ3S82TVQjhZcIfLEIlLh9aEUyuMzynCiEseAHkxb3xRafj1LAgRmqCKwgyZ+7LGRpCLnRerLdVzJEw57VSv0CSqYg8+ufF1jRS1G4ayrF09UYizUjUHYgqSAiYIHaQne1+bMzhl4jomcBAxZq/DQydptS8mMq24t50C8BVvll11iCHRN1oEAJCFy3DlyhTgMYQaR8huUfAot1inlPYBGBpsvKl4U6xO+0wZegsX0utpmLypT8/qMY3wEBUaOXDaCX0mFz3Y26QmWCaZiyKDEPPUz258oCj65qavcoDc0rNccx94XY5hWxkJ5/sxXccHe+3FWwCw2CNnJQB16nnHGgo5TTwKKOBKuXW6y4WlCmh/GYYPxEgqGzKa4sKwwsUeSGRUx9HvVI6tSqLYjwDHlzn50FDmaN2EywHeBGxE1hiDMjjlCWWjz0kOC2jQqrVxl0duchatQEwyd8HP9zgr/+poaj/46xqt+DzyhY6nLqhKQRjXt1gL9okRec5wo7Jfc2wSSmUco8nWx6XKEcBtbeZfHyIylWDJiLLJhn1acS7Ns5jdf3VDHY6WFBn0IUkScloFhS8EuSiMeTaZmN7NxoeqoIqpt6VZ5PHAfu2Jni/WdBUP9TQd0KSwZ37u7EPU8U8XElRuMClfAcKnJBNRxBxJ3Eh3OIn4hLwjhD24Mq30w3w/sPytf5089tkwD/3/rT1nEcem4aa68KEEa5x0GZ+iJVS5TuNMzy15iInsxzv8nzccogMPJoMs+JS7F7r8WpwxYd9GbNNcBtW30EhfZ9X93TjdOv11E5k6J/hXYnDZ4jmlURsb5h+Gfz7G5pkuoccOO9ggVFr03ZWMVi+XdTTL7CouFTIUuXsTH275rG42+V0f+F8GLlMxo37CjhjR+dx4AKMp+cNnfmxbObNR1anznlt0gv8OB1Miengr5HCXqA1m/UWHkdZZ3GhjUGJ4eApzdVUK+kbYZeeXOEHp4aRea75GoSx8tltSPXsgzMGTtztJYD1y9qJ9Kbx5jrt/nuKzwaLBr1gMeF15RuXLva4D+nEhx+sdb2TXmlQf8qHylJpl2jUHlp9ZXt1wTtzAD9JrCLxxV0uthe4147ofPfXAmL2CC412bGuq5hqURh6Ejc9o1fUCgvIBoZrTOPqUJnTaZs6KmaLWXulyg3wtXj1gx/WOeLDiop5DV5jLcDTVq4Z6UtTHGehpPVboaXBdxTedFxRrjKVeG1lKXTATc/rrBU9rUosi4aLgpRnvoKwRquWfBjS+V11sarNwZtoPGEoDqSIqTBRjvj8s4HZac0PT6d5Xcm1OWc2ccm23M86EokQ4xpm3elyGbhrnLbkb83cPP3CvjirVHbN5PH6jj/QQNRtyIgPeVe5Vnn4Ihmc30v8yJqAhfzGv3OufaQbVziSitZey0feng/bPHuUAPDn8TYsi3E/Xt6kLnUsoYPTCNhinRIYOZNG+e1S44cVXhFbuXdvqxEzjQFdiHcwJ9vunikphKLX/3L4kEOPqfGBS+9m6CXSq9fqrFubXBJbqujMV5aN8SWqdHdx8CSaEHR9WmmR9lvKewXl+vzlI7ZzuRaYD8P+h3ymcqlW6/efgYjB2tYsT5AiSqiSCMqMEtGYgJ36uxEGzyVUdg0w+3yeQE4MflZIC1e3TaC4wfr6F9P8rjEBgw19bJFuJD/0tOqppvV6kkCNmZrdTFrojifXFR3IU5xaDj+VMgP36/jmW+P4p9/mMbAhiBzIssvvUWgXYNgoVKPqMAVTNOs/ODk4eHFLKWSk237WeA5svAgc/rDd7jlAxLhyxbPL9dY1aGZG5L8QoqPP0px8m81nPxjFcUJi8EN7ANpRiIoQ2BXssJsDttKf6oqGwQOSeuUt5uRun92Aqk1B7pz3BM7VlNGaYAbLdzXnPyWnEux7JMUizkNXtMl6KWeIueyDpuPRq5pFRjJgpHn+dPdIjmUaet6Cg/QyAW83jnLKc4K6LU5450hi/lZle+mbFYNlvZ6POMKfSyLQc1mDd/zc7tc5NzQ53nqjVTU3bYFSmcAM5KPBltozJ7MIDcwuxLpN2ty0ebvXAXrdKJQ5IDnka2cJKF5r5y4e75TJZdfby/HnU1z+aDRtKxNQM+NfJ8yBk9yZs6Ir/MrC+865u4KPpdCDwVKSAkiSpHkKZmKV/C2W4V7lL2UiJc/pILf0vurWGoeY0hHs5Yh7vT7GGRbuomUXclhutcE6DIRujR7ryqgy4vGSyb8WeD5g/T3165J/M//wrSsCYI/TMwneH875RYGcE2o1KLOhu4oxVCh2Ar/lTlb1N7RSMsB32IfR9iKSILLYGbrvwIMAHq51vxFd/KoAAAAAElFTkSuQmCC" alt="" width="30" height="30"></a>
+          <a href="https://wa.me/74956608377" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+          <a href="https://t.me/genomed_b2c_bot" target="_blank" rel="noopener" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#27A7E8" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+        </div>
+      </div>
+      <nav aria-label="Партнёрам">
+        <h3>Партнёрам</h3>
+        <a href="https://lkp.genomed.ru/site/login">Личный кабинет партнёра</a>
+        <a href="https://genomed.ru/napravleniya-na-issledovaniya/">Направления на&nbsp;исследования</a>
+        <a href="https://genomed.ru/informaczionnye-materialy/">Информационные материалы</a>
+        <a href="https://genomed.ru/gos-tendery-i-zakupki/">Гос. тендеры и&nbsp;закупки</a>
+        <a href="#requisites">Карточка организации</a>
+      </nav>
+      <nav aria-label="Компания">
+        <h3>Компания</h3>
+        <a href="https://genomed.ru/about/">О&nbsp;Геномед</a>
+        <a href="https://genomed.ru/laboratory/">Лаборатория</a>
+        <a href="https://genomed.ru/sistema-menedzhmenta-kachestva/">Система качества</a>
+        <a href="https://genomed.ru/license/">Лицензии и&nbsp;сертификаты</a>
+        <a href="https://genomed.ru/vracham/">Врачам</a>
+      </nav>
+      <div class="footer-contacts">
+        <h3>Связаться</h3>
+        <a href="tel:84956608377"><span class="mono">8 (495) 660-83-77</span></a>
+        <small>клиентский сервис 24/7</small>
+        <a href="mailto:callcenter@genomed.ru">callcenter@genomed.ru</a>
+        <a href="https://genomed.ru/gde-sdat-test/">Где сдать тест</a>
+        <a href="https://genomed.ru/">genomed.ru</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>ООО Геномед · ОГРН 1077763509977 · ИНН 7701759381 · Лицензия №&nbsp;Л041-01050-61/00589962 от&nbsp;28.01.2019 · 105005, г.&nbsp;Москва, ул.&nbsp;Бауманская, д.&nbsp;50/12, стр.&nbsp;1</p>
+      <p>Информация на&nbsp;странице носит справочный характер и&nbsp;не&nbsp;является публичной офертой. Условия сотрудничества определяются договором. Имеются противопоказания, необходима консультация специалиста.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('copy-req').addEventListener('click', async (e) => {
+  const btn = e.currentTarget;
+  const text = [...document.querySelectorAll('.req__grid > div')]
+    .map(d => d.querySelector('dt').textContent + ': ' + d.querySelector('dd').textContent.replace(/\s+/g, ' ').trim())
+    .join('\n');
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = 'Скопировано';
+  } catch (err) {
+    btn.textContent = 'Не удалось скопировать — выделите текст вручную';
+    console.error(err);
+  }
+  setTimeout(() => { btn.textContent = 'Скопировать реквизиты'; }, 2500);
+});
+</script>
+</body>
+</html>
