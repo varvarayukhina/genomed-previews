@@ -49,7 +49,7 @@ section{padding-block:clamp(3rem,6vw,5rem)}
 svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
 h1,h2,h3{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:0;text-wrap:balance}
-h1{font-size:clamp(2.4rem,5.4vw,4.2rem)}
+h1{font-size:clamp(1.85rem,4.4vw,3.6rem)}
 h2{font-size:clamp(32px,4vw,52px);margin:0 0 18px}
 h1 em,h2 em{font-style:normal;color:var(--blue)}
 .lead{color:var(--ink-2);font-size:clamp(1rem,1.5vw,1.15rem);max-width:58ch;margin:1.1rem 0 0}
@@ -130,7 +130,7 @@ h1 em,h2 em{font-style:normal;color:var(--blue)}
   background-image:radial-gradient(rgba(0,87,255,.13) 1px,transparent 1.2px);background-size:26px 26px;
   -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 70%,#000,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 70%,#000,transparent 75%)}
 .hero>*{position:relative;z-index:var(--z-base)}
-.hero h1{max-width:17ch;margin-inline:auto}
+.hero h1{max-width:1000px;margin-inline:auto}
 .hero .lead{margin-inline:auto}
 .hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin-top:2rem}
 
@@ -173,12 +173,10 @@ h1 em,h2 em{font-style:normal;color:var(--blue)}
 }
 
 /* о лаборатории */
-.about__head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:end;margin-bottom:clamp(2rem,4vw,2.8rem)}
-.about__head>*{min-width:0}
+.about__head{max-width:760px;margin-bottom:clamp(2rem,4vw,2.8rem)}
 .about__head h2{margin:0}
-.about__head .lead{margin:0}
+.about__head .lead{margin:1.1rem 0 0}
 .methods{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
-@media(max-width:860px){.about__head{grid-template-columns:1fr}}
 .bento{display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:1.1rem}
 .tile{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.5rem;box-shadow:var(--shadow-sm);
   min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:1.2rem}
@@ -396,10 +394,10 @@ form .btn{justify-content:center;margin-top:.3rem}
     <div class="about__head">
       <div>
         <span class="section-eyebrow">О&nbsp;лаборатории</span>
-        <h2>С&nbsp;нами уже работают <em>500+ клиник</em></h2>
+        <h2>Геномед <em>в&nbsp;цифрах</em></h2>
       </div>
       <div>
-        <p class="lead">Геномед на&nbsp;рынке с&nbsp;2007 года. В&nbsp;собственной лаборатории работаем с&nbsp;секвенированием нового поколения, хромосомным микроматричным анализом, FISH и&nbsp;ПЦР, а&nbsp;по&nbsp;ряду исследований сотрудничаем с&nbsp;мировыми лидерами молекулярной диагностики.</p>
+        <p class="lead">Мы&nbsp;на&nbsp;рынке с&nbsp;2007 года. В&nbsp;собственной лаборатории работаем с&nbsp;секвенированием нового поколения, хромосомным микроматричным анализом, FISH и&nbsp;ПЦР, а&nbsp;по&nbsp;ряду исследований сотрудничаем с&nbsp;мировыми лидерами молекулярной диагностики.</p>
         <div class="methods" aria-label="Методы лаборатории"><span class="pill pill--blue">NGS</span><span class="pill pill--blue">ХМА</span><span class="pill pill--blue">FISH</span><span class="pill pill--blue">ПЦР</span><span class="pill pill--blue">таргетное секвенирование</span></div>
       </div>
     </div>
