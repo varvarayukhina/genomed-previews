@@ -188,10 +188,19 @@ a.qt:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
 .dir__head{display:flex;gap:.9rem;align-items:center}
 .dir__head .ico{width:34px;height:34px;stroke-width:1.6}
 .dir h3{font-weight:700;font-size:1.45rem;letter-spacing:-.025em;line-height:1.15}
-.dir ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.1rem 1.4rem}
-.dir li a{display:flex;gap:.55rem;align-items:flex-start;padding:.45rem 0;font-weight:600;font-size:.98rem;border-bottom:1px solid rgba(255,255,255,.18);line-height:1.3}
-.dir li a::before{content:"";width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);margin-top:.45em;flex:none}
-.dir li a:hover{text-decoration:underline;text-underline-offset:3px}
+.dir ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 1.4rem}
+.dir li a{display:grid;gap:.1rem;align-content:start;padding:.55rem 0 .55rem 1rem;border-bottom:1px solid rgba(255,255,255,.18);position:relative;height:100%}
+.dir li a::before{content:"";position:absolute;left:0;top:1.05em;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg)}
+.dir li b{font-weight:700;font-size:.98rem;line-height:1.3}
+.dir li span{font-size:.84rem;line-height:1.35;color:rgba(255,255,255,.86)}
+.dir li a:hover b{text-decoration:underline;text-underline-offset:3px}
+.dir__sit{display:grid;gap:.45rem;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:.8rem .9rem}
+.dir__sit small{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.85}
+.dir__sit div{display:flex;flex-wrap:wrap;gap:.4rem}
+.dir__sit a{background:#fff;color:var(--ink);border-radius:100px;padding:.38rem .8rem;font-weight:700;font-size:.86rem;line-height:1.25;transition:background-color .15s,color .15s}
+.dir__sit a:hover{background:var(--accent-soft);color:var(--blue)}
+.dir__help{font-weight:700;font-size:.9rem;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.5)}
+.dir__help:hover{text-decoration-color:#fff}
 .dir__foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
 .dir__foot small{font-size:.85rem;opacity:.9}
 
@@ -269,6 +278,7 @@ a.qt:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
   .facts{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media(max-width:900px){
+  .dir ul{grid-template-columns:minmax(0,1fr)}
   .genoscop{grid-template-columns:minmax(0,1fr);min-height:0}
   .genoscop__side{align-self:auto}
   .dirs>*,.duo>*,.aud>*,.trio>*{grid-column:span 12}
@@ -297,6 +307,7 @@ a.qt:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
       <li>Одна сетка и одинаковые отступы: блоки больше не «пляшут» по ширине и высоте.</li>
       <li>Сразу под баннером — четыре частые задачи: результаты, поиск, где сдать тест, запись к генетику.</li>
       <li>Цвета плиток направлений те же, но темнее: белый текст на зелёной и бирюзовой плитках сейчас нечитаем.</li>
+      <li>Под каждым тестом — пояснение простым языком, а в каждом разделе — «С чем обращаются»: частые ситуации ссылками и кнопка «Напишите — подберём».</li>
       <li>Заголовки без капса, без дублей (кариотип и эпилепсия были дважды), «Все исследования раздела» ведут в разделы, а не в прайс.</li>
       <li>Текст на фото — на затемнении: сейчас он теряется на фоне картинок.</li>
       <li>Ссылки у блоков, которые были некликабельны: консультация генетика, наследственный рак, доставка, журнал.</li>
@@ -436,49 +447,27 @@ a.qt:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
     <div class="grid dirs">
       <article class="dir dir--preg">
         <div class="dir__head"><svg class="ico" viewBox="0 0 24 24"><path d="M9 12h.01"/><path d="M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/></svg><h3>Беременность и планирование ребёнка</h3></div>
-        <ul>
-          <li><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/nipt/">Неинвазивные пренатальные тесты — НИПТ</a></li>
-          <li><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/reproplan/">РепроПлан</a></li>
-          <li><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/optima/">Невынашивание беременности</a></li>
-          <li><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/genom-ferti/">Бесплодие</a></li>
-          <li><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/pgt/">Преимплантационное тестирование (ПГТ)</a></li>
-          <li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/kariotype/">Кариотип</a></li>
-        </ul>
-        <div class="dir__foot"><a class="btn btn--ghost" href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/">Все исследования раздела</a></div>
+        <div class="dir__sit"><small>С чем обращаются</small><div><a href="https://genomed.ru/journal/beremennost-i-planirovanie-rebenka/skrining-pervogo-trimestra-pokazal-povyshennyj-risk/">Высокий риск на скрининге I триместра</a><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/optima/">Выкидыш или замершая беременность</a><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/genom-ferti/">Больше года не получается забеременеть</a><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/reproplan/">Планируем беременность</a></div></div>
+        <ul><li><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/nipt/"><b>НИПТ</b><span>анализ крови мамы с 10 недель: риск синдрома Дауна и других хромосомных нарушений у плода</span></a></li><li><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/reproplan/"><b>РепроПлан</b><span>проверка пары до зачатия: нет ли у обоих скрытого носительства одной и той же болезни</span></a></li><li><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/optima/"><b>Невынашивание беременности</b><span>исследование материала после выкидыша: была ли причина в хромосомах</span></a></li><li><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/genom-ferti/"><b>Бесплодие</b><span>поиск генетических причин бесплодия у мужчины и женщины</span></a></li><li><a href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/pgt/"><b>Преимплантационное тестирование (ПГТ)</b><span>проверка эмбрионов при ЭКО до переноса</span></a></li><li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/kariotype/"><b>Кариотип</b><span>число и строение хромосом по анализу крови</span></a></li></ul>
+        <div class="dir__foot"><a class="btn btn--ghost" href="https://genomed.ru/service/reproduktivnaya-genetika-i-prenatalnaya-diagnostika/">Все исследования раздела</a><a class="dir__help" href="https://wa.me/74956608377" target="_blank" rel="noopener">Не знаете, что выбрать? Напишите — подберём</a></div>
       </article>
       <article class="dir dir--gen">
         <div class="dir__head"><svg class="ico" viewBox="0 0 24 24"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/><path d="m17 6-2.5-2.5"/><path d="m14 8-1-1"/><path d="m7 18 2.5 2.5"/><path d="m3.5 14.5.5.5"/><path d="m20 9 .5.5"/><path d="m6.5 12.5 1 1"/><path d="m16.5 10.5 1 1"/><path d="m10 16 1.5 1.5"/></svg><h3>Генетические болезни</h3></div>
-        <ul>
-          <li><a href="https://genomed.ru/genomeuni/">Полное секвенирование генома</a></li>
-          <li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/nasledstvennye-narusheniya-obmena-veshchestv/">Врождённые нарушения метаболизма</a></li>
-          <li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/nervno-myshechnye-zabolevaniya/">Нервно-мышечные заболевания</a></li>
-          <li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/epilepsy/">Наследственная эпилепсия</a></li>
-          <li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/fish/">FISH-диагностика хромосом</a></li>
-          <li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/dczp/">Детский церебральный паралич</a></li>
-        </ul>
-        <div class="dir__foot"><a class="btn btn--ghost" href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/">Все исследования раздела</a></div>
+        <div class="dir__sit"><small>С чем обращаются</small><div><a href="#konsultaciya">В семье есть наследственное заболевание</a><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/epilepsy/">Судороги или эпилепсия у ребёнка</a><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/nervno-myshechnye-zabolevaniya/">Мышечная слабость</a></div></div>
+        <ul><li><a href="https://genomed.ru/genomeuni/"><b>Полное секвенирование генома</b><span>самый полный анализ ДНК: ищет причину болезни сразу во всех генах</span></a></li><li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/nasledstvennye-narusheniya-obmena-veshchestv/"><b>Врождённые нарушения метаболизма</b><span>при подозрении на наследственную болезнь обмена веществ</span></a></li><li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/nervno-myshechnye-zabolevaniya/"><b>Нервно-мышечные заболевания</b><span>при мышечной слабости: спинальная мышечная атрофия, миодистрофия Дюшенна и другие</span></a></li><li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/epilepsy/"><b>Наследственная эпилепсия</b><span>поиск генетической причины судорог</span></a></li><li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/fish/"><b>FISH-диагностика хромосом</b><span>быстрая проверка отдельных хромосом, когда врач подозревает конкретное нарушение</span></a></li><li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/dczp/"><b>Детский церебральный паралич</b><span>поиск генетических причин двигательных нарушений у ребёнка</span></a></li></ul>
+        <div class="dir__foot"><a class="btn btn--ghost" href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/">Все исследования раздела</a><a class="dir__help" href="https://wa.me/74956608377" target="_blank" rel="noopener">Не знаете, что выбрать? Напишите — подберём</a></div>
       </article>
       <article class="dir dir--onco">
         <div class="dir__head"><svg class="ico" viewBox="0 0 24 24"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg><h3>Диагностика и лечение рака</h3></div>
-        <ul>
-          <li><a href="https://genomed.ru/service/onkogenetika/zhidkostnaya-biopsiya/">Жидкостная биопсия</a></li>
-          <li><a href="https://genomed.ru/service/onkogenetika/molekulyarnyj-profil-opuholi/">Молекулярный профиль опухоли</a></li>
-          <li><a href="https://genomed.ru/targetnaya-terapiya/">Таргетная терапия рака</a></li>
-          <li><a href="https://genomed.ru/service/onkogenetika/molekulyarnyj-profil-opuholi/onkokarta/">Онкокарта</a></li>
-          <li><a href="https://genomed.ru/service/onkogenetika/molekulyarnyj-profil-opuholi/onkoskan/">Онкоскан</a></li>
-          <li><a href="https://genomed.ru/service/priem-vracha-onkologa-v-czentre-genomed/">Консультация онколога</a></li>
-        </ul>
-        <div class="dir__foot"><a class="btn btn--ghost" href="https://genomed.ru/service/onkogenetika/">Все исследования раздела</a></div>
+        <div class="dir__sit"><small>С чем обращаются</small><div><a href="https://price.genomed.ru/?AnalysisSearch%5Banalysis_group_id%5D=30">У близкого родственника был рак</a><a href="https://genomed.ru/service/onkogenetika/molekulyarnyj-profil-opuholi/">Поставили диагноз — нужно подобрать лечение</a><a href="#search">Онколог назначил генетический тест</a></div></div>
+        <ul><li><a href="https://genomed.ru/service/onkogenetika/zhidkostnaya-biopsiya/"><b>Жидкостная биопсия</b><span>мутации опухоли по анализу крови, когда биопсия ткани затруднена</span></a></li><li><a href="https://genomed.ru/service/onkogenetika/molekulyarnyj-profil-opuholi/"><b>Молекулярный профиль опухоли</b><span>какие мутации есть в опухоли — от этого зависит выбор лекарства</span></a></li><li><a href="https://genomed.ru/targetnaya-terapiya/"><b>Таргетная терапия рака</b><span>лекарства, которые действуют на конкретные мутации опухоли</span></a></li><li><a href="https://genomed.ru/service/onkogenetika/molekulyarnyj-profil-opuholi/onkokarta/"><b>Онкокарта</b><span>60 генов опухоли для подбора терапии, включая BRCA1, BRCA2, PALB2</span></a></li><li><a href="https://genomed.ru/service/onkogenetika/molekulyarnyj-profil-opuholi/onkoskan/"><b>Онкоскан</b><span>молекулярное исследование опухоли для подбора терапии</span></a></li><li><a href="https://genomed.ru/service/priem-vracha-onkologa-v-czentre-genomed/"><b>Консультация онколога</b><span>разбор результатов и план обследования с врачом</span></a></li></ul>
+        <div class="dir__foot"><a class="btn btn--ghost" href="https://genomed.ru/service/onkogenetika/">Все исследования раздела</a><a class="dir__help" href="https://wa.me/74956608377" target="_blank" rel="noopener">Не знаете, что выбрать? Напишите — подберём</a></div>
       </article>
       <article class="dir dir--health">
         <div class="dir__head"><svg class="ico" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg><h3>Генетика и здоровье</h3></div>
-        <ul>
-          <li><a href="https://genomed.ru/service/genetika-i-zdorove/genoskop/">Геноскоп — полный тест о здоровье</a></li>
-          <li><a href="https://genomed.ru/service/genetika-i-zdorove/mikromir/">Микробиом кишечника</a></li>
-          <li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/apoe/">Ген APOE: риски ССЗ и болезни Альцгеймера</a></li>
-          <li><a href="https://genomed.ru/service/genetika-i-zdorove/dnk-genealogiya/">ДНК-генеалогия и национальность</a></li>
-        </ul>
-        <div class="dir__foot"><a class="btn btn--ghost" href="https://genomed.ru/service/genetika-i-zdorove/">Все исследования раздела</a></div>
+        <div class="dir__sit"><small>С чем обращаются</small><div><a href="https://genomed.ru/service/genetika-i-zdorove/genoskop/">Хочу заранее знать свои риски</a><a href="https://price.genomed.ru/?AnalysisSearch%5Banalysis_group_id%5D=23">Подобрать лекарство с учётом генов</a><a href="https://genomed.ru/service/genetika-i-zdorove/dnk-genealogiya/">Узнать своё происхождение</a></div></div>
+        <ul><li><a href="https://genomed.ru/service/genetika-i-zdorove/genoskop/"><b>Геноскоп</b><span>99 % генома: риски заболеваний, реакция на лекарства, питание</span></a></li><li><a href="https://genomed.ru/service/genetika-i-zdorove/mikromir/"><b>Микробиом кишечника</b><span>какие бактерии живут в кишечнике и что они делают</span></a></li><li><a href="https://genomed.ru/service/nasledstvennye-zabolevaniya-i-hromosomnaya-patologiya/apoe/"><b>Ген APOE</b><span>риск высокого холестерина, сердечно-сосудистых заболеваний и болезни Альцгеймера</span></a></li><li><a href="https://genomed.ru/service/genetika-i-zdorove/dnk-genealogiya/"><b>ДНК-генеалогия</b><span>происхождение по материнской и отцовской линии, национальность</span></a></li></ul>
+        <div class="dir__foot"><a class="btn btn--ghost" href="https://genomed.ru/service/genetika-i-zdorove/">Все исследования раздела</a><a class="dir__help" href="https://wa.me/74956608377" target="_blank" rel="noopener">Не знаете, что выбрать? Напишите — подберём</a></div>
       </article>
     </div>
   </div>
