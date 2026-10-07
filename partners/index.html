@@ -120,6 +120,16 @@ h1 em,h2 em{font-style:normal;color:var(--blue)}
 }
 @media(max-width:400px){.site-header__row{gap:.4rem;padding-inline:12px}.site-logo img{height:46px}.site-social{gap:7px}.site-burger summary{width:38px}}
 
+/* ── переключатель страниц раздела «Партнёрам» ── */
+.ptabs{background:#fff;border-bottom:1px solid #E6E9EE}
+.ptabs .wrap{display:flex;align-items:center;gap:1rem;padding-block:.75rem;overflow-x:auto;scrollbar-width:none}
+.ptabs__label{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.ptabs__in{display:inline-flex;flex:none;padding:4px;background:var(--bg);border:1px solid var(--line);border-radius:100px}
+.ptabs__in a{padding:.5rem 1.1rem;border-radius:100px;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--ink-2);white-space:nowrap;transition:color .2s}
+.ptabs__in a:hover{color:var(--blue)}
+.ptabs__in a[aria-current="page"]{background:var(--bg-deep);color:#fff}
+@media(max-width:560px){.ptabs__label{display:none}.ptabs__in{flex:1;display:grid;grid-template-columns:1fr 1fr;border-radius:18px}.ptabs__in a{display:grid;place-items:center;text-align:center;white-space:normal;line-height:1.2;font-size:14px;padding:.55rem .6rem;border-radius:14px}}
+
 /* ── hero: текст слева, фото «сеть лабораторий» справа, анимированный путь под кнопками ── */
 .hero{position:relative;overflow:hidden;display:flex;align-items:center;min-height:clamp(600px,50vw,760px);
   padding:clamp(3rem,6vw,4.5rem) 0;background:linear-gradient(180deg,#EFF6FE,#F2F7FE 70%,var(--bg))}
@@ -353,6 +363,15 @@ form .btn{justify-content:center;margin-top:.3rem}
     </details>
   </div>
 </header>
+<nav class="ptabs" aria-label="Раздел «Партнёрам»">
+  <div class="wrap">
+    <span class="ptabs__label">Партнёрам</span>
+    <div class="ptabs__in">
+      <a href="./" aria-current="page">Стать партнёром</a>
+      <a href="dejstvuyushchim/">Действующим партнёрам</a>
+    </div>
+  </div>
+</nav>
 
 <main>
 <section class="hero">
@@ -573,8 +592,8 @@ form .btn{justify-content:center;margin-top:.3rem}
       <nav aria-label="Партнёрам">
         <h3>Партнёрам</h3>
         <a href="https://lkp.genomed.ru/site/login">Личный кабинет партнёра</a>
-        <a href="https://genomed.ru/napravleniya-na-issledovaniya/">Направления на&nbsp;исследования</a>
-        <a href="https://genomed.ru/informaczionnye-materialy/">Информационные материалы</a>
+        <a href="dejstvuyushchim/#docs">Документы для&nbsp;работы</a>
+        <a href="dejstvuyushchim/#courier">Вызов курьера</a>
         <a href="https://genomed.ru/gos-tendery-i-zakupki/">Гос. тендеры и&nbsp;закупки</a>
         <a href="#requisites">Карточка организации</a>
       </nav>
