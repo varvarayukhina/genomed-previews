@@ -95,6 +95,11 @@ html.js [data-for]{animation:aud-in .45s cubic-bezier(.2,.8,.2,1)}
 .seg button .ic{width:16px;height:16px}
 .seg button[aria-pressed="true"]{background:var(--bg-deep);color:#fff}
 .seg button:not([aria-pressed="true"]):hover{color:var(--blue)}
+/* тумблер вариантов лендинга в .pagebar — ссылки вместо кнопок */
+.seg a{padding:9px 16px;border-radius:100px;font-weight:700;font-size:14px;color:var(--ink-2);text-decoration:none;white-space:nowrap;transition:background-color .2s,color .2s}
+.seg a[aria-current="page"]{background:var(--bg-deep);color:#fff}
+.seg a:not([aria-current]):hover{color:var(--blue)}
+@media (max-width:420px){.seg--sm a{padding:8px 12px;font-size:13px}}
 @media (max-width:420px){.seg--sm button{padding:8px 11px;font-size:13px}.seg--sm button .ic{display:none}}
 
 /* ===== hero: фото справа, текст слева ===== */
@@ -888,6 +893,7 @@ html:not(.js) .reveal{opacity:1;transform:none}
   <div class="wrap pagebar__in">
     <a class="pagebar__t" href="#top">Неонатальный скрининг</a>
     <nav class="pagebar__nav" aria-label="Разделы страницы"><a href="#about">Когда сделать</a><a href="#zabolevaniya">Заболевания</a><a href="#varianty">Варианты</a><a href="#how">Как сдать</a><a href="#faq">Вопросы</a><a href="#order">Заказать</a></nav>
+    <nav class="seg seg--sm" aria-label="Вариант лендинга"><a href="index.html" aria-current="page">Вариант А</a><a href="b/index.html">Вариант Б</a></nav>
   </div>
 </div>
 <main>
