@@ -158,25 +158,50 @@ h1 em,h2 em{font-style:normal;color:var(--blue)}
 .ptabs__in a[aria-current="page"]{background:var(--bg-deep);color:#fff}
 @media(max-width:560px){.ptabs__label{display:none}.ptabs__in{flex:1;display:grid;grid-template-columns:1fr 1fr;border-radius:18px}.ptabs__in a{display:grid;place-items:center;text-align:center;white-space:normal;line-height:1.2;font-size:14px;padding:.55rem .6rem;border-radius:14px}}
 
-/* ── hero: контентный, справа размытое поле иконок ── */
-.dhero{position:relative;overflow:hidden;padding:clamp(2.5rem,5vw,4rem) 0 clamp(1.5rem,3vw,2.5rem);background:linear-gradient(180deg,#EFF6FE,var(--bg))}
+/* ── hero: тёмный, со свечениями; плитки наплывают на нижний край ── */
+.dhero{position:relative;overflow:hidden;background:var(--bg-deep);color:#fff;padding:clamp(3rem,6vw,4.5rem) 0 clamp(7rem,11vw,8.5rem)}
+.dhero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 55% 85% at 88% 0%,rgba(0,194,255,.3),transparent 62%),radial-gradient(ellipse 60% 75% at 0% 100%,rgba(0,87,255,.42),transparent 66%)}
 .dhero .wrap{position:relative}
-.dhero__text{position:relative;z-index:var(--z-base);max-width:760px}
-.dhero h1{font-size:clamp(2rem,3.6vw,3.2rem)}
-.dhero .lead{max-width:56ch}
-.hero__deco{position:absolute;top:-.5rem;right:24px;display:grid;grid-template-columns:repeat(4,48px);gap:34px 40px;color:var(--blue);opacity:.14;filter:blur(1.6px);pointer-events:none;
-  -webkit-mask-image:linear-gradient(to left,#000 35%,transparent);mask-image:linear-gradient(to left,#000 35%,transparent)}
-.hero__deco svg{width:48px;height:48px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
-@media(max-width:1000px){.hero__deco{display:none}}
-.quick{position:relative;z-index:var(--z-base);display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:clamp(1.8rem,4vw,2.6rem)}
-.qlink{display:flex;gap:.9rem;align-items:center;min-width:0;padding:1.1rem 1.2rem;background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);
-  transition:border-color .2s,transform .2s ease-out}
-.qlink:hover{border-color:var(--blue);transform:translateY(-2px)}
-.badge{width:44px;height:44px;flex:none;border-radius:var(--r-md);display:grid;place-items:center;background:var(--accent-soft);color:var(--blue)}
-.qlink b{display:block;font-weight:800;font-size:1rem;letter-spacing:-.02em;line-height:1.25}
-.qlink small{display:block;margin-top:.2rem;color:var(--muted);font-size:.84rem;font-weight:600}
-@media(max-width:1000px){.quick{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.quick{grid-template-columns:1fr}}
+.dhero__text{position:relative;z-index:var(--z-base);max-width:720px}
+.dhero .eyebrow{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff}
+.dhero .eyebrow::before{background:var(--cyan);box-shadow:0 0 0 4px rgba(0,194,255,.22)}
+.dhero h1{font-size:clamp(2.3rem,4.4vw,3.7rem);color:#fff}
+.dhero h1 em{color:var(--cyan)}
+.dhero .lead{color:#CFE0FF;max-width:54ch}
+.dstats{display:flex;flex-wrap:wrap;gap:1rem clamp(1.8rem,4vw,3.2rem);margin:clamp(1.8rem,3.5vw,2.4rem) 0 0;padding:0;list-style:none}
+.dstats li{min-width:0;padding-left:1rem;border-left:2px solid rgba(0,194,255,.45)}
+.dstats b{display:block;font-family:var(--mono);font-feature-settings:"tnum"1,"zero"1;font-weight:700;font-size:clamp(1.9rem,3.2vw,2.6rem);line-height:1;letter-spacing:-.03em;color:#fff}
+.dstats span{display:block;margin-top:.35rem;font-size:.88rem;font-weight:600;color:#93A9C8}
+.hero__deco{position:absolute;top:50%;right:32px;transform:translateY(-56%);display:grid;grid-template-columns:repeat(3,88px);gap:24px;padding:8px 8px 40px;pointer-events:none;
+  -webkit-mask-image:radial-gradient(closest-side,#000 62%,rgba(0,0,0,.25) 100%);mask-image:radial-gradient(closest-side,#000 62%,rgba(0,0,0,.25) 100%)}
+.hero__deco span{width:88px;height:88px;border-radius:24px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--cyan)}
+.hero__deco span:nth-child(3n+2){transform:translateY(32px)}
+.hero__deco span.on{background:linear-gradient(135deg,var(--blue),var(--cyan));border-color:transparent;color:#fff;box-shadow:0 16px 40px rgba(0,140,255,.35)}
+.hero__deco svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:1100px){.hero__deco{display:none}}
+@media(max-width:420px){.dstats{gap:1rem 1.2rem}.dstats li{padding-left:.75rem}}
+
+.quick-wrap{position:relative;z-index:2;margin-top:calc(-1 * clamp(4.5rem,7.5vw,5.5rem))}
+.quick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.qlink{position:relative;display:flex;flex-direction:column;gap:1.15rem;min-width:0;padding:1.4rem 1.4rem 1.35rem;background:var(--bg-card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-md);
+  transition:transform .2s ease-out,box-shadow .2s,border-color .2s}
+.qlink:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:rgba(0,87,255,.35)}
+.badge{width:52px;height:52px;flex:none;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;box-shadow:0 10px 24px rgba(0,87,255,.25)}
+.badge svg.i{width:24px;height:24px}
+.qlink>span:nth-child(2){min-width:0;padding-right:2.4rem}
+.qlink b{display:block;font-weight:800;font-size:1.08rem;letter-spacing:-.02em;line-height:1.25}
+.qlink small{display:block;margin-top:.3rem;color:var(--muted);font-size:.86rem;font-weight:600}
+.qlink__go{position:absolute;top:1.35rem;right:1.35rem;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--blue);transition:transform .2s ease-out,background-color .2s,color .2s}
+.qlink__go svg.i{width:16px;height:16px}
+.qlink:hover .qlink__go{background:var(--blue);color:#fff;transform:translate(2px,-2px)}
+.qlink--accent{background:linear-gradient(140deg,var(--blue) 0%,#1A74FF 55%,var(--cyan) 135%);border-color:transparent;color:#fff;box-shadow:0 18px 44px rgba(0,87,255,.32)}
+.qlink--accent:hover{border-color:transparent;box-shadow:0 22px 52px rgba(0,87,255,.4)}
+.qlink--accent small{color:rgba(255,255,255,.82)}
+.qlink--accent .badge{background:rgba(255,255,255,.18);box-shadow:none}
+.qlink--accent .qlink__go,.qlink--accent:hover .qlink__go{background:rgba(255,255,255,.2);color:#fff}
+@media(max-width:1000px){.quick{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.quick{grid-template-columns:minmax(0,1fr)}.qlink{flex-direction:row;align-items:center;padding:1.1rem 1.2rem}.qlink__go{top:50%;transform:translateY(-50%)}.qlink:hover .qlink__go{transform:translate(2px,-50%)}}
 
 /* ── каталог документов ── */
 .catalog{padding-top:clamp(1rem,2vw,1.5rem)}
@@ -330,41 +355,44 @@ h1 em,h2 em{font-style:normal;color:var(--blue)}
 <main>
 <section class="dhero">
   <div class="wrap">
-    <div class="hero__deco" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
-      <svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
-      <svg viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5c-1.4 0-2.5-1.1-2.5-2.5V2"/><path d="M8.5 2h7"/><path d="M14.5 16h-5"/></svg>
-      <svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
-    </div>
+    <div class="hero__deco" aria-hidden="true"><span><svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span><svg viewBox="0 0 24 24"><path d="M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5c-1.4 0-2.5-1.1-2.5-2.5V2"/><path d="M8.5 2h7"/><path d="M14.5 16h-5"/></svg></span><span><svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></span><span><svg viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span><span class="on"><svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg></span><span><svg viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></span><span><svg viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg></span><span><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><span><svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span></div>
     <div class="dhero__text">
       <p class="eyebrow">Для клиник-партнёров</p>
       <h1>Документы для&nbsp;работы <em>с&nbsp;лабораторией</em></h1>
       <p class="lead">Бланки направлений, инструкции по&nbsp;забору биоматериала, преаналитика, согласия пациентов и&nbsp;образцы заключений собраны на&nbsp;одной странице. Найдите документ по&nbsp;названию или выберите направление исследований.</p>
+      <ul class="dstats">
+        <li><b>98</b><span>документов</span></li>
+        <li><b>7</b><span>разделов</span></li>
+        <li><b>8</b><span>направлений</span></li>
+      </ul>
     </div>
+  </div>
+</section>
+
+<div class="wrap quick-wrap">
     <div class="quick">
-      <a class="qlink" href="https://lkp.genomed.ru/site/login" target="_blank" rel="noopener">
+      <a class="qlink qlink--accent" href="https://lkp.genomed.ru/site/login" target="_blank" rel="noopener">
         <span class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></span>
         <span><b>Личный кабинет партнёра</b><small>lkp.genomed.ru</small></span>
+        <span class="qlink__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
       </a>
       <a class="qlink" href="#courier">
         <span class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></span>
         <span><b>Вызвать курьера</b><small>заявки принимаем ежедневно</small></span>
+        <span class="qlink__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
       </a>
       <a class="qlink" href="https://genomed.ru/wp-content/uploads/82.pdf" target="_blank" rel="noopener">
         <span class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span>
         <span><b>Общее направление</b><small>PDF, бланк для&nbsp;печати</small></span>
+        <span class="qlink__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
       </a>
       <a class="qlink" href="https://genomed.ru/wp-content/uploads/p1.pdf" target="_blank" rel="noopener">
         <span class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span>
         <span><b>Преаналитика Геномед</b><small>редакция 3 · <span class="mono">92</span>&nbsp;стр.</small></span>
+        <span class="qlink__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
       </a>
     </div>
-  </div>
-</section>
+</div>
 
 <section class="catalog" id="docs" aria-label="Каталог документов">
   <div class="wrap catalog__grid">
