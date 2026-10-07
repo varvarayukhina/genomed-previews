@@ -139,8 +139,10 @@ h1 em,h2 em{font-style:normal;color:var(--blue)}
 .hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
   background:linear-gradient(90deg,#F0F6FD 0%,rgba(240,246,253,.9) 36%,rgba(240,246,253,0) 60%)}
 .hero>.wrap{position:relative;z-index:var(--z-base);width:100%}
-.hero__text{max-width:700px}
-.hero h1{font-size:clamp(2rem,3.2vw,3rem)}
+.hero__text{max-width:820px}
+.hero h1{font-size:clamp(2.1rem,3.7vw,3.3rem);text-wrap:pretty}
+.hero__sub{font-family:var(--disp);font-weight:800;font-size:clamp(1.15rem,1.6vw,1.45rem);line-height:1.25;letter-spacing:-.02em;color:var(--ink-2);margin:1.1rem 0 0;text-wrap:balance}
+.hero__sub em{font-style:normal;color:var(--blue)}
 .hero .lead{max-width:46ch}
 .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
 @media(max-width:900px){
@@ -367,8 +369,8 @@ form .btn{justify-content:center;margin-top:.3rem}
   <div class="wrap">
     <span class="ptabs__label">Партнёрам</span>
     <div class="ptabs__in">
-      <a href="./" aria-current="page">Стать партнёром</a>
-      <a href="dejstvuyushchim/">Действующим партнёрам</a>
+      <a href="index.html" aria-current="page">Стать партнёром</a>
+      <a href="dejstvuyushchim/index.html">Действующим партнёрам</a>
     </div>
   </div>
 </nav>
@@ -379,7 +381,8 @@ form .btn{justify-content:center;margin-top:.3rem}
   <div class="wrap">
    <div class="hero__text">
     <p class="eyebrow">Для медицинских центров и&nbsp;клиник</p>
-    <h1>Подключим вашу клинику к&nbsp;лаборатории Геномед <em>за&nbsp;3&nbsp;дня</em></h1>
+    <h1>Станьте <em>партнёром Геномед</em>: сервис, поддержка и&nbsp;современные технологии</h1>
+    <p class="hero__sub">Подключим вашу клинику к&nbsp;лаборатории Геномед <em>за&nbsp;3&nbsp;дня</em></p>
     <p class="lead">800+ генетических исследований для ваших пациентов, персональный менеджер и&nbsp;чат поддержки, который отвечает круглосуточно. Биоматериал забираем сами&nbsp;— по&nbsp;всей России и&nbsp;в&nbsp;странах СНГ.</p>
     <div class="hero-cta">
       <a class="btn btn--primary" href="#request"><span>Запросить КП</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
@@ -592,8 +595,8 @@ form .btn{justify-content:center;margin-top:.3rem}
       <nav aria-label="Партнёрам">
         <h3>Партнёрам</h3>
         <a href="https://lkp.genomed.ru/site/login">Личный кабинет партнёра</a>
-        <a href="dejstvuyushchim/#docs">Документы для&nbsp;работы</a>
-        <a href="dejstvuyushchim/#courier">Вызов курьера</a>
+        <a href="dejstvuyushchim/index.html#docs">Документы для&nbsp;работы</a>
+        <a href="dejstvuyushchim/index.html#courier">Вызов курьера</a>
         <a href="https://genomed.ru/gos-tendery-i-zakupki/">Гос. тендеры и&nbsp;закупки</a>
         <a href="#requisites">Карточка организации</a>
       </nav>
