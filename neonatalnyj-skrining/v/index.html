@@ -783,29 +783,58 @@ html:not(.js) .reveal{opacity:1;transform:none}
 .pun__txt p{margin:0;color:rgba(255,255,255,.86);font-size:17px;line-height:1.55}
 .pun__txt p+p{margin-top:12px}
 .pun__fig{margin:0;background:rgba(10,37,64,.45);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-lg);padding:clamp(20px,3vw,32px)}
-.pun__par{display:flex;justify-content:space-around;gap:16px}
+.pun__par{display:grid;grid-template-columns:1fr 1fr}
 .who{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;min-width:0}
 .who__g{display:flex;gap:6px}
 .al{width:26px;height:44px;border-radius:13px;background:#2D7BFF}
 .al--x{background:#FF9F43}
 .who span{font-size:14px;font-weight:700;color:#fff;line-height:1.25}
 .who small{font-size:12.5px;color:#B5C8E0;font-weight:600}
-.pun__arrows{height:44px;margin:4px 0}
-.pun__arrows svg{width:100%;height:100%}
-.pun__kids{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.kid{background:rgba(255,255,255,.06);border-radius:var(--r-md);padding:14px 6px 12px}
-.kid .al{width:22px;height:36px}
+.pun__l1,.pun__l2{display:block;width:100%;fill:none;overflow:visible}
+.pun__l1{height:26px;margin-top:6px;stroke:rgba(255,255,255,.3);stroke-width:1.5}
+.pun__l2{height:56px;stroke-width:1.5}
+.pun__l1 path,.pun__l2 path{vector-effect:non-scaling-stroke}
+.pun__l2 path{stroke:#5B9BFF;opacity:.45;transition:opacity .3s,stroke-width .3s}
+.pun__l2 path.x{stroke:#FF9F43}
+.anim .pun__l2 path{opacity:.12}
+.anim .pun__l2 path.was{opacity:.4}
+.anim .pun__l2 path.on{opacity:1;stroke-width:2.5}
+.pun__gam{display:grid;grid-template-columns:repeat(4,1fr);row-gap:4px;justify-items:center;margin-top:2px}
+.gam{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.07);border:1.5px dashed rgba(255,255,255,.32)}
+.gam--d{width:40px;height:40px;align-self:center}
+.gam .al,.kid .al{width:20px;height:34px;border-radius:10px}
+.gam--d .al{width:16px;height:27px}
+.pun__gam small{order:-1;grid-column:span 2;font-size:12px;font-weight:600;color:#B5C8E0}
+.pun__kids{display:grid;grid-template-columns:repeat(4,1fr)}
+.kid{margin:0 5px;background:rgba(255,255,255,.06);border-radius:var(--r-md);padding:14px 4px 12px;transition:background-color .4s,box-shadow .4s}
 .kid--ill{background:rgba(255,159,67,.16);box-shadow:inset 0 0 0 1.5px rgba(255,159,67,.6)}
 .kid b{font-family:var(--mono);font-size:15px;color:#fff}
-.pun__leg{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:18px;font-size:13.5px;color:#CFE0FF}
+.kid b,.kid small{transition:opacity .4s}
+.anim .gam .al:not(.vis),.anim .kid .al:not(.vis),.anim .kid:not(.vis) b,.anim .kid:not(.vis) small{opacity:0}
+.anim .kid--ill:not(.vis){background:rgba(255,255,255,.06);box-shadow:none}
+.pun__now{min-height:3.1em;margin:16px 0 0;font-size:14.5px;font-weight:600;line-height:1.45;color:#fff}
+.pun__ft{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+.pun__leg{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13.5px;color:#CFE0FF}
 .pun__leg i{display:inline-block;width:12px;height:18px;border-radius:6px;vertical-align:-4px;margin-right:6px;background:#2D7BFF}
 .pun__leg i.x{background:#FF9F43}
-.js .pun .kid .al{opacity:0;transform:translateY(-26px) scale(.8);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.js .pun.in .kid .al{opacity:1;transform:none}
-.js .pun.in .kid:nth-child(1) .al{transition-delay:.25s}.js .pun.in .kid:nth-child(2) .al{transition-delay:.45s}
-.js .pun.in .kid:nth-child(3) .al{transition-delay:.65s}.js .pun.in .kid:nth-child(4) .al{transition-delay:.85s}
+.pun__re{font:inherit;font-size:13px;font-weight:700;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);border-radius:100px;padding:8px 14px;cursor:pointer;transition:background-color .2s}
+.pun__re:hover{background:rgba(255,255,255,.2)}
 @media (max-width:900px){.pun{grid-template-columns:1fr}}
-@media (max-width:700px){.pun__kids{gap:6px}}
+@media (max-width:700px){.kid{margin:0 3px}}
+/* «Обмен веществ»: 7 пунктов — в две колонки, чтобы список не был выше картинки */
+.dz--2{grid-template-columns:1fr 1fr;column-gap:22px}
+@media (max-width:600px){.dz--2{grid-template-columns:1fr}}
+.dz--2 li{font-size:14px;line-height:1.35;padding:8px 0}
+/* картинка и список одной высоты: панели лежат стопкой (высота = самая высокая), картинка тянется под неё */
+@media (min-width:1021px){
+  .casc{align-items:stretch}
+  .casc__view{aspect-ratio:auto;min-height:340px}
+  .sysview .casc__l{position:absolute;inset:0;height:100%;aspect-ratio:auto}
+  .casc__panels{display:grid}
+  .casc__p{grid-area:1/1;min-height:0}
+  .casc__p[hidden]{display:block;visibility:hidden;animation:none}
+  .casc__p[hidden] .dz li{animation:none}
+}
 /* вариант В: фотогалерея лаборатории (из Б) */
 .lab{display:grid;grid-template-columns:1.35fr 1fr 1fr;grid-template-rows:260px 260px;gap:12px}
 .lab figure{position:relative;margin:0;border-radius:var(--r-lg);overflow:hidden;background:var(--line-soft)}
@@ -984,25 +1013,29 @@ html:not(.js) .reveal{opacity:1;transform:none}
     <div class="pun reveal">
       <div class="pun__txt">
         <h3>Как это происходит</h3>
-        <p>Каждый из&nbsp;родителей может нести одну изменённую копию гена и&nbsp;не&nbsp;знать об&nbsp;этом.</p>
-        <p>Если такую копию передадут оба родителя, ребёнок заболеет. Вероятность этого в&nbsp;каждой беременности&nbsp;— 25&nbsp;%.</p>
+        <p>Каждый из&nbsp;родителей может нести одну изменённую копию гена и&nbsp;не&nbsp;знать об&nbsp;этом. В&nbsp;каждую яйцеклетку и&nbsp;каждый сперматозоид попадает только одна из&nbsp;двух копий.</p>
+        <p>Если изменённую копию передадут оба родителя, ребёнок заболеет. Вероятность этого в&nbsp;каждой беременности&nbsp;— 25&nbsp;%.</p>
       </div>
-      <figure class="pun__fig" id="pun" aria-label="Схема: двое здоровых родителей-носителей и четыре равновероятных варианта для ребёнка">
-            <div class="pun__par">
-              <div class="who"><div class="who__g"><i class="al"></i><i class="al al--x"></i></div><span>Мама</span><small>здоровый носитель</small></div>
-              <div class="who"><div class="who__g"><i class="al"></i><i class="al al--x"></i></div><span>Папа</span><small>здоровый носитель</small></div>
-            </div>
-            <div class="pun__arrows" aria-hidden="true"><svg viewBox="0 0 400 44" preserveAspectRatio="none" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.5"><path d="M110 2 C110 24 50 20 50 42M110 2 C110 24 150 20 150 42M290 2 C290 24 250 20 250 42M290 2 C290 24 350 20 350 42"/></svg></div>
-            <div class="pun__kids">
-              <div class="kid who"><div class="who__g"><i class="al"></i><i class="al"></i></div><b>25&nbsp;%</b><small>здоров</small></div>
-              <div class="kid who"><div class="who__g"><i class="al"></i><i class="al al--x"></i></div><b>25&nbsp;%</b><small>носитель</small></div>
-              <div class="kid who"><div class="who__g"><i class="al al--x"></i><i class="al"></i></div><b>25&nbsp;%</b><small>носитель</small></div>
-              <div class="kid kid--ill who"><div class="who__g"><i class="al al--x"></i><i class="al al--x"></i></div><b>25&nbsp;%</b><small>болезнь</small></div>
-            </div>
-            <div class="pun__leg"><span><i></i>обычная копия гена</span><span><i class="x"></i>изменённая копия</span></div>
-          </figure>
+      <figure class="pun__fig" id="pun" aria-label="Схема: каждый из родителей-носителей передаёт ребёнку одну из двух копий гена, получается четыре равновероятных сочетания, одно из них — болезнь">
+        <div class="pun__par">
+          <div class="who"><div class="who__g"><i class="al" data-a="m0"></i><i class="al al--x" data-a="m1"></i></div><span>Мама</span><small>здоровый носитель</small></div>
+          <div class="who"><div class="who__g"><i class="al" data-a="d0"></i><i class="al al--x" data-a="d1"></i></div><span>Папа</span><small>здоровый носитель</small></div>
+        </div>
+        <svg class="pun__l1" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M100 0C100 13 50 13 50 26M100 0C100 13 150 13 150 26M300 0C300 13 250 13 250 26M300 0C300 13 350 13 350 26"/></svg>
+        <div class="pun__gam">
+          <div class="gam" data-g="m0"><i class="al"></i></div><div class="gam" data-g="m1"><i class="al al--x"></i></div>
+          <div class="gam gam--d" data-g="d0"><i class="al"></i></div><div class="gam gam--d" data-g="d1"><i class="al al--x"></i></div>
+          <small>яйцеклетки</small><small>сперматозоиды</small>
+        </div>
+        <svg class="pun__l2" viewBox="0 0 400 56" preserveAspectRatio="none" aria-hidden="true"><path data-k="0" class="" d="M50 0 C50 28 41 28 41 56"/><path data-k="0" class="" d="M250 0 C250 28 59 28 59 56"/><path data-k="1" class="" d="M50 0 C50 28 141 28 141 56"/><path data-k="1" class="x" d="M350 0 C350 28 159 28 159 56"/><path data-k="2" class="x" d="M150 0 C150 28 241 28 241 56"/><path data-k="2" class="" d="M250 0 C250 28 259 28 259 56"/><path data-k="3" class="x" d="M150 0 C150 28 341 28 341 56"/><path data-k="3" class="x" d="M350 0 C350 28 359 28 359 56"/></svg>
+        <div class="pun__kids"><div class="kid who" data-k="0"><div class="who__g"><i class="al"></i><i class="al"></i></div><b>25&nbsp;%</b><small>здоров</small></div><div class="kid who" data-k="1"><div class="who__g"><i class="al"></i><i class="al al--x"></i></div><b>25&nbsp;%</b><small>носитель</small></div><div class="kid who" data-k="2"><div class="who__g"><i class="al al--x"></i><i class="al"></i></div><b>25&nbsp;%</b><small>носитель</small></div><div class="kid who kid--ill" data-k="3"><div class="who__g"><i class="al al--x"></i><i class="al al--x"></i></div><b>25&nbsp;%</b><small>болезнь</small></div></div>
+        <p class="pun__now" aria-hidden="true">Четыре равновероятных сочетания: в&nbsp;каждой беременности вероятность болезни&nbsp;— 1&nbsp;из&nbsp;4, или 25&nbsp;%.</p>
+        <div class="pun__ft">
+          <div class="pun__leg"><span><i></i>обычная копия гена</span><span><i class="x"></i>изменённая копия</span></div>
+          <button class="pun__re" type="button" hidden>Показать ещё раз</button>
+        </div>
+      </figure>
     </div>
-    <p class="risk__src">Источники: <a href="https://www.mja.com.au/journal/2011/194/4/case-cystic-fibrosis-carrier-testing-general-population" target="_blank" rel="noopener">MJA 2011;194(4)</a> · <a href="https://doi.org/10.15690/vramn1768" target="_blank" rel="noopener">Маретина М.А. и&nbsp;др., Вестник РАМН 2022;77(2)</a> · <a href="https://medi.ru/klinicheskie-rekomendatsii/kistoznyj-fibroz-mukovistsidoz-u-detej_14031/" target="_blank" rel="noopener">КР «Кистозный фиброз (муковисцидоз) у&nbsp;детей»</a></p>
   </div>
 </section>
 <span id="about"></span>
@@ -1036,7 +1069,7 @@ html:not(.js) .reveal{opacity:1;transform:none}
       </div>
       <div class="casc__side">
         <div class="casc__steps sysbtns" role="tablist" aria-label="Группы заболеваний"><button role="tab" aria-selected="true" data-st="0"><span class="mono">01</span>Обмен веществ</button><button role="tab" aria-selected="false" data-st="1" tabindex="-1"><span class="mono">02</span>Иммунитет</button><button role="tab" aria-selected="false" data-st="2" tabindex="-1"><span class="mono">03</span>Мышцы и&nbsp;нервы</button><button role="tab" aria-selected="false" data-st="3" tabindex="-1"><span class="mono">04</span>Щитовидная железа</button><button role="tab" aria-selected="false" data-st="4" tabindex="-1"><span class="mono">05</span>Лёгкие</button><button role="tab" aria-selected="false" data-st="5" tabindex="-1"><span class="mono">06</span>Слух</button><button role="tab" aria-selected="false" data-st="6" tabindex="-1"><span class="mono">07</span>Сердце</button></div>
-        <div class="casc__panels" aria-live="polite"><div class="casc__p" data-st="0"><h3>Обмен веществ</h3><p>Организм не&nbsp;может нормально перерабатывать некоторые вещества&nbsp;— отдельные аминокислоты, жиры или сахара.</p><ul class="dz"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Фенилкетонурия</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Органические ацидурии</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Нарушения цикла мочевины</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Нарушения β&#8209;окисления жирных кислот и&nbsp;метаболизма карнитина</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Мукополисахаридозы и&nbsp;лизосомные болезни накопления</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Дефекты биотинидазы и&nbsp;голокарбоксилазы</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Галактоземия</span></li></ul></div><div class="casc__p" data-st="1" hidden><h3>Иммунитет</h3><p>Первичные иммунодефициты&nbsp;— врождённые нарушения работы иммунной системы: организм хуже защищается от&nbsp;инфекций.</p><ul class="dz"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Первичные иммунодефициты</span></li></ul></div><div class="casc__p" data-st="2" hidden><h3>Мышцы и&nbsp;нервы</h3><p>Заболевания, при которых страдают нервные клетки и&nbsp;пути, управляющие движением. Для спинальной мышечной атрофии отдельно считают копии гена SMN1.</p><ul class="dz"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Спинальные мышечные атрофии</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Атаксии</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Спастические параплегии</span></li><li class="px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Адренолейкодистрофия</span><em>только ПЛЮС</em></li></ul></div><div class="casc__p" data-st="3" hidden><h3>Щитовидная железа</h3><p>Врождённый гипотиреоз&nbsp;— щитовидная железа вырабатывает недостаточно гормонов.</p><ul class="dz"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Врождённый гипотиреоз</span></li></ul></div><div class="casc__p" data-st="4" hidden><h3>Лёгкие</h3><p>Муковисцидоз&nbsp;— слизь в&nbsp;органах становится густой и&nbsp;вязкой, это мешает работе лёгких и&nbsp;пищеварения.</p><ul class="dz"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Муковисцидоз</span></li></ul></div><div class="casc__p" data-st="5" hidden><h3>Слух</h3><p>Наследственная тугоухость&nbsp;— снижение слуха, связанное с&nbsp;изменениями в&nbsp;генах.</p><ul class="dz"><li class="px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Наследственная тугоухость</span><em>только ПЛЮС</em></li></ul></div><div class="casc__p" data-st="6" hidden><h3>Сердце</h3><p>Врождённые заболевания сердца, связанные с&nbsp;изменениями в&nbsp;генах.</p><ul class="dz"><li class="px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Врождённые заболевания сердца</span><em>только ПЛЮС</em></li></ul></div></div>
+        <div class="casc__panels" aria-live="polite"><div class="casc__p" data-st="0"><h3>Обмен веществ</h3><p>Организм не&nbsp;может нормально перерабатывать некоторые вещества&nbsp;— отдельные аминокислоты, жиры или сахара.</p><ul class="dz dz--2"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Фенилкетонурия</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Органические ацидурии</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Нарушения цикла мочевины</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Нарушения β&#8209;окисления жирных кислот и&nbsp;метаболизма карнитина</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Мукополисахаридозы и&nbsp;лизосомные болезни накопления</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Дефекты биотинидазы и&nbsp;голокарбоксилазы</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Галактоземия</span></li></ul></div><div class="casc__p" data-st="1" hidden><h3>Иммунитет</h3><p>Первичные иммунодефициты&nbsp;— врождённые нарушения работы иммунной системы: организм хуже защищается от&nbsp;инфекций.</p><ul class="dz"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Первичные иммунодефициты</span></li></ul></div><div class="casc__p" data-st="2" hidden><h3>Мышцы и&nbsp;нервы</h3><p>Заболевания, при которых страдают нервные клетки и&nbsp;пути, управляющие движением. Для спинальной мышечной атрофии отдельно считают копии гена SMN1.</p><ul class="dz"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Спинальные мышечные атрофии</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Атаксии</span></li><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Спастические параплегии</span></li><li class="px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Адренолейкодистрофия</span><em>только ПЛЮС</em></li></ul></div><div class="casc__p" data-st="3" hidden><h3>Щитовидная железа</h3><p>Врождённый гипотиреоз&nbsp;— щитовидная железа вырабатывает недостаточно гормонов.</p><ul class="dz"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Врождённый гипотиреоз</span></li></ul></div><div class="casc__p" data-st="4" hidden><h3>Лёгкие</h3><p>Муковисцидоз&nbsp;— слизь в&nbsp;органах становится густой и&nbsp;вязкой, это мешает работе лёгких и&nbsp;пищеварения.</p><ul class="dz"><li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Муковисцидоз</span></li></ul></div><div class="casc__p" data-st="5" hidden><h3>Слух</h3><p>Наследственная тугоухость&nbsp;— снижение слуха, связанное с&nbsp;изменениями в&nbsp;генах.</p><ul class="dz"><li class="px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Наследственная тугоухость</span><em>только ПЛЮС</em></li></ul></div><div class="casc__p" data-st="6" hidden><h3>Сердце</h3><p>Врождённые заболевания сердца, связанные с&nbsp;изменениями в&nbsp;генах.</p><ul class="dz"><li class="px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Врождённые заболевания сердца</span><em>только ПЛЮС</em></li></ul></div></div>
       </div>
     </div>
   </div>
@@ -1272,6 +1305,31 @@ html:not(.js) .reveal{opacity:1;transform:none}
   if(!reduce&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!timer&&!done){timer=setInterval(function(){if(cur===N-1){stop();done=true;return}show(cur+1)},3000)}else if(!e.isIntersecting)stop()})},{threshold:.45}).observe(cv)}
   show(0)}
  if(!reduce&&'IntersectionObserver' in window){document.querySelectorAll('[data-count]').forEach(function(el){var n=+el.dataset.count;el.textContent='0';var o=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;o.disconnect();var t0=performance.now();(function f(t){var p=Math.min(1,(t-t0)/900);el.textContent=String(Math.round(n*(1-Math.pow(1-p,3))));if(p<1)requestAnimationFrame(f)})(t0)});o.observe(el)})}
+})();
+
+(function(){
+ var f=document.getElementById('pun');if(!f||!f.animate||matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+ var q=function(s){return [].slice.call(f.querySelectorAll(s))},now=f.querySelector('.pun__now'),re=f.querySelector('.pun__re'),fin=now.innerHTML,busy=false;
+ var K=[[0,0],[0,1],[1,0],[1,1]],
+  T=['Мама передаёт обычную копию, папа&nbsp;— тоже обычную: ребёнок здоров','Мама&nbsp;— обычную, папа&nbsp;— изменённую: ребёнок&nbsp;— здоровый носитель','Мама&nbsp;— изменённую, папа&nbsp;— обычную: ребёнок&nbsp;— здоровый носитель','Обе копии изменённые: ребёнок заболеет'];
+ function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
+ function fly(el,from){el.classList.add('vis');var a=from.getBoundingClientRect(),b=el.getBoundingClientRect();
+  return el.animate([{transform:'translate('+(a.left-b.left)+'px,'+(a.top-b.top)+'px)'},{transform:'none'}],{duration:750,easing:'cubic-bezier(.5,0,.2,1)'}).finished}
+ function say(t){now.innerHTML=t;now.animate([{opacity:0},{opacity:1}],{duration:300})}
+ async function run(){if(busy)return;busy=true;re.hidden=true;
+  q('.vis,.on,.was').forEach(function(e){e.classList.remove('vis','on','was')});f.classList.add('anim');
+  say('Каждый родитель передаёт ребёнку только одну из&nbsp;двух копий гена');await wait(500);
+  ['m','d'].forEach(function(p){[0,1].forEach(function(i){fly(f.querySelector('[data-g="'+p+i+'"] .al'),f.querySelector('[data-a="'+p+i+'"]'))})});
+  await wait(1300);
+  for(var k=0;k<4;k++){var kid=f.querySelector('.kid[data-k="'+k+'"]'),al=kid.querySelectorAll('.al');say(T[k]);
+   q('.pun__l2 [data-k="'+k+'"]').forEach(function(l){l.classList.add('on')});
+   fly(al[0],f.querySelector('[data-g="m'+K[k][0]+'"] .al'));await wait(350);
+   await fly(al[1],f.querySelector('[data-g="d'+K[k][1]+'"] .al'));kid.classList.add('vis');await wait(1300);
+   q('.pun__l2 .on').forEach(function(l){l.classList.replace('on','was')})}
+  say(fin);re.hidden=false;busy=false}
+ re.addEventListener('click',run);
+ f.classList.add('anim');
+ var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();setTimeout(run,400)}},{threshold:.35});io.observe(f);
 })();
 </script>
 </body>
