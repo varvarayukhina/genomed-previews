@@ -685,6 +685,112 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
 }
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
+/* --- карта тела (вариант Б) --- */
+.bmap{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(24px,4vw,64px);align-items:center}
+.bmap>*{min-width:0}
+.bmap__fig{position:relative;width:min(100%,420px);margin:0 auto;aspect-ratio:2/3}
+.bmap__fig::before{content:"";position:absolute;inset:-10%;pointer-events:none;
+  background-image:linear-gradient(rgba(0,194,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,194,255,.08) 1px,transparent 1px);background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent);mask-image:radial-gradient(closest-side,#000 55%,transparent)}
+.bmap__img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 28px rgba(0,120,255,.35));animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.bmap__scan{position:absolute;left:-8%;right:-8%;top:0;height:16%;pointer-events:none;mix-blend-mode:screen;
+  background:linear-gradient(180deg,transparent,rgba(0,194,255,.08) 55%,rgba(0,194,255,.6) 97%,transparent);animation:scan 5s cubic-bezier(.45,.05,.55,.95) infinite}
+@keyframes scan{0%{transform:translateY(-30%);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateY(620%);opacity:0}}
+.bmap__hud i{position:absolute;width:26px;height:26px;border:2px solid rgba(0,194,255,.7);pointer-events:none}
+.bmap__hud i:nth-child(1){top:-4%;left:-6%;border-right:0;border-bottom:0;border-top-left-radius:8px}
+.bmap__hud i:nth-child(2){top:-4%;right:-6%;border-left:0;border-bottom:0;border-top-right-radius:8px}
+.bmap__hud i:nth-child(3){bottom:-4%;left:-6%;border-right:0;border-top:0;border-bottom-left-radius:8px}
+.bmap__hud i:nth-child(4){bottom:-4%;right:-6%;border-left:0;border-top:0;border-bottom-right-radius:8px}
+.bmap__tag{position:absolute;left:-6%;bottom:-9%;font-size:11px;font-weight:700;letter-spacing:.12em;color:rgba(0,194,255,.75)}
+.bpt{position:absolute;left:var(--x);top:var(--y);width:32px;height:32px;margin:-16px 0 0 -16px;border:0;background:none;padding:0;cursor:pointer;z-index:2}
+.bpt i{position:absolute;inset:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(0,194,255,.45),0 0 14px 4px rgba(0,194,255,.7);transition:transform .2s}
+.bpt::before{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(0,194,255,.85);animation:bping 2.6s ease-out infinite;animation-delay:var(--d,0s)}
+@keyframes bping{0%{transform:scale(.35);opacity:1}100%{transform:scale(1.9);opacity:0}}
+.bpt:hover i{transform:scale(1.25)}
+.bpt span{position:absolute;left:50%;bottom:calc(100% + 4px);transform:translate(-50%,4px);white-space:nowrap;font-size:12px;font-weight:700;color:#fff;
+  background:rgba(10,37,64,.88);border:1px solid rgba(0,194,255,.45);padding:4px 10px;border-radius:100px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none}
+.bpt:hover span,.bpt:focus-visible span,.bpt.on span{opacity:1;transform:translate(-50%,0)}
+.bpt.on i{background:var(--cyan);transform:scale(1.3);box-shadow:0 0 0 4px rgba(255,255,255,.95),0 0 26px 10px rgba(0,194,255,.85)}
+.bp__chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.bp__chips button{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:rgba(225,236,255,.85);border-radius:100px;padding:7px 12px;font-size:13px;font-weight:700;cursor:pointer;
+  transition:background-color .2s,color .2s,border-color .2s}
+.bp__chips button:hover{border-color:var(--cyan);color:#fff}
+.bp__chips button.on{background:var(--cyan);border-color:var(--cyan);color:#00223a}
+.bmap__panel{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-xl);padding:clamp(22px,3vw,36px);min-height:430px}
+.bp__k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
+.bmap__panel h3{font-size:clamp(26px,2.6vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:10px 0 10px;color:#fff}
+.bp__n{display:flex;align-items:baseline;gap:10px;color:rgba(225,236,255,.75);font-size:15px;font-weight:600}
+.bp__n b{font-family:var(--mono);font-size:44px;font-weight:700;color:var(--cyan);line-height:1}
+.bp__list{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:9px 20px}
+.bp__list li{position:relative;padding-left:18px;font-size:15px;color:rgba(225,236,255,.92);line-height:1.4}
+.bp__list li::before{content:"";position:absolute;left:2px;top:7px;width:7px;height:7px;border-radius:2px;background:var(--cyan);transform:rotate(45deg)}
+.bp__todo{margin-top:22px;padding:16px 18px;border-radius:16px;background:rgba(0,194,255,.08);border:1px solid rgba(0,194,255,.25);font-size:14.5px;color:rgba(225,236,255,.88);line-height:1.5}
+.bp__todo b{display:block;color:#fff;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px}
+.bp__open{margin-top:20px;display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;background:#fff;color:var(--bg-deep);font-weight:700;font-size:14.5px;padding:12px 18px;border-radius:100px;transition:background-color .2s}
+.bp__open:hover{background:var(--cyan-soft)}
+.bp__open .ic{width:16px;height:16px}
+.bmap__note{margin:28px 0 0;font-size:12.5px;color:rgba(190,212,236,.65)}
+@media (max-width:900px){.bmap{grid-template-columns:1fr}.bmap__fig{width:min(76vw,360px);margin-bottom:8px}.bmap__tag{display:none}.bmap__panel{min-height:0}}
+@media (max-width:560px){.bp__list{grid-template-columns:1fr}}
+
+/* --- подарочный сертификат --- */
+.gift{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,4vw,64px);align-items:center}
+.gift>*{min-width:0}
+.gift__stage{perspective:1600px;display:grid;justify-items:center;gap:16px}
+.gcard{width:min(100%,560px);aspect-ratio:1.6/1;position:relative;--rx:0deg;--ry:0deg;--flip:0}
+.gcard__in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(calc(var(--ry) + var(--flip) * 180deg));transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.gcard.tilt .gcard__in{transition:transform .12s ease-out}
+.gcard__f,.gcard__b{position:absolute;inset:0;border-radius:22px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 30px 70px rgba(10,37,64,.28),0 6px 18px rgba(10,37,64,.14)}
+.gcard__f{background:var(--gimg,none) center/cover no-repeat,#0A2540;padding:clamp(18px,3.2vw,30px);display:flex;flex-direction:column;color:#fff}
+.gcard__f::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,rgba(10,37,64,.78) 0%,rgba(10,37,64,.35) 55%,transparent 80%)}
+.gcard__f::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.22) 45%,transparent 60%);transform:translateX(-120%);transition:transform 1s ease}
+.gcard.swap .gcard__f::after{transform:translateX(120%)}
+.gcard__f>*{position:relative}
+.gcard[data-theme="light"] .gcard__f{color:var(--ink)}
+.gcard[data-theme="light"] .gcard__f::before{background:linear-gradient(100deg,rgba(255,255,255,.88) 0%,rgba(255,255,255,.55) 50%,transparent 75%)}
+.gcard__logo{height:clamp(30px,4.4vw,44px);width:auto;align-self:flex-start;filter:brightness(0) invert(1)}
+.gcard[data-theme="light"] .gcard__logo{filter:none}
+.gcard__k{margin-top:auto;font-size:clamp(10px,1.2vw,12px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.gcard__t{font-family:var(--font);font-weight:900;font-size:clamp(34px,6vw,60px);letter-spacing:-.04em;line-height:1;margin:6px 0 6px}
+.gcard__s{font-size:clamp(11px,1.4vw,14px);font-weight:600;opacity:.85}
+.gcard__to{display:flex;gap:10px;align-items:baseline;margin-top:clamp(10px,2vw,18px);padding-top:clamp(8px,1.4vw,12px);border-top:1px solid currentColor;border-top-color:rgba(255,255,255,.35);max-width:70%}
+.gcard[data-theme="light"] .gcard__to{border-top-color:rgba(10,37,64,.25)}
+.gcard__to span{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.gcard__to b{font-size:clamp(15px,2vw,20px);font-weight:800;letter-spacing:-.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gcard__no{position:absolute!important;right:clamp(18px,3.2vw,30px);bottom:clamp(16px,3vw,26px);font-size:11px;opacity:.75}
+.gcard__b{transform:rotateY(180deg);background:#fff;color:var(--ink);padding:clamp(18px,3.2vw,30px);display:flex;flex-direction:column;border:1px solid var(--line-soft)}
+.gcard__b .gcard__k{margin-top:0;color:var(--blue);opacity:1}
+.gcard__msg{font-size:clamp(15px,2.2vw,22px);font-weight:700;letter-spacing:-.015em;line-height:1.3;margin:10px 0 0;overflow-wrap:anywhere}
+.gcard__from{margin-top:10px;font-size:15px;color:var(--ink-2)}
+.gcard__how{margin-top:auto;font-size:clamp(11px,1.3vw,13px);color:var(--muted);line-height:1.45;padding-top:12px;border-top:1px dashed var(--line)}
+.gift__flip{border:0;background:var(--accent-soft);color:var(--ink);font-weight:700;font-size:14px;padding:10px 16px;border-radius:100px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.gift__flip .ic{width:16px;height:16px}
+.gift__lbl{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.gift__designs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.gthumb{position:relative;aspect-ratio:1.6/1;border-radius:12px;border:2px solid transparent;cursor:pointer;overflow:hidden;padding:0;background:var(--gimg,none) center/cover no-repeat,#0A2540;
+  box-shadow:0 0 0 1px var(--line);transition:transform .2s,box-shadow .2s,border-color .2s}
+.gthumb:hover{transform:translateY(-2px)}
+.gthumb[aria-checked="true"]{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,87,255,.2)}
+.gthumb span{position:absolute;left:6px;bottom:6px;font-size:11px;font-weight:700;background:rgba(255,255,255,.92);color:var(--ink);padding:2px 8px;border-radius:100px}
+.gd-brand{--gimg:radial-gradient(circle at 85% 20%,rgba(0,194,255,.55),transparent 45%),radial-gradient(circle at 70% 90%,rgba(0,87,255,.6),transparent 50%),linear-gradient(135deg,#0A2540,#0B3A7A)}
+.gd-min{--gimg:linear-gradient(90deg,#fff 0%,#fff 72%,#E6F0FF 72%,#E6F0FF 76%,#0057FF 76%,#00C2FF 100%)}
+.gift__f{display:grid;gap:6px;margin-bottom:14px;position:relative}
+.gift__f span{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.gift__f input,.gift__f textarea{width:100%;font-family:inherit;font-size:16px;font-weight:600;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;outline:none;resize:none;transition:border-color .2s,box-shadow .2s}
+.gift__f input:focus,.gift__f textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,87,255,.1)}
+.gift__f small{position:absolute;right:12px;bottom:10px;font-size:11px;color:var(--muted)}
+.gift__buy{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:8px;padding-top:18px;border-top:1px solid var(--line)}
+.gift__price{font-family:var(--font);font-weight:900;font-size:30px;letter-spacing:-.04em}
+.gsteps{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:gs}
+.gsteps li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;align-items:start}
+.gsteps .way__ic{width:48px;height:48px;border-radius:14px}
+.gsteps .way__ic .ic{width:24px;height:24px}
+.gsteps b{display:block;font-size:17px;font-weight:800;margin:2px 0 4px}
+.gsteps span{font-size:14.5px;color:var(--ink-2);line-height:1.5}
+@media (max-width:980px){.gift{grid-template-columns:1fr}.gsteps{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.bmap__img,.bmap__scan,.bpt::before{animation:none!important}.gcard__in{transition:none!important}}
+
 
 /* ===== B2B ===== */
 .b2b-rib{row-gap:40px}
@@ -1532,6 +1638,100 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     });
     new ResizeObserver(() => { if (cur >= 0) ty.set(btns[cur].offsetTop - 10); }).observe(list);
     select(0);
+  })();
+
+  /* ============ КАРТА ТЕЛА ============ */
+  (() => {
+    const pts = $('bmapPts'), panel = $('bmapPanel'), chips = $('bmapChips'); if (!pts || !panel) return;
+    const SYS = [
+      { k: 'head', t: 'Мозг, психика, зрение и слух', x: 50, y: 4, n: 46,
+        it: ['Болезнь Альцгеймера', 'Болезнь Паркинсона', 'Инсульт', 'Рассеянный склероз', 'Депрессия', 'Тревожное расстройство', 'Глаукома', 'Возрастная потеря слуха'],
+        todo: 'Повышенный риск — повод не откладывать визит к неврологу или офтальмологу при первых симптомах.' },
+      { k: 'thyroid', t: 'Щитовидная железа и обмен веществ', x: 50, y: 15, n: 10,
+        it: ['Гипотиреоз', 'Тиреоидит Хашимото', 'Гипертиреоз', 'Метаболический синдром', 'Рак щитовидной железы'],
+        todo: 'Как часто сдавать ТТГ и проверять обмен веществ.' },
+      { k: 'lungs', t: 'Лёгкие и дыхание', x: 42, y: 23.5, n: 14,
+        it: ['Хроническая обструктивная болезнь лёгких', 'Идиопатический лёгочный фиброз', 'Сонное апноэ', 'Аллергический ринит', 'Рак лёгкого'],
+        todo: 'Как часто проверять лёгкие и стоит ли пройти обследование раньше.' },
+      { k: 'heart', t: 'Сердце и сосуды', x: 52, y: 25, n: 29,
+        it: ['Инфаркт миокарда', 'Гипертония', 'Фибрилляция предсердий', 'Атеросклероз', 'Аневризма аорты', 'Сердечная недостаточность'],
+        todo: 'С какого возраста и как часто проверять давление, холестерин и ЭКГ.' },
+      { k: 'liver', t: 'Печень и поджелудочная железа', x: 45, y: 31.5, n: 8,
+        it: ['Неалкогольная жировая болезнь печени', 'Желчнокаменная болезнь', 'Цирроз печени', 'Острый панкреатит', 'Рак поджелудочной железы'],
+        todo: 'Как часто делать УЗИ брюшной полости и биохимию крови.' },
+      { k: 'gut', t: 'Желудок и кишечник', x: 55.5, y: 33.5, n: 12,
+        it: ['Язва желудка', 'Гастроэзофагеальная рефлюксная болезнь', 'Целиакия', 'Синдром раздражённого кишечника', 'Дивертикулёз', 'Колоректальный рак'],
+        todo: 'Когда начинать обследования желудка и кишечника — с гастроэнтерологом.' },
+      { k: 'kidney', t: 'Почки и мочевыделение', x: 58, y: 37.5, n: 6,
+        it: ['Хроническая болезнь почек', 'Почечные камни', 'Рак почки', 'Рак мочевого пузыря'],
+        todo: 'Как часто сдавать анализ мочи и креатинин.' },
+      { k: 'skin', t: 'Кожа и иммунитет', x: 23.5, y: 41, n: 24,
+        it: ['Псориаз', 'Атопический дерматит', 'Витилиго', 'Розацеа', 'Болезнь Крона', 'Меланома кожи'],
+        todo: 'Как часто показываться дерматологу и проверять родинки.' },
+      { k: 'blood', t: 'Кровь и свёртывание', x: 77, y: 42, n: 9,
+        it: ['Хронический лимфоцитарный лейкоз', 'Лимфома', 'Тромбоцитопения', 'Нарушения свёртывания'],
+        todo: 'Нужен ли развёрнутый анализ крови чаще обычного.' },
+      { k: 'bones', t: 'Кости и суставы', x: 41.5, y: 66, n: 8,
+        it: ['Стеноз позвоночного канала', 'Спондилолистез', 'Дисплазия тазобедренного сустава', 'Контрактура Дюпюитрена'],
+        todo: 'Какие нагрузки безопасны для суставов и нужна ли денситометрия.' },
+    ];
+    const word = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'риск' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'риска' : 'рисков');
+    pts.innerHTML = SYS.map((s, i) => `<button class="bpt" type="button" data-k="${s.k}" style="--x:${s.x}%;--y:${s.y}%;--d:${(i * 0.23).toFixed(2)}s" aria-label="${esc(s.t)}"><i></i><span>${esc(s.t)}</span></button>`).join('');
+    if (chips) chips.innerHTML = SYS.map((s) => `<button type="button" data-k="${s.k}">${esc(s.t)}</button>`).join('');
+    const render = (s) => `<div class="bp__k">Система организма</div><h3>${esc(s.t)}</h3>
+      <div class="bp__n"><b>${s.n}</b>${word(s.n)} в отчёте</div>
+      <ul class="bp__list">${s.it.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+      <div class="bp__todo"><b>Что обсудить с врачом</b>${esc(s.todo)}</div>
+      ${$('demo-cabinet') ? `<button class="bp__open" type="button" data-open>Открыть раздел в кабинете ${svg('grid')}</button>` : ''}`;
+    let cur = '';
+    function select(k, user) {
+      if (k === cur) return; cur = k; const s = SYS.find((x) => x.k === k);
+      document.querySelectorAll('.bpt,[id="bmapChips"] button').forEach((b) => b.classList.toggle('on', b.dataset.k === k));
+      if (!user || RM.matches || !panel.animate) { panel.innerHTML = render(s); return; }
+      panel.animate([{ opacity: 1, filter: 'blur(0px)' }, { opacity: 0, filter: 'blur(4px)' }], { duration: 100, easing: 'ease-out', fill: 'forwards' }).finished.then(() => {
+        panel.innerHTML = render(s);
+        panel.animate([{ opacity: 0, filter: 'blur(4px)', transform: 'translateY(6px)' }, { opacity: 1, filter: 'blur(0px)', transform: 'none' }], { duration: 260, easing: 'cubic-bezier(0.23, 1, 0.32, 1)', fill: 'forwards' });
+      });
+    }
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('.bpt,#bmapChips button'); if (b) { select(b.dataset.k, true); return; }
+      if (e.target.closest('#bmapPanel [data-open]') && Phone) { $('demo-cabinet').scrollIntoView({ behavior: RM.matches ? 'auto' : 'smooth', block: 'center' }); Phone.show('risk'); }
+    });
+    select('heart');
+  })();
+
+  /* ============ ПОДАРОЧНЫЙ СЕРТИФИКАТ ============ */
+  (() => {
+    const card = $('gcard'); if (!card) return;
+    const front = card.querySelector('.gcard__f');
+    const thumbs = [...document.querySelectorAll('.gthumb')];
+    thumbs.forEach((t) => t.addEventListener('click', () => {
+      thumbs.forEach((x) => x.setAttribute('aria-checked', String(x === t)));
+      front.className = 'gcard__f ' + t.dataset.d; card.dataset.theme = t.dataset.theme;
+      card.style.setProperty('--flip', 0);
+      card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap');
+    }));
+    const flip = (on) => { card.classList.remove('tilt'); card.style.setProperty('--flip', on ? 1 : 0); };
+    const bind = (inId, outId, def, side) => {
+      const i = $(inId), o = $(outId); if (!i || !o) return;
+      i.addEventListener('input', () => { o.textContent = i.value.trim() || def; });
+      i.addEventListener('focus', () => flip(side));
+    };
+    bind('gToIn', 'gTo', 'Имя получателя', 0);
+    bind('gFromIn', 'gFrom', 'от кого', 1);
+    bind('gMsgIn', 'gMsg', 'Пусть этот подарок поможет лучше узнать себя.', 1);
+    const msg = $('gMsgIn'), cnt = $('gCnt');
+    if (msg && cnt) msg.addEventListener('input', () => { cnt.textContent = msg.value.length + ' / ' + msg.maxLength; });
+    const fb = $('gFlip'); if (fb) fb.addEventListener('click', () => flip(card.style.getPropertyValue('--flip').trim() !== '1'));
+    // лёгкий наклон за курсором
+    const stage = card.parentElement;
+    if (!RM.matches && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      stage.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        card.classList.add('tilt'); card.style.setProperty('--ry', (x * 12).toFixed(2) + 'deg'); card.style.setProperty('--rx', (-y * 10).toFixed(2) + 'deg');
+      });
+      stage.addEventListener('pointerleave', () => { card.classList.remove('tilt'); card.style.setProperty('--ry', '0deg'); card.style.setProperty('--rx', '0deg'); });
+    }
   })();
 })();
 </script>
