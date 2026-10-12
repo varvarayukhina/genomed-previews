@@ -1744,7 +1744,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
   (() => {
     const pick = $('pick'); if (!pick || !Phone) return;
     const S = Phone.SECS;
-    const ITEMS = [
+    const ITEMS = (() => { const d = $('pickData'); return d ? JSON.parse(d.textContent) : null; })() || [
       { k: 'checkup', c: '#0057FF', label: 'Слежу за здоровьем', if: 'Если вы следите за здоровьем', h: 'Чтобы чек‑апы имели цель',
         p: 'Отчёт помогает понять, какие обследования важны именно вам и с какого возраста их начинать. Покажите его врачу — меньше анализов «на всякий случай».', sec: ['risk', 'bio'] },
       { k: 'track', c: '#1AA06D', label: 'Слежу за показателями', if: 'Если вы следите за сном, нагрузками и анализами', h: 'Генетика для ваших трекеров',
@@ -1806,10 +1806,10 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
   <span class="vsw__t">Вариант</span>
   <a href="index.html" data-v="index">А · Про вас</a>
   <a href="zdorovie.html" data-v="zdorovie">Б · Польза</a>
-  <!--B2B--><!--<a href="b2b.html" data-v="b2b">Для клиник</a>-->
+  <a href="b2b.html" data-v="b2b">Для клиник</a>
 </nav>
 <style>
-.vsw{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:300;display:flex;align-items:center;gap:4px;padding:5px;border-radius:100px;
+.vsw{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:300;display:flex;align-items:center;gap:4px;padding:5px;border-radius:100px;
   background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 8px 24px rgba(10,37,64,.16),0 0 0 1px rgba(10,37,64,.08);font-family:var(--font,sans-serif)}
 .vsw__t{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6E839C;padding:0 8px 0 10px}
 .vsw a{font-size:13px;font-weight:700;color:#2E4A6B;text-decoration:none;padding:8px 12px;border-radius:100px;white-space:nowrap;transition:background-color .2s,color .2s}
