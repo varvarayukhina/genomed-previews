@@ -803,6 +803,21 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
 .sk-rec .ic{margin-top:2px}
 @media (prefers-reduced-motion:reduce){.meter__m{animation:none}}
 
+/* --- кабинет, который открывается профилем (вариант В) --- */
+.p-prof{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px}
+.p-pr{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-height:62px;padding:10px 11px;border:0;border-radius:12px;background:#fff;box-shadow:var(--shadow-sm);
+  text-align:left;cursor:pointer;font:inherit;color:var(--ink);animation:prin .5s cubic-bezier(.2,.8,.2,1) both}
+.p-pr:nth-child(2){animation-delay:.06s}.p-pr:nth-child(3){animation-delay:.12s}.p-pr:nth-child(4){animation-delay:.18s}.p-pr:nth-child(5){animation-delay:.24s}
+.p-pr:first-child{grid-column:1/-1;background:linear-gradient(135deg,var(--bg-deep),#0B3A7A);color:#fff}
+.p-pr:first-child span{color:rgba(225,236,255,.7)}
+.p-pr:active{transform:scale(.98)}
+.p-pr span{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.p-pr b{font-size:14px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.p-pr:first-child b{font-size:19px}
+.p-prof__ex{position:absolute;right:10px;top:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:rgba(225,236,255,.75);pointer-events:none}
+@keyframes prin{from{opacity:0;transform:translateY(8px)}}
+@media (prefers-reduced-motion:reduce){.p-pr{animation:none}}
+
 
 /* ===== вариант Б: что вы получите ===== */
 .ribbon .n{display:block;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--blue);margin-bottom:10px}
@@ -1504,7 +1519,8 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     t.addEventListener('keydown',function(e){var d=e.key==='ArrowDown'||e.key==='ArrowRight'?1:e.key==='ArrowUp'||e.key==='ArrowLeft'?-1:0;
       if(d){e.preventDefault();openTab(tabs[(i+d+tabs.length)%tabs.length],true)}})});
 
-  /* карусель «Про вас» */
+  /* карусель «Про вас» — есть не во всех вариантах */
+  if(document.getElementById('pv'))(function(){
   var tr=document.getElementById('pv'),cards=[].slice.call(tr.querySelectorAll('.pv__card')),
       dots=[].slice.call(document.querySelectorAll('.pv__dots i')),now=document.getElementById('pvNow'),
       prev=document.querySelector('[data-pv="prev"]'),next=document.querySelector('[data-pv="next"]');
@@ -1533,6 +1549,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     if(tr.classList.contains('drag')){tr.classList.remove('drag');var i=idx();tr.scrollTo({left:cards[i].offsetLeft-cards[0].offsetLeft,behavior:'smooth'})}
     setTimeout(function(){delete tr.dataset.moved},0)});
   sync();
+  })();
 
   /* подсветка раздела в панели страницы */
   var links=[].slice.call(document.querySelectorAll('.pagebar__nav a'));
@@ -1606,6 +1623,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     pill: '<path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/>',
     grid: '<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>',
     check: '<path d="M20 6 9 17l-5-5"/>',
+    arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
     sparkles: '<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>',
     drop: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
     dna: '<path d="m10 16 1.5 1.5"/><path d="m14 8-1.5-1.5"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/><path d="m16.5 10.5 1 1"/><path d="m17 6-2.891-2.891"/><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="m20 9 .891.891"/><path d="M3.109 14.109 4 15"/><path d="m6.5 12.5 1 1"/><path d="m7 18 2.891 2.891"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/>',
@@ -1699,6 +1717,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
   const Phone = (() => {
     const wrapEl = $('stack'); if (!wrapEl) return null;
     const xcap = $('xcap');
+    const PROFILE = 'profile' in wrapEl.dataset; // вариант В: кабинет открывается профилем, а не разделами рисков
     const SECS = {
       risk: { t: 'Риски болезней', n: 201, u: 'риск', c: '#0057FF', i: 'heart',
         d: 'Около 200 болезней. Для каждой — выше или ниже ваша предрасположенность, чем у большинства людей, и что обсудить с врачом.',
@@ -1754,7 +1773,20 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
       el.innerHTML = `<div class="scr__body">${html}</div><div class="scr__dim"></div>`;
       return { el, dim: el.querySelector('.scr__dim'), caption };
     }
-    const homeHTML = () => `
+    const row = (k) => `<button class="p-row" type="button" data-sec="${k}">
+        <span class="p-ic" style="background:${SECS[k].c}">${svg(SECS[k].i)}</span>
+        <span class="p-row__t">${SECS[k].t}<small>${SECS[k].n} ${SECS[k].u}</small></span>
+        <span class="p-row__n">${SECS[k].n}</span>${chev}</button>`;
+    const homeHTML = () => PROFILE ? `
+      <div class="p-top"></div>
+      <div class="p-kick">Личный кабинет · Геноскоп</div>
+      <div class="p-title">Ваш профиль</div>
+      <div class="p-prof">${PROF.map(([name, k, short]) => `<button class="p-pr" type="button" data-topic="${esc(name)}" data-from="${k}" data-back-label="Профиль">
+        <span>${esc(short)}</span><b>${esc(read(k, name).m[pickLevel(name)])}</b></button>`).join('')}
+        <span class="p-prof__ex">пример</span></div>
+      <div class="p-gh">Разделы отчёта · 500+ показателей</div>
+      <div class="p-list">${['brain', 'body', 'sport', 'diet', 'bio', 'risk', 'pgx'].map(row).join('')}</div>
+      <div class="p-sign">${svg('check')}Заключение подписано врачом-генетиком</div>` : `
       <div class="p-top"></div>
       <div class="p-kick">Личный кабинет</div>
       <div class="p-title">Геноскоп</div>
@@ -1763,10 +1795,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
         <div class="p-bar">${BAR.map((k, j) => `<i style="flex:${SECS[k].n};background:${SECS[k].c};animation-delay:${j * 80}ms"></i>`).join('')}</div>
         <div class="p-leg">${BAR.map((k) => `<span style="--c:${SECS[k].c}">${SECS[k].t}</span>`).join('')}</div>
       </div>
-      <div class="p-list">${ORDER.map((k) => `<button class="p-row" type="button" data-sec="${k}">
-        <span class="p-ic" style="background:${SECS[k].c}">${svg(SECS[k].i)}</span>
-        <span class="p-row__t">${SECS[k].t}<small>${SECS[k].n} ${SECS[k].u}</small></span>
-        <span class="p-row__n">${SECS[k].n}</span>${chev}</button>`).join('')}</div>
+      <div class="p-list">${ORDER.map(row).join('')}</div>
       <div class="p-sign">${svg('check')}Заключение подписано врачом-генетиком</div>`;
     const secHTML = (k) => {
       const s = SECS[k];
@@ -1793,15 +1822,25 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
       pgx: 'Показать раздел врачу до назначения. Самостоятельно менять дозу нельзя.',
     };
     const pickLevel = (name) => { let h = 0; for (const ch of name) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return h % 3; };
-    const topicHTML = (k, name) => {
+    // шкалы, для которых «ниже/выше среднего» звучит странно
+    const SCALE = { 'Хронотип': ['ранний', 'промежуточный', 'поздний'], 'Сколько кофе вы склонны пить': ['меньше среднего', 'как у большинства', 'больше среднего'],
+      'Продолжительность сна': ['короче среднего', 'как у большинства', 'дольше среднего'] };
+    const PROF = [['Хронотип', 'brain', 'Хронотип'], ['Аэробная выносливость (МПК)', 'sport', 'Выносливость'], ['Сколько кофе вы склонны пить', 'diet', 'Кофе'],
+      ['Тяга к сладкому', 'diet', 'Тяга к сладкому'], ['Привлекательность для комаров', 'body', 'Комары']];
+    // условный результат темы: шкала, цвета, расшифровка, гены — общее для телефона и энциклопедии
+    const read = (k, name) => {
       const pgx = k === 'pgx', lvl = pickLevel(name), genes = GENES[name] || [];
-      const m = pgx ? ['обычная доза', 'с осторожностью', 'другой подход'] : ['ниже среднего', 'как у большинства', 'выше среднего'];
+      const m = pgx ? ['обычная доза', 'с осторожностью', 'другой подход'] : SCALE[name] || ['ниже среднего', 'как у большинства', 'выше среднего'];
       const mc = pgx ? ['#1AA06D', '#C8791B', '#D2453E'] : ['#1AA06D', '#B5C3D6', '#C8791B'];
       const say = pgx
         ? `По ${genes.length > 1 ? 'генам' : 'гену'} ${genes.join(', ')}: ${TXT.pgx[lvl]}. Рекомендация — по руководству CPIC.`
         : k === 'risk' ? `Генетическая предрасположенность — ${TXT.risk[lvl]}. Это вероятность, а не диагноз: многое зависит от образа жизни и обследований.`
-        : `Генетическая склонность — ${TXT.other[lvl]}. Генетика объясняет лишь часть, остальное — образ жизни.`;
-      return `${back(SECS[k].t)}
+        : `Генетическая склонность — ${SCALE[name] ? m[lvl] : TXT.other[lvl]}. Генетика объясняет лишь часть, остальное — образ жизни.`;
+      return { pgx, lvl, genes, m, mc, say, todo: TODO[k] };
+    };
+    const topicHTML = (k, name, backLabel) => {
+      const { pgx, lvl, genes, m, mc, say } = read(k, name);
+      return `${back(backLabel || SECS[k].t)}
       <div class="p-title" style="font-size:22px">${esc(name)}</div>
       <div class="p-blk"><span class="nbadge">1</span><h5>${pgx ? 'Рекомендация' : 'Ваш результат'} <span class="p-ex">пример</span></h5>
         <div class="meter">${mc.map((c) => `<span style="background:${c}"></span>`).join('')}<i class="meter__m" style="left:${[16.6, 50, 83.4][lvl]}%"></i></div>
@@ -1812,7 +1851,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
       <div class="p-sign">${svg('check')}Подписано врачом-генетиком</div>`;
     };
     const CAP = {
-      home: () => `<div class="xcap__k">Сводка</div><h3>Семь разделов на&nbsp;первом экране</h3><p>Так устроен отчёт в&nbsp;личном кабинете: разделы и&nbsp;число показателей в&nbsp;каждом. Внутри раздела&nbsp;— темы, а&nbsp;каждая тема&nbsp;— понятная карточка.</p><div class="xhint"><i></i>Нажмите на&nbsp;раздел в&nbsp;телефоне</div>`,
+      home: () => PROFILE ? `<div class="xcap__k">Первый экран</div><h3>Кабинет начинается с&nbsp;вас</h3><p>Сначала&nbsp;— профиль: хронотип, выносливость, привычки. Это легко сверить с&nbsp;собой. Ниже&nbsp;— разделы о&nbsp;здоровье и&nbsp;лекарствах, и&nbsp;в&nbsp;каждой теме сказано, что с&nbsp;ней делать.</p><div class="xhint"><i></i>Нажмите на&nbsp;черту профиля или на&nbsp;раздел</div>` : `<div class="xcap__k">Сводка</div><h3>Семь разделов на&nbsp;первом экране</h3><p>Так устроен отчёт в&nbsp;личном кабинете: разделы и&nbsp;число показателей в&nbsp;каждом. Внутри раздела&nbsp;— темы, а&nbsp;каждая тема&nbsp;— понятная карточка.</p><div class="xhint"><i></i>Нажмите на&nbsp;раздел в&nbsp;телефоне</div>`,
       sec: (k) => `<div class="xcap__k" style="color:${SECS[k].c}">Раздел · ${SECS[k].n} ${SECS[k].u}</div><h3>${SECS[k].t}</h3><p>${esc(SECS[k].d)}</p><div class="xhint"><i></i>Откройте любую тему. Назад&nbsp;— кнопкой или свайпом вправо</div>`,
       topic: () => `<div class="xcap__k">Карточка темы</div><h3>Каждая тема&nbsp;— понятная карточка</h3><ol>
         <li><span class="nbadge">1</span><span><b>Статус</b>&nbsp;— выше среднего, как у&nbsp;большинства или ниже</span></li>
@@ -1865,7 +1904,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
       const b = e.target.closest('button'); if (!b) return;
       if (b.hasAttribute('data-back')) pop();
       else if (b.dataset.sec) openSec(b.dataset.sec);
-      else if (b.dataset.topic) { const s = screen(topicHTML(b.dataset.from, b.dataset.topic), CAP.topic); s.key = 'topic'; push(s); }
+      else if (b.dataset.topic) { const s = screen(topicHTML(b.dataset.from, b.dataset.topic, b.dataset.backLabel), CAP.topic); s.key = 'topic'; push(s); }
     });
     wrapEl.addEventListener('keydown', (e) => { if (e.key === 'Escape' && stack.length > 1) { e.preventDefault(); pop(); } });
     // свайп назад: порог 10 px, затем 1:1; решение по проекции инерции
@@ -1900,7 +1939,9 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     };
     wrapEl.addEventListener('pointerup', end); wrapEl.addEventListener('pointercancel', end);
     new ResizeObserver(() => { W = wrapEl.clientWidth; }).observe(wrapEl);
-    return { SECS, show(k) { reset(); openSec(k); } };
+    return { SECS, ORDER, GENES, read,
+      show(k) { reset(); openSec(k); },
+      topic(k, name) { reset(); openSec(k); const s = screen(topicHTML(k, name), CAP.topic); s.key = 'topic'; push(s); } };
   })();
 
   /* ============ КАЛЕНДАРЬ 30 РАБОЧИХ ДНЕЙ ============ */
@@ -2048,7 +2089,8 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     const word = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'риск' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'риска' : 'рисков');
     pts.innerHTML = SYS.map((s, i) => `<button class="bpt" type="button" data-k="${s.k}" style="--x:${s.x}%;--y:${s.y}%;--d:${(i * 0.23).toFixed(2)}s" aria-label="${esc(s.t)}"><i></i><span>${esc(s.t)}</span></button>`).join('');
     if (chips) chips.innerHTML = SYS.map((s) => `<button type="button" data-k="${s.k}">${esc(s.t)}</button>`).join('');
-    const render = (s) => `<div class="bp__k">Система организма</div><h3>${esc(s.t)}</h3>
+    const manual = !!pts.closest('[data-manual]'); // вариант В: схема как «руководство пользователя», системы — главы
+    const render = (s) => `<div class="bp__k">${manual ? `Глава ${String(SYS.indexOf(s) + 1).padStart(2, '0')} · система организма` : 'Система организма'}</div><h3>${esc(s.t)}</h3>
       <div class="bp__n"><b>${s.n}</b>${word(s.n)} в отчёте</div>
       <ul class="bp__list">${s.it.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
       <div class="bp__todo"><b>Что обсудить с врачом</b>${esc(s.todo)}</div>
@@ -2103,6 +2145,229 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
       stage.addEventListener('pointerleave', () => { card.classList.remove('tilt'); card.style.setProperty('--ry', '0deg'); card.style.setProperty('--rx', '0deg'); });
     }
   })();
+
+  // плавная смена содержимого панели (как в остальных блоках)
+  const swap = (el, html, animate) => {
+    if (!animate || RM.matches || !el.animate) { el.innerHTML = html; return; }
+    el.animate([{ opacity: 1, filter: 'blur(0px)' }, { opacity: 0, filter: 'blur(4px)' }], { duration: 100, easing: 'ease-out', fill: 'forwards' }).finished.then(() => {
+      el.innerHTML = html;
+      el.animate([{ opacity: 0, filter: 'blur(4px)', transform: 'translateY(6px)' }, { opacity: 1, filter: 'blur(0px)', transform: 'none' }], { duration: 260, easing: 'cubic-bezier(0.23, 1, 0.32, 1)', fill: 'forwards' });
+    });
+  };
+  const MONO = '"JetBrains Mono", ui-monospace, Menlo, monospace';
+
+  /* ============ ЛИНЗА: портрет, собранный из букв ДНК (вариант В) ============ */
+  (() => {
+    const cv = $('lens'); if (!cv || !cv.getContext) return;
+    const box = cv.parentElement, ctx = cv.getContext('2d');
+    const field = document.createElement('canvas'), fx = field.getContext('2d');
+    const img = new Image(); img.src = cv.dataset.src;
+    const CW = 9, CH = 12, FACE = [0.385, 0.39]; // лицо на кадре, доли ширины и высоты
+    let W = 0, H = 0, dpr = 1, cols = 0, rows = 0, lum = null, cov = null, R = 100, raf = 0, on = false, t0 = 0, user = 0;
+    const L = { x: 0, y: 0, tx: 0, ty: 0 };
+    const tint = (v) => `rgba(${Math.round(0 + 214 * v)},${Math.round(87 + 157 * v)},255,${(0.1 + 0.9 * v).toFixed(3)})`;
+    const face = () => ({ x: cov.x + FACE[0] * cov.w, y: cov.y + FACE[1] * cov.h });
+    const cell = (i) => {
+      const x = (i % cols) * CW, y = ((i / cols) | 0) * CH;
+      fx.clearRect(x, y, CW, CH); fx.fillStyle = tint(lum[i]); fx.fillText('ACGT'[(Math.random() * 4) | 0], x + 1, y + 1);
+    };
+    function layout() {
+      const r = box.getBoundingClientRect(); if (!r.width || !img.naturalWidth) return false;
+      const keep = cov ? { x: L.x / W, y: L.y / H } : null;
+      dpr = Math.min(2, window.devicePixelRatio || 1); W = r.width; H = r.height;
+      cv.width = field.width = Math.round(W * dpr); cv.height = field.height = Math.round(H * dpr);
+      const k = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+      cov = { w: img.naturalWidth * k, h: img.naturalHeight * k }; cov.x = (W - cov.w) / 2; cov.y = (H - cov.h) / 2;
+      R = clamp(Math.min(W, H) * 0.2, 64, 128);
+      cols = Math.ceil(W / CW); rows = Math.ceil(H / CH);
+      const sm = document.createElement('canvas'); sm.width = cols; sm.height = rows;
+      const sx = sm.getContext('2d', { willReadFrequently: true });
+      sx.drawImage(img, cov.x / CW, cov.y / CH, cov.w / CW, cov.h / CH);
+      const d = sx.getImageData(0, 0, cols, rows).data; lum = new Float32Array(cols * rows);
+      for (let i = 0; i < lum.length; i++) lum[i] = clamp(((0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2]) / 255 - 0.07) / 0.72, 0, 1) ** 0.85;
+      fx.setTransform(dpr, 0, 0, dpr, 0, 0); fx.clearRect(0, 0, W, H);
+      fx.font = `700 ${CH - 2}px ${MONO}`; fx.textBaseline = 'top';
+      for (let i = 0; i < lum.length; i++) cell(i);
+      if (keep) { L.x = L.tx = keep.x * W; L.y = L.ty = keep.y * H; } else { const f = face(); L.x = L.tx = f.x; L.y = L.ty = f.y; }
+      return true;
+    }
+    function draw(rev) {
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+      ctx.save();
+      if (rev < 1) { ctx.beginPath(); ctx.rect(0, 0, W * smooth(rev), H); ctx.clip(); }
+      ctx.drawImage(field, 0, 0, W, H); ctx.restore();
+      const a = smooth(clamp((rev - 0.35) / 0.65, 0, 1)); if (!a) return;
+      ctx.save(); ctx.globalAlpha = a;
+      ctx.beginPath(); ctx.arc(L.x, L.y, R, 0, Math.PI * 2); ctx.save(); ctx.clip();
+      ctx.drawImage(img, cov.x, cov.y, cov.w, cov.h); ctx.restore();
+      ctx.strokeStyle = 'rgba(0,194,255,.95)'; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.strokeStyle = 'rgba(0,194,255,.3)'; ctx.beginPath(); ctx.arc(L.x, L.y, R + 9, 0, Math.PI * 2); ctx.stroke();
+      ctx.strokeStyle = 'rgba(0,194,255,.95)'; ctx.beginPath();
+      for (let j = 0; j < 4; j++) { const c = Math.cos(j * Math.PI / 2), s = Math.sin(j * Math.PI / 2); ctx.moveTo(L.x + c * (R + 4), L.y + s * (R + 4)); ctx.lineTo(L.x + c * (R + 16), L.y + s * (R + 16)); }
+      ctx.stroke();
+      const chr = 1 + (((L.x / 37) | 0) + ((L.y / 53) | 0)) % 22, pos = (((L.x * 7919 + L.y * 104729) | 0) % 240000000 + 240000000) % 240000000 + 1000000;
+      ctx.font = `700 10px ${MONO}`; ctx.fillStyle = 'rgba(184,236,255,.92)'; ctx.textBaseline = 'middle';
+      const tx = L.x + R * 0.71 + 12, ty = L.y + R * 0.71 + 12, lbl = `chr${chr}:${pos.toLocaleString('ru-RU')}`;
+      ctx.textAlign = tx + ctx.measureText(lbl).width > W - 8 ? 'right' : 'left';
+      ctx.fillText(lbl, ctx.textAlign === 'right' ? L.x - R * 0.71 - 12 : tx, ty);
+      ctx.restore();
+    }
+    function frame(now) {
+      raf = 0; if (!on) return;
+      const t = (now - t0) / 1000;
+      if (now > user) { const f = face(); L.tx = f.x + Math.sin(t * 0.42) * W * 0.12; L.ty = f.y + Math.sin(t * 0.31 + 1.1) * H * 0.11; }
+      L.x += (L.tx - L.x) * 0.075; L.y += (L.ty - L.y) * 0.075;
+      for (let k = 0; k < 36; k++) cell((Math.random() * lum.length) | 0);
+      draw(Math.min(1, t / 1.6));
+      raf = requestAnimationFrame(frame);
+    }
+    const start = () => { if (on || RM.matches || document.hidden) return; on = true; if (!t0) t0 = performance.now(); raf = requestAnimationFrame(frame); };
+    const stop = () => { on = false; if (raf) cancelAnimationFrame(raf); raf = 0; };
+    const aim = (e) => { const r = box.getBoundingClientRect(); L.tx = e.clientX - r.left; L.ty = e.clientY - r.top; user = performance.now() + 2600; };
+    box.addEventListener('pointermove', aim); box.addEventListener('pointerdown', aim);
+    img.decode().catch(() => {}).then(() => {
+      if (!layout()) return;
+      if (RM.matches) { draw(1); return; }
+      new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? start() : stop()))).observe(box);
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : box.getBoundingClientRect().bottom > 0 && start()));
+      new ResizeObserver(() => { if (layout() && !on) draw(1); }).observe(box);
+    });
+  })();
+
+  /* ============ УЗНАВАНИЕ: «совпадёт ли с геномом» (вариант В) ============ */
+  (() => {
+    const root = $('quiz'), data = $('quizData'); if (!root || !data) return;
+    const Q = JSON.parse(data.textContent), n = Q.length, card = $('quizCard'), prof = $('quizProf');
+    const pad = (i) => String(i).padStart(2, '0');
+    prof.querySelector('.qp__rows').innerHTML = Q.map((q, i) => `<div class="qp__r" data-i="${i}"><span>${esc(q.t)}</span><b class="qp__you">—</b><b class="qp__gen mono">····</b></div>`).join('');
+    const scramble = (el, final) => {
+      if (RM.matches) { el.textContent = final; el.classList.add('q'); return; }
+      let k = 0; const id = setInterval(() => {
+        el.textContent = Array.from({ length: 4 }, () => 'ACGT'[(Math.random() * 4) | 0]).join('');
+        if (++k > 14) { clearInterval(id); el.textContent = final; el.classList.add('q'); }
+      }, 45);
+    };
+    const head = (i) => `<div class="qz__top"><span class="mono">${pad(Math.min(i + 1, n))} / ${pad(n)}</span><span class="qz__bar"><i style="transform:scaleX(${i / n})"></i></span></div>`;
+    const ask = (i, anim) => {
+      const q = Q[i];
+      swap(card, `${head(i)}<span class="qz__k">${esc(q.t)}</span><h3>${esc(q.q)}</h3>
+        <div class="qz__opts">${q.a.map((x, j) => `<button class="qz__o" type="button" data-j="${j}">${esc(x)}</button>`).join('')}</div>
+        <div class="qz__note" hidden></div>`, anim);
+      card.dataset.i = i;
+    };
+    const finish = () => {
+      swap(card, `${head(n)}<span class="qz__k">Карточка готова</span><h3>Пять черт — пять вопросов к&nbsp;вашему геному</h3>
+        <p class="qz__p">Совпадёт ли то, что вы о себе знаете, с тем, что записано в ДНК, — покажет отчёт. Если не совпадёт, это тоже ответ: значит, режим и привычки перевесили склонность.</p>
+        <div class="qz__end"><a class="btn btn--primary" href="https://price.genomed.ru/basket/add?id=2730&amp;oneClick=1"><span>Узнать ответ генома · <span class="btn__price">35 000 ₽</span></span></a>
+        <button class="btn btn--secondary" type="button" data-restart>Пройти заново</button></div>`, true);
+      prof.classList.add('done');
+    };
+    card.addEventListener('click', (e) => {
+      const o = e.target.closest('.qz__o'), i = +card.dataset.i;
+      if (o && !o.disabled) {
+        const q = Q[i];
+        card.querySelectorAll('.qz__o').forEach((b) => { b.disabled = true; b.classList.toggle('on', b === o); });
+        const note = card.querySelector('.qz__note');
+        note.innerHTML = `<b>Что смотрит Геноскоп</b><p>${esc(q.note)}</p>
+          <div class="qz__g"><span>В расчёте, среди прочего:</span>${q.genes.map((g) => `<i class="mono">${g}</i>`).join('')}</div>
+          <button class="btn btn--primary qz__next" type="button" data-next><span>${i === n - 1 ? 'Показать карточку' : 'Следующий вопрос'}</span>${svg('arrow')}</button>`;
+        note.hidden = false;
+        if (!RM.matches && note.animate) note.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
+        const r = prof.querySelector(`.qp__r[data-i="${i}"]`);
+        r.classList.add('on'); r.querySelector('.qp__you').textContent = q.a[+o.dataset.j];
+        scramble(r.querySelector('.qp__gen'), '?');
+        const bar = card.querySelector('.qz__bar i'); if (bar) bar.style.transform = `scaleX(${(i + 1) / n})`;
+        return;
+      }
+      if (e.target.closest('[data-next]')) { if (i < n - 1) ask(i + 1, true); else finish(); return; }
+      if (e.target.closest('[data-restart]')) {
+        prof.classList.remove('done');
+        prof.querySelectorAll('.qp__r').forEach((r) => { r.classList.remove('on'); r.querySelector('.qp__you').textContent = '—'; const g = r.querySelector('.qp__gen'); g.textContent = '····'; g.classList.remove('q'); });
+        ask(0, true);
+      }
+    });
+    ask(0, false);
+  })();
+
+  /* ============ ЭНЦИКЛОПЕДИЯ: оглавление с поиском (вариант В) ============ */
+  (() => {
+    const root = $('enc'); if (!root || !Phone) return;
+    const S = Phone.SECS, idx = $('encIdx'), art = $('encArt'), q = $('encQ'), tabs = $('encTabs'), ask = $('encAsk'), cnt = $('encCnt');
+    const DIR = [
+      { k: 'all', t: 'Все статьи', ask: 'Начните с того, что интересно: кофе, сон, статины, комары…' },
+      { k: 'health', t: 'Здоровье', s: ['risk', 'bio'], ask: 'Что мне стоит проверять регулярно и с какого возраста?' },
+      { k: 'drugs', t: 'Лекарства', s: ['pgx'], ask: 'Подойдёт ли мне обычная доза обезболивающего или статина?' },
+      { k: 'life', t: 'Сон, питание, обмен', s: ['brain', 'diet'], ask: 'Сколько мне нужно спать и как на меня действует кофе?' },
+      { k: 'body', t: 'Тело и особенности', s: ['body', 'sport'], ask: 'Почему комары кусают именно меня и какие нагрузки мне подходят?' },
+    ];
+    const seen = new Set(), ART = [];
+    Phone.ORDER.forEach((k) => S[k].g.forEach(([, items]) => items.forEach((name) => { if (!seen.has(name)) { seen.add(name); ART.push({ name, k }); } })));
+    ART.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+    const groups = new Map();
+    ART.forEach((a) => { const l = a.name[0].toUpperCase(); if (!groups.has(l)) groups.set(l, []); groups.get(l).push(a); });
+    idx.innerHTML = [...groups].map(([l, list], gi) => `<div class="enc__l" style="--d:${gi * 40}ms"><b class="mono" aria-hidden="true">${l}</b><div>${list.map((a) =>
+      `<button class="enc__a" type="button" data-name="${esc(a.name)}" data-k="${a.k}" style="--c:${S[a.k].c}">${esc(a.name)}</button>`).join('')}</div></div>`).join('');
+    tabs.innerHTML = DIR.map((d, i) => `<button type="button" role="tab" data-d="${i}" aria-selected="${i === 0}">${d.t}</button>`).join('');
+    const word = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'статья' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'статьи' : 'статей');
+    let dir = DIR[0], cur = '';
+    function filter() {
+      const s = q.value.trim().toLowerCase(); let n = 0, first = null;
+      idx.querySelectorAll('.enc__l').forEach((g) => {
+        let any = 0;
+        g.querySelectorAll('.enc__a').forEach((b) => {
+          const ok = (!dir.s || dir.s.includes(b.dataset.k)) && (!s || b.dataset.name.toLowerCase().includes(s));
+          b.hidden = !ok; if (ok) { any++; n++; first = first || b; }
+        });
+        g.hidden = !any;
+      });
+      cnt.textContent = n ? `${n} ${word(n)} из оглавления · в отчёте их 500+` : 'Такой статьи в этой части оглавления нет — попробуйте другое слово';
+      return first;
+    }
+    function show(name, k, user) {
+      cur = name; idx.querySelectorAll('.enc__a').forEach((b) => b.classList.toggle('on', b.dataset.name === name));
+      const r = Phone.read(k, name), s = S[k];
+      swap(art, `<div class="ea__k" style="--c:${s.c}"><i></i>Статья · ${esc(s.t)}</div><h3>${esc(name)}</h3>
+        <ol class="ea__steps">
+          <li><span class="nbadge">1</span><div><h4>${r.pgx ? 'Рекомендация' : 'Ваш показатель'} <span class="p-ex">пример</span></h4>
+            <div class="meter">${r.mc.map((c) => `<span style="background:${c}"></span>`).join('')}<i class="meter__m" style="left:${[16.6, 50, 83.4][r.lvl]}%"></i></div>
+            <div class="meter__lbl">${r.m.map((x, j) => `<span${j === r.lvl ? ' class="on"' : ''}>${esc(x)}</span>`).join('')}</div></div></li>
+          <li><span class="nbadge">2</span><div><h4>Что это значит</h4><p>${esc(r.say)}</p></div></li>
+          <li><span class="nbadge">3</span><div><h4>Что с этим делать</h4><p>${esc(r.todo)}</p></div></li>
+        </ol>
+        ${r.genes.length ? `<div class="ea__g"><span>${r.pgx ? 'Гены' : 'В расчёте, среди прочего'}</span>${r.genes.map((g) => `<b class="mono">${g}</b>`).join('')}</div>` : ''}
+        <button class="ea__open" type="button" data-open>Открыть в кабинете ${svg('grid')}</button>`, user);
+      if (user && matchMedia('(max-width:900px)').matches) art.scrollIntoView({ behavior: RM.matches ? 'auto' : 'smooth', block: 'start' });
+    }
+    idx.addEventListener('click', (e) => { const b = e.target.closest('.enc__a'); if (b) show(b.dataset.name, b.dataset.k, true); });
+    tabs.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-d]'); if (!b) return;
+      dir = DIR[+b.dataset.d]; tabs.querySelectorAll('button').forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+      swap(ask, esc(dir.ask), true);
+      const first = filter(), curBtn = idx.querySelector(`.enc__a[data-name="${cur}"]`);
+      if (first && (!curBtn || curBtn.hidden)) show(first.dataset.name, first.dataset.k, false);
+    });
+    q.addEventListener('input', () => filter());
+    art.addEventListener('click', (e) => {
+      if (!e.target.closest('[data-open]') || !$('demo-cabinet')) return;
+      const a = ART.find((x) => x.name === cur);
+      $('demo-cabinet').scrollIntoView({ behavior: RM.matches ? 'auto' : 'smooth', block: 'center' });
+      Phone.topic(a.k, a.name);
+    });
+    ask.textContent = dir.ask; filter(); show('Хронотип', 'brain', false);
+    // поле поиска само «печатает» примеры, пока человек его не трогает
+    if (!RM.matches) onceInView(root, () => {
+      const W = ['кофе', 'статины', 'комар', 'холестерин', 'витамин', 'сна'];
+      let wi = 0, ci = 0, del = false;
+      const tick = () => {
+        if (document.activeElement === q || q.value) { q.placeholder = 'Найти статью'; setTimeout(tick, 1500); return; }
+        const w = W[wi]; ci += del ? -1 : 1; q.placeholder = 'Найти: ' + w.slice(0, ci);
+        let d = del ? 45 : 110;
+        if (!del && ci === w.length) { del = true; d = 1500; } else if (del && ci === 0) { del = false; wi = (wi + 1) % W.length; d = 400; }
+        setTimeout(tick, d);
+      };
+      tick();
+    }, 0.2);
+  })();
 })();
 </script>
 <!-- Переключатель вариантов — только для превью, при переносе на сайт удалить -->
@@ -2110,7 +2375,8 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
   <span class="vsw__t">Вариант</span>
   <a href="index.html" data-v="index">А · Про вас</a>
   <a href="zdorovie.html" data-v="zdorovie">Б · Польза</a>
-  <a href="b2b.html" data-v="b2b">Для клиник</a>
+  <a href="znakomstvo.html" data-v="znakomstvo">В · Знакомство</a>
+  <a href="b2b.html" data-v="b2b">Клиники</a>
 </nav>
 <style>
 .vsw{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:300;display:flex;align-items:center;gap:4px;padding:5px;border-radius:100px;
@@ -2119,7 +2385,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
 .vsw a{font-size:13px;font-weight:700;color:#2E4A6B;text-decoration:none;padding:8px 12px;border-radius:100px;white-space:nowrap;transition:background-color .2s,color .2s}
 .vsw a:hover{color:#0057FF}
 .vsw a.on{background:#0A2540;color:#fff}
-@media (max-width:600px){.vsw{left:8px;right:8px;justify-content:center}.vsw__t{display:none}.vsw a{font-size:12px;padding:8px 10px}}
+@media (max-width:600px){.vsw{left:8px;right:8px;justify-content:center}.vsw__t{display:none}.vsw a{font-size:11.5px;padding:8px 8px}}
 </style>
 <script>(function(){var p=location.pathname.split('/').pop().replace('.html','')||'index';document.querySelectorAll('.vsw a').forEach(function(a){if(a.dataset.v===p){a.classList.add('on');a.setAttribute('aria-current','page')}})})()</script>
 
