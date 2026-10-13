@@ -2064,10 +2064,17 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     const cv = $('lens'); if (!cv || !cv.getContext) return;
     const box = cv.parentElement, ctx = cv.getContext('2d');
     const field = document.createElement('canvas'), fx = field.getContext('2d');
+    const lc = document.createElement('canvas'), lx = lc.getContext('2d');
     const img = new Image(); img.src = cv.dataset.src;
     const CW = 9, CH = 12, FACE = [0.385, 0.39]; // лицо на кадре, доли ширины и высоты
     let W = 0, H = 0, dpr = 1, cols = 0, rows = 0, lum = null, cov = null, R = 100, raf = 0, on = false, t0 = 0, user = 0;
     const L = { x: 0, y: 0, tx: 0, ty: 0 };
+    const polys = box.querySelectorAll('.lensbox__lines polyline');
+    const calls = [...box.querySelectorAll('.lc')].map((li, i) => ({ li, line: polys[i], ax: parseFloat(li.style.getPropertyValue('--ax')) / 100, ay: parseFloat(li.style.getPropertyValue('--ay')) / 100, on: false }));
+    const near = () => calls.forEach((c) => {
+      const on = Math.hypot(L.x - c.ax * W, L.y - c.ay * H) < R * 0.6;
+      if (on !== c.on) { c.on = on; c.li.classList.toggle('on', on); if (c.line) c.line.classList.toggle('on', on); }
+    });
     const tint = (v) => `rgba(${Math.round(0 + 214 * v)},${Math.round(87 + 157 * v)},255,${(0.1 + 0.9 * v).toFixed(3)})`;
     const face = () => ({ x: cov.x + FACE[0] * cov.w, y: cov.y + FACE[1] * cov.h });
     const cell = (i) => {
@@ -2081,7 +2088,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
       cv.width = field.width = Math.round(W * dpr); cv.height = field.height = Math.round(H * dpr);
       const k = Math.max(W / img.naturalWidth, H / img.naturalHeight);
       cov = { w: img.naturalWidth * k, h: img.naturalHeight * k }; cov.x = (W - cov.w) / 2; cov.y = (H - cov.h) / 2;
-      R = clamp(Math.min(W, H) * 0.2, 64, 128);
+      R = clamp(Math.min(W, H) * 0.26, 84, 160); lc.width = lc.height = Math.ceil(2 * R * dpr);
       cols = Math.ceil(W / CW); rows = Math.ceil(H / CH);
       const sm = document.createElement('canvas'); sm.width = cols; sm.height = rows;
       const sx = sm.getContext('2d', { willReadFrequently: true });
@@ -2100,19 +2107,16 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
       if (rev < 1) { ctx.beginPath(); ctx.rect(0, 0, W * smooth(rev), H); ctx.clip(); }
       ctx.drawImage(field, 0, 0, W, H); ctx.restore();
       const a = smooth(clamp((rev - 0.35) / 0.65, 0, 1)); if (!a) return;
-      ctx.save(); ctx.globalAlpha = a;
-      ctx.beginPath(); ctx.arc(L.x, L.y, R, 0, Math.PI * 2); ctx.save(); ctx.clip();
-      ctx.drawImage(img, cov.x, cov.y, cov.w, cov.h); ctx.restore();
-      ctx.strokeStyle = 'rgba(0,194,255,.95)'; ctx.lineWidth = 1.5; ctx.stroke();
-      ctx.strokeStyle = 'rgba(0,194,255,.3)'; ctx.beginPath(); ctx.arc(L.x, L.y, R + 9, 0, Math.PI * 2); ctx.stroke();
-      ctx.strokeStyle = 'rgba(0,194,255,.95)'; ctx.beginPath();
-      for (let j = 0; j < 4; j++) { const c = Math.cos(j * Math.PI / 2), s = Math.sin(j * Math.PI / 2); ctx.moveTo(L.x + c * (R + 4), L.y + s * (R + 4)); ctx.lineTo(L.x + c * (R + 16), L.y + s * (R + 16)); }
-      ctx.stroke();
-      const chr = 1 + (((L.x / 37) | 0) + ((L.y / 53) | 0)) % 22, pos = (((L.x * 7919 + L.y * 104729) | 0) % 240000000 + 240000000) % 240000000 + 1000000;
-      ctx.font = `700 10px ${MONO}`; ctx.fillStyle = 'rgba(184,236,255,.92)'; ctx.textBaseline = 'middle';
-      const tx = L.x + R * 0.71 + 12, ty = L.y + R * 0.71 + 12, lbl = `chr${chr}:${pos.toLocaleString('ru-RU')}`;
-      ctx.textAlign = tx + ctx.measureText(lbl).width > W - 8 ? 'right' : 'left';
-      ctx.fillText(lbl, ctx.textAlign === 'right' ? L.x - R * 0.71 - 12 : tx, ty);
+      // мягкое «проявление»: фото внутри круга с растушёванным краем, без колец и рисок
+      const S = lc.width;
+      lx.globalCompositeOperation = 'source-over'; lx.setTransform(1, 0, 0, 1, 0, 0); lx.clearRect(0, 0, S, S);
+      lx.setTransform(dpr, 0, 0, dpr, (R - L.x) * dpr, (R - L.y) * dpr);
+      lx.drawImage(img, cov.x, cov.y, cov.w, cov.h);
+      lx.setTransform(1, 0, 0, 1, 0, 0); lx.globalCompositeOperation = 'destination-in';
+      const g = lx.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S / 2);
+      g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(0.5, 'rgba(0,0,0,.92)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      lx.fillStyle = g; lx.fillRect(0, 0, S, S);
+      ctx.save(); ctx.globalAlpha = a; ctx.drawImage(lc, L.x - R, L.y - R, 2 * R, 2 * R);
       ctx.restore();
     }
     function frame(now) {
@@ -2122,6 +2126,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
       L.x += (L.tx - L.x) * 0.075; L.y += (L.ty - L.y) * 0.075;
       for (let k = 0; k < 36; k++) cell((Math.random() * lum.length) | 0);
       draw(Math.min(1, t / 1.6));
+      if (t > 1.2) { box.classList.add('calls-on'); near(); }
       raf = requestAnimationFrame(frame);
     }
     const start = () => { if (on || RM.matches || document.hidden) return; on = true; if (!t0) t0 = performance.now(); raf = requestAnimationFrame(frame); };
@@ -2130,7 +2135,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     box.addEventListener('pointermove', aim); box.addEventListener('pointerdown', aim);
     img.decode().catch(() => {}).then(() => {
       if (!layout()) return;
-      if (RM.matches) { draw(1); return; }
+      if (RM.matches) { draw(1); box.classList.add('calls-on'); return; }
       new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? start() : stop()))).observe(box);
       document.addEventListener('visibilitychange', () => (document.hidden ? stop() : box.getBoundingClientRect().bottom > 0 && start()));
       new ResizeObserver(() => { if (layout() && !on) draw(1); }).observe(box);
