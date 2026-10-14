@@ -1877,7 +1877,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     const polys = box.querySelectorAll('.lensbox__lines polyline');
     const calls = [...box.querySelectorAll('.lc')].map((li, i) => ({ li, line: polys[i], ax: parseFloat(li.style.getPropertyValue('--ax')) / 100, ay: parseFloat(li.style.getPropertyValue('--ay')) / 100, on: false }));
     const near = () => calls.forEach((c) => {
-      const on = Math.hypot(L.x - c.ax * W, L.y - c.ay * H) < R * 0.6;
+      const on = Math.hypot(L.x - c.ax * W, L.y - c.ay * H) < R * 0.5;
       if (on !== c.on) { c.on = on; c.li.classList.toggle('on', on); if (c.line) c.line.classList.toggle('on', on); }
     });
     const tint = (v) => `rgba(${Math.round(0 + 214 * v)},${Math.round(87 + 157 * v)},255,${(0.1 + 0.9 * v).toFixed(3)})`;
