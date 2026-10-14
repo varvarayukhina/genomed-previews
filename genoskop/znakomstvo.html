@@ -986,6 +986,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
 @media (max-width:600px){.pagebar__t,.pagebar__cta .pc__p{display:none}.pagebar__cta{height:34px;padding:0 14px;font-size:13.5px}}
 .way__more{display:block;margin-top:6px;font-weight:700;color:var(--blue);text-decoration:none}
 .way__more:hover{text-decoration:underline}
+@media (min-width:1025px){#kak .ways{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ways__note{margin:18px 0 0;font-size:15px;color:var(--ink-2)}
 .ways__note a{color:var(--blue);font-weight:700}
 </style>
@@ -1299,7 +1300,6 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     <div class="ways reveal">
       <div class="way"><span class="way__ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span><div><h3>В офисе Геномед</h3><p>Забор крови займёт несколько минут. <a class="way__more" href="https://genomed.ru/gde-sdat-test/">Адреса на карте →</a></p></div></div>
       <div class="way"><span class="way__ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>У партнёров</h3><p>Медицинские центры по всей России. <a class="way__more" href="https://genomed.ru/gde-sdat-test/">Найти ближайший →</a></p></div></div>
-      <div class="way"><span class="way__ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><div><h3>Дома</h3><p>Курьер привезёт набор и заберёт пробирку.</p></div></div>
     </div>
     <p class="ways__note reveal">Не нашли офис в своём городе? <a href="#cta">Напишите нам в чат</a>: подскажем, где ближе всего сдать кровь.</p>
     <div class="micro reveal">
@@ -1418,7 +1418,7 @@ html:not(.js) .reveal,html:not(.js) .prow{opacity:1;transform:none}
     <ol class="gsteps reveal">
       <li><span class="way__ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></span><div><b>Купили</b><span>Выбираете дизайн, подписываете и дарите сертификат.</span></div></li>
       <li><span class="way__ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></svg></span><div><b>Получатель активировал</b><span>Сообщает номер сертификата в клиентский сервис, когда ему удобно.</span></div></li>
-      <li><span class="way__ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span><div><b>Сдал кровь</b><span>В офисе Геномед, у партнёров или дома с курьером. Отчёт — через 30 рабочих дней.</span></div></li>
+      <li><span class="way__ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span><div><b>Сдал кровь</b><span>В офисе Геномед или у партнёров. Отчёт — через 30 рабочих дней.</span></div></li>
     </ol>
   </div>
 </section>
