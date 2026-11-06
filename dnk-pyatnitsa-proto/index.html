@@ -279,10 +279,11 @@ html[data-poster="a"] .vb,html[data-poster="b"] .va{display:none}
 </section>
 </div>
 
-<div class="vsw" role="group" aria-label="Вариант первого экрана">
-  <span class="vsw__t mono">Первый экран</span>
+<div class="vsw" role="group" aria-label="Версия страницы">
+  <span class="vsw__t mono">Версия</span>
   <button class="vsw__b" type="button" data-v="a" aria-pressed="true">A · светлый</button>
   <button class="vsw__b" type="button" data-v="b" aria-pressed="false">B · синий</button>
+  <button class="vsw__b" type="button" data-v="c" aria-pressed="false">C · полная</button>
 </div>
 
 <!-- СЦЕНА 2: путешествие и выбор -->
@@ -597,7 +598,8 @@ function setPoster(v, go) {
   if (go) scrollTo({ top: 0, behavior: 'auto' });
   requestAnimationFrame(() => { (v === 'a' ? window.__posterA : window.__posterB)(); });
 }
-$$('.vsw__b').forEach(b => b.addEventListener('click', () => setPoster(b.dataset.v, true)));
+const FULL = /github\.io$/.test(location.hostname) ? '../dnk-pyatnitsa/' : '../index.html';
+$$('.vsw__b').forEach(b => b.addEventListener('click', () => { if (b.dataset.v === 'c') { location.href = FULL; return; } setPoster(b.dataset.v, true); }));
 let v0 = /[?&#]v?=?(a|b)\b/i.exec(location.search + location.hash);
 v0 = v0 ? v0[1].toLowerCase() : null;
 if (!v0) { try { v0 = sessionStorage.getItem('poster'); } catch (e) { v0 = null; } }

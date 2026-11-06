@@ -366,6 +366,16 @@ main{display:block}
   .setbar{bottom:10px}
 }
 
+/* переключатель версий (служебный, для показа коллегам) */
+.vsw{position:fixed;z-index:95;left:12px;bottom:12px;display:flex;align-items:center;gap:6px;padding:5px;border-radius:100px;background:#fff;border:2px solid var(--ink);box-shadow:0 8px 24px rgba(10,37,64,.25)}
+.vsw__t{padding:0 8px 0 12px;font-size:16px;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.vsw__b{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border-radius:100px;font-weight:700;font-size:16px;color:var(--ink);white-space:nowrap}
+.vsw__b:hover{background:var(--accent-soft)}
+.vsw__b[aria-current="page"]{background:var(--ink);color:#fff}
+body.no-scroll .vsw{display:none}
+@media (max-width:980px){body:has(#setbar:not([hidden])) .vsw{bottom:84px}}
+@media (max-width:700px){.vsw__t{display:none}.vsw__b{padding:8px 12px}}
+
 /* ── шапка: копия шапки основного сайта genomed.ru ── */
 .site-header{background:#fff;border-bottom:1px solid #E6E9EE;padding-top:env(safe-area-inset-top,0px);position:relative;z-index:var(--z-drop)}
 .site-header__row{max-width:1320px;margin-inline:auto;padding:14px 24px;display:flex;align-items:center;gap:2rem}
@@ -626,6 +636,12 @@ main{display:block}
     <p class="setsum__hint" id="setHint" aria-live="polite"></p>
   </div>
 </aside>
+<div class="vsw" role="group" aria-label="Версия страницы">
+  <span class="vsw__t mono">Версия</span>
+  <a class="vsw__b" id="vswA" href="prototype/index.html?a">A · светлый</a>
+  <a class="vsw__b" id="vswB" href="prototype/index.html?b">B · синий</a>
+  <a class="vsw__b" href="#top" aria-current="page">C · полная</a>
+</div>
 <div class="setbar" id="setbar" hidden><p class="setbar__t"><b id="barN"></b> <span id="barW"></span> · <b class="mono" id="barSum"></b></p><button class="btn btn--primary btn--sm" id="barOpen" type="button">Расчёт</button></div>
 
 <section class="sec" id="know" aria-labelledby="know-h" style="padding-top:0">
@@ -1089,6 +1105,14 @@ addEventListener('scroll', req, { passive: true });
 addEventListener('resize', () => { readK(); req(); });
 readK();
 frame();
+})();
+
+(() => {
+'use strict';
+/* ссылки переключателя версий: на GitHub Pages соседняя папка, локально — вложенная */
+const gh = /github\.io$/.test(location.hostname), pre = gh ? '../dnk-pyatnitsa-proto/' : 'prototype/index.html';
+const a = document.getElementById('vswA'), b = document.getElementById('vswB');
+if (a && b) { a.href = pre + '?a'; b.href = pre + '?b'; }
 })();
 
 </script>
