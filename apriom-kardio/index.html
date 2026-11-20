@@ -345,17 +345,36 @@ html{accent-color:var(--blue);caret-color:var(--blue)}
 @media (max-width:560px){.how2__tabs button span{display:none}.how2__tabs button{padding:10px 14px}.chip{font-size:13px;padding:6px 10px 6px 9px}.chip:nth-of-type(2){display:none}.how2__stage{aspect-ratio:3/2}}
 @media (prefers-reduced-motion:reduce){.scene,.scene.is-out,.scene.is-back,.chip,.cap{transition:none!important}.scene.is-on img{animation:none}.how2__prog i.cur s{animation:none;transform:none}}
 
-/* ── «Что вы узнаете»: четыре схемы ── */
-.know{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,24px);margin-top:clamp(28px,4vw,44px)}
-.kn{margin:0;background:#fff;border-radius:var(--r-xl);padding:clamp(18px,2.4vw,28px);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:20px;min-width:0}
-.kn-vis{min-height:220px;border-radius:var(--r-lg);display:grid;place-items:center;padding:20px;position:relative;overflow:hidden}
-.kn-age .kn-vis{background:var(--accent-soft)}
-.kn-sys .kn-vis{background:#E1F5F6}
-.kn-100 .kn-vis{background:#FDEDEB}
-.kn-plan .kn-vis{background:var(--ok-soft)}
-.kn figcaption b{display:block;font:800 clamp(20px,1.9vw,23px)/1.2 var(--disp);letter-spacing:-.02em;color:var(--ink)}
-.kn figcaption span{display:block;margin-top:6px;color:var(--ink-2);font-size:17px}
-.know-note{text-align:center;color:var(--ink-2);font-size:16px;margin-top:20px}
+/* ── «Что покажет отчёт»: одна цепочка итог → откуда → что проверить, без карточек ── */
+.rd{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(28px,4vw,44px);border-top:2px solid var(--ink)}
+.rd-col{padding:28px clamp(18px,2.6vw,36px) 8px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.rd-col:first-child{padding-left:0}.rd-col:last-child{padding-right:0}
+.rd-col+.rd-col{border-left:1px solid var(--line)}
+.rd h3{display:flex;align-items:baseline;gap:12px;font-size:clamp(21px,2vw,24px)}
+.rd h3 .mono{font-size:16px;font-weight:700;color:var(--blue-2)}
+.rd-col>p{color:var(--ink-2)}
+.rd .age{margin:6px auto 0}
+.bars{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.bars li{display:grid;grid-template-columns:minmax(0,8.5em) 1fr 3em;align-items:center;gap:12px;font-size:16px;color:var(--ink-2)}
+.bars li.top{color:var(--ink);font-weight:700}
+.bars b{font-size:16px;text-align:right;color:var(--ink-2)}
+.bars li.top b{color:var(--blue-2)}
+.bar{position:relative;height:12px}
+.bar::before{content:"";position:absolute;left:20%;top:-5px;bottom:-5px;width:1.5px;background:#9FB4CC}
+.bar i{position:absolute;top:0;bottom:0;left:20%;width:calc(var(--v)/1.4*78%);border-radius:0 6px 6px 0;background:#9DBBFF;transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.3s + var(--i)*.08s)}
+.bars li.top .bar i{background:var(--blue)}
+.bars li[data-neg] .bar i{left:auto;right:80%;width:calc(var(--v)/1.4*78%);border-radius:6px 0 0 6px;background:var(--teal);transform-origin:right}
+.rd:not(.in) .bar i{transform:scaleX(0)}
+.todo{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.todo li{display:flex;flex-direction:column;gap:2px;color:var(--ink-2);padding-left:18px;position:relative}
+.todo li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.todo b{color:var(--ink)}
+.pct{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;margin-top:clamp(28px,4vw,40px);padding-top:24px;border-top:1px solid var(--line)}
+.pct p{color:var(--ink-2)}.pct p b{color:var(--ink)}
+.pct-track{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;font-size:16px;color:#5A6F88;padding-top:34px}
+.pct-track i{height:8px;border-radius:8px;background:linear-gradient(90deg,#9DBBFF 0%,var(--blue) calc(var(--p)*100%),#D8E4F2 calc(var(--p)*100%))}
+.pct-track b{position:absolute;top:0;left:calc(1.6em + (100% - 3.2em - 24px)*var(--p) + 12px);transform:translateX(-50%);font-size:18px;color:#fff;background:var(--ink);border-radius:100px;padding:4px 10px}
+.pct-track b::after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:var(--ink)}
 /* ось возраста */
 .age{--w:280px;position:relative;width:var(--w);height:170px}
 .age-axis{position:absolute;left:0;right:0;top:86px;height:3px;border-radius:3px;background:#B9CDEA}
@@ -373,36 +392,12 @@ html{accent-color:var(--blue);caret-color:var(--blue)}
 .age-pin--b b{color:var(--blue)}
 .age-gap{position:absolute;top:86px;left:calc(var(--a0)*100%);width:calc((var(--a1) - var(--a0))*100%);height:4px;margin-top:-.5px;background:var(--blue);border-radius:4px;transform-origin:left}
 .age-gap span{position:absolute;left:calc(100% + 36px);top:-48px;white-space:nowrap;font:800 16px/1 var(--disp);color:#fff;background:var(--blue);border-radius:100px;padding:7px 11px}
-.kn-age:not(.in) .age-pin--b{transform:translate(calc(-50% - (var(--a) - .48)*var(--w)),0);opacity:.0}
-.kn-age:not(.in) .age-gap{transform:scaleX(0)}
-.kn-age:not(.in) .age-gap span{opacity:0;transform:translateY(6px)}
+.rd:not(.in) .age-pin--b{transform:translate(calc(-50% - (var(--a) - .48)*var(--w)),0);opacity:.0}
+.rd:not(.in) .age-gap{transform:scaleX(0)}
+.rd:not(.in) .age-gap span{opacity:0;transform:translateY(6px)}
 .age-pin--b{transition:transform 1s cubic-bezier(.2,.7,.2,1) .3s,opacity .4s ease-out .3s}
 .age-gap{transition:transform 1s cubic-bezier(.2,.7,.2,1) .3s}
 .age-gap span{transition:opacity .35s ease-out 1.2s,transform .45s cubic-bezier(.2,.7,.2,1) 1.2s}
-/* шесть систем */
-.sys6{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,118px);gap:16px 8px;justify-content:center}
-.sys6 li{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font:700 16px/1.2 var(--disp);color:var(--ink);transition:opacity .4s ease-out,transform .5s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.2s + var(--i)*.12s)}
-.sys6 svg{width:54px;height:54px;padding:13px;border-radius:50%;background:#fff;fill:none;stroke:var(--teal);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;box-shadow:0 4px 12px rgba(0,120,130,.12)}
-.sys6 li.hot svg{background:var(--teal);stroke:#fff;animation:ring 2.4s ease-out 1.4s infinite}
-@keyframes ring{0%{box-shadow:0 0 0 0 rgba(0,168,181,.45)}70%,100%{box-shadow:0 0 0 14px rgba(0,168,181,0)}}
-.kn-sys:not(.in) .sys6 li{opacity:0;transform:translateY(10px) scale(.92)}
-/* сто человек */
-.kn-100 .kn-vis{grid-template-columns:auto auto;gap:22px;justify-content:center}
-.hund{display:grid;grid-template-columns:repeat(10,12px);gap:5px}
-.hund i{width:12px;height:12px;border-radius:50%;background:#F2C9C4;transition:background-color .3s ease-out;transition-delay:calc(var(--i)*9ms)}
-.kn-100.in .hund i{background:#E0524A}
-.kn-100.in .hund i:nth-child(n+86){background:#F2C9C4}
-.hund i.you{position:relative;background:var(--ink)!important;box-shadow:0 0 0 3px #fff,0 0 0 5px var(--ink)}
-.hund-l b{display:block;font:700 48px/1 var(--mono);letter-spacing:-.04em;color:#B23A33}
-.hund-l span{display:block;font:600 16px/1.3 var(--disp);color:var(--ink-2);margin-top:6px;max-width:9em}
-/* план врача */
-.plan3{list-style:none;margin:0;padding:0;display:grid;gap:10px;width:min(100%,300px)}
-.plan3 li{display:grid;grid-template-columns:40px 1fr 26px;align-items:center;gap:12px;background:#fff;border-radius:100px;padding:8px 14px 8px 8px;font:700 17px/1.2 var(--disp);color:var(--ink);box-shadow:0 2px 8px rgba(10,37,64,.06)}
-.plan3 li>svg:first-child{width:40px;height:40px;padding:9px;border-radius:50%;background:var(--ok-soft);fill:none;stroke:#13804F;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.plan3 .ok{width:26px;height:26px;fill:none;stroke:var(--ok);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.plan3 .ok path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .5s cubic-bezier(.4,0,.2,1);transition-delay:calc(.4s + var(--i)*.35s)}
-.kn-plan.in .plan3 .ok path{stroke-dashoffset:0}
-
 /* ── кому / важно: значок + одна строка ── */
 .tiles{list-style:none;margin:clamp(28px,4vw,44px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
 .tiles--3{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -433,15 +428,13 @@ html{accent-color:var(--blue);caret-color:var(--blue)}
 .doms p.mono{color:var(--blue-2)}
 .doms p span{font-weight:700;color:var(--ink)}
 
-@media (max-width:900px){.know{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tiles--3{grid-template-columns:1fr}.doms{grid-template-columns:1fr 1fr}
+@media (max-width:900px){.rd{grid-template-columns:1fr}.rd-col{padding:24px 0 8px!important}.rd-col+.rd-col{border-left:0;border-top:1px solid var(--line)}.pct{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tiles--3{grid-template-columns:1fr}.doms{grid-template-columns:1fr 1fr}
   .track{grid-template-columns:1fr 1fr;row-gap:32px}.track::before{display:none}}
 @media (max-width:560px){.tiles{grid-template-columns:1fr}.tiles li{display:grid;grid-template-columns:60px 1fr;column-gap:16px;row-gap:4px;text-align:left;align-items:center}.tiles svg{width:60px;height:60px;padding:15px;grid-row:span 2}.tiles b,.tiles span{max-width:none}
   .track{grid-template-columns:1fr;row-gap:20px}.track li{display:grid;grid-template-columns:56px 1fr;column-gap:14px;row-gap:2px;text-align:left;align-items:center;padding:0}.tk-ic{grid-row:span 2;margin:0;width:56px;height:56px;box-shadow:none}.tk-ic svg{width:24px;height:24px}
-  .doms{grid-template-columns:1fr}.kn-100 .kn-vis{grid-template-columns:1fr;justify-items:center;text-align:center}}
-@media (prefers-reduced-motion:reduce){.sys6 li.hot svg{animation:none}}
+  .doms{grid-template-columns:1fr}}
 
 .scene.is-fade{opacity:0;transform:none;transition:opacity .8s cubic-bezier(.4,0,.2,1);z-index:3}
-@media (max-width:560px){.sys6{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:14px}}
 /* параметры для врачей — без табличной сетки */
 .tw:has(table.kv){border:0;border-radius:0;overflow:visible}
 table.kv,table.kv tbody{display:block}
@@ -452,6 +445,24 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 @media (max-width:720px){table.kv tbody{grid-template-columns:1fr}}
 /* первый экран: текст в чистом центре картинки, подложка плотнее (замечание 20.11: «Априом» наезжает на картинку) */
 @media (min-width:901px){.hero__in{max-width:min(720px,56vw)}.hero h1{font-size:clamp(30px,2.9vw,42px)}.hero::before{background:radial-gradient(46% 80% at 50% 50%,rgba(255,255,255,.97) 0%,rgba(255,255,255,.9) 58%,rgba(255,255,255,0) 90%)}}
+
+/* отчёт: шкала возраста, кликабельные системы, пояснение */
+.agescale{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 8px}
+.agescale li{display:flex;flex-direction:column;gap:4px;font-size:16px;line-height:1.25;color:var(--ink-2);padding-top:10px;border-top:4px solid var(--c)}
+.agescale li:nth-child(1){--c:var(--ok)}.agescale li:nth-child(2){--c:#E8B04A}.agescale li:nth-child(3){--c:var(--warn)}.agescale li:nth-child(4){--c:var(--stop)}
+.agescale b{font-size:16px;color:var(--ink)}
+.bars li{display:block}
+.bars button{width:100%;display:grid;grid-template-columns:minmax(0,8.5em) 1fr 3em;align-items:center;gap:12px;font:inherit;font-size:16px;color:var(--ink-2);background:none;border:0;border-radius:10px;padding:6px 8px;margin:0 -8px;width:calc(100% + 16px);cursor:pointer;text-align:left;transition:background-color .2s ease-out}
+@media (hover:hover){.bars button:hover{background:#fff}}
+.bars button[aria-selected="true"]{background:#fff;color:var(--ink);font-weight:700;box-shadow:var(--shadow-sm)}
+.bars li.top button b{color:var(--blue-2)}
+.sysinfo{border-left:3px solid var(--blue);padding:2px 0 2px 16px;display:grid;gap:6px}
+.sysinfo b{font-size:18px;color:var(--ink)}
+.sysinfo p{color:var(--ink-2);font-size:16px}
+.sysinfo p.mono{color:var(--blue-2)}
+.sysinfo span{font-weight:700;color:var(--ink)}
+.sysinfo i{font-style:normal}
+.pct>div p+p{margin-top:10px}
 
 
 /* ── шапка: копия шапки основного сайта genomed.ru ── */
@@ -607,7 +618,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 
 <div class="subnav" id="subnav">
   <nav aria-label="Разделы страницы">
-    <a href="#proteom">Путь белка</a><a href="#otchet">Что узнаете</a><a href="#komu">Кому</a><a href="#kak">Как сдать</a><a href="#podrobno">Вопросы и&nbsp;врачам</a><a href="#zakaz">Заказать</a>
+    <a href="#proteom">Путь белка</a><a href="#otchet">Отчёт</a><a href="#komu">Кому</a><a href="#kak">Как сдать</a><a href="#podrobno">Вопросы и&nbsp;врачам</a><a href="#zakaz">Заказать</a>
   </nav>
 </div>
 
@@ -623,37 +634,44 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 
 <section class="soft" id="otchet">
   <div class="wrap">
-    <div class="center"><h2 class="h2">Что вы <em>узнаете</em></h2></div>
-    <div class="know">
-      <figure class="kn kn-age" aria-label="Пример: по паспорту 52 года, по белкам 55 лет">
-        <div class="kn-vis">
-          <div class="age">
+    <h2 class="h2">Что покажет <em>отчёт</em></h2>
+    <p class="lead">Сначала общий итог, затем&nbsp;— какие системы его дали и&nbsp;что проверить в&nbsp;первую очередь. Цифры ниже&nbsp;— пример.</p>
+    <div class="rd">
+      <div class="rd-col">
+        <h3><span class="mono">1</span>Возраст по&nbsp;белкам</h3>
+        <p>Модель сравнивает уровни 92&nbsp;белков с&nbsp;профилем людей вашего пола и&nbsp;возраста и&nbsp;переводит общее отклонение в&nbsp;годы. «Старше» паспорта&nbsp;— повод внимательнее посмотреть на&nbsp;системы, которые дали сдвиг. Это расчётная оценка с&nbsp;погрешностью, а&nbsp;не&nbsp;прогноз продолжительности жизни.</p>
+        <div class="age">
             <div class="age-axis"><span style="--a:0">40</span><span style="--a:.2">45</span><span style="--a:.4">50</span><span style="--a:.6">55</span><span style="--a:.8">60</span><span style="--a:1">65</span></div>
             <div class="age-pin age-pin--p" style="--a:.48"><b>52</b><small>по&nbsp;паспорту</small></div>
             <div class="age-pin age-pin--b" style="--a:.6"><b>55</b><small>по&nbsp;белкам</small></div>
             <div class="age-gap" style="--a0:.48;--a1:.6"><span>+3&nbsp;года</span></div>
           </div>
-        </div>
-        <figcaption><b>Биологический возраст</b><span>Белки «старше» или «моложе» ваших лет</span></figcaption>
-      </figure>
-      <figure class="kn kn-sys" aria-label="Шесть систем организма">
-        <div class="kn-vis"><ul class="sys6"><li style="--i:0" class=hot><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg><span>Сосуды</span></li><li style="--i:1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"/></svg><span>Почки</span></li><li style="--i:2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span>Обмен веществ</span></li><li style="--i:3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><span>Свёртывание</span></li><li style="--i:4"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span>Иммунитет</span></li><li style="--i:5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Ткани</span></li></ul></div>
-        <figcaption><b>Шесть систем организма</b><span>Видно, какая из&nbsp;них даёт сдвиг</span></figcaption>
-      </figure>
-      <figure class="kn kn-100" aria-label="Пример: результат выше, чем у 85 человек из 100">
-        <div class="kn-vis"><div class="hund"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:19"></i><i style="--i:20"></i><i style="--i:21"></i><i style="--i:22"></i><i style="--i:23"></i><i style="--i:24"></i><i style="--i:25"></i><i style="--i:26"></i><i style="--i:27"></i><i style="--i:28"></i><i style="--i:29"></i><i style="--i:30"></i><i style="--i:31"></i><i style="--i:32"></i><i style="--i:33"></i><i style="--i:34"></i><i style="--i:35"></i><i style="--i:36"></i><i style="--i:37"></i><i style="--i:38"></i><i style="--i:39"></i><i style="--i:40"></i><i style="--i:41"></i><i style="--i:42"></i><i style="--i:43"></i><i style="--i:44"></i><i style="--i:45"></i><i style="--i:46"></i><i style="--i:47"></i><i style="--i:48"></i><i style="--i:49"></i><i style="--i:50"></i><i style="--i:51"></i><i style="--i:52"></i><i style="--i:53"></i><i style="--i:54"></i><i style="--i:55"></i><i style="--i:56"></i><i style="--i:57"></i><i style="--i:58"></i><i style="--i:59"></i><i style="--i:60"></i><i style="--i:61"></i><i style="--i:62"></i><i style="--i:63"></i><i style="--i:64"></i><i style="--i:65"></i><i style="--i:66"></i><i style="--i:67"></i><i style="--i:68"></i><i style="--i:69"></i><i style="--i:70"></i><i style="--i:71"></i><i style="--i:72"></i><i style="--i:73"></i><i style="--i:74"></i><i style="--i:75"></i><i style="--i:76"></i><i style="--i:77"></i><i style="--i:78"></i><i style="--i:79"></i><i style="--i:80"></i><i style="--i:81"></i><i style="--i:82"></i><i style="--i:83"></i><i style="--i:84"></i><i style="--i:85" class="you"></i><i style="--i:86"></i><i style="--i:87"></i><i style="--i:88"></i><i style="--i:89"></i><i style="--i:90"></i><i style="--i:91"></i><i style="--i:92"></i><i style="--i:93"></i><i style="--i:94"></i><i style="--i:95"></i><i style="--i:96"></i><i style="--i:97"></i><i style="--i:98"></i><i style="--i:99"></i></div><div class="hund-l"><b class="mono">85</b><span>ваш показатель выше, чем у&nbsp;85&nbsp;из&nbsp;100</span></div></div>
-        <figcaption><b>Сравнение с&nbsp;другими людьми</b><span>Место в&nbsp;ряду&nbsp;— не&nbsp;диагноз и&nbsp;не&nbsp;вероятность</span></figcaption>
-      </figure>
-      <figure class="kn kn-plan" aria-label="План обследования для врача">
-        <div class="kn-vis"><ul class="plan3">
-          <li style="--i:0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5s-2.5-1.1-2.5-2.5V2"/><path d="M8.5 2h7"/><path d="M14.5 16h-5"/></svg><span>Анализы</span><svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg></li>
-          <li style="--i:1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>Обследования</span><svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg></li>
-          <li style="--i:2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg><span>Консультации</span><svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg></li>
-        </ul></div>
-        <figcaption><b>План для врача</b><span>Что проверить в&nbsp;первую очередь</span></figcaption>
-      </figure>
+        <ol class="agescale" aria-label="Шкала интерпретации сдвига">
+          <li><b class="mono">до ±2</b>норма</li><li><b class="mono">+2…+5</b>лёгкое ускорение</li><li><b class="mono">+5…+10</b>умеренное</li><li><b class="mono">&gt;&nbsp;+10</b>значимое</li>
+        </ol>
+      </div>
+      <div class="rd-col">
+        <h3><span class="mono">2</span>Откуда сдвиг</h3>
+        <p>Белки разбиты на&nbsp;шесть систем. Для каждой отчёт показывает, насколько она сдвинула общий возраст и&nbsp;какие белки отклонились сильнее всего. Нажмите на&nbsp;систему, чтобы прочитать о&nbsp;ней.</p>
+        <ul class="bars" role="tablist" aria-label="Пример: вклад систем в сдвиг, годы"><li class=top style="--v:1.4;--i:0"><button type="button" role="tab" data-k="vas" aria-selected="true"><span>Сосуды</span><span class="bar"><i></i></span><b class="mono">+1,4</b></button></li><li style="--v:0.8;--i:1"><button type="button" role="tab" data-k="met" aria-selected="false"><span>Обмен веществ</span><span class="bar"><i></i></span><b class="mono">+0,8</b></button></li><li style="--v:0.5;--i:2"><button type="button" role="tab" data-k="ren" aria-selected="false"><span>Почки</span><span class="bar"><i></i></span><b class="mono">+0,5</b></button></li><li style="--v:0.3;--i:3"><button type="button" role="tab" data-k="coa" aria-selected="false"><span>Свёртывание</span><span class="bar"><i></i></span><b class="mono">+0,3</b></button></li><li style="--v:0.2;--i:4"><button type="button" role="tab" data-k="ecm" aria-selected="false"><span>Ткани</span><span class="bar"><i></i></span><b class="mono">+0,2</b></button></li><li data-neg style="--v:0.2;--i:5"><button type="button" role="tab" data-k="imm" aria-selected="false"><span>Иммунитет</span><span class="bar"><i></i></span><b class="mono">−0,2</b></button></li></ul>
+        <div class="sysinfo" id="sysinfo" aria-live="polite"><b></b><p></p><p class="mono"></p><p><span>Что проверят:</span> <i></i></p></div>
+      </div>
+      <div class="rd-col">
+        <h3><span class="mono">3</span>Что проверить</h3>
+        <p>План собирается из&nbsp;систем с&nbsp;наибольшим вкладом и&nbsp;профилей заболеваний: лабораторные анализы, инструментальные исследования вроде ЭКГ или эхокардиографии, консультации специалистов. Это не&nbsp;направление: что из&nbsp;плана нужно, решает терапевт или кардиолог.</p>
+        <ul class="todo">
+          <li><b>Сосуды</b>ЭКГ, липидный профиль, давление</li>
+          <li><b>Обмен веществ</b>глюкоза, гликированный гемоглобин</li>
+        </ul>
+      </div>
     </div>
-    <p class="know-note">Цифры на&nbsp;схемах&nbsp;— пример. Отчёт не&nbsp;ставит диагноз: его разбирают с&nbsp;терапевтом или кардиологом.</p>
+    <div class="pct">
+      <div>
+        <p><b>Ещё в&nbsp;отчёте&nbsp;— 83&nbsp;профиля заболеваний:</b> от&nbsp;артериальной гипертензии, ишемической болезни сердца и&nbsp;сердечной недостаточности до&nbsp;диабета 2&nbsp;типа и&nbsp;болезней почек.</p>
+        <p>Для каждого&nbsp;— перцентиль: насколько ваш набор изменений белков похож на&nbsp;набор, который в&nbsp;UK Biobank чаще встречался у&nbsp;людей с&nbsp;этим заболеванием. Значение&nbsp;85 означает, что сходство у&nbsp;вас выше, чем у&nbsp;85&nbsp;из&nbsp;100 человек в&nbsp;группе сравнения. Это место в&nbsp;ряду, а&nbsp;не&nbsp;диагноз и&nbsp;не&nbsp;вероятность заболеть.</p>
+      </div>
+      <div class="pct-track" style="--p:.85" aria-label="Пример: выше, чем у 85 из 100"><span class="mono">0</span><i></i><b class="mono">85</b><span class="mono">100</span></div>
+    </div>
   </div>
 </section>
 
@@ -880,8 +898,23 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 
   const $=id=>document.getElementById(id);
 
-  // «Что вы узнаете», «Как сдать»: схемы проигрываются один раз при появлении
-  const vis=[...document.querySelectorAll('.kn,.track')];
+  // «Откуда сдвиг»: система → что отражает, ведущие белки, что проверят (по шаблону отчёта лаборатории)
+  const SYS={
+    vas:['Сосуды','Белки внутренней выстилки сосудов и молекулы, которыми к стенке прикрепляются клетки крови. Связаны с состоянием артерий, давлением и атеросклерозом.','ICAM1 · VCAM1 · ENG · ITGAM','ЭКГ, липидный профиль, контроль давления'],
+    met:['Обмен веществ','Белки углеводного и жирового обмена, связанные с поджелудочной железой, печенью и жировой тканью. Изменения связаны с диабетом и ожирением.','DPP4 · IGFBP3 · CNDP1 · PLA2G7','глюкоза, гликированный гемоглобин, инсулин, липидный профиль'],
+    ren:['Почки','Белки, связанные с фильтрацией крови и работой почечных канальцев, в том числе цистатин C.','CST3 · UMOD · CA1 · CA3','креатинин, цистатин C, скорость клубочковой фильтрации'],
+    coa:['Свёртывание','Факторы свёртывания, их регуляторы и белки тромбоцитов. Отклонения могут быть связаны со склонностью к тромбозам.','F11 · GP1BA · SERPINA5','коагулограмма — особенно если в семье были тромбозы'],
+    ecm:['Ткани','Белки каркаса тканей и ферменты, которые его перестраивают: заживление, рубцевание, фиброз в сердце, печени и лёгких.','TIMP1 · COL18A1 · TNXB','отдельно обычно ничего — врач смотрит на другие системы'],
+    imm:['Иммунитет','Рецепторы иммунных клеток и белки, которые сдерживают избыточный иммунный ответ. Показывают признаки хронического воспаления.','LILRB5 · FCGR3B · C2','общий анализ крови с лейкоцитарной формулой']};
+  const sbtn=[...document.querySelectorAll('.bars [role=tab]')], si=$('sysinfo');
+  const showSys=b=>{sbtn.forEach(x=>{const on=x===b;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1});
+    const [n,t,p,c]=SYS[b.dataset.k]; si.querySelector('b').textContent=n; const ps=si.querySelectorAll('p'); ps[0].textContent=t; ps[1].textContent=p; si.querySelector('i').textContent=c};
+  sbtn.forEach((b,i)=>{b.addEventListener('click',()=>showSys(b));
+    b.addEventListener('keydown',e=>{const d=e.key==='ArrowDown'||e.key==='ArrowRight'?1:e.key==='ArrowUp'||e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();const n=sbtn[(i+d+sbtn.length)%sbtn.length];n.focus();showSys(n)}})});
+  if(sbtn.length) showSys(sbtn[0]);
+
+  // «Что покажет отчёт», «Как сдать»: схемы проигрываются один раз при появлении
+  const vis=[...document.querySelectorAll('.rd,.track')];
   if(still||!('IntersectionObserver' in window)) vis.forEach(v=>v.classList.add('in'));
   else{const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.35});
     vis.forEach(v=>io.observe(v))}
