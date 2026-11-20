@@ -464,6 +464,29 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 .sysinfo i{font-style:normal}
 .pct>div p+p{margin-top:10px}
 
+/* ── «Что делать с результатом»: три примера ── */
+.scen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px);margin-top:clamp(28px,4vw,44px)}
+.sc{background:#fff;border:1px solid var(--line);border-top:5px solid var(--c);border-radius:var(--r-md);padding:clamp(20px,2.4vw,28px);display:flex;flex-direction:column;gap:12px;min-width:0}
+.sc--ok{--c:var(--ok)}.sc--mid{--c:#E8B04A}.sc--hi{--c:var(--warn)}
+.sc-k{font-size:16px;font-weight:700;color:var(--ink-2)}
+.sc h3{font-size:clamp(20px,1.9vw,23px);line-height:1.25}
+.sc-res{font-weight:700;color:var(--ink)}
+.sc ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.sc li{position:relative;padding-left:20px;color:var(--ink-2)}
+.sc li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--c)}
+.sc-when{margin-top:auto;padding-top:12px;border-top:1px solid var(--line-soft);color:var(--ink-2);font-size:16px}
+.sc-when b{color:var(--ink)}
+.mini{position:relative;height:44px;margin:4px 6px 0}
+.mini::before{content:"";position:absolute;left:0;right:0;top:12px;height:3px;border-radius:3px;background:#D8E4F2}
+.mini i{position:absolute;top:6px;width:15px;height:15px;margin-left:-7.5px;border-radius:50%;border:3px solid #fff;box-shadow:0 1px 4px rgba(10,37,64,.25)}
+.mini-p{left:calc(var(--p)*100%);background:var(--ink)}
+.mini-b{left:calc(var(--b)*100%);background:var(--c)}
+.mini span{position:absolute;top:24px;left:calc(var(--p)*100%);transform:translateX(-50%);font-size:16px;color:var(--ink-2)}
+.mini .mini-bl{left:calc(var(--b)*100%);color:var(--ink);font-weight:700}
+.sc--ok .mini .mini-bl{display:none}
+.scen-note{margin-top:24px;color:var(--ink-2);max-width:72ch}
+@media (max-width:900px){.scen{grid-template-columns:1fr}}
+
 
 /* ── шапка: копия шапки основного сайта genomed.ru ── */
 .site-header{background:#fff;border-bottom:1px solid #E6E9EE;padding-top:env(safe-area-inset-top,0px);position:relative;z-index:var(--z-drop)}
@@ -618,7 +641,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 
 <div class="subnav" id="subnav">
   <nav aria-label="Разделы страницы">
-    <a href="#proteom">Путь белка</a><a href="#otchet">Отчёт</a><a href="#komu">Кому</a><a href="#kak">Как сдать</a><a href="#podrobno">Вопросы и&nbsp;врачам</a><a href="#zakaz">Заказать</a>
+    <a href="#proteom">Путь белка</a><a href="#otchet">Отчёт</a><a href="#dalshe">Что дальше</a><a href="#komu">Кому</a><a href="#kak">Как сдать</a><a href="#podrobno">Вопросы и&nbsp;врачам</a><a href="#zakaz">Заказать</a>
   </nav>
 </div>
 
@@ -675,7 +698,41 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
   </div>
 </section>
 
-<section id="dannye">
+<section id="dalshe">
+  <div class="wrap">
+    <h2 class="h2">Что делать <em>с&nbsp;результатом</em></h2>
+    <p class="lead">Три условных примера: как отчёт превращается в&nbsp;конкретные шаги. Что именно нужно вам, решает врач.</p>
+    <div class="scen">
+      <article class="sc sc--ok">
+        <p class="sc-k mono">Пример 1</p>
+        <h3>Профиль в&nbsp;норме</h3>
+        <div class="mini" style="--p:0.467;--b:0.467"><i class="mini-p"></i><i class="mini-b"></i><span class="mono">52</span><span class="mono mini-bl">52</span></div>
+        <p class="sc-res">Сдвиг в&nbsp;пределах ±2&nbsp;лет</p>
+        <ul><li>Обычная профилактика</li><li>Результат становится вашей точкой отсчёта</li></ul>
+        <p class="sc-when"><b>Повтор:</b> через год&nbsp;— сравнить с&nbsp;первым</p>
+      </article>
+      <article class="sc sc--mid">
+        <p class="sc-k mono">Пример 2</p>
+        <h3>+3&nbsp;года, больше всего&nbsp;— сосуды</h3>
+        <div class="mini" style="--p:0.467;--b:0.667"><i class="mini-p"></i><i class="mini-b"></i><span class="mono">52</span><span class="mono mini-bl">55</span></div>
+        <p class="sc-res">Лёгкое ускорение</p>
+        <ul><li>Сдать ЭКГ и&nbsp;липидный профиль, следить за&nbsp;давлением</li><li>С&nbsp;терапевтом или кардиологом&nbsp;— план по&nbsp;давлению и&nbsp;холестерину</li></ul>
+        <p class="sc-when"><b>Повтор:</b> через 6–12&nbsp;месяцев&nbsp;— увидеть, сдвинулся&nbsp;ли профиль</p>
+      </article>
+      <article class="sc sc--hi">
+        <p class="sc-k mono">Пример 3</p>
+        <h3>+4&nbsp;года, больше всего&nbsp;— обмен веществ</h3>
+        <div class="mini" style="--p:0.467;--b:0.733"><i class="mini-p"></i><i class="mini-b"></i><span class="mono">52</span><span class="mono mini-bl">56</span></div>
+        <p class="sc-res">Лёгкое ускорение</p>
+        <ul><li>Сдать глюкозу и&nbsp;гликированный гемоглобин</li><li>С&nbsp;врачом&nbsp;— питание, активность, вес</li></ul>
+        <p class="sc-when"><b>Повтор:</b> через 6–12&nbsp;месяцев&nbsp;— проверить динамику</p>
+      </article>
+    </div>
+    <p class="scen-note">Если по&nbsp;одному из&nbsp;83&nbsp;профилей заболеваний показатель высокий, врач назначит прицельное обследование&nbsp;— например, ЭКГ или УЗИ сердца. Сам показатель диагнозом не&nbsp;является.</p>
+  </div>
+</section>
+
+<section class="soft" id="dannye">
   <div class="wrap">
     <div class="deep">
       <div>
@@ -692,7 +749,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
   </div>
 </section>
 
-<section class="soft" id="komu">
+<section id="komu">
   <div class="wrap">
     <div class="center"><h2 class="h2">Кому <em>подходит</em></h2></div>
     <ul class="tiles">
@@ -704,7 +761,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
   </div>
 </section>
 
-<section id="kak">
+<section class="soft" id="kak">
   <div class="wrap">
     <div class="center"><h2 class="h2">Как <em>сдать</em></h2></div>
     <ol class="track">
@@ -800,7 +857,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
   </div>
 </section>
 
-<section id="vazhno">
+<section class="soft" id="vazhno">
   <div class="wrap">
     <div class="center"><h2 class="h2">Важно <em>знать</em></h2></div>
     <ul class="tiles tiles--3">
@@ -811,7 +868,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
   </div>
 </section>
 
-<section class="soft" id="chitat">
+<section id="chitat">
   <div class="wrap">
     <h2 class="h2">Читайте <em>в&nbsp;журнале Геномед</em></h2>
     <ul class="reads">
