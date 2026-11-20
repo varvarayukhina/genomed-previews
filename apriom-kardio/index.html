@@ -449,6 +449,8 @@ table.kv tr{display:block}
 table.kv th,table.kv td{display:block;width:auto;padding:0;border:0;white-space:normal}
 table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 @media (max-width:720px){table.kv tbody{grid-template-columns:1fr}}
+/* первый экран: текст в чистом центре картинки, подложка плотнее (замечание 20.11: «Априом» наезжает на картинку) */
+@media (min-width:901px){.hero__in{max-width:min(720px,56vw)}.hero h1{font-size:clamp(30px,2.9vw,42px)}.hero::before{background:radial-gradient(46% 80% at 50% 50%,rgba(255,255,255,.97) 0%,rgba(255,255,255,.9) 58%,rgba(255,255,255,0) 90%)}}
 
 
 /* ── шапка: копия шапки основного сайта genomed.ru ── */
