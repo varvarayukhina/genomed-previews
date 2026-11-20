@@ -952,9 +952,7 @@ fit(); addEventListener('resize',fit); document.fonts&&document.fonts.ready.then
   stage.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
   stage.addEventListener('touchend',e=>{if(x0===null) return; const dx=e.changedTouches[0].clientX-x0; x0=null;
     if(Math.abs(dx)>40){manual();go(dx<0?Math.min(cur+1,n-1):Math.max(cur-1,0))}});
-  // пауза при наведении на сцену, старт — когда сцена в зоне видимости
-  stage.addEventListener('mouseenter',()=>{if(auto){clearTimeout(timer);root.classList.add('paused')}});
-  stage.addEventListener('mouseleave',()=>{if(auto){root.classList.remove('paused');go(cur)}});
+  // старт — когда сцена в зоне видимости; остановить можно кнопкой паузы или выбором шага
   if(still){manual();go(0);return}
   root.classList.add('paused'); go(0); clearTimeout(timer);
   new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();root.classList.remove('paused');go(0)}},{threshold:.4}).observe(stage);
