@@ -345,65 +345,68 @@ html{accent-color:var(--blue);caret-color:var(--blue)}
 @media (max-width:560px){.how2__tabs button span{display:none}.how2__tabs button{padding:10px 14px}.chip{font-size:13px;padding:6px 10px 6px 9px}.chip:nth-of-type(2){display:none}.how2__stage{aspect-ratio:3/2}}
 @media (prefers-reduced-motion:reduce){.scene,.scene.is-out,.scene.is-back,.chip,.cap{transition:none!important}.scene.is-on img{animation:none}.how2__prog i.cur s{animation:none;transform:none}}
 
-/* ── «Что покажет отчёт»: одна цепочка итог → откуда → что проверить, без карточек ── */
-.rd{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(28px,4vw,44px);border-top:2px solid var(--ink)}
-.rd-col{padding:28px clamp(18px,2.6vw,36px) 8px;display:flex;flex-direction:column;gap:18px;min-width:0}
-.rd-col:first-child{padding-left:0}.rd-col:last-child{padding-right:0}
-.rd-col+.rd-col{border-left:1px solid var(--line)}
-.rd h3{display:flex;align-items:baseline;gap:12px;font-size:clamp(21px,2vw,24px)}
-.rd h3 .mono{font-size:16px;font-weight:700;color:var(--blue-2)}
-.rd-col>p{color:var(--ink-2)}
-.rd .age{margin:6px auto 0}
-.bars{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.bars li{display:grid;grid-template-columns:minmax(0,8.5em) 1fr 3em;align-items:center;gap:12px;font-size:16px;color:var(--ink-2)}
-.bars li.top{color:var(--ink);font-weight:700}
-.bars b{font-size:16px;text-align:right;color:var(--ink-2)}
-.bars li.top b{color:var(--blue-2)}
-.bar{position:relative;height:12px}
-.bar::before{content:"";position:absolute;left:20%;top:-5px;bottom:-5px;width:1.5px;background:#9FB4CC}
-.bar i{position:absolute;top:0;bottom:0;left:20%;width:calc(var(--v)/1.4*78%);border-radius:0 6px 6px 0;background:#9DBBFF;transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.3s + var(--i)*.08s)}
-.bars li.top .bar i{background:var(--blue)}
-.bars li[data-neg] .bar i{left:auto;right:80%;width:calc(var(--v)/1.4*78%);border-radius:6px 0 0 6px;background:var(--teal);transform-origin:right}
-.rd:not(.in) .bar i{transform:scaleX(0)}
-.todo{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-.todo li{display:flex;flex-direction:column;gap:2px;color:var(--ink-2);padding-left:18px;position:relative}
-.todo li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--blue)}
-.todo b{color:var(--ink)}
-.pct{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;margin-top:clamp(28px,4vw,40px);padding-top:24px;border-top:1px solid var(--line)}
+/* ── «Что покажет отчёт»: одна схема — возраст по белкам и вклад систем на общей оси ── */
+.rep{margin-top:clamp(28px,4vw,44px);background:#fff;border-radius:var(--r-xl);box-shadow:var(--shadow-md);padding:clamp(22px,3.4vw,44px);display:grid;gap:clamp(24px,3vw,36px)}
+.rep-top{display:grid;grid-template-columns:minmax(0,1.1fr) auto;gap:clamp(20px,4vw,56px);align-items:center}
+.rep-top h3{font-size:clamp(22px,2.2vw,28px)}
+.rep-top p{color:var(--ink-2);margin-top:10px;max-width:56ch}
+.rep-big{display:flex;align-items:center;gap:16px}
+.rep-big span{display:flex;flex-direction:column;align-items:center}
+.rep-big b{font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--ink)}
+.rep-big b.blu{color:var(--blue)}
+.rep-big small{font-size:16px;color:var(--ink-2);margin-top:6px}
+.rep-big svg{width:40px;height:16px;fill:none;stroke:#9FB4CC;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-bottom:22px}
+.rep-big em{font-style:normal;font-size:18px;font-weight:700;color:#fff;background:var(--blue);border-radius:100px;padding:8px 14px;margin:0 0 22px 6px}
+.axis{position:relative;height:112px;margin:0 8px}
+.zones{position:absolute;left:0;right:0;top:0;height:30px}
+.z{position:absolute;left:calc(var(--a)*100%);width:calc((var(--b) - var(--a))*100%);top:0;height:30px;border-radius:8px;font-size:15px;font-weight:600;display:flex;align-items:center;padding:0 10px;white-space:nowrap;overflow:hidden}
+.z-ok{background:var(--ok-soft);color:#0F6B47}.z-lt{background:#FFF4D9;color:#7A5200}.z-md{background:var(--warn-soft);color:#8A4B00}
+.ax-track{position:absolute;left:0;right:0;top:52px;height:14px;border-radius:14px;background:#E9F0FA}
+.stack{position:absolute;left:calc(var(--a)*100%);width:calc(var(--w)*100%);top:0;bottom:0;display:flex;border-radius:14px;overflow:hidden}
+.stack i{flex:var(--g) 1 0;background:var(--c);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .2s ease-out;transition-delay:calc(.3s + var(--i)*.22s)}
+.stack i+i{box-shadow:inset 2px 0 0 #fff}
+.rep:not(.in) .stack i{transform:scaleX(0)}
+.stack.dim i:not(.on){opacity:.3}
+.pin{position:absolute;top:47px;left:calc(var(--a)*100%);width:24px;height:24px;margin-left:-12px;border-radius:50%;border:4px solid #fff;box-shadow:0 2px 8px rgba(10,37,64,.25)}
+.pin-p{background:var(--ink)}
+.pin-b{background:var(--blue);transition:transform 1.3s cubic-bezier(.2,.7,.2,1) .3s}
+.rep:not(.in) .pin-b{transform:translateX(calc(-1 * var(--slide,0px)));opacity:0}
+.ticks span{position:absolute;top:84px;left:calc(var(--a)*100%);transform:translateX(-50%);font-size:16px;color:#5A6F88}
+.rep-sys{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start;padding-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--line)}
+.rep-sys h4{font:800 20px/1.3 var(--disp);color:var(--ink);margin:0 0 12px}
+.legend{display:grid;gap:4px}
+.legend button{display:grid;grid-template-columns:14px 1fr auto;align-items:center;gap:12px;width:100%;font:inherit;font-size:17px;color:var(--ink-2);text-align:left;background:none;border:0;border-radius:12px;padding:10px 12px;cursor:pointer;transition:background-color .2s ease-out,color .2s ease-out}
+.legend button i{width:14px;height:14px;border-radius:4px;background:var(--c)}
+.legend button b{font-size:16px;color:var(--ink)}
+@media (hover:hover){.legend button:hover{background:var(--bg)}}
+.legend button[aria-selected="true"]{background:var(--bg);color:var(--ink);font-weight:700}
+.sysinfo{background:var(--bg);border-radius:var(--r-lg);padding:clamp(18px,2.2vw,26px);display:grid;gap:8px}
+.sysinfo b{font:800 20px/1.25 var(--disp);color:var(--ink)}
+.sysinfo p{color:var(--ink-2);font-size:16px}
+.sysinfo p.mono{color:var(--blue-2)}
+.sysinfo .chk{padding-top:10px;border-top:1px solid var(--line)}
+.sysinfo span{font-weight:700;color:var(--ink)}
+.sysinfo i{font-style:normal}
+.pct{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;margin-top:clamp(28px,4vw,40px)}
 .pct p{color:var(--ink-2)}.pct p b{color:var(--ink)}
+.pct>div p+p{margin-top:10px}
 .pct-track{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;font-size:16px;color:#5A6F88;padding-top:34px}
 .pct-track i{height:8px;border-radius:8px;background:linear-gradient(90deg,#9DBBFF 0%,var(--blue) calc(var(--p)*100%),#D8E4F2 calc(var(--p)*100%))}
 .pct-track b{position:absolute;top:0;left:calc(1.6em + (100% - 3.2em - 24px)*var(--p) + 12px);transform:translateX(-50%);font-size:18px;color:#fff;background:var(--ink);border-radius:100px;padding:4px 10px}
 .pct-track b::after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:var(--ink)}
-/* ось возраста */
-.age{--w:280px;position:relative;width:var(--w);height:170px}
-.age-axis{position:absolute;left:0;right:0;top:86px;height:3px;border-radius:3px;background:#B9CDEA}
-.age-axis span{position:absolute;top:12px;left:calc(var(--a)*100%);transform:translateX(-50%);font:500 16px/1 var(--mono);color:#5A6F88}
-.age-axis span:not(:first-child):not(:last-child){display:none}
-.age-pin{position:absolute;left:calc(var(--a)*100%);top:86px;display:flex;flex-direction:column;align-items:center}
-.age-pin::before{content:"";position:absolute;top:-7px;left:50%;width:17px;height:17px;margin-left:-8.5px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(10,37,64,.2)}
-.age-pin b{font:800 30px/1 var(--disp);letter-spacing:-.03em}
-.age-pin small{font:600 16px/1.2 var(--disp);color:var(--ink-2);white-space:nowrap}
-.age-pin--p{transform:translate(-50%,-100%);padding-bottom:18px}
-.age-pin--p::before{top:auto;bottom:-7px;background:var(--ink)}
-.age-pin--p b{color:var(--ink)}
-.age-pin--b{transform:translate(-50%,0);padding-top:20px}
-.age-pin--b::before{background:var(--blue)}
-.age-pin--b b{color:var(--blue)}
-.age-gap{position:absolute;top:86px;left:calc(var(--a0)*100%);width:calc((var(--a1) - var(--a0))*100%);height:4px;margin-top:-.5px;background:var(--blue);border-radius:4px;transform-origin:left}
-.age-gap span{position:absolute;left:calc(100% + 36px);top:-48px;white-space:nowrap;font:800 16px/1 var(--disp);color:#fff;background:var(--blue);border-radius:100px;padding:7px 11px}
-.rd:not(.in) .age-pin--b{transform:translate(calc(-50% - (var(--a) - .48)*var(--w)),0);opacity:.0}
-.rd:not(.in) .age-gap{transform:scaleX(0)}
-.rd:not(.in) .age-gap span{opacity:0;transform:translateY(6px)}
-.age-pin--b{transition:transform 1s cubic-bezier(.2,.7,.2,1) .3s,opacity .4s ease-out .3s}
-.age-gap{transition:transform 1s cubic-bezier(.2,.7,.2,1) .3s}
-.age-gap span{transition:opacity .35s ease-out 1.2s,transform .45s cubic-bezier(.2,.7,.2,1) 1.2s}
+/* «Важно знать» — одна мягкая плашка-предупреждение */
+.note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,2.4vw,28px);align-items:start;background:#FFF6E8;border-radius:var(--r-xl);padding:clamp(24px,3.4vw,40px)}
+.note>svg{width:44px;height:44px;fill:none;stroke:var(--warn);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.note h2{font-size:clamp(24px,2.4vw,30px);margin-bottom:10px}
+.note p{color:var(--ink-2);max-width:80ch;font-size:clamp(17px,1.4vw,18px);line-height:1.65}
+.note p b{color:var(--ink)}
+@media (max-width:900px){.rep-top,.rep-sys,.pct{grid-template-columns:1fr}.rep-big{justify-content:flex-start}}
+@media (max-width:560px){.rep-big b{font-size:44px}.rep-big em{font-size:16px;padding:6px 10px}.z{font-size:13px;padding:0 6px}.z-md,.z-lt{font-size:0}.note{grid-template-columns:1fr}}
 /* ── кому / важно: значок + одна строка ── */
 .tiles{list-style:none;margin:clamp(28px,4vw,44px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
 .tiles--3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .tiles li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
 .tiles svg{width:72px;height:72px;padding:18px;border-radius:50%;background:#fff;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;box-shadow:var(--shadow-md)}
-#vazhno .tiles svg{background:var(--warn-soft);stroke:var(--warn);box-shadow:none}
 .tiles b{font:800 clamp(18px,1.6vw,20px)/1.3 var(--disp);letter-spacing:-.015em;color:var(--ink);max-width:16em;text-wrap:balance}
 .tiles span{color:var(--ink-2);font-size:17px;max-width:18em}
 
@@ -446,23 +449,6 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 /* первый экран: текст в чистом центре картинки, подложка плотнее (замечание 20.11: «Априом» наезжает на картинку) */
 @media (min-width:901px){.hero__in{max-width:min(720px,56vw)}.hero h1{font-size:clamp(30px,2.9vw,42px)}.hero::before{background:radial-gradient(46% 80% at 50% 50%,rgba(255,255,255,.97) 0%,rgba(255,255,255,.9) 58%,rgba(255,255,255,0) 90%)}}
 
-/* отчёт: шкала возраста, кликабельные системы, пояснение */
-.agescale{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 8px}
-.agescale li{display:flex;flex-direction:column;gap:4px;font-size:16px;line-height:1.25;color:var(--ink-2);padding-top:10px;border-top:4px solid var(--c)}
-.agescale li:nth-child(1){--c:var(--ok)}.agescale li:nth-child(2){--c:#E8B04A}.agescale li:nth-child(3){--c:var(--warn)}.agescale li:nth-child(4){--c:var(--stop)}
-.agescale b{font-size:16px;color:var(--ink)}
-.bars li{display:block}
-.bars button{width:100%;display:grid;grid-template-columns:minmax(0,8.5em) 1fr 3em;align-items:center;gap:12px;font:inherit;font-size:16px;color:var(--ink-2);background:none;border:0;border-radius:10px;padding:6px 8px;margin:0 -8px;width:calc(100% + 16px);cursor:pointer;text-align:left;transition:background-color .2s ease-out}
-@media (hover:hover){.bars button:hover{background:#fff}}
-.bars button[aria-selected="true"]{background:#fff;color:var(--ink);font-weight:700;box-shadow:var(--shadow-sm)}
-.bars li.top button b{color:var(--blue-2)}
-.sysinfo{border-left:3px solid var(--blue);padding:2px 0 2px 16px;display:grid;gap:6px}
-.sysinfo b{font-size:18px;color:var(--ink)}
-.sysinfo p{color:var(--ink-2);font-size:16px}
-.sysinfo p.mono{color:var(--blue-2)}
-.sysinfo span{font-weight:700;color:var(--ink)}
-.sysinfo i{font-style:normal}
-.pct>div p+p{margin-top:10px}
 
 /* ── «Что делать с результатом»: три примера ── */
 .scen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px);margin-top:clamp(28px,4vw,44px)}
@@ -489,11 +475,11 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 
 /* сноски в сцене: точка → линия → подпись */
 .co-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
-.co-lines path{fill:none;stroke:var(--ink);stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff)}
+.co-lines path{fill:none;stroke:#3FD4FF;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 2px rgba(0,194,255,.95)) drop-shadow(0 0 5px rgba(0,194,255,.55))}
 .is-on .co-lines path{stroke-dashoffset:0;transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1);transition-delay:calc(.75s + var(--n)*.45s)}
-.co-dot{position:absolute;z-index:3;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 0 0 0 rgba(0,87,255,.5);transform:scale(0)}
+.co-dot{position:absolute;z-index:3;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#fff;border:2.5px solid #00C2FF;box-shadow:0 0 8px 2px rgba(0,194,255,.7);transform:scale(0)}
 .is-on .co-dot{transform:none;transition:transform .35s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.5s + var(--n)*.45s);animation:coPulse 2.2s ease-out calc(1.4s + var(--n)*.45s) infinite}
-@keyframes coPulse{0%{box-shadow:0 0 0 0 rgba(0,87,255,.45)}70%,100%{box-shadow:0 0 0 12px rgba(0,87,255,0)}}
+@keyframes coPulse{0%{box-shadow:0 0 8px 2px rgba(0,194,255,.7),0 0 0 0 rgba(0,194,255,.45)}70%,100%{box-shadow:0 0 8px 2px rgba(0,194,255,.7),0 0 0 12px rgba(0,194,255,0)}}
 .co{position:absolute;z-index:3;transform:translate(0,-50%) translateX(8px);opacity:0;width:min(290px,40%);background:rgba(255,255,255,.96);border-radius:14px;padding:10px 14px;box-shadow:0 8px 24px rgba(10,37,64,.16);display:flex;flex-direction:column;gap:3px}
 .is-on .co{opacity:1;transform:translate(0,-50%);transition:opacity .35s ease-out,transform .45s cubic-bezier(.2,.7,.2,1);transition-delay:calc(1.15s + var(--n)*.45s)}
 .co b{font:800 16px/1.2 var(--disp);color:var(--ink)}
@@ -511,9 +497,12 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 .cap-co b{color:var(--ink)}
 @media (max-width:760px){
   .cap-co{display:grid}
-  .co-dot{width:26px;height:26px;margin:-13px 0 0 -13px;display:grid;place-items:center}
+  .co-dot{width:26px;height:26px;margin:-13px 0 0 -13px;display:grid;place-items:center;background:var(--blue);border-color:#fff}
   .co-dot span{display:block;font:700 13px/1 var(--mono);color:#fff}
 }
+.rep>*,.rep-top>*,.rep-sys>*{min-width:0}
+.rep-big{flex-wrap:wrap}
+@media (max-width:560px){.rep{padding:20px 16px}.rep-big{gap:10px}.rep-big b{font-size:40px}.rep-big svg{width:28px;margin-bottom:22px}.rep-big em{margin:0 0 22px}.legend button{padding:10px 8px;font-size:16px}}
 
 
 /* ── шапка: копия шапки основного сайта genomed.ru ── */
@@ -679,41 +668,44 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
       <h2 class="h2">Путь белка: <em>от&nbsp;сердца до&nbsp;отчёта</em></h2>
       <p class="lead">Восемь шагов&nbsp;— от&nbsp;того, что происходит в&nbsp;сосудах, до&nbsp;разговора с&nbsp;врачом.</p>
     </div>
-    <div class="how2" data-key="st"><div class="how2__tabs" role="tablist" aria-label="Путь белка: от сердца до отчёта"><button type="button" role="tab" id="stt0" aria-controls="stp" aria-selected="true" tabindex="0"><b class="mono">01</b><span>Сердце</span></button><button type="button" role="tab" id="stt1" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">02</b><span>Клетки</span></button><button type="button" role="tab" id="stt2" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">03</b><span>Белки</span></button><button type="button" role="tab" id="stt3" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">04</b><span>Пробирка</span></button><button type="button" role="tab" id="stt4" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">05</b><span>Антитела</span></button><button type="button" role="tab" id="stt5" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">06</b><span>Штрихкод</span></button><button type="button" role="tab" id="stt6" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">07</b><span>Детекция</span></button><button type="button" role="tab" id="stt7" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">08</b><span>Отчёт</span></button></div><div class="how2__body"><div class="how2__stage"><figure class="scene is-on" style="--zo:37% 52%" aria-hidden="false"><img src="steps/zoom-1-heart.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M680 432 L902 272" pathLength="1"/></g></svg><i class="co-dot" style="left:42.5%;top:54%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:34%;--n:0"><b>Коронарная артерия</b><span>Питает сердечную мышцу. Её стенку нагружают высокое давление, курение, холестерин и&nbsp;сахар.</span></div></figure><figure class="scene" style="--zo:28% 52%" aria-hidden="true"><img src="steps/zoom-2-cells.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M672 608 L902 416" pathLength="1"/></g></svg><i class="co-dot" style="left:42%;top:76%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:52%;--n:0"><b>Эндотелий</b><span>Внутренний слой сосуда. При воспалении его клетки выставляют молекулы ICAM1 и&nbsp;VCAM1, часть попадает в&nbsp;кровь.</span></div></figure><figure class="scene" style="--zo:60% 50%" aria-hidden="true"><img src="steps/step-4-blood.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M304 320 L902 304" pathLength="1"/></g></svg><i class="co-dot" style="left:19%;top:40%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:38%;--n:0"><b>Белки в&nbsp;крови</b><span>Их выделяют сосуды, почки, печень, жировая ткань. Цистатин C, например, отражает работу почек.</span></div></figure><figure class="scene" style="--zo:60% 36%" aria-hidden="true"><img src="steps/step-5-tube.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M384 256 L822 192" pathLength="1"/></g><g style="--n:1"><path d="M384 592 L822 560" pathLength="1"/></g></svg><i class="co-dot" style="left:24%;top:32%;--n:0"><span>1</span></i><i class="co-dot" style="left:24%;top:74%;--n:1"><span>2</span></i><div class="co" style="left:52%;top:24%;--n:0"><b>Плазма</b><span>Жидкая часть крови с&nbsp;белками. Для 92&nbsp;белков хватает 1&nbsp;микролитра.</span></div><div class="co" style="left:52%;top:70%;--n:1"><b>Клетки крови</b><span>После центрифугирования оседают вниз, в&nbsp;анализ не&nbsp;идут.</span></div></figure><figure class="scene" data-soft aria-hidden="true"><img src="steps/pea-1-bind.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M192 320 L886 496" pathLength="1"/></g><g style="--n:1"><path d="M368 64 L886 160" pathLength="1"/></g></svg><i class="co-dot" style="left:12%;top:40%;--n:0"><span>1</span></i><i class="co-dot" style="left:23%;top:8%;--n:1"><span>2</span></i><div class="co" style="left:56%;top:62%;--n:0"><b>Антитело</b><span>Узнаёт свой участок белка. На&nbsp;каждый белок&nbsp;— пара антител.</span></div><div class="co" style="left:56%;top:20%;--n:1"><b>ДНК-метка</b><span>Короткий фрагмент ДНК, пришитый к&nbsp;антителу.</span></div></figure><figure class="scene" style="--zo:34% 14%" aria-hidden="true"><img src="steps/pea-2-join.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M512 64 L886 192" pathLength="1"/></g></svg><i class="co-dot" style="left:32%;top:8%;--n:0"><span>1</span></i><div class="co" style="left:56%;top:24%;--n:0"><b>ДНК-штрихкод</b><span>Метки соединяются, только если оба антитела сели на&nbsp;одну молекулу.</span></div></figure><figure class="scene" style="--zo:50% 50%" aria-hidden="true"><img src="steps/pea-3-pcr.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M672 304 L902 368" pathLength="1"/></g></svg><i class="co-dot" style="left:42%;top:38%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:46%;--n:0"><b>Копии штрихкода</b><span>ПЦР размножает штрихкод. Чем больше было белка, тем раньше появляется сигнал.</span></div></figure><figure class="scene" style="--zo:50% 50%" aria-hidden="true"><img src="steps/zoom-8-doctor.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M576 496 L902 160" pathLength="1"/></g></svg><i class="co-dot" style="left:36%;top:62%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:20%;--n:0"><b>Отчёт</b><span>Возраст по&nbsp;белкам, вклад шести систем и&nbsp;план обследования.</span></div></figure></div><div class="how2__cap" id="stp" role="tabpanel" aria-labelledby="stt0" aria-live="polite"><div class="how2__prog" aria-hidden="true"><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i></div><div class="cap is-on"><span class="cap__n mono">01 / 08</span><h3>Сердце и&nbsp;сосуды работают без остановки</h3><p>В&nbsp;их работе участвуют сотни белков: они сворачивают кровь, управляют воспалением, переносят жиры и&nbsp;сахара, обновляют стенки сосудов.</p><ol class="cap-co"><li><span class="mono">1</span><b>Коронарная артерия</b> Питает сердечную мышцу. Её стенку нагружают высокое давление, курение, холестерин и&nbsp;сахар.</li></ol></div><div class="cap"><span class="cap__n mono">02 / 08</span><h3>Приближаемся к&nbsp;клеткам</h3><p>Изнутри сосуд выстлан клетками эндотелия. Рядом работают клетки крови, печени, почек и&nbsp;жировой ткани.</p><ol class="cap-co"><li><span class="mono">1</span><b>Эндотелий</b> Внутренний слой сосуда. При воспалении его клетки выставляют молекулы ICAM1 и&nbsp;VCAM1, часть попадает в&nbsp;кровь.</li></ol></div><div class="cap"><span class="cap__n mono">03 / 08</span><h3>Клетки выделяют белки в&nbsp;кровь</h3><p>Клетки выпускают белки в&nbsp;кровь или теряют их при повреждении. Отчасти количество белка задано генами, но&nbsp;его меняют возраст, вес, давление, курение, лекарства и&nbsp;болезни.</p><ol class="cap-co"><li><span class="mono">1</span><b>Белки в&nbsp;крови</b> Их выделяют сосуды, почки, печень, жировая ткань. Цистатин C, например, отражает работу почек.</li></ol></div><div class="cap"><span class="cap__n mono">04 / 08</span><h3>Всё это&nbsp;— в&nbsp;одной пробирке крови</h3><p>Кровь берут из&nbsp;вены в&nbsp;пробирку с&nbsp;ЭДТА и&nbsp;отделяют плазму. Для анализа 92&nbsp;белков хватает 1&nbsp;микролитра.</p><ol class="cap-co"><li><span class="mono">1</span><b>Плазма</b> Жидкая часть крови с&nbsp;белками. Для 92&nbsp;белков хватает 1&nbsp;микролитра.</li><li><span class="mono">2</span><b>Клетки крови</b> После центрифугирования оседают вниз, в&nbsp;анализ не&nbsp;идут.</li></ol></div><div class="cap"><span class="cap__n mono">05 / 08</span><h3>Антитела находят свой белок</h3><p>Для каждого белка подобрана пара антител. Каждое узнаёт свой участок белка и&nbsp;несёт короткую ДНК-метку.</p><ol class="cap-co"><li><span class="mono">1</span><b>Антитело</b> Узнаёт свой участок белка. На&nbsp;каждый белок&nbsp;— пара антител.</li><li><span class="mono">2</span><b>ДНК-метка</b> Короткий фрагмент ДНК, пришитый к&nbsp;антителу.</li></ol></div><div class="cap"><span class="cap__n mono">06 / 08</span><h3>Метки соединяются в&nbsp;ДНК-штрихкод</h3><p>Только когда оба антитела сели на&nbsp;одну молекулу, их метки оказываются рядом и&nbsp;достраиваются в&nbsp;общий фрагмент ДНК. Одиночное антитело на&nbsp;чужой молекуле сигнала не&nbsp;даёт.</p><ol class="cap-co"><li><span class="mono">1</span><b>ДНК-штрихкод</b> Метки соединяются, только если оба антитела сели на&nbsp;одну молекулу.</li></ol></div><div class="cap"><span class="cap__n mono">07 / 08</span><h3>Сигнал считают</h3><p>Штрихкоды размножают методом ПЦР и&nbsp;измеряют свечение: чем больше было белка, тем раньше появляется сигнал. У&nbsp;каждого из&nbsp;92&nbsp;белков свой штрихкод, поэтому все они измеряются одновременно.</p><ol class="cap-co"><li><span class="mono">1</span><b>Копии штрихкода</b> ПЦР размножает штрихкод. Чем больше было белка, тем раньше появляется сигнал.</li></ol></div><div class="cap"><span class="cap__n mono">08 / 08</span><h3>Отчёт разбирают с&nbsp;врачом</h3><p>Через 30&nbsp;рабочих дней&nbsp;— отчёт: биологический возраст, шесть систем организма и&nbsp;план обследования. Его обсуждают с&nbsp;терапевтом или кардиологом.</p><ol class="cap-co"><li><span class="mono">1</span><b>Отчёт</b> Возраст по&nbsp;белкам, вклад шести систем и&nbsp;план обследования.</li></ol></div><div class="how2__nav"><button type="button" class="nav2" data-a="prev">← Назад</button><button type="button" class="nav2 nav2--next" data-a="next">Дальше →</button><button type="button" class="nav2 nav2--play" data-a="play" aria-label="Пауза" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="pz" x="6" y="5" width="4" height="14" rx="1"/><rect class="pz" x="14" y="5" width="4" height="14" rx="1"/><path class="pl" d="M7 5v14l12-7z"/></svg></button></div></div></div></div>
+    <div class="how2" data-key="st"><div class="how2__tabs" role="tablist" aria-label="Путь белка: от сердца до отчёта"><button type="button" role="tab" id="stt0" aria-controls="stp" aria-selected="true" tabindex="0"><b class="mono">01</b><span>Сердце</span></button><button type="button" role="tab" id="stt1" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">02</b><span>Клетки</span></button><button type="button" role="tab" id="stt2" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">03</b><span>Белки</span></button><button type="button" role="tab" id="stt3" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">04</b><span>Пробирка</span></button><button type="button" role="tab" id="stt4" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">05</b><span>Антитела</span></button><button type="button" role="tab" id="stt5" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">06</b><span>Штрихкод</span></button><button type="button" role="tab" id="stt6" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">07</b><span>Детекция</span></button><button type="button" role="tab" id="stt7" aria-controls="stp" aria-selected="false" tabindex="-1"><b class="mono">08</b><span>Отчёт</span></button></div><div class="how2__body"><div class="how2__stage"><figure class="scene is-on" style="--zo:37% 52%" aria-hidden="false"><img src="steps/zoom-1-heart.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M680 432 V294 Q680 272 702 272 H900" pathLength="1"/></g></svg><i class="co-dot" style="left:42.5%;top:54%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:34%;--n:0"><b>Коронарная артерия</b><span>Питает сердечную мышцу. Её стенку нагружают высокое давление, курение, холестерин и&nbsp;сахар.</span></div></figure><figure class="scene" style="--zo:28% 52%" aria-hidden="true"><img src="steps/zoom-2-cells.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M672 608 V438 Q672 416 694 416 H900" pathLength="1"/></g></svg><i class="co-dot" style="left:42%;top:76%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:52%;--n:0"><b>Эндотелий</b><span>Внутренний слой сосуда. При воспалении его клетки выставляют молекулы ICAM1 и&nbsp;VCAM1, часть попадает в&nbsp;кровь.</span></div></figure><figure class="scene" style="--zo:60% 50%" aria-hidden="true"><img src="steps/step-4-blood.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M304 320 L900 304" pathLength="1"/></g></svg><i class="co-dot" style="left:19%;top:40%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:38%;--n:0"><b>Белки в&nbsp;крови</b><span>Их выделяют сосуды, почки, печень, жировая ткань. Цистатин C, например, отражает работу почек.</span></div></figure><figure class="scene" style="--zo:60% 36%" aria-hidden="true"><img src="steps/step-5-tube.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M384 256 V214 Q384 192 406 192 H820" pathLength="1"/></g><g style="--n:1"><path d="M384 592 L820 560" pathLength="1"/></g></svg><i class="co-dot" style="left:24%;top:32%;--n:0"><span>1</span></i><i class="co-dot" style="left:24%;top:74%;--n:1"><span>2</span></i><div class="co" style="left:52%;top:24%;--n:0"><b>Плазма</b><span>Жидкая часть крови с&nbsp;белками. Для 92&nbsp;белков хватает 1&nbsp;микролитра.</span></div><div class="co" style="left:52%;top:70%;--n:1"><b>Клетки крови</b><span>После центрифугирования оседают вниз, в&nbsp;анализ не&nbsp;идут.</span></div></figure><figure class="scene" data-soft aria-hidden="true"><img src="steps/pea-1-bind.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M192 320 V474 Q192 496 214 496 H884" pathLength="1"/></g><g style="--n:1"><path d="M368 64 V138 Q368 160 390 160 H884" pathLength="1"/></g></svg><i class="co-dot" style="left:12%;top:40%;--n:0"><span>1</span></i><i class="co-dot" style="left:23%;top:8%;--n:1"><span>2</span></i><div class="co" style="left:56%;top:62%;--n:0"><b>Антитело</b><span>Узнаёт свой участок белка. На&nbsp;каждый белок&nbsp;— пара антител.</span></div><div class="co" style="left:56%;top:20%;--n:1"><b>ДНК-метка</b><span>Короткий фрагмент ДНК, пришитый к&nbsp;антителу.</span></div></figure><figure class="scene" style="--zo:34% 14%" aria-hidden="true"><img src="steps/pea-2-join.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M512 64 V170 Q512 192 534 192 H884" pathLength="1"/></g></svg><i class="co-dot" style="left:32%;top:8%;--n:0"><span>1</span></i><div class="co" style="left:56%;top:24%;--n:0"><b>ДНК-штрихкод</b><span>Метки соединяются, только если оба антитела сели на&nbsp;одну молекулу.</span></div></figure><figure class="scene" style="--zo:50% 50%" aria-hidden="true"><img src="steps/pea-3-pcr.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M672 304 V346 Q672 368 694 368 H900" pathLength="1"/></g></svg><i class="co-dot" style="left:42%;top:38%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:46%;--n:0"><b>Копии штрихкода</b><span>ПЦР размножает штрихкод. Чем больше было белка, тем раньше появляется сигнал.</span></div></figure><figure class="scene" style="--zo:50% 50%" aria-hidden="true"><img src="steps/zoom-8-doctor.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M576 496 V182 Q576 160 598 160 H900" pathLength="1"/></g></svg><i class="co-dot" style="left:36%;top:62%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:20%;--n:0"><b>Отчёт</b><span>Возраст по&nbsp;белкам, вклад шести систем и&nbsp;план обследования.</span></div></figure></div><div class="how2__cap" id="stp" role="tabpanel" aria-labelledby="stt0" aria-live="polite"><div class="how2__prog" aria-hidden="true"><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i></div><div class="cap is-on"><span class="cap__n mono">01 / 08</span><h3>Сердце и&nbsp;сосуды работают без остановки</h3><p>В&nbsp;их работе участвуют сотни белков: они сворачивают кровь, управляют воспалением, переносят жиры и&nbsp;сахара, обновляют стенки сосудов.</p><ol class="cap-co"><li><span class="mono">1</span><b>Коронарная артерия</b> Питает сердечную мышцу. Её стенку нагружают высокое давление, курение, холестерин и&nbsp;сахар.</li></ol></div><div class="cap"><span class="cap__n mono">02 / 08</span><h3>Приближаемся к&nbsp;клеткам</h3><p>Изнутри сосуд выстлан клетками эндотелия. Рядом работают клетки крови, печени, почек и&nbsp;жировой ткани.</p><ol class="cap-co"><li><span class="mono">1</span><b>Эндотелий</b> Внутренний слой сосуда. При воспалении его клетки выставляют молекулы ICAM1 и&nbsp;VCAM1, часть попадает в&nbsp;кровь.</li></ol></div><div class="cap"><span class="cap__n mono">03 / 08</span><h3>Клетки выделяют белки в&nbsp;кровь</h3><p>Клетки выпускают белки в&nbsp;кровь или теряют их при повреждении. Отчасти количество белка задано генами, но&nbsp;его меняют возраст, вес, давление, курение, лекарства и&nbsp;болезни.</p><ol class="cap-co"><li><span class="mono">1</span><b>Белки в&nbsp;крови</b> Их выделяют сосуды, почки, печень, жировая ткань. Цистатин C, например, отражает работу почек.</li></ol></div><div class="cap"><span class="cap__n mono">04 / 08</span><h3>Всё это&nbsp;— в&nbsp;одной пробирке крови</h3><p>Кровь берут из&nbsp;вены в&nbsp;пробирку с&nbsp;ЭДТА и&nbsp;отделяют плазму. Для анализа 92&nbsp;белков хватает 1&nbsp;микролитра.</p><ol class="cap-co"><li><span class="mono">1</span><b>Плазма</b> Жидкая часть крови с&nbsp;белками. Для 92&nbsp;белков хватает 1&nbsp;микролитра.</li><li><span class="mono">2</span><b>Клетки крови</b> После центрифугирования оседают вниз, в&nbsp;анализ не&nbsp;идут.</li></ol></div><div class="cap"><span class="cap__n mono">05 / 08</span><h3>Антитела находят свой белок</h3><p>Для каждого белка подобрана пара антител. Каждое узнаёт свой участок белка и&nbsp;несёт короткую ДНК-метку.</p><ol class="cap-co"><li><span class="mono">1</span><b>Антитело</b> Узнаёт свой участок белка. На&nbsp;каждый белок&nbsp;— пара антител.</li><li><span class="mono">2</span><b>ДНК-метка</b> Короткий фрагмент ДНК, пришитый к&nbsp;антителу.</li></ol></div><div class="cap"><span class="cap__n mono">06 / 08</span><h3>Метки соединяются в&nbsp;ДНК-штрихкод</h3><p>Только когда оба антитела сели на&nbsp;одну молекулу, их метки оказываются рядом и&nbsp;достраиваются в&nbsp;общий фрагмент ДНК. Одиночное антитело на&nbsp;чужой молекуле сигнала не&nbsp;даёт.</p><ol class="cap-co"><li><span class="mono">1</span><b>ДНК-штрихкод</b> Метки соединяются, только если оба антитела сели на&nbsp;одну молекулу.</li></ol></div><div class="cap"><span class="cap__n mono">07 / 08</span><h3>Сигнал считают</h3><p>Штрихкоды размножают методом ПЦР и&nbsp;измеряют свечение: чем больше было белка, тем раньше появляется сигнал. У&nbsp;каждого из&nbsp;92&nbsp;белков свой штрихкод, поэтому все они измеряются одновременно.</p><ol class="cap-co"><li><span class="mono">1</span><b>Копии штрихкода</b> ПЦР размножает штрихкод. Чем больше было белка, тем раньше появляется сигнал.</li></ol></div><div class="cap"><span class="cap__n mono">08 / 08</span><h3>Отчёт разбирают с&nbsp;врачом</h3><p>Через 30&nbsp;рабочих дней&nbsp;— отчёт: биологический возраст, шесть систем организма и&nbsp;план обследования. Его обсуждают с&nbsp;терапевтом или кардиологом.</p><ol class="cap-co"><li><span class="mono">1</span><b>Отчёт</b> Возраст по&nbsp;белкам, вклад шести систем и&nbsp;план обследования.</li></ol></div><div class="how2__nav"><button type="button" class="nav2" data-a="prev">← Назад</button><button type="button" class="nav2 nav2--next" data-a="next">Дальше →</button><button type="button" class="nav2 nav2--play" data-a="play" aria-label="Пауза" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="pz" x="6" y="5" width="4" height="14" rx="1"/><rect class="pz" x="14" y="5" width="4" height="14" rx="1"/><path class="pl" d="M7 5v14l12-7z"/></svg></button></div></div></div></div>
   </div>
 </section>
 
 <section class="soft" id="otchet">
   <div class="wrap">
     <h2 class="h2">Что покажет <em>отчёт</em></h2>
-    <p class="lead">Сначала общий итог, затем&nbsp;— какие системы его дали и&nbsp;что проверить в&nbsp;первую очередь. Цифры ниже&nbsp;— пример.</p>
-    <div class="rd">
-      <div class="rd-col">
-        <h3><span class="mono">1</span>Возраст по&nbsp;белкам</h3>
-        <p>Модель сравнивает уровни 92&nbsp;белков с&nbsp;профилем людей вашего пола и&nbsp;возраста и&nbsp;переводит общее отклонение в&nbsp;годы. «Старше» паспорта&nbsp;— повод внимательнее посмотреть на&nbsp;системы, которые дали сдвиг. Это расчётная оценка с&nbsp;погрешностью, а&nbsp;не&nbsp;прогноз продолжительности жизни.</p>
-        <div class="age">
-            <div class="age-axis"><span style="--a:0">40</span><span style="--a:.2">45</span><span style="--a:.4">50</span><span style="--a:.6">55</span><span style="--a:.8">60</span><span style="--a:1">65</span></div>
-            <div class="age-pin age-pin--p" style="--a:.48"><b>52</b><small>по&nbsp;паспорту</small></div>
-            <div class="age-pin age-pin--b" style="--a:.6"><b>55</b><small>по&nbsp;белкам</small></div>
-            <div class="age-gap" style="--a0:.48;--a1:.6"><span>+3&nbsp;года</span></div>
-          </div>
-        <ol class="agescale" aria-label="Шкала интерпретации сдвига">
-          <li><b class="mono">до ±2</b>норма</li><li><b class="mono">+2…+5</b>лёгкое ускорение</li><li><b class="mono">+5…+10</b>умеренное</li><li><b class="mono">&gt;&nbsp;+10</b>значимое</li>
-        </ol>
+    <p class="lead">Главная цифра отчёта&nbsp;— возраст по&nbsp;белкам. Ниже видно, из&nbsp;чего он сложился и&nbsp;что проверить. Цифры&nbsp;— пример.</p>
+    <div class="rep">
+      <div class="rep-top">
+        <div>
+          <h3>Возраст по&nbsp;белкам</h3>
+          <p>Модель сравнивает 92&nbsp;белка с&nbsp;профилем людей вашего пола и&nbsp;возраста и&nbsp;переводит отклонение в&nbsp;годы. Это расчётная оценка с&nbsp;погрешностью, а&nbsp;не&nbsp;прогноз продолжительности жизни.</p>
+        </div>
+        <div class="rep-big" aria-label="Пример: 52 года по паспорту, 55 по белкам">
+          <span><b class="mono">52</b><small>по&nbsp;паспорту</small></span>
+          <svg viewBox="0 0 40 16" aria-hidden="true"><path d="M2 8h34m-6-6 6 6-6 6"/></svg>
+          <span><b class="mono blu">55</b><small>по&nbsp;белкам</small></span>
+          <em class="mono">+3&nbsp;года</em>
+        </div>
       </div>
-      <div class="rd-col">
-        <h3><span class="mono">2</span>Откуда сдвиг</h3>
-        <p>Белки разбиты на&nbsp;шесть систем. Для каждой отчёт показывает, насколько она сдвинула общий возраст и&nbsp;какие белки отклонились сильнее всего. Нажмите на&nbsp;систему, чтобы прочитать о&nbsp;ней.</p>
-        <ul class="bars" role="tablist" aria-label="Пример: вклад систем в сдвиг, годы"><li class=top style="--v:1.4;--i:0"><button type="button" role="tab" data-k="vas" aria-selected="true"><span>Сосуды</span><span class="bar"><i></i></span><b class="mono">+1,4</b></button></li><li style="--v:0.8;--i:1"><button type="button" role="tab" data-k="met" aria-selected="false"><span>Обмен веществ</span><span class="bar"><i></i></span><b class="mono">+0,8</b></button></li><li style="--v:0.5;--i:2"><button type="button" role="tab" data-k="ren" aria-selected="false"><span>Почки</span><span class="bar"><i></i></span><b class="mono">+0,5</b></button></li><li style="--v:0.3;--i:3"><button type="button" role="tab" data-k="coa" aria-selected="false"><span>Свёртывание</span><span class="bar"><i></i></span><b class="mono">+0,3</b></button></li><li style="--v:0.2;--i:4"><button type="button" role="tab" data-k="ecm" aria-selected="false"><span>Ткани</span><span class="bar"><i></i></span><b class="mono">+0,2</b></button></li><li data-neg style="--v:0.2;--i:5"><button type="button" role="tab" data-k="imm" aria-selected="false"><span>Иммунитет</span><span class="bar"><i></i></span><b class="mono">−0,2</b></button></li></ul>
-        <div class="sysinfo" id="sysinfo" aria-live="polite"><b></b><p></p><p class="mono"></p><p><span>Что проверят:</span> <i></i></p></div>
+      <div class="axis" aria-hidden="true">
+        <div class="zones">
+          <span class="z z-ok" style="--a:0.3333;--b:0.6000">норма ±2</span>
+          <span class="z z-lt" style="--a:0.6000;--b:0.8000">лёгкое ускорение</span>
+          <span class="z z-md" style="--a:0.8000;--b:1">умеренное</span>
+        </div>
+        <div class="ax-track"><div class="stack" style="--a:0.4667;--w:0.2000"><i data-k="vas" style="--g:1.4;--c:#0057FF;--i:0"></i><i data-k="met" style="--g:0.8;--c:#00A8B5;--i:1"></i><i data-k="ren" style="--g:0.5;--c:#00C2FF;--i:2"></i><i data-k="coa" style="--g:0.2;--c:#7C9CF5;--i:3"></i><i data-k="ecm" style="--g:0.1;--c:#9FB4CC;--i:4"></i></div></div>
+        <span class="pin pin-p" style="--a:0.4667"></span>
+        <span class="pin pin-b" style="--a:0.6667"></span>
+        <div class="ticks"><span class="mono" style="--a:0.0000">45</span><span class="mono" style="--a:0.3333">50</span><span class="mono" style="--a:0.6667">55</span><span class="mono" style="--a:1.0000">60</span></div>
       </div>
-      <div class="rd-col">
-        <h3><span class="mono">3</span>Что проверить</h3>
-        <p>План собирается из&nbsp;систем с&nbsp;наибольшим вкладом и&nbsp;профилей заболеваний: лабораторные анализы, инструментальные исследования вроде ЭКГ или эхокардиографии, консультации специалистов. Это не&nbsp;направление: что из&nbsp;плана нужно, решает терапевт или кардиолог.</p>
-        <ul class="todo">
-          <li><b>Сосуды</b>ЭКГ, липидный профиль, давление</li>
-          <li><b>Обмен веществ</b>глюкоза, гликированный гемоглобин</li>
-        </ul>
+      <div class="rep-sys">
+        <div>
+          <h4>Из чего сложились +3&nbsp;года</h4>
+          <div class="legend" role="tablist" aria-label="Вклад систем в сдвиг"><button type="button" role="tab" data-k="vas" aria-selected="true" tabindex="0" style="--c:#0057FF"><i></i><span>Сосуды</span><b class="mono">+1,4</b></button><button type="button" role="tab" data-k="met" aria-selected="false" tabindex="-1" style="--c:#00A8B5"><i></i><span>Обмен веществ</span><b class="mono">+0,8</b></button><button type="button" role="tab" data-k="ren" aria-selected="false" tabindex="-1" style="--c:#00C2FF"><i></i><span>Почки</span><b class="mono">+0,5</b></button><button type="button" role="tab" data-k="coa" aria-selected="false" tabindex="-1" style="--c:#7C9CF5"><i></i><span>Свёртывание крови</span><b class="mono">+0,2</b></button><button type="button" role="tab" data-k="ecm" aria-selected="false" tabindex="-1" style="--c:#9FB4CC"><i></i><span>Соединительная ткань</span><b class="mono">+0,1</b></button></div>
+        </div>
+        <div class="sysinfo" id="sysinfo" aria-live="polite"><b></b><p></p><p class="mono"></p><p class="chk"><span>Что проверить:</span> <i></i></p></div>
       </div>
     </div>
     <div class="pct">
@@ -723,6 +715,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
       </div>
       <div class="pct-track" style="--p:.85" aria-label="Пример: выше, чем у 85 из 100"><span class="mono">0</span><i></i><b class="mono">85</b><span class="mono">100</span></div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -764,13 +757,13 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
   <div class="wrap">
     <div class="deep">
       <div>
-        <h3>Откуда известно, <em>что значат белки</em></h3>
-        <p>Из&nbsp;британского исследования UK Biobank: здоровье его участников отслеживают с&nbsp;2006&nbsp;года.</p>
+        <h3>Значение белков проверено <em>на&nbsp;54&nbsp;тысячах людей</em></h3>
+        <p>В&nbsp;британском исследовании UK Biobank за&nbsp;здоровьем участников наблюдают с&nbsp;2006&nbsp;года. Учёные сравнили белки крови у&nbsp;тех, у&nbsp;кого потом развились болезни, и&nbsp;у&nbsp;тех, у&nbsp;кого нет. На&nbsp;этих данных отчёт и&nbsp;сопоставляет ваш профиль.</p>
       </div>
       <div class="nums">
-        <div><b>500 000</b><span>участников</span></div>
-        <div><b>54 219</b><span>сдали кровь на&nbsp;белки</span></div>
-        <div><b>2 923</b><span>белка у&nbsp;каждого</span></div>
+        <div><b>54 219</b><span>человек сдали кровь на&nbsp;белки</span></div>
+        <div><b>2 923</b><span>белка измерили у&nbsp;каждого</span></div>
+        <div><b>с 2006</b><span>года следят за&nbsp;их здоровьем</span></div>
       </div>
       <p class="src">Sun B.&nbsp;B. et&nbsp;al. <i>Nature</i>, 2023.</p>
     </div>
@@ -887,12 +880,13 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 
 <section class="soft" id="vazhno">
   <div class="wrap">
-    <div class="center"><h2 class="h2">Важно <em>знать</em></h2></div>
-    <ul class="tiles tiles--3">
-      <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg><b>Не&nbsp;ставит диагноз</b><span>Показывает, что проверить, а&nbsp;проверяет врач</span></li>
-      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg><b>Не&nbsp;заменяет обследование</b><span>Давление, холестерин и&nbsp;сахар всё равно нужны</span></li>
-      <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><b>Показывает «сейчас»</b><span>Простуда или новое лекарство меняют белки</span></li>
-    </ul>
+    <div class="note">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <div>
+        <h2>Важно знать</h2>
+        <p><b>Отчёт не&nbsp;ставит диагноз</b>&nbsp;— он показывает, что проверить, а&nbsp;проверяет и&nbsp;решает врач. <b>Обычное обследование нужно всё равно:</b> давление, холестерин и&nbsp;сахар врач контролирует как обычно. <b>Результат отражает «сейчас»:</b> простуда, обострение или новое лекарство меняют уровни белков, поэтому анализ сдают вне острых состояний.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -988,18 +982,21 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
     vas:['Сосуды','Белки внутренней выстилки сосудов и молекулы, которыми к стенке прикрепляются клетки крови. Связаны с состоянием артерий, давлением и атеросклерозом.','ICAM1 · VCAM1 · ENG · ITGAM','ЭКГ, липидный профиль, контроль давления'],
     met:['Обмен веществ','Белки углеводного и жирового обмена, связанные с поджелудочной железой, печенью и жировой тканью. Изменения связаны с диабетом и ожирением.','DPP4 · IGFBP3 · CNDP1 · PLA2G7','глюкоза, гликированный гемоглобин, инсулин, липидный профиль'],
     ren:['Почки','Белки, связанные с фильтрацией крови и работой почечных канальцев, в том числе цистатин C.','CST3 · UMOD · CA1 · CA3','креатинин, цистатин C, скорость клубочковой фильтрации'],
-    coa:['Свёртывание','Факторы свёртывания, их регуляторы и белки тромбоцитов. Отклонения могут быть связаны со склонностью к тромбозам.','F11 · GP1BA · SERPINA5','коагулограмма — особенно если в семье были тромбозы'],
-    ecm:['Ткани','Белки каркаса тканей и ферменты, которые его перестраивают: заживление, рубцевание, фиброз в сердце, печени и лёгких.','TIMP1 · COL18A1 · TNXB','отдельно обычно ничего — врач смотрит на другие системы'],
+    coa:['Свёртывание крови','Факторы свёртывания, их регуляторы и белки тромбоцитов. Отклонения могут быть связаны со склонностью к тромбозам.','F11 · GP1BA · SERPINA5','коагулограмма — особенно если в семье были тромбозы'],
+    ecm:['Соединительная ткань','Белки каркаса тканей и ферменты, которые его перестраивают: заживление, рубцевание, фиброз в сердце, печени и лёгких.','TIMP1 · COL18A1 · TNXB','отдельно обычно ничего — врач смотрит на другие системы'],
     imm:['Иммунитет','Рецепторы иммунных клеток и белки, которые сдерживают избыточный иммунный ответ. Показывают признаки хронического воспаления.','LILRB5 · FCGR3B · C2','общий анализ крови с лейкоцитарной формулой']};
-  const sbtn=[...document.querySelectorAll('.bars [role=tab]')], si=$('sysinfo');
+  const sbtn=[...document.querySelectorAll('.legend [role=tab]')], si=$('sysinfo'), stk=document.querySelector('.stack');
   const showSys=b=>{sbtn.forEach(x=>{const on=x===b;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1});
-    const [n,t,p,c]=SYS[b.dataset.k]; si.querySelector('b').textContent=n; const ps=si.querySelectorAll('p'); ps[0].textContent=t; ps[1].textContent=p; si.querySelector('i').textContent=c};
+    const [n,t,p,c]=SYS[b.dataset.k]; si.querySelector('b').textContent=n; const ps=si.querySelectorAll('p'); ps[0].textContent=t; ps[1].textContent=p; si.querySelector('i').textContent=c;
+    if(stk){stk.classList.toggle('dim',true); stk.querySelectorAll('i').forEach(x=>x.classList.toggle('on',x.dataset.k===b.dataset.k))}};
   sbtn.forEach((b,i)=>{b.addEventListener('click',()=>showSys(b));
     b.addEventListener('keydown',e=>{const d=e.key==='ArrowDown'||e.key==='ArrowRight'?1:e.key==='ArrowUp'||e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();const n=sbtn[(i+d+sbtn.length)%sbtn.length];n.focus();showSys(n)}})});
   if(sbtn.length) showSys(sbtn[0]);
 
   // «Что покажет отчёт», «Как сдать»: схемы проигрываются один раз при появлении
-  const vis=[...document.querySelectorAll('.rd,.track')];
+  // маркер «по белкам» выезжает из точки «по паспорту»: расстояние = 3 года из 15 на оси
+  const ax=document.querySelector('.axis'); const setSlide=()=>ax&&ax.style.setProperty('--slide',ax.offsetWidth*3/15+'px'); setSlide(); addEventListener('resize',setSlide);
+  const vis=[...document.querySelectorAll('.rep,.track')];
   if(still||!('IntersectionObserver' in window)) vis.forEach(v=>v.classList.add('in'));
   else{const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.35});
     vis.forEach(v=>io.observe(v))}
