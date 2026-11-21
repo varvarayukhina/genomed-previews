@@ -525,6 +525,130 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 .rep-more b{color:var(--ink)}
 @media (max-width:760px){.vs{grid-template-columns:1fr}}
 .rep.plain .sysinfo p.mono{display:none}
+
+/* ════ версия Б — компоненты по эталону Гистологии ════ */
+.gb{padding:clamp(56px,7vw,88px) 0;position:relative}
+.gb--tint{background:#EAF2FD}
+.ghead{max-width:860px;margin-bottom:clamp(28px,3.6vw,44px)}
+.ghead h2{font-size:clamp(32px,4vw,52px);line-height:1.06}
+.ghead p{font-size:18px;color:var(--ink-2);margin-top:16px;max-width:760px}
+.ghead--c{text-align:center;margin-inline:auto}.ghead--c p{margin-inline:auto}
+/* первый экран: текст слева, картинка справа */
+.gh{background:linear-gradient(180deg,#F4F8FE 0%,#fff 100%);padding:clamp(36px,5vw,64px) 0}
+.gh__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center}
+.gh h1{font-size:clamp(30px,3vw,44px)}
+.gh__plain{font-size:clamp(18px,1.6vw,21px);font-weight:600;color:var(--ink-2);margin-top:18px;line-height:1.5;max-width:34em}
+.gh__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.gh__pic{margin:0;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3}
+.gh__pic img{width:100%;height:100%;object-fit:cover;object-position:22% 50%}
+/* статбенд с крупными голубыми цифрами */
+.sband{background:#fff;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);padding:0}
+.sband__in{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr)}
+.sb{display:flex;align-items:center;gap:16px;padding:26px 22px;min-width:0}
+.sb+.sb{border-left:1px solid var(--line-soft)}
+.sb b{font-size:clamp(34px,3.6vw,48px);font-weight:700;line-height:1;letter-spacing:-.04em;color:var(--cyan);white-space:nowrap}
+.sb span{font-size:16px;font-weight:600;line-height:1.35;color:var(--ink-2)}
+/* градиентная плашка с большой цифрой */
+.gdeep{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;border-radius:var(--r-xl);padding:clamp(28px,4vw,52px);color:#fff;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--bg-deep) 0%,#0B3A8C 100%)}
+.gdeep::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(0,194,255,.18),transparent 60%),radial-gradient(ellipse at bottom left,rgba(0,87,255,.25),transparent 60%);pointer-events:none}
+.gdeep>*{position:relative;min-width:0}
+.gdeep__big{font-weight:700;font-size:clamp(64px,8vw,112px);line-height:.85;letter-spacing:-.05em;color:var(--cyan);white-space:nowrap}
+.gdeep__big small{font-size:.36em;letter-spacing:-.02em;margin-left:.3em}
+.gdeep h2{color:#fff;font-size:clamp(24px,2.6vw,34px);line-height:1.15}
+.gdeep p{color:rgba(225,236,255,.88);margin-top:12px}
+.gdeep .gdeep__src{font-size:16px;color:rgba(190,212,236,.75);margin-top:16px}
+/* «Касается ли это вас?» — ситуации-переключатели */
+.gsitu{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.gsit{position:relative;display:flex;flex-direction:column;gap:14px;text-align:left;font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);padding:20px;cursor:pointer;min-width:0;transition:border-color .2s ease-out,box-shadow .2s ease-out,background-color .2s ease-out}
+@media (hover:hover){.gsit:hover{border-color:#9DBBFF}}
+.gsit__b{width:46px;height:46px;border-radius:14px;background:var(--accent-soft);display:grid;place-items:center;transition:background-color .2s ease-out}
+.gsit__b svg{width:22px;height:22px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gsit__t b{display:block;font-size:17px;line-height:1.3}
+.gsit__t span{display:block;font-size:16px;color:var(--ink-2);margin-top:6px;line-height:1.45}
+.gsit__ok{position:absolute;top:16px;right:16px;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:background-color .2s ease-out,border-color .2s ease-out}
+.gsit__ok svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.gsit[aria-pressed="true"]{border-color:var(--blue);background:#F6F9FF;box-shadow:0 0 0 3px rgba(0,87,255,.12),var(--shadow-sm)}
+.gsit[aria-pressed="true"] .gsit__b{background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.gsit[aria-pressed="true"] .gsit__b svg{stroke:#fff}
+.gsit[aria-pressed="true"] .gsit__ok{background:var(--blue);border-color:var(--blue)}
+.gsit[aria-pressed="true"] .gsit__ok svg{opacity:1}
+.gres{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(16px,3vw,32px);align-items:center;margin-top:18px;background:var(--bg-deep);color:#fff;border-radius:var(--r-lg);padding:20px clamp(20px,3vw,32px)}
+.gres__n{display:flex;align-items:baseline;gap:8px}
+.gres__n b{font-size:44px;line-height:1;color:var(--cyan);font-weight:700}
+.gres__n span{color:#B9CCE8;font-size:16px}
+.gres__t{color:#DCE8FF;font-size:17px;line-height:1.5}
+.gres .btn--primary{background:var(--blue)}
+/* тёмный блок «два вопроса — два ответа» */
+.gdark{background:var(--bg-deep);color:#fff;overflow:hidden}
+.gdark::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(0,194,255,.12),transparent 55%),radial-gradient(ellipse at bottom left,rgba(0,87,255,.18),transparent 60%);pointer-events:none}
+.gdark .wrap{position:relative}
+.gdark h2{color:#fff}.gdark h2 em{color:var(--cyan)}
+.gdark .ghead p{color:rgba(225,236,255,.85)}
+.gans{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.gans__c{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:var(--r-lg);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:12px;min-width:0}
+.gans__c--b{background:rgba(0,194,255,.10);border-color:rgba(0,194,255,.45)}
+.gans__k{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9FB4CC}
+.gans__c--b .gans__k{color:var(--cyan)}
+.gans h3{color:#fff;font-size:clamp(21px,2vw,26px);line-height:1.2}
+.gans ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.gans li{position:relative;padding-left:22px;color:rgba(225,236,255,.88)}
+.gans li::before{content:"";position:absolute;left:2px;top:.55em;width:8px;height:8px;border-radius:50%;background:#9FB4CC}
+.gans__c--b li::before{background:var(--cyan)}
+.gans__foot{margin-top:22px;color:rgba(225,236,255,.85);max-width:72ch}
+.gans__foot b{color:#fff}
+/* примеры «что делать с результатом» — карточки как в эталоне */
+.gexs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.gex{background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:24px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:16px;min-width:0}
+.gex__h{display:flex;gap:16px;align-items:flex-start}
+.gex__tag{flex:none;width:58px;height:58px;border-radius:16px;display:grid;place-items:center;font-size:20px;font-weight:700;color:#fff;background:var(--c)}
+.gex--ok{--c:var(--ok)}.gex--mid{--c:#D99A1E}.gex--hi{--c:var(--warn)}
+.gex h3{font-size:20px;line-height:1.25}
+.gex__h p{font-size:16px;color:var(--ink-2);margin-top:4px}
+.gex ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.gex li{position:relative;padding-left:20px;color:var(--ink-2)}
+.gex li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--c)}
+.gex__w{margin-top:auto;font-size:16px;font-weight:700;color:var(--ink)}
+/* путь «как сдать» — центрированный, кружки и градиентная линия */
+.gflow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.gflow::before{content:"";position:absolute;top:36px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.gflow li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:0 12px}
+.gflow__ic{position:relative;width:72px;height:72px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;box-shadow:var(--shadow-md);margin-bottom:10px}
+.gflow__ic svg{width:28px;height:28px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gflow__ic b{position:absolute;top:-4px;right:-4px;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:14px;display:grid;place-items:center}
+.gflow h3{font-size:20px}
+.gflow p{font-size:16px;color:var(--ink-2)}
+/* вопросы карточками в две колонки */
+.gfqg{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.gfqc{display:grid;gap:14px;min-width:0}
+.gfq{background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-md);transition:border-color .2s ease-out,box-shadow .2s ease-out}
+.gfq[open]{border-color:var(--cyan-soft);box-shadow:var(--shadow-md)}
+.gfq summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:center;padding:16px 18px;font-weight:700;font-size:17px;line-height:1.35}
+.gfq summary::-webkit-details-marker{display:none}
+.gfq summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);flex:none;margin:0 4px 4px auto;transition:transform .2s ease-out}
+.gfq[open] summary::after{transform:rotate(-135deg);margin-bottom:-4px;border-color:var(--blue)}
+.gfq__ic{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;flex:none}
+.gfq__ic svg{width:20px;height:20px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gfq[open] .gfq__ic{background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.gfq[open] .gfq__ic svg{stroke:#fff}
+.gfq__q small{display:block;font-size:14px;color:var(--blue-2);margin-bottom:2px}
+.gfq__a{padding:0 20px 18px 74px;color:var(--ink-2)}
+/* тёмный финальный блок */
+.gcta{background:linear-gradient(135deg,var(--bg-deep) 0%,var(--bg-deep-2) 100%);border-radius:var(--r-xl);padding:clamp(36px,5vw,64px);color:#fff;position:relative;overflow:hidden;text-align:center}
+.gcta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 15%,rgba(0,194,255,.26),transparent 50%),radial-gradient(circle at 12% 90%,rgba(0,87,255,.3),transparent 55%)}
+.gcta>*{position:relative}
+.gcta h2{color:#fff;font-size:clamp(28px,3.6vw,46px);max-width:780px;margin:0 auto 16px}
+.gcta h2 em{color:var(--cyan)}
+.gcta p{color:rgba(255,255,255,.82);max-width:660px;margin:0 auto 28px}
+.gcta__btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.gcta__btns .btn{background:#fff;color:var(--ink)}
+.gcta__btns svg{width:22px;height:22px}
+.gcta .gcta__note{margin:24px auto 0;font-size:16px;color:rgba(255,255,255,.6)}
+@media (max-width:1024px){.gsitu{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.gh__in,.gans,.gexs,.gfqg,.gdeep{grid-template-columns:1fr}.sband__in{grid-template-columns:1fr 1fr}.sb:nth-child(3){border-left:0}.sb:nth-child(n+3){border-top:1px solid var(--line-soft)}
+  .gres{grid-template-columns:auto minmax(0,1fr)}.gres .btn{grid-column:1/-1}.gflow{grid-template-columns:1fr 1fr;row-gap:28px}.gflow::before{display:none}}
+@media (max-width:560px){.gsitu{grid-template-columns:1fr}.gsit{flex-direction:row;align-items:center;padding:14px 48px 14px 14px}.gsit__t span{display:none}
+  .gflow{grid-template-columns:1fr}.gflow li{display:grid;grid-template-columns:64px 1fr;column-gap:14px;text-align:left;align-items:center;padding:0}.gflow__ic{grid-row:span 2;width:56px;height:56px;margin:0}
+  .gfq__a{padding:0 18px 18px}.sb{flex-direction:column;align-items:flex-start;gap:6px;padding:18px 12px}.gh__cta .btn{flex:1 1 100%}}
 .vbar{background:#0A2540;color:#fff;font-size:16px}
 .vbar__in{display:flex;align-items:center;gap:6px 22px;flex-wrap:wrap;min-height:46px;padding-block:6px}
 .vbar b{font-weight:500;color:#8FAECF}
@@ -1052,7 +1176,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 </script>
 <script>
 // первый экран: обложка + цифры ровно в окно
-(()=>{const hero=document.querySelector('.hero'), hs=document.querySelector('.hero-stats'), hdr=document.querySelector('.site-header');
+(()=>{const hero=document.querySelector('.hero'), hs=document.querySelector('.hero-stats'), hdr=document.querySelector('.site-header'); if(!hero) return;
 const fit=()=>{hero.style.minHeight=innerWidth>900?Math.min(620,innerHeight-hdr.offsetHeight-hs.offsetHeight)+'px':''};
 fit(); addEventListener('resize',fit); document.fonts&&document.fonts.ready.then(fit);})();
 </script>
@@ -1100,6 +1224,17 @@ fit(); addEventListener('resize',fit); document.fonts&&document.fonts.ready.then
   if(still){manual();go(0);return}
   root.classList.add('paused'); go(0); clearTimeout(timer);
   new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();root.classList.remove('paused');go(0)}},{threshold:.4}).observe(stage);
+})();
+</script>
+<script>
+// версия Б: «Касается ли это вас?» — отметки и вывод
+(()=>{
+  const cards=[...document.querySelectorAll('.gsit')], n=document.getElementById('risk-n'), t=document.getElementById('risk-t'); if(!cards.length) return;
+  const msg=k=>k===0?'Отметьте, что про вас,\u00a0— и\u00a0мы подскажем, зачем вам этот анализ.'
+    :k<=2?'Даже один-два фактора нагружают сосуды. Анализ покажет, какие системы уже дают сдвиг и\u00a0что проверить первым.'
+    :'Несколько факторов сразу\u00a0— повод не\u00a0откладывать. Анализ покажет, какие системы сдают первыми и\u00a0что обсудить с\u00a0врачом.';
+  cards.forEach(c=>c.addEventListener('click',()=>{c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')!=='true');
+    const k=cards.filter(x=>x.getAttribute('aria-pressed')==='true').length; n.textContent=k; t.textContent=msg(k)}));
 })();
 </script>
 

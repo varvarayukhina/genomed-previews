@@ -525,6 +525,130 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 .rep-more b{color:var(--ink)}
 @media (max-width:760px){.vs{grid-template-columns:1fr}}
 .rep.plain .sysinfo p.mono{display:none}
+
+/* ════ версия Б — компоненты по эталону Гистологии ════ */
+.gb{padding:clamp(56px,7vw,88px) 0;position:relative}
+.gb--tint{background:#EAF2FD}
+.ghead{max-width:860px;margin-bottom:clamp(28px,3.6vw,44px)}
+.ghead h2{font-size:clamp(32px,4vw,52px);line-height:1.06}
+.ghead p{font-size:18px;color:var(--ink-2);margin-top:16px;max-width:760px}
+.ghead--c{text-align:center;margin-inline:auto}.ghead--c p{margin-inline:auto}
+/* первый экран: текст слева, картинка справа */
+.gh{background:linear-gradient(180deg,#F4F8FE 0%,#fff 100%);padding:clamp(36px,5vw,64px) 0}
+.gh__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center}
+.gh h1{font-size:clamp(30px,3vw,44px)}
+.gh__plain{font-size:clamp(18px,1.6vw,21px);font-weight:600;color:var(--ink-2);margin-top:18px;line-height:1.5;max-width:34em}
+.gh__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.gh__pic{margin:0;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3}
+.gh__pic img{width:100%;height:100%;object-fit:cover;object-position:22% 50%}
+/* статбенд с крупными голубыми цифрами */
+.sband{background:#fff;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);padding:0}
+.sband__in{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr)}
+.sb{display:flex;align-items:center;gap:16px;padding:26px 22px;min-width:0}
+.sb+.sb{border-left:1px solid var(--line-soft)}
+.sb b{font-size:clamp(34px,3.6vw,48px);font-weight:700;line-height:1;letter-spacing:-.04em;color:var(--cyan);white-space:nowrap}
+.sb span{font-size:16px;font-weight:600;line-height:1.35;color:var(--ink-2)}
+/* градиентная плашка с большой цифрой */
+.gdeep{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;border-radius:var(--r-xl);padding:clamp(28px,4vw,52px);color:#fff;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--bg-deep) 0%,#0B3A8C 100%)}
+.gdeep::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(0,194,255,.18),transparent 60%),radial-gradient(ellipse at bottom left,rgba(0,87,255,.25),transparent 60%);pointer-events:none}
+.gdeep>*{position:relative;min-width:0}
+.gdeep__big{font-weight:700;font-size:clamp(64px,8vw,112px);line-height:.85;letter-spacing:-.05em;color:var(--cyan);white-space:nowrap}
+.gdeep__big small{font-size:.36em;letter-spacing:-.02em;margin-left:.3em}
+.gdeep h2{color:#fff;font-size:clamp(24px,2.6vw,34px);line-height:1.15}
+.gdeep p{color:rgba(225,236,255,.88);margin-top:12px}
+.gdeep .gdeep__src{font-size:16px;color:rgba(190,212,236,.75);margin-top:16px}
+/* «Касается ли это вас?» — ситуации-переключатели */
+.gsitu{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.gsit{position:relative;display:flex;flex-direction:column;gap:14px;text-align:left;font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);padding:20px;cursor:pointer;min-width:0;transition:border-color .2s ease-out,box-shadow .2s ease-out,background-color .2s ease-out}
+@media (hover:hover){.gsit:hover{border-color:#9DBBFF}}
+.gsit__b{width:46px;height:46px;border-radius:14px;background:var(--accent-soft);display:grid;place-items:center;transition:background-color .2s ease-out}
+.gsit__b svg{width:22px;height:22px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gsit__t b{display:block;font-size:17px;line-height:1.3}
+.gsit__t span{display:block;font-size:16px;color:var(--ink-2);margin-top:6px;line-height:1.45}
+.gsit__ok{position:absolute;top:16px;right:16px;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:background-color .2s ease-out,border-color .2s ease-out}
+.gsit__ok svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.gsit[aria-pressed="true"]{border-color:var(--blue);background:#F6F9FF;box-shadow:0 0 0 3px rgba(0,87,255,.12),var(--shadow-sm)}
+.gsit[aria-pressed="true"] .gsit__b{background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.gsit[aria-pressed="true"] .gsit__b svg{stroke:#fff}
+.gsit[aria-pressed="true"] .gsit__ok{background:var(--blue);border-color:var(--blue)}
+.gsit[aria-pressed="true"] .gsit__ok svg{opacity:1}
+.gres{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(16px,3vw,32px);align-items:center;margin-top:18px;background:var(--bg-deep);color:#fff;border-radius:var(--r-lg);padding:20px clamp(20px,3vw,32px)}
+.gres__n{display:flex;align-items:baseline;gap:8px}
+.gres__n b{font-size:44px;line-height:1;color:var(--cyan);font-weight:700}
+.gres__n span{color:#B9CCE8;font-size:16px}
+.gres__t{color:#DCE8FF;font-size:17px;line-height:1.5}
+.gres .btn--primary{background:var(--blue)}
+/* тёмный блок «два вопроса — два ответа» */
+.gdark{background:var(--bg-deep);color:#fff;overflow:hidden}
+.gdark::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(0,194,255,.12),transparent 55%),radial-gradient(ellipse at bottom left,rgba(0,87,255,.18),transparent 60%);pointer-events:none}
+.gdark .wrap{position:relative}
+.gdark h2{color:#fff}.gdark h2 em{color:var(--cyan)}
+.gdark .ghead p{color:rgba(225,236,255,.85)}
+.gans{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.gans__c{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:var(--r-lg);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:12px;min-width:0}
+.gans__c--b{background:rgba(0,194,255,.10);border-color:rgba(0,194,255,.45)}
+.gans__k{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9FB4CC}
+.gans__c--b .gans__k{color:var(--cyan)}
+.gans h3{color:#fff;font-size:clamp(21px,2vw,26px);line-height:1.2}
+.gans ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.gans li{position:relative;padding-left:22px;color:rgba(225,236,255,.88)}
+.gans li::before{content:"";position:absolute;left:2px;top:.55em;width:8px;height:8px;border-radius:50%;background:#9FB4CC}
+.gans__c--b li::before{background:var(--cyan)}
+.gans__foot{margin-top:22px;color:rgba(225,236,255,.85);max-width:72ch}
+.gans__foot b{color:#fff}
+/* примеры «что делать с результатом» — карточки как в эталоне */
+.gexs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.gex{background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:24px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:16px;min-width:0}
+.gex__h{display:flex;gap:16px;align-items:flex-start}
+.gex__tag{flex:none;width:58px;height:58px;border-radius:16px;display:grid;place-items:center;font-size:20px;font-weight:700;color:#fff;background:var(--c)}
+.gex--ok{--c:var(--ok)}.gex--mid{--c:#D99A1E}.gex--hi{--c:var(--warn)}
+.gex h3{font-size:20px;line-height:1.25}
+.gex__h p{font-size:16px;color:var(--ink-2);margin-top:4px}
+.gex ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.gex li{position:relative;padding-left:20px;color:var(--ink-2)}
+.gex li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--c)}
+.gex__w{margin-top:auto;font-size:16px;font-weight:700;color:var(--ink)}
+/* путь «как сдать» — центрированный, кружки и градиентная линия */
+.gflow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.gflow::before{content:"";position:absolute;top:36px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.gflow li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:0 12px}
+.gflow__ic{position:relative;width:72px;height:72px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;box-shadow:var(--shadow-md);margin-bottom:10px}
+.gflow__ic svg{width:28px;height:28px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gflow__ic b{position:absolute;top:-4px;right:-4px;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:14px;display:grid;place-items:center}
+.gflow h3{font-size:20px}
+.gflow p{font-size:16px;color:var(--ink-2)}
+/* вопросы карточками в две колонки */
+.gfqg{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.gfqc{display:grid;gap:14px;min-width:0}
+.gfq{background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-md);transition:border-color .2s ease-out,box-shadow .2s ease-out}
+.gfq[open]{border-color:var(--cyan-soft);box-shadow:var(--shadow-md)}
+.gfq summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:center;padding:16px 18px;font-weight:700;font-size:17px;line-height:1.35}
+.gfq summary::-webkit-details-marker{display:none}
+.gfq summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);flex:none;margin:0 4px 4px auto;transition:transform .2s ease-out}
+.gfq[open] summary::after{transform:rotate(-135deg);margin-bottom:-4px;border-color:var(--blue)}
+.gfq__ic{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;flex:none}
+.gfq__ic svg{width:20px;height:20px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gfq[open] .gfq__ic{background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.gfq[open] .gfq__ic svg{stroke:#fff}
+.gfq__q small{display:block;font-size:14px;color:var(--blue-2);margin-bottom:2px}
+.gfq__a{padding:0 20px 18px 74px;color:var(--ink-2)}
+/* тёмный финальный блок */
+.gcta{background:linear-gradient(135deg,var(--bg-deep) 0%,var(--bg-deep-2) 100%);border-radius:var(--r-xl);padding:clamp(36px,5vw,64px);color:#fff;position:relative;overflow:hidden;text-align:center}
+.gcta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 15%,rgba(0,194,255,.26),transparent 50%),radial-gradient(circle at 12% 90%,rgba(0,87,255,.3),transparent 55%)}
+.gcta>*{position:relative}
+.gcta h2{color:#fff;font-size:clamp(28px,3.6vw,46px);max-width:780px;margin:0 auto 16px}
+.gcta h2 em{color:var(--cyan)}
+.gcta p{color:rgba(255,255,255,.82);max-width:660px;margin:0 auto 28px}
+.gcta__btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.gcta__btns .btn{background:#fff;color:var(--ink)}
+.gcta__btns svg{width:22px;height:22px}
+.gcta .gcta__note{margin:24px auto 0;font-size:16px;color:rgba(255,255,255,.6)}
+@media (max-width:1024px){.gsitu{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.gh__in,.gans,.gexs,.gfqg,.gdeep{grid-template-columns:1fr}.sband__in{grid-template-columns:1fr 1fr}.sb:nth-child(3){border-left:0}.sb:nth-child(n+3){border-top:1px solid var(--line-soft)}
+  .gres{grid-template-columns:auto minmax(0,1fr)}.gres .btn{grid-column:1/-1}.gflow{grid-template-columns:1fr 1fr;row-gap:28px}.gflow::before{display:none}}
+@media (max-width:560px){.gsitu{grid-template-columns:1fr}.gsit{flex-direction:row;align-items:center;padding:14px 48px 14px 14px}.gsit__t span{display:none}
+  .gflow{grid-template-columns:1fr}.gflow li{display:grid;grid-template-columns:64px 1fr;column-gap:14px;text-align:left;align-items:center;padding:0}.gflow__ic{grid-row:span 2;width:56px;height:56px;margin:0}
+  .gfq__a{padding:0 18px 18px}.sb{flex-direction:column;align-items:flex-start;gap:6px;padding:18px 12px}.gh__cta .btn{flex:1 1 100%}}
 .vbar{background:#0A2540;color:#fff;font-size:16px}
 .vbar__in{display:flex;align-items:center;gap:6px 22px;flex-wrap:wrap;min-height:46px;padding-block:6px}
 .vbar b{font-weight:500;color:#8FAECF}
@@ -660,57 +784,96 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
   </div>
 </header>
 
-<section class="hero" id="top">
-  <div class="hero__in">
-    <h1><em>Априом Кардио</em>&nbsp;— анализ крови, который показывает, как стареют сердце и&nbsp;сосуды</h1>
-    <p class="hero__plain">Узнайте, на&nbsp;сколько лет ваш организм «старше» или «моложе» паспорта и&nbsp;что проверить первым, чтобы дольше оставаться здоровым.</p>
-    <p class="hero__sum">Одна пробирка крови из&nbsp;вены. Через 30&nbsp;рабочих дней&nbsp;— отчёт: расчётный возраст по&nbsp;анализу крови, какие системы сдают первыми и&nbsp;что обсудить с&nbsp;врачом.</p>
-    <div class="hero__cta">
-      <a class="btn btn--primary" id="order-top" href="#zakaz"><span>Заказать за&nbsp;9&nbsp;800&nbsp;₽&nbsp;→</span></a>
-      <a class="btn btn--secondary" href="#dispans">Чем отличается от&nbsp;диспансеризации</a>
+<section class="gh" id="top">
+  <div class="wrap gh__in">
+    <div>
+      <h1><em>Априом Кардио</em>&nbsp;— анализ крови, который показывает, как стареют сердце и&nbsp;сосуды</h1>
+      <p class="gh__plain">Узнайте, на&nbsp;сколько лет ваш организм «старше» или «моложе» паспорта и&nbsp;что проверить первым, чтобы дольше оставаться здоровым.</p>
+      <div class="gh__cta">
+        <a class="btn btn--primary" id="order-top" href="#zakaz"><span>Заказать за&nbsp;9&nbsp;800&nbsp;₽&nbsp;→</span></a>
+        <a class="btn btn--secondary" href="#check">Касается&nbsp;ли это меня?</a>
+      </div>
     </div>
+    <figure class="gh__pic"><img src="steps/zoom-1-heart.webp" alt="Условная иллюстрация: сердце и коронарные артерии" width="1600" height="800" fetchpriority="high"></figure>
   </div>
-  <img class="hero__bg" src="img/hero-1536.webp" srcset="img/hero-960.webp 960w, img/hero-1536.webp 1536w" sizes="100vw" decoding="async" alt="Условная иллюстрация: белки плазмы крови разной формы, антитела и эритроциты" width="1536" height="1024" fetchpriority="high">
 </section>
 
-<section class="hero-stats">
-  <div class="wrap">
-    <div class="stats" aria-label="Коротко об исследовании">
-      <div><b>Кровь из&nbsp;вены</b><span>одна пробирка</span></div>
-      <div><b>30 рабочих дней</b><span>до готового отчёта</span></div>
-      <div><b>9 800&nbsp;₽</b><span>обычная цена, не&nbsp;акция</span></div>
-      <div><b>Без направления</b><span>заказать можно самому</span></div>
-    </div>
+<section class="sband hero-stats" aria-label="Коротко об исследовании">
+  <div class="sband__in">
+    <div class="sb"><b class="mono">1</b><span>пробирка крови из&nbsp;вены</span></div>
+    <div class="sb"><b class="mono">92</b><span>показателя в&nbsp;одном анализе</span></div>
+    <div class="sb"><b class="mono">30</b><span>рабочих дней до&nbsp;отчёта</span></div>
+    <div class="sb"><b class="mono">9 800&nbsp;₽</b><span>обычная цена, не&nbsp;акция</span></div>
   </div>
 </section>
 
 <div class="subnav" id="subnav">
   <nav aria-label="Разделы страницы">
-    <a href="#dispans">Диспансеризация</a><a href="#otchet">Что узнаете</a><a href="#dalshe">Что дальше</a><a href="#proteom">Как работает</a><a href="#kak">Как сдать</a><a href="#voprosy">Вопросы</a><a href="#zakaz">Заказать</a>
+    <a href="#why">Зачем</a><a href="#check">Касается&nbsp;ли меня</a><a href="#dispans">Диспансеризация</a><a href="#proteom">Как работает</a><a href="#otchet">Что узнаете</a><a href="#kak">Как сдать</a><a href="#voprosy">Вопросы</a>
   </nav>
 </div>
 
-<section id="dispans">
+<section class="gb gb--tint" id="why">
   <div class="wrap">
-    <h2 class="h2">Диспансеризация и&nbsp;<em>Априом Кардио</em></h2>
-    <p class="lead">Диспансеризация нужна и&nbsp;бесплатна. Априом Кардио отвечает на&nbsp;другой вопрос и&nbsp;дополняет её.</p>
-    <div class="vs">
-      <div class="vs-col">
-        <p class="vs-k">Диспансеризация</p>
-        <h3>Есть&nbsp;ли отклонения сейчас?</h3>
-        <ul><li>Давление, холестерин, сахар, ЭКГ</li><li>Ищет то, что уже вышло за&nbsp;границы нормы</li><li>Бесплатно по&nbsp;полису ОМС</li></ul>
+    <div class="gdeep">
+      <div class="gdeep__big mono">19,8<small>млн</small></div>
+      <div>
+        <h2>Болезни сердца и&nbsp;сосудов&nbsp;— главная причина смерти в&nbsp;мире</h2>
+        <p>В&nbsp;2022&nbsp;году от&nbsp;них умерли 19,8&nbsp;млн человек&nbsp;— около трети всех смертей. По&nbsp;данным ВОЗ, большинство таких болезней можно предотвратить, если вовремя заняться факторами риска: курением, питанием, весом, движением.</p>
+        <p class="gdeep__src">ВОЗ, информационный бюллетень «Сердечно-сосудистые заболевания», 31.07.2025</p>
       </div>
-      <div class="vs-col vs-col--b">
-        <p class="vs-k">Априом Кардио</p>
+    </div>
+  </div>
+</section>
+
+<section class="gb" id="check">
+  <div class="wrap">
+    <div class="ghead">
+      <h2>Касается&nbsp;ли это <em>вас?</em></h2>
+      <p>Отметьте, что про вас. Это не&nbsp;тест на&nbsp;болезнь: так проще понять, есть&nbsp;ли повод присмотреться к&nbsp;сосудам.</p>
+    </div>
+    <div class="gsitu"><button type="button" class="gsit" aria-pressed="false"><span class="gsit__b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></span><span class="gsit__t"><b>Давление бывает повышенным</b><span>Высокое давление годами нагружает стенки артерий.</span></span><span class="gsit__ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="gsit" aria-pressed="false"><span class="gsit__b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></span><span class="gsit__t"><b>Есть лишний вес</b><span>Он связан с&nbsp;давлением, холестерином и&nbsp;сахаром.</span></span><span class="gsit__ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="gsit" aria-pressed="false"><span class="gsit__b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 16h15v4H2z"/><path d="M17 16h3v4h-3z"/><path d="M20 12a2 2 0 0 0-2-2 2 2 0 0 1-2-2"/><path d="M16 4a2 2 0 0 1 2 2"/></svg></span><span class="gsit__t"><b>Курите или курили</b><span>Табак&nbsp;— один из&nbsp;главных факторов риска по&nbsp;ВОЗ.</span></span><span class="gsit__ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="gsit" aria-pressed="false"><span class="gsit__b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span><span class="gsit__t"><b>Повышен холестерин или сахар</b><span>Оба показателя влияют на&nbsp;сосуды.</span></span><span class="gsit__ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="gsit" aria-pressed="false"><span class="gsit__b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M4 18v2"/><path d="M20 18v2"/></svg></span><span class="gsit__t"><b>Мало двигаетесь</b><span>Нехватка движения&nbsp;— фактор риска по&nbsp;ВОЗ.</span></span><span class="gsit__ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="gsit" aria-pressed="false"><span class="gsit__b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h18"/><path d="M12 11v10"/><path d="M5 11a7 7 0 0 1 14 0"/></svg></span><span class="gsit__t"><b>Много солёного, сладкого, жирного</b><span>Так ВОЗ описывает нездоровое питание.</span></span><span class="gsit__ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="gsit" aria-pressed="false"><span class="gsit__b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="gsit__t"><b>Ранние инфаркты или инсульты у&nbsp;родственников</b><span>Наследственность повышает риск.</span></span><span class="gsit__ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="gsit" aria-pressed="false"><span class="gsit__b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span><span class="gsit__t"><b>Вам больше 40</b><span>С&nbsp;возрастом сосуды меняются у&nbsp;всех.</span></span><span class="gsit__ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div>
+    <div class="gres" aria-live="polite">
+      <p class="gres__n"><b class="mono" id="risk-n">0</b><span>из&nbsp;8</span></p>
+      <p class="gres__t" id="risk-t">Отметьте, что про вас,&nbsp;— и&nbsp;мы подскажем, зачем вам этот анализ.</p>
+      <a class="btn btn--primary" href="#zakaz"><span>Проверить сердце и&nbsp;сосуды&nbsp;→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="gb gdark" id="dispans">
+  <div class="wrap">
+    <div class="ghead">
+      <h2>Два вопроса&nbsp;— <em>два ответа</em></h2>
+      <p>Диспансеризация нужна и&nbsp;бесплатна. Априом Кардио отвечает на&nbsp;другой вопрос и&nbsp;дополняет её.</p>
+    </div>
+    <div class="gans">
+      <div class="gans__c">
+        <p class="gans__k">Диспансеризация</p>
+        <h3>Есть&nbsp;ли отклонения сейчас?</h3>
+        <ul><li>Давление, холестерин, сахар, ЭКГ</li><li>Показывает отклонения от&nbsp;нормы и&nbsp;факторы риска</li><li>Бесплатно по&nbsp;полису ОМС</li></ul>
+      </div>
+      <div class="gans__c gans__c--b">
+        <p class="gans__k">Априом Кардио</p>
         <h3>Куда движется организм, пока анализы в&nbsp;норме?</h3>
         <ul><li>Расчётный возраст по&nbsp;анализу крови</li><li>Какие системы сдают первыми: сосуды, обмен веществ, почки</li><li>Что проверить в&nbsp;первую очередь&nbsp;— список для врача</li></ul>
       </div>
     </div>
-    <p class="vs-foot"><b>Не&nbsp;вместо, а&nbsp;вместе.</b> С&nbsp;отчётом Априом Кардио проще решить, на&nbsp;что обратить внимание на&nbsp;следующей диспансеризации или у&nbsp;своего врача.</p>
+    <p class="gans__foot"><b>Не&nbsp;вместо, а&nbsp;вместе.</b> С&nbsp;отчётом Априом Кардио проще понять, на&nbsp;что обратить внимание на&nbsp;следующей диспансеризации или у&nbsp;своего врача.</p>
   </div>
 </section>
 
-<section class="soft" id="otchet">
+<section class="gb gb--tint" id="proteom">
+  <div class="wrap">
+    <div class="ghead ghead--c">
+      <h2>Как это <em>работает</em></h2>
+      <p>Пять шагов&nbsp;— от&nbsp;сосудов до&nbsp;разговора с&nbsp;врачом.</p>
+    </div>
+    <div class="how2" data-key="sb"><div class="how2__tabs" role="tablist" aria-label="Как это работает"><button type="button" role="tab" id="sbt0" aria-controls="sbp" aria-selected="true" tabindex="0"><b class="mono">01</b><span>Сердце</span></button><button type="button" role="tab" id="sbt1" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">02</b><span>Сигналы в&nbsp;крови</span></button><button type="button" role="tab" id="sbt2" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">03</b><span>Пробирка</span></button><button type="button" role="tab" id="sbt3" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">04</b><span>Измерение</span></button><button type="button" role="tab" id="sbt4" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">05</b><span>Отчёт</span></button></div><div class="how2__body"><div class="how2__stage"><figure class="scene is-on" style="--zo:42% 54%" aria-hidden="false"><img src="steps/zoom-1-heart.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M680 432 V294 Q680 272 702 272 H900" pathLength="1"/></g></svg><i class="co-dot" style="left:42.5%;top:54%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:34%;--n:0"><b>Сосуды сердца</b><span>Питают сердечную мышцу. Их нагружают высокое давление, курение, холестерин и&nbsp;сахар.</span></div></figure><figure class="scene" style="--zo:60% 50%" aria-hidden="true"><img src="steps/step-4-blood.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M304 320 L900 304" pathLength="1"/></g></svg><i class="co-dot" style="left:19%;top:40%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:38%;--n:0"><b>Сигналы органов</b><span>Сосуды, почки, печень и&nbsp;жировая ткань выделяют их в&nbsp;кровь. По&nbsp;ним видно, как органы работают сейчас.</span></div></figure><figure class="scene" style="--zo:24% 32%" aria-hidden="true"><img src="steps/step-5-tube.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M384 256 V214 Q384 192 406 192 H820" pathLength="1"/></g><g style="--n:1"><path d="M384 592 L820 560" pathLength="1"/></g></svg><i class="co-dot" style="left:24%;top:32%;--n:0"><span>1</span></i><i class="co-dot" style="left:24%;top:74%;--n:1"><span>2</span></i><div class="co" style="left:52%;top:24%;--n:0"><b>Плазма</b><span>Жидкая часть крови. Для анализа хватает капли.</span></div><div class="co" style="left:52%;top:70%;--n:1"><b>Клетки крови</b><span>Оседают вниз и&nbsp;в&nbsp;анализ не&nbsp;идут.</span></div></figure><figure class="scene" style="--zo:50% 50%" aria-hidden="true"><img src="steps/pea-2-join.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M512 64 V170 Q512 192 534 192 H884" pathLength="1"/></g></svg><i class="co-dot" style="left:32%;top:8%;--n:0"><span>1</span></i><div class="co" style="left:56%;top:24%;--n:0"><b>Двойная проверка</b><span>Сигнал появляется, только если нужный белок узнали сразу два «датчика».</span></div></figure><figure class="scene" style="--zo:50% 50%" aria-hidden="true"><img src="steps/zoom-8-doctor.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M576 496 V182 Q576 160 598 160 H900" pathLength="1"/></g></svg><i class="co-dot" style="left:36%;top:62%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:20%;--n:0"><b>Отчёт</b><span>Возраст по&nbsp;анализу крови, какие системы сдают первыми и&nbsp;что проверить.</span></div></figure></div><div class="how2__cap" id="sbp" role="tabpanel" aria-labelledby="sbt0" aria-live="polite"><div class="how2__prog" aria-hidden="true"><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i></div><div class="cap is-on"><span class="cap__n mono">01 / 05</span><h3>Сердце и&nbsp;сосуды работают без остановки</h3><p>Их состояние зависит от&nbsp;давления, веса, курения, питания и&nbsp;возраста.</p><ol class="cap-co"><li><span class="mono">1</span><b>Сосуды сердца</b> Питают сердечную мышцу. Их нагружают высокое давление, курение, холестерин и&nbsp;сахар.</li></ol></div><div class="cap"><span class="cap__n mono">02 / 05</span><h3>Органы оставляют следы в&nbsp;крови</h3><p>Клетки сосудов, почек, печени и&nbsp;жировой ткани выделяют в&nbsp;кровь белки. По&nbsp;их количеству видно, как работают эти органы сейчас.</p><ol class="cap-co"><li><span class="mono">1</span><b>Сигналы органов</b> Сосуды, почки, печень и&nbsp;жировая ткань выделяют их в&nbsp;кровь. По&nbsp;ним видно, как органы работают сейчас.</li></ol></div><div class="cap"><span class="cap__n mono">03 / 05</span><h3>Хватает одной пробирки</h3><p>Кровь берут из&nbsp;вены, как для обычного анализа. Из&nbsp;неё отделяют плазму&nbsp;— для исследования нужна совсем капля.</p><ol class="cap-co"><li><span class="mono">1</span><b>Плазма</b> Жидкая часть крови. Для анализа хватает капли.</li><li><span class="mono">2</span><b>Клетки крови</b> Оседают вниз и&nbsp;в&nbsp;анализ не&nbsp;идут.</li></ol></div><div class="cap"><span class="cap__n mono">04 / 05</span><h3>92&nbsp;показателя за&nbsp;один анализ</h3><p>Каждый белок узнают сразу два антитела, поэтому сигнал появляется только от&nbsp;нужного белка. Что означает каждый, известно из&nbsp;наблюдения за&nbsp;54&nbsp;тысячами людей.</p><ol class="cap-co"><li><span class="mono">1</span><b>Двойная проверка</b> Сигнал появляется, только если нужный белок узнали сразу два «датчика».</li></ol></div><div class="cap"><span class="cap__n mono">05 / 05</span><h3>Отчёт разбирают с&nbsp;врачом</h3><p>Через 30&nbsp;рабочих дней&nbsp;— возраст по&nbsp;анализу крови, какие системы сдают первыми и&nbsp;что проверить. Его обсуждают с&nbsp;терапевтом или кардиологом.</p><ol class="cap-co"><li><span class="mono">1</span><b>Отчёт</b> Возраст по&nbsp;анализу крови, какие системы сдают первыми и&nbsp;что проверить.</li></ol></div><div class="how2__nav"><button type="button" class="nav2" data-a="prev">← Назад</button><button type="button" class="nav2 nav2--next" data-a="next">Дальше →</button><button type="button" class="nav2 nav2--play" data-a="play" aria-label="Пауза" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="pz" x="6" y="5" width="4" height="14" rx="1"/><rect class="pz" x="14" y="5" width="4" height="14" rx="1"/><path class="pl" d="M7 5v14l12-7z"/></svg></button></div></div></div></div>
+  </div>
+</section>
+
+<section class="gb" id="otchet">
   <div class="wrap">
     <h2 class="h2">Что вы <em>узнаете</em></h2>
     <p class="lead">Главная цифра&nbsp;— возраст по&nbsp;анализу крови. Ниже видно, из&nbsp;чего он сложился и&nbsp;что проверить. Цифры&nbsp;— пример.</p>
@@ -718,7 +881,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
       <div class="rep-top">
         <div>
           <h3>Возраст по&nbsp;анализу крови</h3>
-          <p>Ваш анализ сравнивают с&nbsp;людьми того&nbsp;же пола и&nbsp;возраста. Если показатели как у&nbsp;человека постарше&nbsp;— организм стареет быстрее паспорта. Это расчётная оценка, а&nbsp;не&nbsp;прогноз продолжительности жизни.</p>
+          <p>Ваш анализ сравнивают с&nbsp;людьми того&nbsp;же пола и&nbsp;возраста. Если показатели как у&nbsp;человека постарше, организм стареет быстрее паспорта. Это расчётная оценка, она не&nbsp;предсказывает продолжительность жизни.</p>
         </div>
         <div class="rep-big" aria-label="Пример: 52 года по паспорту, 55 по белкам">
           <span><b class="mono">52</b><small>по&nbsp;паспорту</small></span>
@@ -750,114 +913,48 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
   </div>
 </section>
 
-<section id="dalshe">
+<section class="gb gb--tint" id="dalshe">
   <div class="wrap">
-    <h2 class="h2">Что делать <em>с&nbsp;результатом</em></h2>
-    <p class="lead">Три условных примера: как отчёт превращается в&nbsp;конкретные шаги. Что именно нужно вам, решает врач.</p>
-    <div class="scen">
-      <article class="sc sc--ok">
-        <p class="sc-k mono">Пример 1</p>
-        <h3>Профиль в&nbsp;норме</h3>
-        <div class="mini" style="--p:0.467;--b:0.467"><i class="mini-p"></i><i class="mini-b"></i><span class="mono">52</span><span class="mono mini-bl">52</span></div>
-        <p class="sc-res">Сдвиг в&nbsp;пределах ±2&nbsp;лет</p>
-        <ul><li>Обычная профилактика</li><li>Результат становится вашей точкой отсчёта</li></ul>
-        <p class="sc-when"><b>Повтор:</b> через год&nbsp;— сравнить с&nbsp;первым</p>
-      </article>
-      <article class="sc sc--mid">
-        <p class="sc-k mono">Пример 2</p>
-        <h3>+3&nbsp;года, больше всего&nbsp;— сосуды</h3>
-        <div class="mini" style="--p:0.467;--b:0.667"><i class="mini-p"></i><i class="mini-b"></i><span class="mono">52</span><span class="mono mini-bl">55</span></div>
-        <p class="sc-res">Лёгкое ускорение</p>
-        <ul><li>Сдать ЭКГ и&nbsp;липидный профиль, следить за&nbsp;давлением</li><li>С&nbsp;терапевтом или кардиологом&nbsp;— план по&nbsp;давлению и&nbsp;холестерину</li></ul>
-        <p class="sc-when"><b>Повтор:</b> через 6–12&nbsp;месяцев&nbsp;— увидеть, сдвинулся&nbsp;ли профиль</p>
-      </article>
-      <article class="sc sc--hi">
-        <p class="sc-k mono">Пример 3</p>
-        <h3>+4&nbsp;года, больше всего&nbsp;— обмен веществ</h3>
-        <div class="mini" style="--p:0.467;--b:0.733"><i class="mini-p"></i><i class="mini-b"></i><span class="mono">52</span><span class="mono mini-bl">56</span></div>
-        <p class="sc-res">Лёгкое ускорение</p>
-        <ul><li>Сдать глюкозу и&nbsp;гликированный гемоглобин</li><li>С&nbsp;врачом&nbsp;— питание, активность, вес</li></ul>
-        <p class="sc-when"><b>Повтор:</b> через 6–12&nbsp;месяцев&nbsp;— проверить динамику</p>
-      </article>
+    <div class="ghead">
+      <h2>Что делать <em>с&nbsp;результатом</em></h2>
+      <p>Три условных примера. Что именно нужно вам, решает врач.</p>
     </div>
-    <p class="scen-note">Если по&nbsp;одному из&nbsp;83&nbsp;профилей заболеваний показатель высокий, врач назначит прицельное обследование&nbsp;— например, ЭКГ или УЗИ сердца. Сам показатель диагнозом не&nbsp;является.</p>
+    <div class="gexs"><article class="gex gex--ok"><div class="gex__h"><span class="gex__tag mono">±0</span><div><h3>Профиль в&nbsp;норме</h3><p>Сдвиг в&nbsp;пределах ±2&nbsp;лет</p></div></div><ul><li>Обычная профилактика</li><li>Результат&nbsp;— ваша точка отсчёта</li></ul><p class="gex__w">Повтор&nbsp;— через год</p></article><article class="gex gex--mid"><div class="gex__h"><span class="gex__tag mono">+3</span><div><h3>Больше всего дали сосуды</h3><p>Лёгкое ускорение</p></div></div><ul><li>ЭКГ и&nbsp;липидный профиль, контроль давления</li><li>С&nbsp;врачом&nbsp;— план по&nbsp;давлению и&nbsp;холестерину</li></ul><p class="gex__w">Повтор&nbsp;— через 6–12&nbsp;месяцев</p></article><article class="gex gex--hi"><div class="gex__h"><span class="gex__tag mono">+4</span><div><h3>Больше всего дал обмен веществ</h3><p>Лёгкое ускорение</p></div></div><ul><li>Глюкоза и&nbsp;гликированный гемоглобин</li><li>С&nbsp;врачом&nbsp;— питание, активность, вес</li></ul><p class="gex__w">Повтор&nbsp;— через 6–12&nbsp;месяцев</p></article></div>
   </div>
 </section>
 
-<section id="proteom">
+<section class="gb" id="kak">
   <div class="wrap">
-    <div class="center">
-      <h2 class="h2">Как это <em>работает</em></h2>
-      <p class="lead">Пять шагов&nbsp;— от&nbsp;сосудов до&nbsp;разговора с&nbsp;врачом.</p>
+    <div class="ghead ghead--c">
+      <h2>Как <em>сдать</em></h2>
+      <p>Подготовка&nbsp;— <span class="tbd">[нужен факт: натощак или нет]</span>. При простуде и&nbsp;температуре анализ лучше отложить.</p>
     </div>
-    <div class="how2" data-key="sb"><div class="how2__tabs" role="tablist" aria-label="Как это работает"><button type="button" role="tab" id="sbt0" aria-controls="sbp" aria-selected="true" tabindex="0"><b class="mono">01</b><span>Сердце</span></button><button type="button" role="tab" id="sbt1" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">02</b><span>Сигналы в&nbsp;крови</span></button><button type="button" role="tab" id="sbt2" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">03</b><span>Пробирка</span></button><button type="button" role="tab" id="sbt3" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">04</b><span>Измерение</span></button><button type="button" role="tab" id="sbt4" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">05</b><span>Отчёт</span></button></div><div class="how2__body"><div class="how2__stage"><figure class="scene is-on" style="--zo:42% 54%" aria-hidden="false"><img src="steps/zoom-1-heart.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M680 432 V294 Q680 272 702 272 H900" pathLength="1"/></g></svg><i class="co-dot" style="left:42.5%;top:54%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:34%;--n:0"><b>Коронарная артерия</b><span>Питает сердечную мышцу. Её стенку нагружают высокое давление, курение, холестерин и&nbsp;сахар.</span></div></figure><figure class="scene" style="--zo:60% 50%" aria-hidden="true"><img src="steps/step-4-blood.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M304 320 L900 304" pathLength="1"/></g></svg><i class="co-dot" style="left:19%;top:40%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:38%;--n:0"><b>Белки в&nbsp;крови</b><span>Их выделяют сосуды, почки, печень, жировая ткань. Цистатин C, например, отражает работу почек.</span></div></figure><figure class="scene" style="--zo:24% 32%" aria-hidden="true"><img src="steps/step-5-tube.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M384 256 V214 Q384 192 406 192 H820" pathLength="1"/></g><g style="--n:1"><path d="M384 592 L820 560" pathLength="1"/></g></svg><i class="co-dot" style="left:24%;top:32%;--n:0"><span>1</span></i><i class="co-dot" style="left:24%;top:74%;--n:1"><span>2</span></i><div class="co" style="left:52%;top:24%;--n:0"><b>Плазма</b><span>Жидкая часть крови с&nbsp;белками. Для 92&nbsp;белков хватает 1&nbsp;микролитра.</span></div><div class="co" style="left:52%;top:70%;--n:1"><b>Клетки крови</b><span>После центрифугирования оседают вниз, в&nbsp;анализ не&nbsp;идут.</span></div></figure><figure class="scene" style="--zo:50% 50%" aria-hidden="true"><img src="steps/pea-2-join.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M512 64 V170 Q512 192 534 192 H884" pathLength="1"/></g></svg><i class="co-dot" style="left:32%;top:8%;--n:0"><span>1</span></i><div class="co" style="left:56%;top:24%;--n:0"><b>ДНК-штрихкод</b><span>Метки соединяются, только если оба антитела сели на&nbsp;одну молекулу.</span></div></figure><figure class="scene" style="--zo:50% 50%" aria-hidden="true"><img src="steps/zoom-8-doctor.webp" alt="" width="1600" height="800" loading="lazy" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M576 496 V182 Q576 160 598 160 H900" pathLength="1"/></g></svg><i class="co-dot" style="left:36%;top:62%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:20%;--n:0"><b>Отчёт</b><span>Возраст по&nbsp;белкам, вклад шести систем и&nbsp;план обследования.</span></div></figure></div><div class="how2__cap" id="sbp" role="tabpanel" aria-labelledby="sbt0" aria-live="polite"><div class="how2__prog" aria-hidden="true"><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i></div><div class="cap is-on"><span class="cap__n mono">01 / 05</span><h3>Сердце и&nbsp;сосуды работают без остановки</h3><p>Их состояние зависит от&nbsp;давления, веса, курения, питания и&nbsp;возраста.</p><ol class="cap-co"><li><span class="mono">1</span><b>Коронарная артерия</b> Питает сердечную мышцу. Её стенку нагружают высокое давление, курение, холестерин и&nbsp;сахар.</li></ol></div><div class="cap"><span class="cap__n mono">02 / 05</span><h3>Органы оставляют следы в&nbsp;крови</h3><p>Клетки сосудов, почек, печени и&nbsp;жировой ткани выделяют в&nbsp;кровь белки. По&nbsp;их количеству видно, как работают эти органы сейчас.</p><ol class="cap-co"><li><span class="mono">1</span><b>Белки в&nbsp;крови</b> Их выделяют сосуды, почки, печень, жировая ткань. Цистатин C, например, отражает работу почек.</li></ol></div><div class="cap"><span class="cap__n mono">03 / 05</span><h3>Хватает одной пробирки</h3><p>Кровь берут из&nbsp;вены, как для обычного анализа. Из&nbsp;неё отделяют плазму&nbsp;— для исследования нужна совсем капля.</p><ol class="cap-co"><li><span class="mono">1</span><b>Плазма</b> Жидкая часть крови с&nbsp;белками. Для 92&nbsp;белков хватает 1&nbsp;микролитра.</li><li><span class="mono">2</span><b>Клетки крови</b> После центрифугирования оседают вниз, в&nbsp;анализ не&nbsp;идут.</li></ol></div><div class="cap"><span class="cap__n mono">04 / 05</span><h3>92&nbsp;показателя за&nbsp;один анализ</h3><p>Каждый белок узнают сразу два антитела, поэтому сигнал появляется только от&nbsp;нужного белка. Что означает каждый, известно из&nbsp;наблюдения за&nbsp;54&nbsp;тысячами людей.</p><ol class="cap-co"><li><span class="mono">1</span><b>ДНК-штрихкод</b> Метки соединяются, только если оба антитела сели на&nbsp;одну молекулу.</li></ol></div><div class="cap"><span class="cap__n mono">05 / 05</span><h3>Отчёт разбирают с&nbsp;врачом</h3><p>Через 30&nbsp;рабочих дней&nbsp;— возраст по&nbsp;анализу крови, какие системы сдают первыми и&nbsp;что проверить. Его обсуждают с&nbsp;терапевтом или кардиологом.</p><ol class="cap-co"><li><span class="mono">1</span><b>Отчёт</b> Возраст по&nbsp;белкам, вклад шести систем и&nbsp;план обследования.</li></ol></div><div class="how2__nav"><button type="button" class="nav2" data-a="prev">← Назад</button><button type="button" class="nav2 nav2--next" data-a="next">Дальше →</button><button type="button" class="nav2 nav2--play" data-a="play" aria-label="Пауза" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="pz" x="6" y="5" width="4" height="14" rx="1"/><rect class="pz" x="14" y="5" width="4" height="14" rx="1"/><path class="pl" d="M7 5v14l12-7z"/></svg></button></div></div></div></div>
+    <ol class="gflow"><li style="--i:0"><span class="gflow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><b class="mono">1</b></span><h3>Закажите</h3><p>в&nbsp;мессенджере, без направления</p></li><li style="--i:1"><span class="gflow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg><b class="mono">2</b></span><h3>Анкета</h3><p>5&nbsp;минут: рост, вес, лекарства</p></li><li style="--i:2"><span class="gflow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><b class="mono">3</b></span><h3>Кровь из&nbsp;вены</h3><p>Москва, ул.&nbsp;Донская,&nbsp;28 <span class="tbd">[уточнить: другие офисы]</span></p></li><li style="--i:3"><span class="gflow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><b class="mono">4</b></span><h3>Отчёт</h3><p>через 30&nbsp;рабочих дней, обсудите с&nbsp;врачом</p></li></ol>
   </div>
 </section>
 
-<section class="soft" id="kak">
+<section class="gb gb--tint" id="voprosy">
   <div class="wrap">
-    <div class="center"><h2 class="h2">Как <em>сдать</em></h2></div>
-    <ol class="track">
-      <li style="--i:0"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span><b>Закажите</b><span>в&nbsp;мессенджере, без направления</span></li>
-      <li style="--i:1"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span><b>Анкета</b><span>5&nbsp;минут: рост, вес, лекарства</span></li>
-      <li style="--i:2"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span><b>Кровь из&nbsp;вены</b><span>одна пробирка</span></li>
-      <li style="--i:3"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><b>Отчёт</b><span>через 30&nbsp;рабочих дней</span></li>
-    </ol>
-    <div class="memo2">
-      <span><b>Где</b> Москва, ул.&nbsp;Донская,&nbsp;28 <span class="tbd">[уточнить: другие офисы]</span></span>
-      <span><b>Подготовка</b> <span class="tbd">[нужен факт: натощак или нет]</span></span>
-      <span><b>Отложите</b> при простуде и&nbsp;температуре</span>
-      <span><b>Цена</b> <span class="mono">9 800&nbsp;₽</span></span>
+    <div class="ghead">
+      <h2>Частые <em>вопросы</em></h2>
     </div>
+    <div class="gfqg"><div class="gfqc"><details class="gfq" open><summary><span class="gfq__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><span class="gfq__q"><small class="mono">01</small>Зачем это, если я прохожу диспансеризацию?</span></summary><div class="gfq__a"><p>Диспансеризация показывает, есть&nbsp;ли отклонения сейчас. Априом Кардио смотрит, в&nbsp;какую сторону движется организм, пока обычные анализы в&nbsp;норме, и&nbsp;подсказывает, что проверить первым.</p></div></details><details class="gfq"><summary><span class="gfq__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span><span class="gfq__q"><small class="mono">02</small>Что значит «возраст по&nbsp;анализу крови»?</span></summary><div class="gfq__a"><p>Ваши показатели сравнивают с&nbsp;данными больших исследований и&nbsp;смотрят, какому возрасту они соответствуют. Если профиль «старше» паспорта на&nbsp;несколько лет, стоит внимательнее посмотреть на&nbsp;системы, которые дали сдвиг. Это расчётная оценка с&nbsp;погрешностью.</p></div></details><details class="gfq"><summary><span class="gfq__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg></span><span class="gfq__q"><small class="mono">03</small>Нужно&nbsp;ли направление врача?</span></summary><div class="gfq__a"><p>Нет, заказать можно самому. С&nbsp;отчётом лучше прийти к&nbsp;терапевту или кардиологу: он решит, какие обследования нужны.</p></div></details></div><div class="gfqc"><details class="gfq"><summary><span class="gfq__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span class="gfq__q"><small class="mono">04</small>Это генетический тест?</span></summary><div class="gfq__a"><p>Нет. Анализ показывает состояние организма в&nbsp;момент сдачи крови. Поэтому его можно повторить через 6–12&nbsp;месяцев и&nbsp;сравнить с&nbsp;первым результатом.</p></div></details><details class="gfq"><summary><span class="gfq__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span><span class="gfq__q"><small class="mono">05</small>Как исследуют кровь?</span></summary><div class="gfq__a"><p>В&nbsp;плазме измеряют 92&nbsp;белка, связанных с&nbsp;сердцем, сосудами, почками и&nbsp;обменом веществ. Каждый белок узнают сразу два антитела&nbsp;— это защищает от&nbsp;ложного сигнала. Что значит каждый белок, известно из&nbsp;британского исследования UK Biobank: там у&nbsp;54&nbsp;тысяч человек сравнили белки крови и&nbsp;здоровье за&nbsp;многие годы.</p></div></details><details class="gfq"><summary><span class="gfq__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><span class="gfq__q"><small class="mono">06</small>Что анализ не&nbsp;делает?</span></summary><div class="gfq__a"><p>Не&nbsp;ставит диагноз и&nbsp;не&nbsp;заменяет обычное обследование: давление, холестерин и&nbsp;сахар врач контролирует как обычно. Простуда, обострение или новое лекарство меняют уровни белков, поэтому кровь сдают вне острых состояний.</p></div></details></div></div>
   </div>
 </section>
 
-<section id="voprosy">
+<section class="gb" id="zakaz">
   <div class="wrap">
-    <h2 class="h2">Частые <em>вопросы</em></h2>
-    <div class="faq">
-      <details open><summary><span class="n">01</span>Зачем это, если я прохожу диспансеризацию?<span class="pl" aria-hidden="true"></span></summary>
-        <div class="a"><p>Диспансеризация показывает, есть&nbsp;ли отклонения сейчас. Априом Кардио смотрит, в&nbsp;какую сторону движется организм, пока обычные анализы в&nbsp;норме, и&nbsp;подсказывает, что проверить первым. Одно другого не&nbsp;заменяет.</p></div></details>
-      <details><summary><span class="n">02</span>Что значит «возраст по&nbsp;анализу крови»?<span class="pl" aria-hidden="true"></span></summary>
-        <div class="a"><p>Ваши показатели сравнивают с&nbsp;данными больших исследований и&nbsp;смотрят, какому возрасту они соответствуют. Если профиль «старше» паспорта на&nbsp;несколько лет, стоит внимательнее посмотреть на&nbsp;системы, которые дали сдвиг. Это расчётная оценка с&nbsp;погрешностью.</p></div></details>
-      <details><summary><span class="n">03</span>Нужно&nbsp;ли направление врача?<span class="pl" aria-hidden="true"></span></summary>
-        <div class="a"><p>Нет, заказать можно самому. С&nbsp;отчётом лучше прийти к&nbsp;терапевту или кардиологу: он решит, какие обследования нужны.</p></div></details>
-      <details><summary><span class="n">04</span>Это генетический тест?<span class="pl" aria-hidden="true"></span></summary>
-        <div class="a"><p>Нет. Анализ показывает состояние организма в&nbsp;момент сдачи крови. Поэтому его можно повторить через 6–12&nbsp;месяцев и&nbsp;сравнить с&nbsp;первым результатом.</p></div></details>
-      <details><summary><span class="n">05</span>Как исследуют кровь?<span class="pl" aria-hidden="true"></span></summary>
-        <div class="a"><p>В&nbsp;плазме измеряют 92&nbsp;белка, связанных с&nbsp;сердцем, сосудами, почками и&nbsp;обменом веществ. Каждый белок узнают сразу два антитела&nbsp;— это защищает от&nbsp;ложного сигнала. Что значит каждый белок, известно из&nbsp;британского исследования UK Biobank, где у&nbsp;54&nbsp;тысяч человек сравнили белки крови и&nbsp;здоровье за&nbsp;многие годы.</p></div></details>
-    </div>
-  </div>
-</section>
-
-<section class="soft" id="vazhno">
-  <div class="wrap">
-    <div class="note">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-      <div>
-        <h2>Важно знать</h2>
-        <p><b>Отчёт не&nbsp;ставит диагноз</b>&nbsp;— он показывает, что проверить, а&nbsp;проверяет и&nbsp;решает врач. <b>Обычное обследование нужно всё равно:</b> давление, холестерин и&nbsp;сахар врач контролирует как обычно. <b>Результат отражает «сейчас»:</b> простуда, обострение или новое лекарство меняют уровни белков, поэтому анализ сдают вне острых состояний.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="zakaz">
-  <div class="wrap">
-    <div class="ask">
-      <div>
-        <h2 class="h2" style="font-size:clamp(28px,3.4vw,42px)">Заказать <em>Априом Кардио</em></h2>
-        <p>Напишите нам: оформим заказ, пришлём анкету и&nbsp;подберём время визита. Стоимость <span class="mono">9 800&nbsp;₽</span>, отчёт через <span class="mono">30</span>&nbsp;рабочих дней.</p>
-      </div>
-      <div class="ask-btns">
-        <a class="btn" href="https://wa.me/74956608377" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>WhatsApp</span></a>
+    <div class="gcta">
+      <h2>Проверьте сердце и&nbsp;сосуды <em>за&nbsp;9&nbsp;800&nbsp;₽</em></h2>
+      <p>Напишите нам: оформим заказ, пришлём анкету и&nbsp;подберём время визита. Отчёт&nbsp;— через 30&nbsp;рабочих дней.</p>
+      <div class="gcta__btns"><a class="btn" href="https://wa.me/74956608377" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>WhatsApp</span></a>
         <a class="btn" href="https://t.me/genomed_b2c_bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#27A7E8" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span>Telegram</span></a>
-        <a class="btn" href="https://max.ru/id7701759381_bot" target="_blank" rel="noopener"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAydpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMS1jMDAxIDc5LjE0NjI4OTk3NzcsIDIwMjMvMDYvMjUtMjM6NTc6MTQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjM2OUI0NjQzRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjM2OUI0NjQyRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNS4wIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkM4MUVGMzU2Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkM4MUVGMzU3Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+PnVEWAAAB3lJREFUeNqc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" alt="" width="30" height="30"><span>Max</span></a>
-      </div>
-      <small>Или по&nbsp;телефону <a class="mono" href="tel:84956608377">8 (495) 660-83-77</a>, клиентский сервис работает круглосуточно.</small>
+        <a class="btn" href="https://max.ru/id7701759381_bot" target="_blank" rel="noopener"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAydpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMS1jMDAxIDc5LjE0NjI4OTk3NzcsIDIwMjMvMDYvMjUtMjM6NTc6MTQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjM2OUI0NjQzRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjM2OUI0NjQyRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNS4wIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkM4MUVGMzU2Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkM4MUVGMzU3Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+PnVEWAAAB3lJREFUeNqc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" alt="" width="30" height="30"><span>Max</span></a></div>
+      <p class="gcta__note mono">Клиентский сервис 24/7 · 8 (495) 660-83-77</p>
     </div>
   </div>
 </section>
+
 
 <footer class="site-footer">
   <div class="wrap">
@@ -874,13 +971,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
       <!-- колонки 2–3 подстраиваются под страницу: разделы этой страницы / тематические ссылки
            (на MEMA — «Об исследовании» + «Пациентам», на «Партнёрам» — «Партнёрам» + «Компания») -->
       <nav aria-label="Об исследовании">
-        <h3>Об исследовании</h3>
-        <a href="#proteom">Что такое протеом</a>
-        <a href="#otchet">Что в&nbsp;отчёте</a>
-        <a href="#komu">Кому подходит</a>
-        <a href="#kak">Как сдать</a>
-        <a href="#podrobno">Пациентам и&nbsp;врачам</a>
-      </nav>
+        <h3>Об исследовании</h3><a href="#why">Зачем</a><a href="#check">Касается ли меня</a><a href="#proteom">Как работает</a><a href="#otchet">Что узнаете</a><a href="#kak">Как сдать</a><a href="#voprosy">Вопросы</a></nav>
       <nav aria-label="Сердце и сосуды">
         <h3>Сердце и&nbsp;сосуды</h3>
         <a href="https://genomed.ru/journal/serdechno-sosudistaya-sistema/">Статьи о&nbsp;сердце и&nbsp;сосудах</a>
@@ -961,7 +1052,7 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 </script>
 <script>
 // первый экран: обложка + цифры ровно в окно
-(()=>{const hero=document.querySelector('.hero'), hs=document.querySelector('.hero-stats'), hdr=document.querySelector('.site-header');
+(()=>{const hero=document.querySelector('.hero'), hs=document.querySelector('.hero-stats'), hdr=document.querySelector('.site-header'); if(!hero) return;
 const fit=()=>{hero.style.minHeight=innerWidth>900?Math.min(620,innerHeight-hdr.offsetHeight-hs.offsetHeight)+'px':''};
 fit(); addEventListener('resize',fit); document.fonts&&document.fonts.ready.then(fit);})();
 </script>
@@ -1009,6 +1100,17 @@ fit(); addEventListener('resize',fit); document.fonts&&document.fonts.ready.then
   if(still){manual();go(0);return}
   root.classList.add('paused'); go(0); clearTimeout(timer);
   new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();root.classList.remove('paused');go(0)}},{threshold:.4}).observe(stage);
+})();
+</script>
+<script>
+// версия Б: «Касается ли это вас?» — отметки и вывод
+(()=>{
+  const cards=[...document.querySelectorAll('.gsit')], n=document.getElementById('risk-n'), t=document.getElementById('risk-t'); if(!cards.length) return;
+  const msg=k=>k===0?'Отметьте, что про вас,\u00a0— и\u00a0мы подскажем, зачем вам этот анализ.'
+    :k<=2?'Даже один-два фактора нагружают сосуды. Анализ покажет, какие системы уже дают сдвиг и\u00a0что проверить первым.'
+    :'Несколько факторов сразу\u00a0— повод не\u00a0откладывать. Анализ покажет, какие системы сдают первыми и\u00a0что обсудить с\u00a0врачом.';
+  cards.forEach(c=>c.addEventListener('click',()=>{c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')!=='true');
+    const k=cards.filter(x=>x.getAttribute('aria-pressed')==='true').length; n.textContent=k; t.textContent=msg(k)}));
 })();
 </script>
 
