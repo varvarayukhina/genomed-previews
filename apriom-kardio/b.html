@@ -649,6 +649,13 @@ table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
 @media (max-width:560px){.gsitu{grid-template-columns:1fr}.gsit{flex-direction:row;align-items:center;padding:14px 48px 14px 14px}.gsit__t span{display:none}
   .gflow{grid-template-columns:1fr}.gflow li{display:grid;grid-template-columns:64px 1fr;column-gap:14px;text-align:left;align-items:center;padding:0}.gflow__ic{grid-row:span 2;width:56px;height:56px;margin:0}
   .gfq__a{padding:0 18px 18px}.sb{flex-direction:column;align-items:flex-start;gap:6px;padding:18px 12px}.gh__cta .btn{flex:1 1 100%}}
+
+/* крупные цифры — Montserrat, как в эталоне Гистологии; моно только для мелких кодов (замечание 21.11: «иишный шрифт») */
+.sb b,.gdeep__big,.rep-big b,.gres__n b,.gex__tag,.nums b,.stats b,.pct-track b,.age-pin b,.hund-l b,.rep-big em,.gflow__ic b,.how2__tabs b,.cap__n,.sc-k,.legend button b,.mini span,.ticks span,.gfq__q small,.faq summary .n,.steps li::before{font-family:var(--disp)!important;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.sb b,.gdeep__big,.rep-big b,.gres__n b,.nums b{font-weight:800!important;letter-spacing:-.04em}
+.gdeep__big small{font-weight:700}
+.mono{font-family:var(--disp);font-variant-numeric:tabular-nums}
+.chips span,.sysinfo p.mono,.doms p.mono,.sys li small{font-family:var(--mono)}
 .vbar{background:#0A2540;color:#fff;font-size:16px}
 .vbar__in{display:flex;align-items:center;gap:6px 22px;flex-wrap:wrap;min-height:46px;padding-block:6px}
 .vbar b{font-weight:500;color:#8FAECF}
