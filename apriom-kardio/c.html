@@ -1,0 +1,1280 @@
+<!--
+  © Варвара Юхина, дизайн-система лендингов Геномед (макет «Априом Кардио», версия c.html).
+  Дата создания: 2026-11-20. Все права на макет и дизайн-систему принадлежат автору;
+  использование без письменного разрешения автора не допускается.
+-->
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Априом Кардио — анализ крови: как стареют сердце и сосуды · Геномед</title>
+<meta name="description" content="Анализ крови на 92 белка: расчётный возраст, вклад шести систем организма и 83 профиля заболеваний для обсуждения с врачом. 9 800 ₽, 30 рабочих дней.">
+<meta name="robots" content="noindex">
+<link rel="preload" as="image" href="img/hero-1536.webp" imagesrcset="img/hero-960.webp 960w, img/hero-1536.webp 1536w" imagesizes="100vw" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F8FE; --bg-card:#FFFFFF; --bg-deep:#0A2540; --bg-deep-2:#102A4C;
+  --ink:#0A2540; --ink-2:#2E4A6B; --muted:#6E839C;
+  --line:#D8E4F2; --line-soft:#ECF2FB;
+  --blue:#0057FF; --blue-2:#0046CC; --cyan:#00C2FF; --cyan-soft:#B8ECFF; --teal:#00A8B5;
+  --accent-soft:#E6F0FF;
+  --ok:#1AA06D; --ok-soft:#E4F7EF; --warn:#C8791B; --warn-soft:#FFF2E0; --stop:#D2453E; --stop-soft:#FDEBEA;
+  --shadow-sm:0 1px 2px rgba(10,37,64,.04),0 2px 8px rgba(10,37,64,.04);
+  --shadow-md:0 8px 24px rgba(10,37,64,.08);
+  --shadow-lg:0 24px 64px rgba(10,37,64,.12);
+  --r-sm:8px; --r-md:16px; --r-lg:24px; --r-xl:32px;
+  --site-cyan:#0077AD; --site-menu:#555;
+  --z-base:1; --z-sub:60; --z-drop:70;
+  --disp:"Gilroy","Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--disp);font-weight:500;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--blue-2)}
+h1,h2,h3{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin:0;text-wrap:balance;color:var(--ink)}
+h1 em,h2 em,h3 em{font-style:normal;color:var(--blue)}
+p{margin:0;text-wrap:pretty}
+.mono{font-family:var(--mono);font-feature-settings:"tnum" 1,"zero" 1;font-variant-numeric:tabular-nums}
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:24px}
+section{padding-block:clamp(56px,8vw,104px)}
+section[id]{scroll-margin-top:72px}
+.soft{background:var(--bg)}
+.lead{font-size:clamp(18px,1.6vw,20px);color:var(--ink-2);max-width:62ch;margin-top:.7em}
+.h2{font-size:clamp(32px,4vw,52px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:14px 26px;border-radius:100px;font:700 17px/1.2 var(--disp);letter-spacing:-.01em;border:0;cursor:pointer;text-decoration:none;transition:background-color .2s ease-out,transform .2s ease-out;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.98)}
+.btn--primary{background:var(--bg-deep);color:#fff;position:relative;overflow:hidden;isolation:isolate}
+.btn--primary::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,var(--blue),var(--cyan) 120%);opacity:0;transition:opacity .2s ease-out}
+@media (hover:hover){.btn--primary:hover::before{opacity:1}}
+.btn--secondary{background:var(--accent-soft);color:var(--ink)}
+@media (hover:hover){.btn--secondary:hover{background:#D6E6FF}}
+.btn:focus-visible,a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible+label{outline:3px solid var(--blue);outline-offset:3px}
+
+/* ── hero: иллюстрация на всю ширину, текст по центру; шапка+цифры помещаются в экран ноутбука ── */
+.hero{position:relative;display:grid;place-items:center;text-align:center;min-height:min(620px,calc(100dvh - 230px));padding:28px 24px;overflow:hidden;isolation:isolate}
+.hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;z-index:-2}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(58% 82% at 50% 50%,rgba(255,255,255,.9) 0%,rgba(255,255,255,.72) 50%,rgba(255,255,255,0) 84%)}
+.hero__in{max-width:940px;width:100%}
+.hero h1{font-size:clamp(32px,3.3vw,46px);margin:0 auto}
+.hero__plain{font-size:clamp(19px,1.6vw,21px);font-weight:700;color:var(--ink);margin:12px auto 0;line-height:1.4;max-width:60ch}
+.hero__sum{font-size:17px;color:var(--ink-2);margin:10px auto 0;max-width:74ch}
+.hero__cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}
+.hero__doc{display:inline-block;margin-top:14px;font-size:16px;font-weight:600;color:var(--ink-2);text-underline-offset:4px;text-decoration-color:#9FB4CC}
+@media (hover:hover){.hero__doc:hover{color:var(--blue-2)}}
+.hero-stats{padding-block:0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.stats>div{padding:16px 20px 16px 0;min-width:0}
+.stats>div+div{padding-left:22px;border-left:1px solid var(--line)}
+.stats b{display:block;font-family:var(--disp);font-weight:700;font-size:clamp(19px,1.7vw,22px);letter-spacing:-.015em;line-height:1.3;color:var(--ink);font-variant-numeric:tabular-nums}
+.stats>div>span{display:block;font-size:16px;color:var(--ink-2);margin-top:4px;line-height:1.4}
+
+/* ── плавающая навигация: появляется после первого экрана ── */
+.subnav{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));z-index:var(--z-sub);max-width:calc(100% - 24px);transform:translate(-50%,-160%);opacity:0;visibility:hidden;transition:transform .2s ease-out,opacity .2s ease-out,visibility 0s .2s}
+.subnav.on{transform:translate(-50%,0);opacity:1;visibility:visible;transition:transform .2s ease-out,opacity .2s ease-out}
+.subnav nav{display:flex;gap:2px;padding:5px;border-radius:100px;background:rgba(10,37,64,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(10,37,64,.22);overflow-x:auto;scrollbar-width:none}
+.subnav nav::-webkit-scrollbar{display:none}
+.subnav a{flex-shrink:0;padding:9px 16px;border-radius:100px;font-size:16px;font-weight:600;color:#DCE8FF;text-decoration:none;white-space:nowrap;transition:background-color .2s ease-out,color .2s ease-out}
+@media (hover:hover){.subnav a:hover{color:#fff;background:rgba(255,255,255,.1)}}
+.subnav a.cur{background:#fff;color:var(--ink)}
+
+/* ── зачем: центр + тёмная плашка + лента ── */
+.center{text-align:center}
+.center .lead{margin-inline:auto}
+/* ── поясняющая схема: одинаковый диагноз, разные гены, разное лечение ── */
+.xpl{margin:clamp(32px,4vw,48px) 0 0;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-xl);padding:clamp(20px,3.5vw,40px)}
+.xpl-grid{display:grid;grid-template-columns:minmax(120px,.55fr) minmax(0,1fr) 56px minmax(0,1fr);column-gap:clamp(10px,2vw,24px)}
+.xpl-h{font-weight:800;font-size:20px;text-align:center;padding-bottom:14px}
+.xpl-k,.xpl-c,.xpl-sign{border-top:1px solid var(--line);padding:22px 0;display:flex;align-items:center}
+.xpl-k{font-size:17px;font-weight:700;color:var(--ink)}
+.xpl-c{flex-direction:column;justify-content:center;gap:12px;text-align:center}
+.xpl-sign{justify-content:center;font:800 36px/1 var(--disp);color:#8FA6C1}
+.xpl-sign.ne{color:var(--blue)}
+.xpl-tis{width:clamp(96px,10vw,128px);height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;box-shadow:0 0 0 5px #fff,var(--shadow-sm)}
+.xpl-dx{font-size:16px;font-weight:600;color:var(--ink-2)}
+.genes{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:330px}
+.genes li{font:600 16px/1 var(--mono);padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink-2);transition:background-color .25s ease-out,border-color .25s ease-out,color .25s ease-out;transition-delay:calc(var(--i)*170ms)}
+.xpl[data-stage="2"] .genes li,.xpl[data-stage="3"] .genes li{background:#EAF0F7;border-color:#EAF0F7}
+.xpl[data-stage="2"] .genes li.hit,.xpl[data-stage="3"] .genes li.hit{background:var(--blue);border-color:var(--blue);color:#fff}
+.xpl-res{font-size:18px;color:var(--ink)}
+.xpl-res b{color:var(--blue-2)}
+.xpl-rx{font-size:17px;font-weight:700;color:var(--ink);background:#fff;border:1.5px solid var(--blue);border-radius:var(--r-md);padding:12px 18px}
+.r1,.r2,.r3{transition:opacity .45s ease-out,transform .45s cubic-bezier(.16,1,.3,1)}
+.xpl[data-stage="0"] .r1,.xpl[data-stage="0"] .r2,.xpl[data-stage="1"] .r2,.xpl[data-stage="0"] .r3,.xpl[data-stage="1"] .r3,.xpl[data-stage="2"] .r3{opacity:0;transform:translateY(8px)}
+.xpl-res{transition:opacity .35s ease-out 1.45s}
+.xpl[data-stage="0"] .xpl-res,.xpl[data-stage="1"] .xpl-res{opacity:0;transition:none}
+.xpl figcaption{margin-top:8px;padding-top:18px;border-top:1px solid var(--line);font-size:16px;color:var(--ink-2)}
+.xpl-replay{display:block;margin:16px 0 0 auto;font:600 16px/1 var(--disp);color:var(--ink-2);background:#fff;border:1px solid var(--line);border-radius:100px;padding:10px 16px;cursor:pointer}
+.xpl-replay[hidden]{display:none}
+/* ── что даёт пациенту ── */
+.dark .h2 em{color:var(--cyan)}
+.why{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,48px) clamp(28px,5vw,72px);margin-top:clamp(28px,4vw,44px)}
+.why>div{border-top:1px solid rgba(255,255,255,.22);padding-top:20px;min-width:0}
+.why h3{display:flex;align-items:center;gap:12px;color:#fff;font-size:clamp(20px,2vw,24px)}
+.why .li{width:26px;height:26px;flex-shrink:0;fill:none;stroke:var(--cyan);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.why p{color:#DCE8FF;margin-top:10px}
+
+/* ── какой тест: выбор ситуации ── */
+.pick{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(16px,3vw,32px);margin-top:clamp(28px,4vw,40px);align-items:stretch}
+.pick-list{display:flex;flex-direction:column;gap:8px}
+.pick-list button{display:flex;align-items:center;gap:14px;text-align:left;font:700 18px/1.35 var(--disp);color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:18px 20px;min-height:64px;cursor:pointer;transition:background-color .2s ease-out,border-color .2s ease-out,color .2s ease-out}
+.pick-list svg{width:24px;height:24px;flex-shrink:0;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s ease-out}
+@media (hover:hover){.pick-list button:hover{border-color:#9DBBFF}}
+.pick-list button[aria-selected="true"]{background:var(--bg-deep);border-color:var(--bg-deep);color:#fff}
+.pick-list button[aria-selected="true"] svg{stroke:var(--cyan)}
+.pick-panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;box-shadow:var(--shadow-sm)}
+.pick-test{font-weight:800;font-size:clamp(26px,2.6vw,34px);letter-spacing:-.025em;line-height:1.1;color:var(--ink)}
+.pick-mat{align-self:flex-start;margin-top:14px;font-size:16px;font-weight:700;color:var(--ink);background:var(--accent-soft);border-radius:100px;padding:8px 14px}
+.pick-txt{margin-top:16px;color:var(--ink-2)}
+.pick-foot{margin-top:auto;padding-top:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.pick-price{font-weight:700;font-size:24px;font-variant-numeric:tabular-nums}
+.pick-panel.swap>*{animation:pk .25s cubic-bezier(.16,1,.3,1)}
+@keyframes pk{from{opacity:0;transform:translateY(6px)}}
+/* ── статьи журнала ── */
+.reads{list-style:none;margin:clamp(24px,3vw,36px) 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(24px,4vw,56px);border-top:1px solid var(--line)}
+.reads li{border-bottom:1px solid var(--line)}
+.reads a{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;font-weight:700;font-size:18px;line-height:1.4;color:var(--ink);text-decoration:none}
+.reads a::after{content:"→";color:var(--blue);font-weight:700;transition:transform .2s ease-out}
+@media (hover:hover){.reads a:hover{color:var(--blue-2)}.reads a:hover::after{transform:translateX(4px)}}
+/* ── как проходит ── */
+.how{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,64px);align-items:start;margin-top:clamp(28px,4vw,44px)}
+.how figure{margin:0;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-md);position:sticky;top:96px}
+.how figure img{width:100%;height:auto;aspect-ratio:4/3.4;object-fit:cover}
+.how figcaption{font-size:16px;color:var(--ink-2);background:#fff;padding:14px 18px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 30px 64px;counter-increment:s}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:-2px;width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid var(--blue);display:grid;place-items:center;font:700 16px/1 var(--mono);color:var(--blue-2)}
+.steps li::after{content:"";position:absolute;left:21.5px;top:48px;bottom:6px;width:1.5px;background:var(--line)}
+.steps li:last-child{padding-bottom:0}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:21px;line-height:1.3}
+.steps p{color:var(--ink-2);margin-top:6px}
+
+/* ── подробности: вкладки ── */
+.tabs{display:inline-flex;gap:6px;padding:6px;background:var(--bg);border:1px solid var(--line);border-radius:100px;margin-top:clamp(24px,3vw,36px)}
+.tabs button{font:700 17px/1 var(--disp);color:var(--ink-2);background:transparent;border:0;border-radius:100px;padding:14px 26px;min-height:48px;cursor:pointer;transition:background-color .2s ease-out,color .2s ease-out}
+.tabs button[aria-selected="true"]{background:var(--bg-deep);color:#fff}
+.panel{margin-top:clamp(28px,4vw,40px)}
+.panel[hidden]{display:none}
+.faq{border-top:1px solid var(--line);max-width:880px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:baseline;padding:22px 0;font-weight:800;font-size:20px;letter-spacing:-.015em;line-height:1.35}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .n{font:700 16px/1 var(--mono);color:var(--blue-2)}
+.faq summary .pl{width:22px;height:22px;position:relative;align-self:center}
+.faq summary .pl::before,.faq summary .pl::after{content:"";position:absolute;left:3px;right:3px;top:10px;height:2px;background:var(--ink);border-radius:2px;transition:transform .2s ease-out}
+.faq summary .pl::after{transform:rotate(90deg)}
+.faq details[open] summary .pl::after{transform:rotate(0)}
+.faq .a{padding:0 38px 24px 46px;color:var(--ink-2)}
+.faq .a p+p{margin-top:10px}
+.doc h3{font-size:clamp(22px,2.4vw,28px)}
+.doc>p,.doc .intro{color:var(--ink-2);margin-top:10px;max-width:70ch}
+.doc .blk+.blk{margin-top:clamp(40px,5vw,60px)}
+.tw{overflow-x:auto;margin-top:20px;border:1px solid var(--line);border-radius:var(--r-lg);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:16px;line-height:1.5}
+th,td{text-align:left;vertical-align:top;padding:14px 16px;border-bottom:1px solid var(--line-soft)}
+thead th{background:var(--bg);font-weight:800;color:var(--ink);border-bottom:1px solid var(--line)}
+tbody th{font-weight:800;color:var(--ink);white-space:nowrap}
+td{color:var(--ink-2)}
+tbody tr:last-child>*{border-bottom:0}
+td .mono,th .mono{color:var(--ink)}
+.tbd{display:inline-block;font-weight:700;color:#8A4B00;background:var(--warn-soft);border-radius:6px;padding:1px 6px}
+.fn{font-size:16px;color:var(--ink-2);margin-top:12px}
+.mon{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,36px);margin-top:20px}
+.mon>div{border-top:2px solid var(--ink);padding-top:16px;min-width:0}
+.mon b{display:block;font-size:18px}
+.mon p{color:var(--ink-2);margin-top:6px;font-size:17px}
+
+/* ── важно знать: тёмная ── */
+.dark{background:var(--bg-deep);color:#fff;position:relative;overflow:hidden}
+.dark::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(0,194,255,.12),transparent 55%),radial-gradient(ellipse at bottom left,rgba(0,87,255,.18),transparent 60%);pointer-events:none}
+.dark .wrap{position:relative}
+.dark h2{color:#fff}
+.lim{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);margin-top:clamp(28px,4vw,44px)}
+.lim h3{color:#fff;font-size:22px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.18)}
+.lim ul{list-style:none;margin:0;padding:0}
+.lim li{position:relative;padding:16px 0 16px 30px;border-bottom:1px solid rgba(255,255,255,.1);color:#DCE8FF}
+.lim li::before{content:"";position:absolute;left:4px;top:27px;width:9px;height:9px;border-radius:50%;background:var(--cyan)}
+.lim li b{color:#fff}
+
+/* ── вопросы (светлый CTA) ── */
+.ask{display:grid;grid-template-columns:1fr auto;gap:24px 48px;align-items:center;background:var(--accent-soft);border-radius:var(--r-xl);padding:clamp(28px,4vw,48px)}
+.ask p{color:var(--ink-2);margin-top:10px;max-width:56ch}
+.ask-btns{display:flex;flex-wrap:wrap;gap:10px}
+.ask-btns .btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
+@media (hover:hover){.ask-btns .btn:hover{background:#F7FAFF}}
+.ask-btns svg{width:22px;height:22px}
+.ask small{grid-column:1/-1;font-size:16px;color:var(--ink-2)}
+
+@media (max-width:1024px){
+  .plans{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  .how{grid-template-columns:1fr}
+  .hero{display:block;min-height:0;padding:40px 24px 0;background:linear-gradient(180deg,#fff 0%,var(--bg) 100%)}
+  .hero::before{display:none}
+  .hero__bg{position:static;display:block;width:calc(100% + 48px);max-width:none;height:auto;margin:32px -24px 0;aspect-ratio:3/2}
+  .how figure{position:static}
+  .mon,.why{grid-template-columns:1fr}
+  .subnav{top:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px));transform:translate(-50%,160%)}
+  .subnav.on{transform:translate(-50%,0)}
+  .pick{grid-template-columns:1fr}
+  .reads{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stats>div:nth-child(3){padding-left:0;border-left:0}
+  .stats>div:nth-child(n+3){border-top:1px solid var(--line)}
+  .stats{border-top:1px solid var(--line)}
+  .lim{grid-template-columns:1fr}
+  .ask{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .xpl-grid{grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr)}
+  .xpl-h0{display:none}
+  .xpl-k{grid-column:1/-1;padding-bottom:0;justify-content:center;color:var(--ink-2)}
+  .xpl-c,.xpl-sign{border-top:0;padding-top:14px}
+  .xpl-sign{font-size:28px}
+  .xpl-rx{padding:10px 12px;font-size:16px}
+  .sum{grid-template-columns:1fr}
+  .sum-r{justify-content:space-between}
+}
+@media (max-width:560px){
+  body{font-size:17px}
+  .wrap{padding-inline:16px}
+  .plans{grid-template-columns:1fr}
+  .hero__cta .btn{flex:1 1 100%}
+  .hero{padding-inline:16px}
+  .hero__bg{width:calc(100% + 32px);margin-inline:-16px}
+  .stats>div{padding:18px 12px 18px 0}
+  .stats>div+div{padding-left:12px}
+  .stats>div:nth-child(3){padding-left:0}
+  .tabs{display:flex}
+  .tabs button{flex:1;padding-inline:12px}
+  .faq .a{padding:0 0 22px 0}
+  .faq summary{font-size:18px}
+  .add{grid-template-columns:auto 1fr;gap:6px 14px}
+  .add .pr{grid-column:2}
+  .sum-r .btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .pick-panel.swap>*{animation:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+
+/* ── плашка с большими числами: откуда известно значение белков ── */
+.deep{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(24px,4vw,56px);align-items:center;border-radius:var(--r-xl);padding:clamp(28px,4vw,52px);color:#fff;background:radial-gradient(ellipse at top right,rgba(0,194,255,.14),transparent 60%),linear-gradient(135deg,var(--bg-deep) 0%,#0B3A8C 100%)}
+.deep h3{color:#fff;font-size:clamp(24px,2.6vw,34px)}
+.deep h3 em{color:var(--cyan)}
+.deep>div>p{color:#DCE8FF;margin-top:12px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.nums div{padding:0 16px;border-left:1px solid rgba(255,255,255,.22);min-width:0}
+.nums b{display:block;font:700 clamp(26px,2.5vw,36px)/1.05 var(--mono);color:var(--cyan);letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nums span{display:block;color:#DCE8FF;font-size:16px;margin-top:10px;line-height:1.45}
+.deep .src{grid-column:1/-1;font-size:16px;color:#B9CCE8;border-top:1px solid rgba(255,255,255,.18);padding-top:14px}
+.deep .src a{color:#DCE8FF}
+
+@media (max-width:900px){
+  .deep{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .nums{grid-template-columns:1fr;gap:18px}
+  .nums div{padding:0 0 0 14px}
+}
+/* вкладка врачам */
+table.kv{min-width:0}
+table.kv th{width:190px}
+.mon4{grid-template-columns:repeat(2,1fr)}
+@media (max-width:720px){table.kv th,table.kv td{display:block;width:auto;border:0;padding:6px 16px}table.kv tr{display:block;border-bottom:1px solid var(--line-soft);padding:8px 0}table.kv tbody th{white-space:normal}}
+@media (max-width:900px){.mon4{grid-template-columns:1fr}}
+::selection{background:var(--cyan-soft);color:var(--ink)}
+html{accent-color:var(--blue);caret-color:var(--blue)}
+/* ── сцена «от сердца до отчёта» по образцу шагов НИПТ ── */
+.how2{margin-top:clamp(28px,4vw,44px)}
+.how2__tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px;margin:0 -2px 18px}
+.how2__tabs::-webkit-scrollbar{display:none}
+.how2__tabs button{flex:1 0 auto;display:flex;align-items:baseline;justify-content:center;gap:.5em;padding:12px 16px;min-height:44px;border-radius:100px;border:1px solid var(--line);background:var(--bg);color:var(--ink-2);font:700 16px/1.2 var(--disp);cursor:pointer;white-space:nowrap;transition:background-color .2s ease-out,color .2s ease-out,border-color .2s ease-out}
+.how2__tabs button b{font-size:14px;color:var(--blue)}
+@media (hover:hover){.how2__tabs button:hover{border-color:#9DBBFF}}
+.how2__tabs button[aria-selected="true"]{background:var(--bg-deep);border-color:var(--bg-deep);color:#fff}
+.how2__tabs button[aria-selected="true"] b{color:var(--cyan)}
+.how2__body{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.85fr);gap:clamp(22px,3.4vw,48px);align-items:center}
+.how2__stage{position:relative;aspect-ratio:2/1;border-radius:28px;overflow:hidden;background:#EEF4FD;box-shadow:0 1px 2px rgba(10,37,64,.04),0 18px 50px rgba(10,37,64,.10);touch-action:pan-y;isolation:isolate}
+/* кадр: входит из лёгкого отдаления, уходит «приближением» в точку --zo */
+.scene{position:absolute;inset:0;margin:0;opacity:0;transform:scale(.96);transform-origin:var(--zo,50% 50%);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform 1.1s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:1}
+.scene.is-on{opacity:1;transform:none;z-index:2}
+.scene.is-out{opacity:0;transform:scale(1.35);transition:opacity .7s cubic-bezier(.4,0,1,1),transform .9s cubic-bezier(.4,0,1,1);z-index:3}
+.scene.is-back{opacity:0;transform:scale(.85);transition:opacity .5s ease-in,transform .6s ease-in;z-index:3}
+.scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* фон кадра медленно «дышит», пока кадр на экране */
+.scene.is-on img{animation:kb 9s cubic-bezier(.4,0,.2,1) .6s both}
+@keyframes kb{from{transform:none}to{transform:scale(1.05)}}
+.chip{position:absolute;transform:translate(-50%,-50%) translateY(10px);opacity:0;display:inline-flex;align-items:center;gap:.5em;padding:8px 14px 8px 11px;border-radius:100px;background:rgba(255,255,255,.95);color:var(--ink);font:700 16px/1.2 var(--disp);white-space:nowrap;box-shadow:0 6px 18px rgba(10,37,64,.14);transition:opacity .35s ease-out,transform .45s cubic-bezier(.2,.7,.2,1)}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px var(--s)}
+.chip--b{--c:var(--blue);--s:rgba(0,87,255,.16)}.chip--r{--c:#E0524A;--s:rgba(224,82,74,.18)}
+.is-on .chip{opacity:1;transform:translate(-50%,-50%);transition-delay:calc(.55s + var(--n)*.16s)}
+.how2__prog{display:flex;gap:6px;margin-bottom:20px}
+.how2__prog i{flex:1;height:4px;border-radius:4px;background:var(--line-soft);overflow:hidden}
+.how2__prog s{display:block;height:100%;background:var(--blue);transform:scaleX(0);transform-origin:left}
+.how2__prog i.done s{transform:none}
+.how2__prog i.cur s{animation:fill var(--dur,5s) linear both}
+.how2.paused .how2__prog i.cur s,.how2.manual .how2__prog i.cur s{animation:none;transform:none}
+@keyframes fill{to{transform:none}}
+.how2__cap{display:grid}
+.cap{grid-area:2/1;opacity:0;transform:translateY(10px);transition:opacity .3s ease-out,transform .4s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.cap.is-on{opacity:1;transform:none;pointer-events:auto;transition-delay:.15s}
+.cap__n{display:block;font-size:14px;font-weight:700;letter-spacing:.06em;color:var(--blue-2);margin-bottom:10px}
+.cap h3{font-size:clamp(23px,2.3vw,30px);line-height:1.15;margin:0 0 12px}
+.cap p{color:var(--ink-2);line-height:1.6}
+.how2__nav{grid-area:3/1;display:flex;gap:10px;margin-top:24px;align-items:center}
+.nav2{height:48px;padding:0 20px;border-radius:100px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font:700 16px var(--disp);cursor:pointer;transition:border-color .2s ease-out,background-color .2s ease-out,transform .1s}
+.nav2:active{transform:scale(.97)}
+.nav2:disabled{opacity:.4;cursor:default}
+.nav2--next{background:var(--bg-deep);border-color:var(--bg-deep);color:#fff}
+.nav2--play{width:48px;padding:0;display:grid;place-items:center;margin-left:auto}
+.nav2--play svg{width:20px;height:20px;fill:var(--ink)}
+.nav2--play .pl{display:none}
+.how2.paused .nav2--play .pz,.how2.manual .nav2--play .pz{display:none}
+.how2.paused .nav2--play .pl,.how2.manual .nav2--play .pl{display:block}
+@media (hover:hover) and (pointer:fine){.nav2:hover:not(:disabled){border-color:var(--blue)}.nav2--next:hover{background:var(--blue);border-color:var(--blue)}}
+@media (max-width:900px){.how2__body{grid-template-columns:minmax(0,1fr)}.how2__stage{border-radius:20px}}
+@media (max-width:560px){.how2__tabs button span{display:none}.how2__tabs button{padding:10px 14px}.chip{font-size:13px;padding:6px 10px 6px 9px}.chip:nth-of-type(2){display:none}.how2__stage{aspect-ratio:3/2}}
+@media (prefers-reduced-motion:reduce){.scene,.scene.is-out,.scene.is-back,.chip,.cap{transition:none!important}.scene.is-on img{animation:none}.how2__prog i.cur s{animation:none;transform:none}}
+
+/* ── «Что покажет отчёт»: одна схема — возраст по белкам и вклад систем на общей оси ── */
+.rep{margin-top:clamp(28px,4vw,44px);background:#fff;border-radius:var(--r-xl);box-shadow:var(--shadow-md);padding:clamp(22px,3.4vw,44px);display:grid;gap:clamp(24px,3vw,36px)}
+.rep-top{display:grid;grid-template-columns:minmax(0,1.1fr) auto;gap:clamp(20px,4vw,56px);align-items:center}
+.rep-top h3{font-size:clamp(22px,2.2vw,28px)}
+.rep-top p{color:var(--ink-2);margin-top:10px;max-width:56ch}
+.rep-big{display:flex;align-items:center;gap:16px}
+.rep-big span{display:flex;flex-direction:column;align-items:center}
+.rep-big b{font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--ink)}
+.rep-big b.blu{color:var(--blue)}
+.rep-big small{font-size:16px;color:var(--ink-2);margin-top:6px}
+.rep-big svg{width:40px;height:16px;fill:none;stroke:#9FB4CC;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-bottom:22px}
+.rep-big em{font-style:normal;font-size:18px;font-weight:700;color:#fff;background:var(--blue);border-radius:100px;padding:8px 14px;margin:0 0 22px 6px}
+.axis{position:relative;height:112px;margin:0 8px}
+.zones{position:absolute;left:0;right:0;top:0;height:30px}
+.z{position:absolute;left:calc(var(--a)*100%);width:calc((var(--b) - var(--a))*100%);top:0;height:30px;border-radius:8px;font-size:15px;font-weight:600;display:flex;align-items:center;padding:0 10px;white-space:nowrap;overflow:hidden}
+.z-ok{background:var(--ok-soft);color:#0F6B47}.z-lt{background:#FFF4D9;color:#7A5200}.z-md{background:var(--warn-soft);color:#8A4B00}
+.ax-track{position:absolute;left:0;right:0;top:52px;height:14px;border-radius:14px;background:#E9F0FA}
+.stack{position:absolute;left:calc(var(--a)*100%);width:calc(var(--w)*100%);top:0;bottom:0;display:flex;border-radius:14px;overflow:hidden}
+.stack i{flex:var(--g) 1 0;background:var(--c);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .2s ease-out;transition-delay:calc(.3s + var(--i)*.22s)}
+.stack i+i{box-shadow:inset 2px 0 0 #fff}
+.rep:not(.in) .stack i{transform:scaleX(0)}
+.stack.dim i:not(.on){opacity:.3}
+.pin{position:absolute;top:47px;left:calc(var(--a)*100%);width:24px;height:24px;margin-left:-12px;border-radius:50%;border:4px solid #fff;box-shadow:0 2px 8px rgba(10,37,64,.25)}
+.pin-p{background:var(--ink)}
+.pin-b{background:var(--blue);transition:transform 1.3s cubic-bezier(.2,.7,.2,1) .3s}
+.rep:not(.in) .pin-b{transform:translateX(calc(-1 * var(--slide,0px)));opacity:0}
+.ticks span{position:absolute;top:84px;left:calc(var(--a)*100%);transform:translateX(-50%);font-size:16px;color:#5A6F88}
+.rep-sys{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start;padding-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--line)}
+.rep-sys h4{font:800 20px/1.3 var(--disp);color:var(--ink);margin:0 0 12px}
+.legend{display:grid;gap:4px}
+.legend button{display:grid;grid-template-columns:14px 1fr auto;align-items:center;gap:12px;width:100%;font:inherit;font-size:17px;color:var(--ink-2);text-align:left;background:none;border:0;border-radius:12px;padding:10px 12px;cursor:pointer;transition:background-color .2s ease-out,color .2s ease-out}
+.legend button i{width:14px;height:14px;border-radius:4px;background:var(--c)}
+.legend button b{font-size:16px;color:var(--ink)}
+@media (hover:hover){.legend button:hover{background:var(--bg)}}
+.legend button[aria-selected="true"]{background:var(--bg);color:var(--ink);font-weight:700}
+.sysinfo{background:var(--bg);border-radius:var(--r-lg);padding:clamp(18px,2.2vw,26px);display:grid;gap:8px}
+.sysinfo b{font:800 20px/1.25 var(--disp);color:var(--ink)}
+.sysinfo p{color:var(--ink-2);font-size:16px}
+.sysinfo p.mono{color:var(--blue-2)}
+.sysinfo .chk{padding-top:10px;border-top:1px solid var(--line)}
+.sysinfo span{font-weight:700;color:var(--ink)}
+.sysinfo i{font-style:normal}
+.pct{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;margin-top:clamp(28px,4vw,40px)}
+.pct p{color:var(--ink-2)}.pct p b{color:var(--ink)}
+.pct>div p+p{margin-top:10px}
+.pct-track{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;font-size:16px;color:#5A6F88;padding-top:34px}
+.pct-track i{height:8px;border-radius:8px;background:linear-gradient(90deg,#9DBBFF 0%,var(--blue) calc(var(--p)*100%),#D8E4F2 calc(var(--p)*100%))}
+.pct-track b{position:absolute;top:0;left:calc(1.6em + (100% - 3.2em - 24px)*var(--p) + 12px);transform:translateX(-50%);font-size:18px;color:#fff;background:var(--ink);border-radius:100px;padding:4px 10px}
+.pct-track b::after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:var(--ink)}
+/* «Важно знать» — одна мягкая плашка-предупреждение */
+.note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,2.4vw,28px);align-items:start;background:#FFF6E8;border-radius:var(--r-xl);padding:clamp(24px,3.4vw,40px)}
+.note>svg{width:44px;height:44px;fill:none;stroke:var(--warn);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.note h2{font-size:clamp(24px,2.4vw,30px);margin-bottom:10px}
+.note p{color:var(--ink-2);max-width:80ch;font-size:clamp(17px,1.4vw,18px);line-height:1.65}
+.note p b{color:var(--ink)}
+@media (max-width:900px){.rep-top,.rep-sys,.pct{grid-template-columns:1fr}.rep-big{justify-content:flex-start}}
+@media (max-width:560px){.rep-big b{font-size:44px}.rep-big em{font-size:16px;padding:6px 10px}.z{font-size:13px;padding:0 6px}.z-md,.z-lt{font-size:0}.note{grid-template-columns:1fr}}
+/* ── кому / важно: значок + одна строка ── */
+.tiles{list-style:none;margin:clamp(28px,4vw,44px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
+.tiles--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tiles li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.tiles svg{width:72px;height:72px;padding:18px;border-radius:50%;background:#fff;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;box-shadow:var(--shadow-md)}
+.tiles b{font:800 clamp(18px,1.6vw,20px)/1.3 var(--disp);letter-spacing:-.015em;color:var(--ink);max-width:16em;text-wrap:balance}
+.tiles span{color:var(--ink-2);font-size:17px;max-width:18em}
+
+/* ── как сдать: дорожка из четырёх шагов ── */
+.track{list-style:none;margin:clamp(32px,4vw,48px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative}
+.track::before{content:"";position:absolute;left:12.5%;right:12.5%;top:36px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--cyan));transform-origin:left;transition:transform 1.2s cubic-bezier(.4,0,.2,1) .2s}
+.track:not(.in)::before{transform:scaleX(0)}
+.track li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:0 10px;transition:opacity .4s ease-out,transform .5s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.2s + var(--i)*.3s)}
+.track:not(.in) li{opacity:0;transform:translateY(12px)}
+.tk-ic{width:72px;height:72px;border-radius:50%;background:var(--bg-deep);display:grid;place-items:center;margin-bottom:10px;box-shadow:0 0 0 8px #fff}
+.tk-ic svg{width:30px;height:30px;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.track b{font:800 20px/1.25 var(--disp);color:var(--ink)}
+.track li>span:last-child{color:var(--ink-2);font-size:17px}
+.memo2{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:clamp(28px,4vw,40px)}
+.memo2>span{background:var(--bg);border:1px solid var(--line);border-radius:100px;padding:10px 16px;font-size:16px;color:var(--ink)}
+.memo2 b{color:var(--blue-2);margin-right:6px}
+
+/* ── врачам: домены ── */
+.doms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 32px;margin-top:20px}
+.doms b{display:block;font-size:18px}
+.doms p{margin-top:6px;color:var(--ink-2);font-size:16px}
+.doms p.mono{color:var(--blue-2)}
+.doms p span{font-weight:700;color:var(--ink)}
+
+@media (max-width:900px){.rd{grid-template-columns:1fr}.rd-col{padding:24px 0 8px!important}.rd-col+.rd-col{border-left:0;border-top:1px solid var(--line)}.pct{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tiles--3{grid-template-columns:1fr}.doms{grid-template-columns:1fr 1fr}
+  .track{grid-template-columns:1fr 1fr;row-gap:32px}.track::before{display:none}}
+@media (max-width:560px){.tiles{grid-template-columns:1fr}.tiles li{display:grid;grid-template-columns:60px 1fr;column-gap:16px;row-gap:4px;text-align:left;align-items:center}.tiles svg{width:60px;height:60px;padding:15px;grid-row:span 2}.tiles b,.tiles span{max-width:none}
+  .track{grid-template-columns:1fr;row-gap:20px}.track li{display:grid;grid-template-columns:56px 1fr;column-gap:14px;row-gap:2px;text-align:left;align-items:center;padding:0}.tk-ic{grid-row:span 2;margin:0;width:56px;height:56px;box-shadow:none}.tk-ic svg{width:24px;height:24px}
+  .doms{grid-template-columns:1fr}}
+
+.scene.is-fade{opacity:0;transform:none;transition:opacity .8s cubic-bezier(.4,0,.2,1);z-index:3}
+/* параметры для врачей — без табличной сетки */
+.tw:has(table.kv){border:0;border-radius:0;overflow:visible}
+table.kv,table.kv tbody{display:block}
+table.kv tbody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 40px}
+table.kv tr{display:block}
+table.kv th,table.kv td{display:block;width:auto;padding:0;border:0;white-space:normal}
+table.kv th{color:var(--blue-2);font-size:16px;margin-bottom:4px}
+@media (max-width:720px){table.kv tbody{grid-template-columns:1fr}}
+/* первый экран: текст в чистом центре картинки, подложка плотнее (замечание 20.11: «Априом» наезжает на картинку) */
+@media (min-width:901px){.hero__in{max-width:min(720px,56vw)}.hero h1{font-size:clamp(30px,2.9vw,42px)}.hero::before{background:radial-gradient(46% 80% at 50% 50%,rgba(255,255,255,.97) 0%,rgba(255,255,255,.9) 58%,rgba(255,255,255,0) 90%)}}
+
+
+/* ── «Что делать с результатом»: три примера ── */
+.scen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px);margin-top:clamp(28px,4vw,44px)}
+.sc{background:#fff;border:1px solid var(--line);border-top:5px solid var(--c);border-radius:var(--r-md);padding:clamp(20px,2.4vw,28px);display:flex;flex-direction:column;gap:12px;min-width:0}
+.sc--ok{--c:var(--ok)}.sc--mid{--c:#E8B04A}.sc--hi{--c:var(--warn)}
+.sc-k{font-size:16px;font-weight:700;color:var(--ink-2)}
+.sc h3{font-size:clamp(20px,1.9vw,23px);line-height:1.25}
+.sc-res{font-weight:700;color:var(--ink)}
+.sc ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.sc li{position:relative;padding-left:20px;color:var(--ink-2)}
+.sc li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--c)}
+.sc-when{margin-top:auto;padding-top:12px;border-top:1px solid var(--line-soft);color:var(--ink-2);font-size:16px}
+.sc-when b{color:var(--ink)}
+.mini{position:relative;height:44px;margin:4px 6px 0}
+.mini::before{content:"";position:absolute;left:0;right:0;top:12px;height:3px;border-radius:3px;background:#D8E4F2}
+.mini i{position:absolute;top:6px;width:15px;height:15px;margin-left:-7.5px;border-radius:50%;border:3px solid #fff;box-shadow:0 1px 4px rgba(10,37,64,.25)}
+.mini-p{left:calc(var(--p)*100%);background:var(--ink)}
+.mini-b{left:calc(var(--b)*100%);background:var(--c)}
+.mini span{position:absolute;top:24px;left:calc(var(--p)*100%);transform:translateX(-50%);font-size:16px;color:var(--ink-2)}
+.mini .mini-bl{left:calc(var(--b)*100%);color:var(--ink);font-weight:700}
+.sc--ok .mini .mini-bl{display:none}
+.scen-note{margin-top:24px;color:var(--ink-2);max-width:72ch}
+@media (max-width:900px){.scen{grid-template-columns:1fr}}
+
+/* сноски в сцене: точка → линия → подпись */
+.co-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.co-lines path{fill:none;stroke:#3FD4FF;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 2px rgba(0,194,255,.95)) drop-shadow(0 0 5px rgba(0,194,255,.55))}
+.is-on .co-lines path{stroke-dashoffset:0;transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1);transition-delay:calc(.75s + var(--n)*.45s)}
+.co-dot{position:absolute;z-index:3;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#fff;border:2.5px solid #00C2FF;box-shadow:0 0 8px 2px rgba(0,194,255,.7);transform:scale(0)}
+.is-on .co-dot{transform:none;transition:transform .35s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.5s + var(--n)*.45s);animation:coPulse 2.2s ease-out calc(1.4s + var(--n)*.45s) infinite}
+@keyframes coPulse{0%{box-shadow:0 0 8px 2px rgba(0,194,255,.7),0 0 0 0 rgba(0,194,255,.45)}70%,100%{box-shadow:0 0 8px 2px rgba(0,194,255,.7),0 0 0 12px rgba(0,194,255,0)}}
+.co{position:absolute;z-index:3;transform:translate(0,-50%) translateX(8px);opacity:0;width:min(290px,40%);background:rgba(255,255,255,.96);border-radius:14px;padding:10px 14px;box-shadow:0 8px 24px rgba(10,37,64,.16);display:flex;flex-direction:column;gap:3px}
+.is-on .co{opacity:1;transform:translate(0,-50%);transition:opacity .35s ease-out,transform .45s cubic-bezier(.2,.7,.2,1);transition-delay:calc(1.15s + var(--n)*.45s)}
+.co b{font:800 16px/1.2 var(--disp);color:var(--ink)}
+.co span{font-size:16px;line-height:1.38;color:var(--ink-2)}
+
+@media (max-width:760px){.co,.co-lines{display:none}}
+@media (max-width:560px){.how2__stage{aspect-ratio:2/1}}
+@media (prefers-reduced-motion:reduce){.co-dot,.co,.co-lines path{transition:none!important;animation:none!important}}
+
+/* сноски на телефоне: номера на точках + список под кадром */
+.co-dot span{display:none}
+.cap-co{display:none;list-style:none;margin:14px 0 0;padding:0;gap:10px}
+.cap-co li{display:grid;grid-template-columns:24px 1fr;column-gap:10px;font-size:16px;line-height:1.45;color:var(--ink-2)}
+.cap-co li span{grid-row:span 2;width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+.cap-co b{color:var(--ink)}
+@media (max-width:760px){
+  .cap-co{display:grid}
+  .co-dot{width:26px;height:26px;margin:-13px 0 0 -13px;display:grid;place-items:center;background:var(--blue);border-color:#fff}
+  .co-dot span{display:block;font:700 13px/1 var(--mono);color:#fff}
+}
+.rep>*,.rep-top>*,.rep-sys>*{min-width:0}
+.rep-big{flex-wrap:wrap}
+@media (max-width:560px){.rep{padding:20px 16px}.rep-big{gap:10px}.rep-big b{font-size:40px}.rep-big svg{width:28px;margin-bottom:22px}.rep-big em{margin:0 0 22px}.legend button{padding:10px 8px;font-size:16px}}
+
+/* ── версия Б: «Диспансеризация и Априом Кардио» — две половины одной плашки ── */
+.vs{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(28px,4vw,44px);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-md)}
+.vs-col{padding:clamp(24px,3.4vw,44px);display:flex;flex-direction:column;gap:14px;min-width:0}
+.vs-col:first-child{background:var(--bg)}
+.vs-col--b{background:var(--bg-deep);color:#fff;position:relative}
+.vs-col--b::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(0,194,255,.18),transparent 60%);pointer-events:none}
+.vs-k{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.vs-col--b .vs-k{color:var(--cyan)}
+.vs h3{font-size:clamp(22px,2.2vw,28px);line-height:1.2}
+.vs-col--b h3{color:#fff}
+.vs ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.vs li{position:relative;padding-left:26px;color:var(--ink-2)}
+.vs-col--b li{color:#DCE8FF}
+.vs li::before{content:"";position:absolute;left:0;top:.45em;width:14px;height:14px;border-radius:50%;border:2px solid #9FB4CC}
+.vs-col--b li::before{border:0;background:var(--cyan);box-shadow:0 0 0 4px rgba(0,194,255,.2)}
+.vs-foot{margin-top:22px;color:var(--ink-2);max-width:72ch}
+.vs-foot b{color:var(--ink)}
+.rep-more{margin-top:24px;color:var(--ink-2);max-width:80ch}
+.rep-more b{color:var(--ink)}
+@media (max-width:760px){.vs{grid-template-columns:1fr}}
+.rep.plain .sysinfo p.mono{display:none}
+
+/* ════ версия Б — компоненты по эталону Гистологии ════ */
+.gb{padding:clamp(56px,7vw,88px) 0;position:relative}
+.gb--tint{background:#EAF2FD}
+.ghead{max-width:860px;margin-bottom:clamp(28px,3.6vw,44px)}
+.ghead h2{font-size:clamp(32px,4vw,52px);line-height:1.06}
+.ghead p{font-size:18px;color:var(--ink-2);margin-top:16px;max-width:760px}
+.ghead--c{text-align:center;margin-inline:auto}.ghead--c p{margin-inline:auto}
+/* первый экран: текст слева, картинка справа */
+.gh{background:linear-gradient(180deg,#F4F8FE 0%,#fff 100%);padding:clamp(36px,5vw,64px) 0}
+.gh__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center}
+.gh h1{font-size:clamp(30px,3vw,44px)}
+.gh__plain{font-size:clamp(18px,1.6vw,21px);font-weight:600;color:var(--ink-2);margin-top:18px;line-height:1.5;max-width:34em}
+.gh__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.gh__pic{margin:0;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3}
+.gh__pic img{width:100%;height:100%;object-fit:cover;object-position:22% 50%}
+/* статбенд с крупными голубыми цифрами */
+.sband{background:#fff;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);padding:0}
+.sband__in{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr)}
+.sb{display:flex;align-items:center;gap:16px;padding:26px 22px;min-width:0}
+.sb+.sb{border-left:1px solid var(--line-soft)}
+.sb b{font-size:clamp(34px,3.6vw,48px);font-weight:700;line-height:1;letter-spacing:-.04em;color:var(--cyan);white-space:nowrap}
+.sb span{font-size:16px;font-weight:600;line-height:1.35;color:var(--ink-2)}
+/* градиентная плашка с большой цифрой */
+.gdeep{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;border-radius:var(--r-xl);padding:clamp(28px,4vw,52px);color:#fff;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--bg-deep) 0%,#0B3A8C 100%)}
+.gdeep::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(0,194,255,.18),transparent 60%),radial-gradient(ellipse at bottom left,rgba(0,87,255,.25),transparent 60%);pointer-events:none}
+.gdeep>*{position:relative;min-width:0}
+.gdeep__big{font-weight:700;font-size:clamp(64px,8vw,112px);line-height:.85;letter-spacing:-.05em;color:var(--cyan);white-space:nowrap}
+.gdeep__big small{font-size:.36em;letter-spacing:-.02em;margin-left:.3em}
+.gdeep h2{color:#fff;font-size:clamp(24px,2.6vw,34px);line-height:1.15}
+.gdeep p{color:rgba(225,236,255,.88);margin-top:12px}
+.gdeep .gdeep__src{font-size:16px;color:rgba(190,212,236,.75);margin-top:16px}
+/* «Касается ли это вас?» — ситуации-переключатели */
+.gsitu{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.gsit{position:relative;display:flex;flex-direction:column;gap:14px;text-align:left;font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);padding:20px;cursor:pointer;min-width:0;transition:border-color .2s ease-out,box-shadow .2s ease-out,background-color .2s ease-out}
+@media (hover:hover){.gsit:hover{border-color:#9DBBFF}}
+.gsit__b{width:46px;height:46px;border-radius:14px;background:var(--accent-soft);display:grid;place-items:center;transition:background-color .2s ease-out}
+.gsit__b svg{width:22px;height:22px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gsit__t b{display:block;font-size:17px;line-height:1.3}
+.gsit__t span{display:block;font-size:16px;color:var(--ink-2);margin-top:6px;line-height:1.45}
+.gsit__ok{position:absolute;top:16px;right:16px;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:background-color .2s ease-out,border-color .2s ease-out}
+.gsit__ok svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.gsit[aria-pressed="true"]{border-color:var(--blue);background:#F6F9FF;box-shadow:0 0 0 3px rgba(0,87,255,.12),var(--shadow-sm)}
+.gsit[aria-pressed="true"] .gsit__b{background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.gsit[aria-pressed="true"] .gsit__b svg{stroke:#fff}
+.gsit[aria-pressed="true"] .gsit__ok{background:var(--blue);border-color:var(--blue)}
+.gsit[aria-pressed="true"] .gsit__ok svg{opacity:1}
+.gres{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(16px,3vw,32px);align-items:center;margin-top:18px;background:var(--bg-deep);color:#fff;border-radius:var(--r-lg);padding:20px clamp(20px,3vw,32px)}
+.gres__n{display:flex;align-items:baseline;gap:8px}
+.gres__n b{font-size:44px;line-height:1;color:var(--cyan);font-weight:700}
+.gres__n span{color:#B9CCE8;font-size:16px}
+.gres__t{color:#DCE8FF;font-size:17px;line-height:1.5}
+.gres .btn--primary{background:var(--blue)}
+/* тёмный блок «два вопроса — два ответа» */
+.gdark{background:var(--bg-deep);color:#fff;overflow:hidden}
+.gdark::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(0,194,255,.12),transparent 55%),radial-gradient(ellipse at bottom left,rgba(0,87,255,.18),transparent 60%);pointer-events:none}
+.gdark .wrap{position:relative}
+.gdark h2{color:#fff}.gdark h2 em{color:var(--cyan)}
+.gdark .ghead p{color:rgba(225,236,255,.85)}
+.gans{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.gans__c{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:var(--r-lg);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:12px;min-width:0}
+.gans__c--b{background:rgba(0,194,255,.10);border-color:rgba(0,194,255,.45)}
+.gans__k{font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9FB4CC}
+.gans__c--b .gans__k{color:var(--cyan)}
+.gans h3{color:#fff;font-size:clamp(21px,2vw,26px);line-height:1.2}
+.gans ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.gans li{position:relative;padding-left:22px;color:rgba(225,236,255,.88)}
+.gans li::before{content:"";position:absolute;left:2px;top:.55em;width:8px;height:8px;border-radius:50%;background:#9FB4CC}
+.gans__c--b li::before{background:var(--cyan)}
+.gans__foot{margin-top:22px;color:rgba(225,236,255,.85);max-width:72ch}
+.gans__foot b{color:#fff}
+/* примеры «что делать с результатом» — карточки как в эталоне */
+.gexs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.gex{background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:24px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:16px;min-width:0}
+.gex__h{display:flex;gap:16px;align-items:flex-start}
+.gex__tag{flex:none;width:58px;height:58px;border-radius:16px;display:grid;place-items:center;font-size:20px;font-weight:700;color:#fff;background:var(--c)}
+.gex--ok{--c:var(--ok)}.gex--mid{--c:#D99A1E}.gex--hi{--c:var(--warn)}
+.gex h3{font-size:20px;line-height:1.25}
+.gex__h p{font-size:16px;color:var(--ink-2);margin-top:4px}
+.gex ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.gex li{position:relative;padding-left:20px;color:var(--ink-2)}
+.gex li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--c)}
+.gex__w{margin-top:auto;font-size:16px;font-weight:700;color:var(--ink)}
+/* путь «как сдать» — центрированный, кружки и градиентная линия */
+.gflow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.gflow::before{content:"";position:absolute;top:36px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.gflow li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:0 12px}
+.gflow__ic{position:relative;width:72px;height:72px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;box-shadow:var(--shadow-md);margin-bottom:10px}
+.gflow__ic svg{width:28px;height:28px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gflow__ic b{position:absolute;top:-4px;right:-4px;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:14px;display:grid;place-items:center}
+.gflow h3{font-size:20px}
+.gflow p{font-size:16px;color:var(--ink-2)}
+/* вопросы карточками в две колонки */
+.gfqg{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.gfqc{display:grid;gap:14px;min-width:0}
+.gfq{background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-md);transition:border-color .2s ease-out,box-shadow .2s ease-out}
+.gfq[open]{border-color:var(--cyan-soft);box-shadow:var(--shadow-md)}
+.gfq summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:center;padding:16px 18px;font-weight:700;font-size:17px;line-height:1.35}
+.gfq summary::-webkit-details-marker{display:none}
+.gfq summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);flex:none;margin:0 4px 4px auto;transition:transform .2s ease-out}
+.gfq[open] summary::after{transform:rotate(-135deg);margin-bottom:-4px;border-color:var(--blue)}
+.gfq__ic{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;flex:none}
+.gfq__ic svg{width:20px;height:20px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gfq[open] .gfq__ic{background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.gfq[open] .gfq__ic svg{stroke:#fff}
+.gfq__q small{display:block;font-size:14px;color:var(--blue-2);margin-bottom:2px}
+.gfq__a{padding:0 20px 18px 74px;color:var(--ink-2)}
+/* тёмный финальный блок */
+.gcta{background:linear-gradient(135deg,var(--bg-deep) 0%,var(--bg-deep-2) 100%);border-radius:var(--r-xl);padding:clamp(36px,5vw,64px);color:#fff;position:relative;overflow:hidden;text-align:center}
+.gcta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 15%,rgba(0,194,255,.26),transparent 50%),radial-gradient(circle at 12% 90%,rgba(0,87,255,.3),transparent 55%)}
+.gcta>*{position:relative}
+.gcta h2{color:#fff;font-size:clamp(28px,3.6vw,46px);max-width:780px;margin:0 auto 16px}
+.gcta h2 em{color:var(--cyan)}
+.gcta p{color:rgba(255,255,255,.82);max-width:660px;margin:0 auto 28px}
+.gcta__btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.gcta__btns .btn{background:#fff;color:var(--ink)}
+.gcta__btns svg{width:22px;height:22px}
+.gcta .gcta__note{margin:24px auto 0;font-size:16px;color:rgba(255,255,255,.6)}
+@media (max-width:1024px){.gsitu{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.gh__in,.gans,.gexs,.gfqg,.gdeep{grid-template-columns:1fr}.sband__in{grid-template-columns:1fr 1fr}.sb:nth-child(3){border-left:0}.sb:nth-child(n+3){border-top:1px solid var(--line-soft)}
+  .gres{grid-template-columns:auto minmax(0,1fr)}.gres .btn{grid-column:1/-1}.gflow{grid-template-columns:1fr 1fr;row-gap:28px}.gflow::before{display:none}}
+@media (max-width:560px){.gsitu{grid-template-columns:1fr}.gsit{flex-direction:row;align-items:center;padding:14px 48px 14px 14px}.gsit__t span{display:none}
+  .gflow{grid-template-columns:1fr}.gflow li{display:grid;grid-template-columns:64px 1fr;column-gap:14px;text-align:left;align-items:center;padding:0}.gflow__ic{grid-row:span 2;width:56px;height:56px;margin:0}
+  .gfq__a{padding:0 18px 18px}.sb{flex-direction:column;align-items:flex-start;gap:6px;padding:18px 12px}.gh__cta .btn{flex:1 1 100%}}
+
+/* крупные цифры — Montserrat, как в эталоне Гистологии; моно только для мелких кодов (замечание 21.11: «иишный шрифт») */
+.sb b,.gdeep__big,.rep-big b,.gres__n b,.gex__tag,.nums b,.stats b,.pct-track b,.age-pin b,.hund-l b,.rep-big em,.gflow__ic b,.how2__tabs b,.cap__n,.sc-k,.legend button b,.mini span,.ticks span,.gfq__q small,.faq summary .n,.steps li::before{font-family:var(--disp)!important;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.sb b,.gdeep__big,.rep-big b,.gres__n b,.nums b{font-weight:800!important;letter-spacing:-.04em}
+.gdeep__big small{font-weight:700}
+.mono{font-family:var(--disp);font-variant-numeric:tabular-nums}
+.chips span,.sysinfo p.mono,.doms p.mono,.sys li small{font-family:var(--mono)}
+
+/* зоны шкалы — с зазором, чтобы плашки не сливались (22.11) */
+.z{left:calc(var(--a)*100% + 2px);width:calc((var(--b) - var(--a))*100% - 4px);border:1px solid rgba(10,37,64,.08)}
+.z-ok{border-color:rgba(26,160,109,.35)}.z-lt{border-color:rgba(217,154,30,.45)}.z-md{border-color:rgba(200,121,27,.45)}
+.vbar{background:#0A2540;color:#fff;font-size:16px}
+.vbar__in{display:flex;align-items:center;gap:6px 22px;flex-wrap:wrap;min-height:46px;padding-block:6px}
+.vbar b{font-weight:500;color:#8FAECF}
+.vbar a{color:rgba(255,255,255,.78);text-decoration:none;font-weight:600;padding:3px 0;border-bottom:2px solid transparent}
+@media (hover:hover){.vbar a:hover{color:#fff}}
+.vbar a.on{color:#fff;border-bottom-color:var(--cyan)}
+
+
+/* ── шапка: копия шапки основного сайта genomed.ru ── */
+.site-header{background:#fff;border-bottom:1px solid #E6E9EE;padding-top:env(safe-area-inset-top,0px);position:relative;z-index:var(--z-drop)}
+.site-header__row{max-width:1320px;margin-inline:auto;padding:14px 24px;display:flex;align-items:center;gap:2rem}
+.site-logo img{height:84px;width:auto}
+.site-header__center{flex:1;display:flex;flex-direction:column;align-items:center;gap:.55rem;min-width:0}
+.site-tagline{margin:0;color:var(--site-cyan);font-size:17px;font-weight:600;text-align:center}
+.site-menu{display:flex;align-items:center;gap:clamp(2rem,5vw,5rem)}
+.site-menu>a,.site-more summary{text-transform:uppercase;font-weight:700;font-size:17px;color:var(--site-menu);white-space:nowrap;cursor:pointer;transition:color .15s}
+.site-menu>a:hover,.site-more summary:hover{color:var(--site-cyan)}
+.site-more{position:relative}
+.site-more summary{list-style:none}
+.site-more summary::-webkit-details-marker{display:none}
+.site-more__panel,.site-burger__panel{position:absolute;top:calc(100% + 14px);right:0;min-width:240px;background:#fff;border:1px solid #ddd;border-radius:10px;
+  box-shadow:var(--shadow-md);padding:.6rem;display:grid}
+.site-more__panel a,.site-burger__panel a{padding:.55rem .8rem;border-radius:8px;font-size:15px;font-weight:600;color:#333}
+.site-more__panel a:hover,.site-burger__panel a:hover{background:var(--bg);color:var(--site-cyan)}
+.site-header__right{display:flex;flex-direction:column;align-items:center;gap:.25rem;flex:none}
+.site-social{display:flex;align-items:center;gap:10px;margin-bottom:.2rem}
+.site-social a{display:block;width:30px;height:30px}
+.site-social svg{width:30px;height:30px;display:block}
+.site-service{font-weight:700;font-size:16px;color:#222}
+.site-phone{font-weight:700;font-size:17px;color:#1E88E5;letter-spacing:.02em}
+.site-service:hover,.site-phone:hover{color:var(--site-cyan)}
+.site-burger{display:none;position:relative}
+.site-burger summary{list-style:none;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;color:#222}
+.site-burger summary::-webkit-details-marker{display:none}
+.site-burger summary svg{width:34px;height:34px;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;fill:none}
+@media(max-width:1100px){
+  .site-header__center{display:none}
+  .site-header__right{margin-left:auto}
+  .site-burger{display:block}
+}
+@media(max-width:560px){
+  .site-header__row{padding:10px 16px;gap:.8rem}
+  .site-logo img{height:56px}
+  .site-social a,.site-social svg{width:26px;height:26px}
+  .site-service{font-size:13px} .site-phone{font-size:14px}
+}
+@media(max-width:400px){.site-header__row{gap:.4rem;padding-inline:12px}.site-logo img{height:46px}.site-social{gap:7px}.site-burger summary{width:38px}}
+
+
+/* ── расширенный подвал (как на лендинге MEMA) ── */
+.site-footer{background:var(--bg-deep);color:#B9C9DC;padding:clamp(3rem,6vw,4.2rem) 0 calc(1.8rem + env(safe-area-inset-bottom,0px));font-size:.94rem}
+.footer-grid{display:grid;grid-template-columns:1.3fr .9fr .9fr 1fr;gap:2.4rem}
+.footer-grid>*{min-width:0}
+.footer-logo{display:inline-block;background:#fff;border-radius:var(--r-md);padding:8px 14px}
+.footer-logo img{height:44px;width:auto}
+.footer-brand p{margin:1rem 0 1.2rem;line-height:1.5;max-width:30ch}
+.site-footer h3{color:#fff;font-size:.9rem;letter-spacing:-.01em;margin:0 0 .9rem}
+.site-footer nav a,.footer-contacts a{display:block;color:#DCE8F5;margin:.5rem 0}
+.site-footer nav a:hover,.footer-contacts a:hover{color:var(--cyan)}
+.footer-contacts .mono{font-size:1.05rem;color:#fff}
+.footer-contacts small{display:block;color:#8EA3C2;font-size:.78rem;margin-top:-.35rem}
+.footer-legal{margin-top:2.6rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12);font-size:.78rem;line-height:1.55;color:#8EA3C2}
+.footer-legal p{margin:.3rem 0}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem 1.5rem}.footer-brand{grid-column:1/-1}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+
+
+/* ════ версия В (23.11): только для c.html ════ */
+/* фон секций — токен --bg house-style вместо #EAF2FD */
+.gb--tint{background:var(--bg)}
+/* мелкие цифры и подписи не меньше 16 px */
+.how2__tabs button b,.cap__n,.gfq__q small{font-size:16px}
+.gflow__ic b{width:30px;height:30px;font-size:16px;top:-6px;right:-6px}
+/* непрозрачный текст на тёмном */
+.gdark .ghead p{color:#D6E4F5}
+.gcta p{color:#E1EAF6}
+.gcta .gcta__note{color:#B9CCE8}
+
+/* плавающая навигация: на телефоне — кнопка «Разделы» со списком */
+.subnav__btn{display:none}
+@media (max-width:760px){
+  .subnav{left:auto;right:12px;max-width:none;transform:translateY(-160%)}
+  .subnav.on{transform:none}
+  .subnav__btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px 0 14px;border:0;border-radius:100px;background:var(--bg-deep);color:#fff;font:700 16px/1 var(--disp);box-shadow:0 10px 30px rgba(10,37,64,.22);cursor:pointer}
+  .subnav__btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+  .subnav nav{display:none;position:absolute;right:0;top:calc(100% + 8px);flex-direction:column;align-items:stretch;gap:2px;width:min(260px,calc(100vw - 24px));border-radius:20px;padding:8px;overflow:visible}
+  .subnav.open nav{display:flex}
+  .subnav a{padding:12px 14px;border-radius:12px;white-space:normal}
+}
+
+/* ── что будет в отчёте: шесть частей на линиях ── */
+.c-anat{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(24px,3vw,40px)}
+.c-anat li{border-top:2px solid var(--line);padding:22px 0 28px;min-width:0}
+.c-anat li:nth-child(-n+3){border-top-color:var(--blue)}
+.c-n{display:block;font:800 28px/1 var(--disp);letter-spacing:-.03em;color:var(--blue);font-variant-numeric:tabular-nums;margin-bottom:14px}
+.c-anat h3{font-size:clamp(20px,1.7vw,22px);line-height:1.2;margin-bottom:8px}
+.c-anat p{font-size:17px;color:var(--ink-2);line-height:1.55}
+.c-ex{margin-top:clamp(28px,3.4vw,40px);font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-2)}
+#otchet .rep{margin-top:14px}
+.c-zleg{display:none;list-style:none;margin:0;padding:0;gap:6px 16px;flex-wrap:wrap}
+.c-zleg li{display:flex;align-items:center;gap:8px;font-size:16px;color:var(--ink-2)}
+.c-zleg li::before{content:"";width:18px;height:12px;border-radius:4px;border:1px solid}
+.c-zleg .ok::before{background:var(--ok-soft);border-color:rgba(26,160,109,.45)}
+.c-zleg .lt::before{background:#FFF4D9;border-color:rgba(217,154,30,.55)}
+.c-zleg .md::before{background:var(--warn-soft);border-color:rgba(200,121,27,.55)}
+@media (max-width:560px){.z{font-size:0!important;padding:0}.c-zleg{display:flex}.axis{height:96px}}
+
+/* ── кому: компактный список в две колонки ── */
+.c-who{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,4vw,56px)}
+.c-who li{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--line);min-width:0}
+.c-who b{display:block;font-size:18px;line-height:1.35;color:var(--ink)}
+.c-who b+span{display:block;font-size:16px;color:var(--ink-2);margin-top:4px;line-height:1.45}
+.c-ic{flex:none;width:44px;height:44px;border-radius:var(--r-md);background:var(--accent-soft);display:grid;place-items:center}
+.c-ic svg{width:22px;height:22px;fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.c-who2{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center;margin-top:clamp(32px,4vw,48px);padding:clamp(22px,3vw,32px);border-radius:var(--r-lg);background:var(--bg)}
+.c-who2__n{font:800 clamp(48px,5.4vw,72px)/.9 var(--disp);letter-spacing:-.05em;color:var(--blue);white-space:nowrap;font-variant-numeric:tabular-nums}
+.c-who2__n small{font-size:.38em;letter-spacing:-.02em;margin-left:.25em}
+.c-who2 p{color:var(--ink-2)}
+.c-who2 p b{color:var(--ink)}
+.c-src{font-size:16px;color:var(--ink-2);margin-top:12px}
+
+/* ── отличия: таблица-развилка на тёмном ── */
+.c-vs{width:100%;min-width:0;border-collapse:collapse;table-layout:fixed}
+.c-vs thead th{font:700 16px/1.3 var(--disp);letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:0 20px 14px;color:#AFC3DC}
+.c-vs thead th:last-child{color:var(--cyan)}
+.c-vs thead td{width:24%}
+.c-vs th,.c-vs td{border-bottom:0}
+.c-vs thead th{background:none}
+.c-vs tbody th{white-space:normal}
+.c-vs tbody th{font:800 19px/1.3 var(--disp);color:#fff;text-align:left;vertical-align:top;padding:20px 20px 20px 0}
+.c-vs tbody td{vertical-align:top;padding:20px;color:#D6E4F5;font-size:17px;line-height:1.5}
+.c-vs tbody tr{border-top:1px solid #2A4564}
+.c-vs tbody td:last-child{background:#0F3556;color:#fff;font-weight:600}
+.c-vs tbody tr:first-child td:last-child{border-radius:16px 16px 0 0}
+.c-vs tbody tr:last-child td:last-child{border-radius:0 0 16px 16px}
+.c-vs__foot{margin-top:28px;color:#D6E4F5;max-width:72ch}
+.c-vs__foot b{color:#fff}
+@media (max-width:760px){
+  .c-vs thead{display:none}
+  .c-vs,.c-vs tbody,.c-vs tr,.c-vs th,.c-vs td{display:block;width:auto}
+  .c-vs tbody tr{padding:18px 0}
+  .c-vs tbody th{padding:0 0 10px}
+  .c-vs tbody td{padding:12px 16px;border-radius:12px!important}
+  .c-vs tbody td+td{margin-top:8px}
+  .c-vs tbody td::before{content:attr(data-l);display:block;font-size:16px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#AFC3DC;margin-bottom:4px}
+  .c-vs tbody td:last-child::before{color:var(--cyan)}
+}
+
+/* сцена: на телефоне кнопки сразу под картинкой, без пустоты под короткой подписью */
+@media (max-width:900px){.how2__nav{grid-area:2/1;margin:0 0 18px}.how2 .cap{grid-area:3/1}}
+
+/* ── на чём основан анализ ── */
+.c-nums{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(20px,3vw,36px)}
+.c-nums li{border-top:2px solid var(--blue);padding-top:18px;min-width:0}
+.c-nums b{display:block;font:800 clamp(34px,3.6vw,48px)/1 var(--disp);letter-spacing:-.04em;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.c-nums span{display:block;margin-top:10px;font-size:16px;line-height:1.45;color:var(--ink-2)}
+.c-how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,36px);margin-top:clamp(36px,4.5vw,56px)}
+.c-how>div{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(20px,2.4vw,28px);min-width:0}
+.c-how h3,.c-clock h3,.c-limit h3{font-size:22px;line-height:1.25;margin-bottom:10px}
+.c-how p,.c-clock p,.c-limit p{font-size:17px;color:var(--ink-2);line-height:1.55}
+.c-clock{margin-top:clamp(20px,3vw,36px);padding:clamp(20px,2.6vw,32px);border-radius:var(--r-lg);background:var(--bg-deep);background-image:radial-gradient(ellipse at top right,rgba(0,194,255,.16),transparent 60%)}
+.c-clock h3{color:#fff}
+.c-clock p{color:#D6E4F5;max-width:90ch}
+.c-limit{margin-top:16px;padding:clamp(20px,2.6vw,32px);border-radius:var(--r-lg);background:var(--warn-soft);border:1px solid #F1D3A8}
+.c-limit h3{color:#6B3A00}
+.c-limit p{color:#4A3415;max-width:90ch}
+
+/* ── как сдать: заметки под шагами ── */
+.c-notes{list-style:none;margin:clamp(32px,4vw,48px) auto 0;padding:0;max-width:980px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
+.c-notes li{display:flex;gap:14px;align-items:flex-start;font-size:16px;line-height:1.5;color:var(--ink-2);min-width:0}
+
+/* ── вопросы: аккордеон на линиях ── */
+.c-fqw{max-width:960px}
+.c-fqs{border-bottom:1px solid var(--line)}
+.c-fq{border-top:1px solid var(--line)}
+.c-fq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) 20px;gap:12px;align-items:baseline;padding:20px 0;font:700 19px/1.35 var(--disp);color:var(--ink)}
+.c-fq summary::-webkit-details-marker{display:none}
+.c-fq summary::after{content:"";width:10px;height:10px;border-right:2px solid var(--ink-2);border-bottom:2px solid var(--ink-2);transform:translateY(-3px) rotate(45deg);transition:transform .2s ease-out;justify-self:end}
+.c-fq[open] summary::after{transform:translateY(2px) rotate(-135deg);border-color:var(--blue)}
+@media (hover:hover){.c-fq summary:hover{color:var(--blue-2)}}
+.c-fq__n{font-size:17px;font-weight:800;color:var(--blue-2);font-variant-numeric:tabular-nums}
+.c-fq p{padding:0 32px 22px 56px;color:var(--ink-2);max-width:72ch}
+
+/* ── журнал ── */
+.c-reads{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(20px,3vw,36px)}
+.c-reads a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0;border-top:1px solid var(--line);font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+.c-reads svg{flex:none;width:20px;height:20px;fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease-out}
+@media (hover:hover){.c-reads a:hover{color:var(--blue-2)}.c-reads a:hover svg{transform:translate(2px,-2px)}}
+
+@media (max-width:900px){
+  .c-anat,.c-how,.c-notes,.c-reads{grid-template-columns:1fr}
+  .c-anat li:nth-child(-n+3){border-top-color:var(--line)}.c-anat li:first-child{border-top-color:var(--blue)}
+  .c-nums{grid-template-columns:1fr 1fr;row-gap:28px}
+  .c-who{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .c-anat li{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:8px;padding:18px 0 20px}
+  .c-n{grid-row:span 2;font-size:22px;margin:2px 0 0}
+  .c-who2{grid-template-columns:1fr;gap:10px}
+  .c-nums{grid-template-columns:1fr}
+  .c-fq summary{grid-template-columns:34px minmax(0,1fr) 16px;font-size:18px}
+  .c-fq p{padding:0 0 20px 46px}
+}
+@media (prefers-reduced-motion:reduce){.c-fq summary::after,.c-reads svg{transition:none}}
+/* пол читаемости: номера сносок сцены на телефоне, телефон в шапке (размеры шапки — решение 28.10, не трогаем) */
+.cap-co li{grid-template-columns:28px 1fr}
+.cap-co li span{width:28px;height:28px;font-size:16px}
+@media (max-width:760px){.co-dot{width:30px;height:30px;margin:-15px 0 0 -15px}.co-dot span{font-size:16px;font-family:var(--disp)}}
+.site-phone{color:var(--site-cyan)}
+
+/*CHROME_CSS*/
+/* шапка сайта компактнее (просьба Варвары 28.10) */
+/* шапка сайта легче: просьба Варвары 28.10 — «громоздко, шрифты огромные» */
+.site-header a{text-decoration:none}
+@media (min-width:1101px){
+  .site-header__row{padding-block:8px}
+  .site-logo img{height:52px}
+  .site-header__center{gap:.35rem}
+  .site-tagline{font-size:14px;font-weight:600}
+  .site-menu{gap:clamp(1.5rem,3vw,2.75rem)}
+  .site-menu>a,.site-more summary{font-size:14px;font-weight:700;letter-spacing:.04em}
+  .site-header__right{gap:0}
+  .site-social{gap:8px;margin-bottom:3px}
+  .site-social a,.site-social svg,.site-social img{width:24px;height:24px}
+  .site-service{font-size:14px;line-height:1.35}
+  .site-phone{font-size:15px;line-height:1.35}
+}
+/* пол читаемости (≥16px) поверх подвала сайта */
+.site-footer p,.site-footer a,.site-footer small,.site-footer h3,.footer-legal p,.site-more__panel a,.site-burger__panel a{font-size:16px}
+
+</style>
+</head>
+<body>
+<div class="vbar"><div class="wrap vbar__in"><b>Версии для сравнения:</b><a href="index.html">А&nbsp;— подробная</a><a href="b.html">Б&nbsp;— проще, через пользу</a><a href="c.html" class="on" aria-current="page">В&nbsp;— подробнее</a></div></div>
+<header class="site-header">
+  <div class="site-header__row">
+    <a class="site-logo" href="https://genomed.ru/" aria-label="Геномед — на главную"><img src="data:image/png;base64,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" alt="Геномед" width="184" height="93"></a>
+    <div class="site-header__center">
+      <p class="site-tagline">Диагностика генетических заболеваний быстро и&nbsp;точно</p>
+      <nav class="site-menu" aria-label="Основное меню">
+        <a href="https://price.genomed.ru/">Услуги и цены</a>
+        <a href="https://genomed.ru/gde-sdat-test/">Где сдать тест</a>
+        <a href="https://price.genomed.ru/doctor/index">Врачи</a>
+        <details class="site-more">
+          <summary>Ещё</summary>
+          <div class="site-more__panel">
+            <a href="https://genomed.ru/about/">О&nbsp;нас</a>
+            <a href="https://genomed.ru/partners/">Партнёрам</a>
+            <a href="https://genomed.ru/vracham/">Врачам</a>
+            <a href="https://genomed.ru/career/vakansii/">Карьера в&nbsp;Геномед</a>
+            <a href="https://genomed.ru/yuridicheskij-adres-i-rekvizity/">Правовая информация</a>
+          </div>
+        </details>
+      </nav>
+    </div>
+    <div class="site-header__right">
+      <div class="site-social">
+        <a href="https://max.ru/id7701759381_bot" target="_blank" rel="noopener" aria-label="Написать в Max"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAydpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMS1jMDAxIDc5LjE0NjI4OTk3NzcsIDIwMjMvMDYvMjUtMjM6NTc6MTQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjM2OUI0NjQzRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjM2OUI0NjQyRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNS4wIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkM4MUVGMzU2Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkM4MUVGMzU3Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+PnVEWAAAB3lJREFUeNqc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" alt="" width="30" height="30"></a>
+        <a href="https://wa.me/74956608377" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+        <a href="https://t.me/genomed_b2c_bot" target="_blank" rel="noopener" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#27A7E8" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      </div>
+      <a class="site-service" href="https://genomed.ru/klientskij-servis-24-7/">Клиентский сервис 24/7</a>
+      <a class="site-phone" href="tel:84956608377">8 (495) 660-83-77</a>
+    </div>
+    <details class="site-burger">
+      <summary aria-label="Открыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></summary>
+      <nav class="site-burger__panel" aria-label="Меню">
+        <a href="https://price.genomed.ru/">Услуги и цены</a>
+        <a href="https://genomed.ru/gde-sdat-test/">Где сдать тест</a>
+        <a href="https://price.genomed.ru/doctor/index">Врачи</a>
+        <a href="https://genomed.ru/about/">О&nbsp;нас</a>
+        <a href="https://genomed.ru/partners/">Партнёрам</a>
+        <a href="https://genomed.ru/vracham/">Врачам</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero__in">
+    <h1><em>Априом Кардио</em>&nbsp;— протеомный профиль сердца, сосудов и&nbsp;обмена веществ</h1>
+    <p class="hero__plain">Анализ крови на&nbsp;92&nbsp;белка, по&nbsp;которым видно, как работают сосуды, почки, свёртывание крови и&nbsp;обмен веществ.</p>
+    <p class="hero__sum">Уровни белков в&nbsp;крови меняются с&nbsp;возрастом, весом, давлением, курением и&nbsp;болезнями. Отчёт показывает, в&nbsp;каких системах есть отклонения и&nbsp;что стоит проверить в&nbsp;первую очередь. Исследование для взрослых, которые хотят дополнить обычный чекап; кровь сдают из&nbsp;вены, отчёт готов через 30&nbsp;рабочих дней.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" id="order-top" href="#zakaz"><span>Заказать за&nbsp;9&nbsp;800&nbsp;₽&nbsp;→</span></a>
+      <a class="btn btn--secondary" href="#proteom">Что такое протеом</a>
+    </div>
+  </div>
+  <img class="hero__bg" src="img/hero-1536.webp" srcset="img/hero-960.webp 960w, img/hero-1536.webp 1536w" sizes="100vw" decoding="async" alt="Условная иллюстрация: белки плазмы крови разной формы, антитела и эритроциты" width="1536" height="1024" fetchpriority="high">
+</section>
+
+<section class="hero-stats">
+  <div class="wrap">
+    <div class="stats" aria-label="Коротко об исследовании">
+      <div><b>Кровь из&nbsp;вены</b><span>одна пробирка, сдают в&nbsp;медицинском офисе Геномед</span></div>
+      <div><b>92 белка</b><span>сердце, сосуды, почки, обмен веществ</span></div>
+      <div><b>30 рабочих дней</b><span>до готового отчёта</span></div>
+      <div><b>9 800&nbsp;₽</b><span>направление врача не&nbsp;нужно</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="subnav" id="subnav">
+  <button type="button" class="subnav__btn" aria-expanded="false" aria-controls="subnav-list"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Разделы</span></button>
+  <nav aria-label="Разделы страницы" id="subnav-list"><a href="#otchet">Что в&nbsp;отчёте</a><a href="#komu">Кому</a><a href="#sravnenie">Отличия</a><a href="#proteom">Как работает</a><a href="#nauka">Наука</a><a href="#kak">Как сдать</a><a href="#voprosy">Вопросы</a></nav>
+</div>
+
+<section class="gb gb--tint" id="otchet">
+  <div class="wrap">
+    <div class="ghead"><h2>Что будет <em>в&nbsp;отчёте</em></h2><p>Отчёт приходит через 30&nbsp;рабочих дней. В&nbsp;нём шесть частей&nbsp;— от&nbsp;главной цифры до&nbsp;списка всех белков. Сам по&nbsp;себе он диагноз не&nbsp;ставит: его обсуждают с&nbsp;терапевтом или кардиологом.</p></div><ol class="c-anat"><li><span class="c-n">01</span><h3>Расчётный возраст</h3><p>Насколько ваш белковый профиль отличается от&nbsp;профиля людей того&nbsp;же пола и&nbsp;возраста&nbsp;— в&nbsp;годах. Это оценка с&nbsp;погрешностью, а&nbsp;не&nbsp;прогноз продолжительности жизни.</p></li><li><span class="c-n">02</span><h3>Вклад шести систем</h3><p>Какие группы белков дали самый большой вклад в&nbsp;сдвиг: сосуды, обмен веществ, почки, свёртывание крови, иммунитет и&nbsp;воспаление, соединительная ткань.</p></li><li><span class="c-n">03</span><h3>Разбор каждой системы</h3><p>Какие белки отклонились сильнее всего, в&nbsp;какую сторону и&nbsp;что это может означать.</p></li><li><span class="c-n">04</span><h3>83&nbsp;профиля заболеваний</h3><p>Насколько рисунок ваших белков похож на&nbsp;тот, что по&nbsp;данным UK Biobank чаще встречался при каждом заболевании. Это место в&nbsp;ряду, а&nbsp;не&nbsp;диагноз и&nbsp;не&nbsp;вероятность заболеть.</p></li><li><span class="c-n">05</span><h3>План для разговора с&nbsp;врачом</h3><p>Какие обычные анализы и&nbsp;консультации стоит обсудить со&nbsp;специалистом. Это не&nbsp;направление: решение принимает врач.</p></li><li><span class="c-n">06</span><h3>Все 92&nbsp;белка</h3><p>Отклонение каждого белка от&nbsp;группы сравнения&nbsp;— списком, начиная с&nbsp;самых заметных.</p></li></ol><p class="c-ex">Главная цифра на&nbsp;условном примере</p>
+    <div class="rep plain">
+      <div class="rep-top">
+        <div>
+          <h3>Возраст по&nbsp;анализу крови</h3>
+          <p>Отчёт сравнивает ваши белки с&nbsp;профилем людей того&nbsp;же пола и&nbsp;возраста и&nbsp;переводит отличие в&nbsp;годы. Здесь профиль на&nbsp;7&nbsp;лет «старше» паспорта. Это расчётная оценка, она не&nbsp;предсказывает продолжительность жизни.</p>
+        </div>
+        <div class="rep-big" aria-label="Пример: 50 лет по паспорту, 57 по анализу">
+          <span><b class="mono">50</b><small>по&nbsp;паспорту</small></span>
+          <svg viewBox="0 0 40 16" aria-hidden="true"><path d="M2 8h34m-6-6 6 6-6 6"/></svg>
+          <span><b class="mono blu">57</b><small>по&nbsp;анализу</small></span>
+          <em class="mono">+7&nbsp;лет</em>
+        </div>
+      </div>
+      <div class="axis" aria-hidden="true" data-shift="7">
+        <div class="zones">
+          <span class="z z-ok" style="--a:0.2000;--b:0.4667">норма ±2</span>
+          <span class="z z-lt" style="--a:0.4667;--b:0.6667">лёгкое ускорение</span>
+          <span class="z z-md" style="--a:0.6667;--b:1">умеренное</span>
+        </div>
+        <div class="ax-track"><div class="stack" style="--a:0.3333;--w:0.4667"><i data-k="vas" style="--g:3.2;--c:#0057FF;--i:0"></i><i data-k="met" style="--g:1.9;--c:#00A8B5;--i:1"></i><i data-k="ren" style="--g:1.0;--c:#00C2FF;--i:2"></i><i data-k="coa" style="--g:0.5;--c:#7C9CF5;--i:3"></i><i data-k="imm" style="--g:0.2;--c:#4F6D8F;--i:4"></i><i data-k="ecm" style="--g:0.2;--c:#9FB4CC;--i:5"></i></div></div>
+        <span class="pin pin-p" style="--a:0.3333"></span>
+        <span class="pin pin-b" style="--a:0.8000"></span>
+        <div class="ticks"><span class="mono" style="--a:0.0000">45</span><span class="mono" style="--a:0.3333">50</span><span class="mono" style="--a:0.6667">55</span><span class="mono" style="--a:1.0000">60</span></div>
+      </div>
+      <ul class="c-zleg" aria-hidden="true"><li class="ok">норма ±2&nbsp;года</li><li class="lt">лёгкое ускорение</li><li class="md">умеренное</li></ul>
+      <div class="rep-sys">
+        <div>
+          <h4>Из чего сложились +7&nbsp;лет</h4>
+          <div class="legend" role="tablist" aria-label="Вклад систем в сдвиг"><button type="button" role="tab" data-k="vas" aria-selected="true" tabindex="0" style="--c:#0057FF"><i></i><span>Сердце и&nbsp;сосуды</span><b class="mono">+3,2</b></button><button type="button" role="tab" data-k="met" aria-selected="false" tabindex="-1" style="--c:#00A8B5"><i></i><span>Обмен веществ</span><b class="mono">+1,9</b></button><button type="button" role="tab" data-k="ren" aria-selected="false" tabindex="-1" style="--c:#00C2FF"><i></i><span>Почки</span><b class="mono">+1,0</b></button><button type="button" role="tab" data-k="coa" aria-selected="false" tabindex="-1" style="--c:#7C9CF5"><i></i><span>Свёртывание крови</span><b class="mono">+0,5</b></button><button type="button" role="tab" data-k="imm" aria-selected="false" tabindex="-1" style="--c:#4F6D8F"><i></i><span>Иммунитет и&nbsp;воспаление</span><b class="mono">+0,2</b></button><button type="button" role="tab" data-k="ecm" aria-selected="false" tabindex="-1" style="--c:#9FB4CC"><i></i><span>Ткани и&nbsp;заживление</span><b class="mono">+0,2</b></button></div>
+        </div>
+        <div class="sysinfo" id="sysinfo" aria-live="polite"><b></b><p></p><p class="mono"></p><p class="chk" hidden><span>Что проверить:</span> <i></i></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gb" id="komu">
+  <div class="wrap">
+    <div class="ghead">
+      <h2>Кому <em>подходит</em></h2>
+      <p>Исследование для взрослых, которые хотят дополнить обычный чекап. Особенно если что-то из&nbsp;этого про вас:</p>
+    </div>
+    <ul class="c-who"><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></span><span><b>Давление бывает повышенным</b><span>Высокое давление годами нагружает стенки артерий.</span></span></li><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></span><span><b>Есть лишний вес</b><span>Он связан с&nbsp;давлением, холестерином и&nbsp;сахаром.</span></span></li><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 16h15v4H2z"/><path d="M17 16h3v4h-3z"/><path d="M20 12a2 2 0 0 0-2-2 2 2 0 0 1-2-2"/><path d="M16 4a2 2 0 0 1 2 2"/></svg></span><span><b>Курите или курили</b><span>Табак&nbsp;— один из&nbsp;главных факторов риска по&nbsp;ВОЗ.</span></span></li><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span><span><b>Повышен холестерин или сахар</b><span>Оба показателя влияют на&nbsp;сосуды.</span></span></li><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M4 18v2"/><path d="M20 18v2"/></svg></span><span><b>Мало двигаетесь</b><span>Нехватка движения&nbsp;— фактор риска по&nbsp;ВОЗ.</span></span></li><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span><b>Ранние инфаркты или инсульты у&nbsp;родственников</b><span>Наследственность повышает риск.</span></span></li><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg></span><span><b>Хочется больше, чем даёт обычный чекап</b><span>92&nbsp;белка, которые в&nbsp;обычных анализах не&nbsp;смотрят.</span></span></li><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg></span><span><b>Меняете образ жизни или начали лечение</b><span>Повторный анализ покажет, как изменился профиль.</span></span></li></ul>
+    <div class="c-who2">
+      <p class="c-who2__n">19,8<small>млн</small></p>
+      <div>
+        <p><b>Болезни сердца и&nbsp;сосудов&nbsp;— главная причина смерти в&nbsp;мире.</b> В&nbsp;2022&nbsp;году от&nbsp;них умерли 19,8&nbsp;млн человек, около трети всех смертей. По&nbsp;данным ВОЗ, большинство таких болезней можно предотвратить, если вовремя заняться факторами риска.</p>
+        <p class="c-src">ВОЗ, информационный бюллетень «Сердечно-сосудистые заболевания», 31.07.2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gb gdark" id="sravnenie">
+  <div class="wrap">
+    <div class="ghead">
+      <h2>Чем это отличается от&nbsp;<em>обычных анализов</em></h2>
+      <p>Диспансеризация нужна и&nbsp;бесплатна. Априом Кардио её не&nbsp;заменяет, а&nbsp;дополняет: смотрит на&nbsp;белки, большинство из&nbsp;которых в&nbsp;обычных анализах не&nbsp;измеряют.</p>
+    </div>
+    <table class="c-vs">
+      <thead><tr><td></td><th scope="col">Обычный чекап</th><th scope="col">Априом Кардио</th></tr></thead>
+      <tbody><tr><th scope="row">Что измеряют</th><td data-l="Обычный чекап">Давление, холестерин, сахар, ЭКГ и&nbsp;другие привычные показатели</td><td data-l="Априом Кардио">92&nbsp;белка плазмы, связанных с&nbsp;сосудами, почками, свёртыванием крови, воспалением и&nbsp;обменом веществ</td></tr><tr><th scope="row">Как читают результат</th><td data-l="Обычный чекап">Каждый показатель сравнивают с&nbsp;его нормой</td><td data-l="Априом Кардио">Для большинства белков привычной нормы нет. Важно, какие белки изменились вместе и&nbsp;в&nbsp;какую сторону</td></tr><tr><th scope="row">Что вы получаете</th><td data-l="Обычный чекап">Есть&nbsp;ли отклонения и&nbsp;факторы риска сейчас</td><td data-l="Априом Кардио">Расчётный возраст, вклад шести систем, 83&nbsp;профиля заболеваний и&nbsp;план для разговора с&nbsp;врачом</td></tr><tr><th scope="row">Направление и&nbsp;цена</th><td data-l="Обычный чекап">Диспансеризация бесплатна по&nbsp;полису ОМС</td><td data-l="Априом Кардио">Направление не&nbsp;нужно, 9&nbsp;800&nbsp;₽</td></tr></tbody>
+    </table>
+    <p class="c-vs__foot"><b>Не&nbsp;вместо, а&nbsp;вместе.</b> Давление, холестерин и&nbsp;сахар врач контролирует как обычно. С&nbsp;отчётом проще понять, о&nbsp;чём спросить на&nbsp;следующем приёме.</p>
+  </div>
+</section>
+
+<section class="gb" id="proteom">
+  <div class="wrap">
+    <div class="ghead ghead--c">
+      <h2>Как это <em>работает</em></h2>
+      <p>Пять шагов&nbsp;— от&nbsp;сосудов до&nbsp;разговора с&nbsp;врачом.</p>
+    </div>
+    <div class="how2" data-key="sb"><div class="how2__tabs" role="tablist" aria-label="Как это работает"><button type="button" role="tab" id="sbt0" aria-controls="sbp" aria-selected="true" tabindex="0"><b class="mono">01</b><span>Сердце</span></button><button type="button" role="tab" id="sbt1" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">02</b><span>Сигналы в&nbsp;крови</span></button><button type="button" role="tab" id="sbt2" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">03</b><span>Пробирка</span></button><button type="button" role="tab" id="sbt3" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">04</b><span>Измерение</span></button><button type="button" role="tab" id="sbt4" aria-controls="sbp" aria-selected="false" tabindex="-1"><b class="mono">05</b><span>Отчёт</span></button></div><div class="how2__body"><div class="how2__stage"><figure class="scene is-on" style="--zo:42% 54%" aria-hidden="false"><img src="steps/zoom-1-heart.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M680 432 V294 Q680 272 702 272 H900" pathLength="1"/></g></svg><i class="co-dot" style="left:42.5%;top:54%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:34%;--n:0"><b>Сосуды сердца</b><span>Питают сердечную мышцу. Их нагружают высокое давление, курение, холестерин и&nbsp;сахар.</span></div></figure><figure class="scene" style="--zo:60% 50%" aria-hidden="true"><img src="steps/step-4-blood.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M304 320 L900 304" pathLength="1"/></g></svg><i class="co-dot" style="left:19%;top:40%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:38%;--n:0"><b>Сигналы органов</b><span>Сосуды, почки, печень и&nbsp;жировая ткань выделяют их в&nbsp;кровь. По&nbsp;ним видно, как органы работают сейчас.</span></div></figure><figure class="scene" style="--zo:24% 32%" aria-hidden="true"><img src="steps/step-5-tube.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M384 256 V214 Q384 192 406 192 H820" pathLength="1"/></g><g style="--n:1"><path d="M384 592 L820 560" pathLength="1"/></g></svg><i class="co-dot" style="left:24%;top:32%;--n:0"><span>1</span></i><i class="co-dot" style="left:24%;top:74%;--n:1"><span>2</span></i><div class="co" style="left:52%;top:24%;--n:0"><b>Плазма</b><span>Жидкая часть крови. Для анализа хватает капли.</span></div><div class="co" style="left:52%;top:70%;--n:1"><b>Клетки крови</b><span>Оседают вниз и&nbsp;в&nbsp;анализ не&nbsp;идут.</span></div></figure><figure class="scene" style="--zo:50% 50%" aria-hidden="true"><img src="steps/pea-2-join.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M512 64 V170 Q512 192 534 192 H884" pathLength="1"/></g></svg><i class="co-dot" style="left:32%;top:8%;--n:0"><span>1</span></i><div class="co" style="left:56%;top:24%;--n:0"><b>Двойная проверка</b><span>Сигнал появляется, только если нужный белок узнали сразу два «датчика».</span></div></figure><figure class="scene" style="--zo:50% 50%" aria-hidden="true"><img src="steps/zoom-8-doctor.webp" alt="" width="1600" height="800" loading="eager" decoding="async"><svg class="co-lines" viewBox="0 0 1600 800" preserveAspectRatio="none" aria-hidden="true"><g style="--n:0"><path d="M576 496 V182 Q576 160 598 160 H900" pathLength="1"/></g></svg><i class="co-dot" style="left:36%;top:62%;--n:0"><span>1</span></i><div class="co" style="left:57%;top:20%;--n:0"><b>Отчёт</b><span>Расчётный возраст, вклад шести систем и&nbsp;план для разговора с&nbsp;врачом.</span></div></figure></div><div class="how2__cap" id="sbp" role="tabpanel" aria-labelledby="sbt0" aria-live="polite"><div class="how2__prog" aria-hidden="true"><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i><i><s></s></i></div><div class="cap is-on"><span class="cap__n mono">01 / 05</span><h3>Сердце и&nbsp;сосуды работают без остановки</h3><p>Их состояние зависит от&nbsp;давления, веса, курения, питания и&nbsp;возраста.</p><ol class="cap-co"><li><span class="mono">1</span><b>Сосуды сердца</b> Питают сердечную мышцу. Их нагружают высокое давление, курение, холестерин и&nbsp;сахар.</li></ol></div><div class="cap"><span class="cap__n mono">02 / 05</span><h3>Органы оставляют следы в&nbsp;крови</h3><p>Клетки сосудов, почек, печени и&nbsp;жировой ткани выделяют в&nbsp;кровь белки. По&nbsp;их количеству видно, как работают эти органы сейчас.</p><ol class="cap-co"><li><span class="mono">1</span><b>Сигналы органов</b> Сосуды, почки, печень и&nbsp;жировая ткань выделяют их в&nbsp;кровь. По&nbsp;ним видно, как органы работают сейчас.</li></ol></div><div class="cap"><span class="cap__n mono">03 / 05</span><h3>Хватает одной пробирки</h3><p>Кровь берут из&nbsp;вены, как для обычного анализа. Из&nbsp;неё отделяют плазму&nbsp;— для исследования нужна совсем капля.</p><ol class="cap-co"><li><span class="mono">1</span><b>Плазма</b> Жидкая часть крови. Для анализа хватает капли.</li><li><span class="mono">2</span><b>Клетки крови</b> Оседают вниз и&nbsp;в&nbsp;анализ не&nbsp;идут.</li></ol></div><div class="cap"><span class="cap__n mono">04 / 05</span><h3>92&nbsp;показателя за&nbsp;один анализ</h3><p>Каждый белок узнают сразу два антитела, поэтому сигнал появляется только от&nbsp;нужного белка. Что означает каждый, известно из&nbsp;наблюдения за&nbsp;54&nbsp;тысячами людей.</p><ol class="cap-co"><li><span class="mono">1</span><b>Двойная проверка</b> Сигнал появляется, только если нужный белок узнали сразу два «датчика».</li></ol></div><div class="cap"><span class="cap__n mono">05 / 05</span><h3>Отчёт разбирают с&nbsp;врачом</h3><p>Через 30&nbsp;рабочих дней&nbsp;— расчётный возраст, вклад шести систем и&nbsp;план для разговора с&nbsp;врачом. Его обсуждают с&nbsp;терапевтом или кардиологом.</p><ol class="cap-co"><li><span class="mono">1</span><b>Отчёт</b> Расчётный возраст, вклад шести систем и&nbsp;план для разговора с&nbsp;врачом.</li></ol></div><div class="how2__nav"><button type="button" class="nav2" data-a="prev">← Назад</button><button type="button" class="nav2 nav2--next" data-a="next">Дальше →</button><button type="button" class="nav2 nav2--play" data-a="play" aria-label="Пауза" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="pz" x="6" y="5" width="4" height="14" rx="1"/><rect class="pz" x="14" y="5" width="4" height="14" rx="1"/><path class="pl" d="M7 5v14l12-7z"/></svg></button></div></div></div></div>
+  </div>
+</section>
+
+<section class="gb gb--tint" id="nauka">
+  <div class="wrap">
+    <div class="ghead">
+      <h2>На&nbsp;чём основан <em>анализ</em></h2>
+      <p>Как измеряют белки и&nbsp;откуда известно, что значат их изменения.</p>
+    </div>
+    <ul class="c-nums"><li><b>500&nbsp;000</b><span>добровольцев 40–69&nbsp;лет вошли в&nbsp;британское исследование UK Biobank в&nbsp;2006–2010&nbsp;годах</span></li><li><b>54&nbsp;219</b><span>из&nbsp;них сдали кровь на&nbsp;исследование белков</span></li><li><b>2&nbsp;923</b><span>белка измерили у&nbsp;каждого из&nbsp;них</span></li><li><b>45&nbsp;441</b><span>участник: по&nbsp;их данным в&nbsp;2024&nbsp;году построили «белковые часы»</span></li></ul>
+    <p class="c-src">Sun B.&nbsp;B. et&nbsp;al. Nature, 2023; Argentieri M.&nbsp;A. et&nbsp;al. Nature Medicine, 2024</p>
+    <div class="c-how"><div><h3>Как измеряют</h3><p>Каждый белок ловят два антитела с&nbsp;короткими ДНК-метками. Сигнал появляется, только если оба поймали одну и&nbsp;ту&nbsp;же молекулу. Тогда метки соединяются, и&nbsp;прибор считает, сколько таких пар получилось. Так из&nbsp;одной пробирки оценивают 92&nbsp;белка сразу.</p></div><div><h3>Как читают цифры</h3><p>Результат&nbsp;— не&nbsp;концентрация в&nbsp;мг/л, а&nbsp;сравнение: выше или ниже уровень белка, чем в&nbsp;других образцах той&nbsp;же серии. Значение имеет не&nbsp;один белок, а&nbsp;то, какие белки изменились вместе.</p></div><div><h3>Откуда известен смысл</h3><p>В&nbsp;UK Biobank сравнили белки крови у&nbsp;тех, у&nbsp;кого потом развились болезни, и&nbsp;у&nbsp;тех, у&nbsp;кого нет. С&nbsp;этими связями отчёт и&nbsp;сопоставляет ваш профиль. Это статистика большой группы людей, а&nbsp;не&nbsp;прогноз для одного человека.</p></div></div>
+    <div class="c-clock">
+      <h3>Белковые часы</h3>
+      <p>Если возраст по&nbsp;белкам был выше паспортного, у&nbsp;участников UK Biobank за&nbsp;годы наблюдения чаще развивались болезни сердца, почек, печени и&nbsp;лёгких, диабет. Это связь в&nbsp;большой группе, а&nbsp;не&nbsp;прогноз для конкретного человека. В&nbsp;этих работах измеряли почти 3&nbsp;000&nbsp;белков, в&nbsp;Априом Кардио&nbsp;— 92, связанных с&nbsp;сердцем, сосудами и&nbsp;обменом веществ.</p>
+    </div>
+    <div class="c-limit">
+      <h3>Чего анализ не&nbsp;делает</h3>
+      <p>Не&nbsp;ставит диагноз и&nbsp;не&nbsp;заменяет обычное обследование. Международные рекомендации кардиологов пока не&nbsp;включают белковые панели в&nbsp;обычную оценку риска: первый шаг&nbsp;— оценка у&nbsp;врача по&nbsp;возрасту, давлению, холестерину и&nbsp;курению. Простуда, обострение или новое лекарство меняют уровни белков, поэтому кровь сдают вне острых состояний.</p>
+    </div>
+  </div>
+</section>
+
+<section class="gb" id="kak">
+  <div class="wrap">
+    <div class="ghead ghead--c">
+      <h2>Как <em>сдать</em></h2>
+      <p>Четыре шага. Как подготовиться, расскажем при записи.</p>
+    </div>
+    <ol class="gflow"><li style="--i:0"><span class="gflow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><b class="mono">1</b></span><h3>Закажите</h3><p>в&nbsp;мессенджере, направление не&nbsp;нужно</p></li><li style="--i:1"><span class="gflow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg><b class="mono">2</b></span><h3>Анкета</h3><p>короткая: рост, вес, лекарства</p></li><li style="--i:2"><span class="gflow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><b class="mono">3</b></span><h3>Кровь из&nbsp;вены</h3><p>Москва, ул.&nbsp;Донская,&nbsp;28</p></li><li style="--i:3"><span class="gflow__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><b class="mono">4</b></span><h3>Отчёт</h3><p>через 30&nbsp;рабочих дней, обсудите его с&nbsp;врачом</p></li></ol>
+    <ul class="c-notes"><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2v17.5A2.5 2.5 0 0 0 11.5 22A2.5 2.5 0 0 0 14 19.5V2"/><path d="M8 2h7"/><path d="M14 9H9"/></svg></span><span>Обычная пробирка с&nbsp;ЭДТА (сиреневая крышка), как для общего анализа крови.</span></li><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span><span>Сдавать нужно в&nbsp;пункте, который указала лаборатория: пробу важно быстро обработать.</span></li><li><span class="c-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg></span><span>При простуде, температуре или обострении анализ лучше отложить.</span></li></ul>
+  </div>
+</section>
+
+<section class="gb" id="voprosy">
+  <div class="wrap c-fqw">
+    <div class="ghead">
+      <h2>Частые <em>вопросы</em></h2>
+    </div>
+    <div class="c-fqs"><details class="c-fq" open><summary><span class="c-fq__n">01</span><span>Зачем это, если я прохожу диспансеризацию?</span></summary><p>Диспансеризация показывает, есть&nbsp;ли отклонения сейчас. Априом Кардио измеряет 92&nbsp;белка, большинство из&nbsp;которых в&nbsp;обычных анализах не&nbsp;смотрят, и&nbsp;показывает, какие системы дали самый большой вклад в&nbsp;профиль. С&nbsp;отчётом проще обсудить с&nbsp;врачом, что проверить дальше.</p></details><details class="c-fq"><summary><span class="c-fq__n">02</span><span>Чем это отличается от&nbsp;обычного анализа крови?</span></summary><p>Обычный биохимический анализ измеряет отдельные показатели с&nbsp;известными нормами: холестерин, глюкозу, креатинин. Здесь измеряют 92&nbsp;белка, и&nbsp;для большинства из&nbsp;них привычной «нормы» нет. Значение имеет не&nbsp;один белок, а&nbsp;то, какие белки и&nbsp;в&nbsp;какую сторону изменились вместе.</p></details><details class="c-fq"><summary><span class="c-fq__n">03</span><span>Что значит «возраст по&nbsp;анализу крови»?</span></summary><p>Это расчётная оценка: какому возрасту по&nbsp;данным больших исследований соответствует ваш белковый профиль сердца, сосудов и&nbsp;обмена веществ. У&nbsp;неё есть погрешность, и&nbsp;это не&nbsp;прогноз продолжительности жизни. Если профиль «старше» на&nbsp;несколько лет, врач внимательнее посмотрит на&nbsp;системы, которые дали самый большой вклад. Если «моложе», обычная профилактика всё равно нужна.</p></details><details class="c-fq"><summary><span class="c-fq__n">04</span><span>В&nbsp;отчёте высокий показатель по&nbsp;какому-то заболеванию. У&nbsp;меня оно есть?</span></summary><p>Нет, это не&nbsp;диагноз. Показатель означает, что набор изменений ваших белков похож на&nbsp;набор, который чаще встречался у&nbsp;людей с&nbsp;этим заболеванием. Он дан перцентилем: значение 85 означает, что такой рисунок у&nbsp;вас выражен сильнее, чем у&nbsp;85 из&nbsp;100&nbsp;человек в&nbsp;группе сравнения. Это место в&nbsp;ряду, а&nbsp;не&nbsp;вероятность заболеть. Подтвердить или исключить заболевание можно только стандартными методами, которые назначит врач.</p></details><details class="c-fq"><summary><span class="c-fq__n">05</span><span>Нужно&nbsp;ли направление врача?</span></summary><p>Нет, исследование можно заказать самостоятельно. Но&nbsp;с&nbsp;результатом лучше прийти к&nbsp;терапевту или кардиологу: отчёт рассчитан на&nbsp;обсуждение с&nbsp;врачом и&nbsp;сам по&nbsp;себе диагноз не&nbsp;ставит.</p></details><details class="c-fq"><summary><span class="c-fq__n">06</span><span>Это генетический тест?</span></summary><p>Нет, ДНК не&nbsp;исследуют. Анализ показывает уровни белков в&nbsp;момент взятия крови. Они меняются, поэтому результат отражает текущее состояние, а&nbsp;не&nbsp;то, что заложено с&nbsp;рождения.</p></details><details class="c-fq"><summary><span class="c-fq__n">07</span><span>Чем это отличается от&nbsp;эпигенетических часов?</span></summary><p>Эпигенетические часы оценивают возраст по&nbsp;химическим меткам на&nbsp;ДНК. Калькуляторы по&nbsp;биохимии считают его по&nbsp;нескольким рутинным показателям. Априом Кардио измеряет 92&nbsp;белка, связанных с&nbsp;сосудами, почками, свёртыванием крови, воспалением и&nbsp;обменом веществ, и&nbsp;кроме оценки возраста показывает, какая из&nbsp;этих систем дала сдвиг.</p></details><details class="c-fq"><summary><span class="c-fq__n">08</span><span>Как часто имеет смысл повторять?</span></summary><p>Это решает врач по&nbsp;результату первого анализа. Повтор полезен, когда вы меняете образ жизни или начали лечение и&nbsp;хотите увидеть, как изменился профиль.</p></details></div>
+  </div>
+</section>
+
+<section class="gb gb--tint" id="chitat">
+  <div class="wrap">
+    <div class="ghead"><h2>Читайте <em>в&nbsp;журнале Геномед</em></h2></div>
+    <ul class="c-reads"><li><a href="https://genomed.ru/journal/serdechno-sosudistaya-sistema/serdechno-sosudistye-zabolevaniya/">Сердечно-сосудистые заболевания<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li><li><a href="https://genomed.ru/journal/serdechno-sosudistaya-sistema/ateroskleroz/">Атеросклероз<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li><li><a href="https://genomed.ru/journal/serdechno-sosudistaya-sistema/gipertoniya/">Гипертония<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li><li><a href="https://genomed.ru/journal/obmen-veshhestv/narushenie-lipidnogo-obmena/">Нарушение липидного обмена<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li><li><a href="https://genomed.ru/journal/serdechno-sosudistaya-sistema/infarkt/">Инфаркт<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li><li><a href="https://genomed.ru/journal/serdechno-sosudistaya-sistema/tromboz/">Тромбоз<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></li></ul>
+  </div>
+</section>
+
+<section class="gb" id="zakaz">
+  <div class="wrap">
+    <div class="gcta">
+      <h2>Заказать <em>Априом Кардио</em></h2>
+      <p>Напишите нам: оформим заказ, пришлём анкету и&nbsp;подберём время визита. 9&nbsp;800&nbsp;₽, отчёт&nbsp;— через 30&nbsp;рабочих дней.</p>
+      <div class="gcta__btns"><a class="btn" href="https://wa.me/74956608377" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>WhatsApp</span></a>
+        <a class="btn" href="https://t.me/genomed_b2c_bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#27A7E8" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span>Telegram</span></a>
+        <a class="btn" href="https://max.ru/id7701759381_bot" target="_blank" rel="noopener"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAydpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMS1jMDAxIDc5LjE0NjI4OTk3NzcsIDIwMjMvMDYvMjUtMjM6NTc6MTQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjM2OUI0NjQzRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjM2OUI0NjQyRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNS4wIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkM4MUVGMzU2Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkM4MUVGMzU3Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+PnVEWAAAB3lJREFUeNqc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" alt="" width="30" height="30"><span>Max</span></a></div>
+      <p class="gcta__note mono">Клиентский сервис 24/7 · 8&nbsp;(495)&nbsp;660-83-77</p>
+    </div>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="footer-logo" href="https://genomed.ru/" aria-label="Геномед — на главную"><img src="data:image/png;base64,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" alt="Геномед" width="184" height="93"></a>
+        <p>Медико-генетический центр и&nbsp;лаборатория. Диагностика генетических заболеваний быстро и&nbsp;точно.</p>
+        <div class="site-social">
+          <a href="https://max.ru/id7701759381_bot" target="_blank" rel="noopener" aria-label="Написать в Max"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAydpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMS1jMDAxIDc5LjE0NjI4OTk3NzcsIDIwMjMvMDYvMjUtMjM6NTc6MTQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjM2OUI0NjQzRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjM2OUI0NjQyRjUyMDExRjBBRjY2OEUwOTEzMTMxMkEwIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNS4wIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkM4MUVGMzU2Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkM4MUVGMzU3Q0VBNzExRjA5Qjg2OThEQzc2QkZBRUYzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+PnVEWAAAB3lJREFUeNqc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" alt="" width="30" height="30"></a>
+          <a href="https://wa.me/74956608377" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+          <a href="https://t.me/genomed_b2c_bot" target="_blank" rel="noopener" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#27A7E8" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+        </div>
+      </div>
+      <!-- колонки 2–3 подстраиваются под страницу: разделы этой страницы / тематические ссылки
+           (на MEMA — «Об исследовании» + «Пациентам», на «Партнёрам» — «Партнёрам» + «Компания») -->
+      <nav aria-label="Об исследовании">
+        <h3>Об исследовании</h3><a href="#otchet">Что в отчёте</a><a href="#komu">Кому подходит</a><a href="#sravnenie">Отличия от обычных анализов</a><a href="#nauka">На чём основан анализ</a><a href="#kak">Как сдать</a><a href="#voprosy">Вопросы</a></nav>
+      <nav aria-label="Сердце и сосуды">
+        <h3>Сердце и&nbsp;сосуды</h3>
+        <a href="https://genomed.ru/journal/serdechno-sosudistaya-sistema/">Статьи о&nbsp;сердце и&nbsp;сосудах</a>
+        <a href="https://genomed.ru/journal/serdechno-sosudistaya-sistema/ateroskleroz/">Атеросклероз</a>
+        <a href="https://genomed.ru/journal/serdechno-sosudistaya-sistema/gipertoniya/">Гипертония</a>
+        <a href="https://genomed.ru/journal/obmen-veshhestv/narushenie-lipidnogo-obmena/">Нарушение липидного обмена</a>
+      </nav>
+      <div class="footer-contacts">
+        <h3>Связаться</h3>
+        <a href="tel:84956608377"><span class="mono">8 (495) 660-83-77</span></a>
+        <small>клиентский сервис 24/7</small>
+        <a href="mailto:callcenter@genomed.ru">callcenter@genomed.ru</a>
+        <a href="https://genomed.ru/gde-sdat-test/">Где сдать тест</a>
+        <a href="https://genomed.ru/">genomed.ru</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>ООО Геномед · ОГРН 1077763509977 · ИНН 7701759381 · Лицензия №&nbsp;Л041-01050-61/00589962 от&nbsp;28.01.2019 · 105005, г.&nbsp;Москва, ул.&nbsp;Бауманская, д.&nbsp;50/12, стр.&nbsp;1</p>
+      <p>Информация на&nbsp;странице носит справочный характер и&nbsp;не&nbsp;является публичной офертой. Условия сотрудничества определяются договором. Имеются противопоказания, необходима консультация специалиста.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // заказ: карточки на price.genomed.ru пока нет — пишем в WhatsApp с готовым текстом
+  // ponytail: заменить на ссылку корзины price.genomed.ru, когда Бочарова внесёт услугу в «Тесты»
+  const WA='https://wa.me/74956608377?text='+encodeURIComponent('Здравствуйте! Хочу заказать Априом Кардио (9 800 ₽).');
+  const top=document.getElementById('order-top'); top.href=WA; top.target='_blank'; top.rel='noopener';
+
+  const $=id=>document.getElementById(id);
+
+  // «Откуда сдвиг»: система → что отражает, ведущие белки, что проверят (по шаблону отчёта лаборатории)
+  const SYS={
+    vas:['Сосуды','Белки внутренней выстилки сосудов и молекулы, которыми к стенке прикрепляются клетки крови. Связаны с состоянием артерий, давлением и атеросклерозом.','ICAM1 · VCAM1 · ENG · ITGAM','ЭКГ, липидный профиль, контроль давления'],
+    met:['Обмен веществ','Белки углеводного и жирового обмена, связанные с поджелудочной железой, печенью и жировой тканью. Изменения связаны с диабетом и ожирением.','DPP4 · IGFBP3 · CNDP1 · PLA2G7','глюкоза, гликированный гемоглобин, инсулин, липидный профиль'],
+    ren:['Почки','Белки, связанные с фильтрацией крови и работой почечных канальцев, в том числе цистатин C.','CST3 · UMOD · CA1 · CA3','креатинин, цистатин C, скорость клубочковой фильтрации'],
+    coa:['Свёртывание крови','Факторы свёртывания, их регуляторы и белки тромбоцитов. Отклонения могут быть связаны со склонностью к тромбозам.','F11 · GP1BA · SERPINA5','коагулограмма — особенно если в семье были тромбозы'],
+    ecm:['Соединительная ткань','Белки каркаса тканей и ферменты, которые его перестраивают: заживление, рубцевание, фиброз в сердце, печени и лёгких.','TIMP1 · COL18A1 · TNXB','отдельно обычно ничего — врач смотрит на другие системы'],
+    imm:['Иммунитет','Рецепторы иммунных клеток и белки, которые сдерживают избыточный иммунный ответ. Показывают признаки хронического воспаления.','LILRB5 · FCGR3B · C2','общий анализ крови с лейкоцитарной формулой']};
+  const sbtn=[...document.querySelectorAll('.legend [role=tab]')], si=$('sysinfo'), stk=document.querySelector('.stack');
+  const showSys=b=>{sbtn.forEach(x=>{const on=x===b;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1});
+    const [n,t,p,c]=SYS[b.dataset.k]; si.querySelector('b').textContent=n; const ps=si.querySelectorAll('p'); ps[0].textContent=t; ps[1].textContent=p; si.querySelector('i').textContent=c;
+    if(stk){stk.classList.toggle('dim',true); stk.querySelectorAll('i').forEach(x=>x.classList.toggle('on',x.dataset.k===b.dataset.k))}};
+  sbtn.forEach((b,i)=>{b.addEventListener('click',()=>showSys(b));
+    b.addEventListener('keydown',e=>{const d=e.key==='ArrowDown'||e.key==='ArrowRight'?1:e.key==='ArrowUp'||e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();const n=sbtn[(i+d+sbtn.length)%sbtn.length];n.focus();showSys(n)}})});
+  if(sbtn.length) showSys(sbtn[0]);
+
+  // «Что покажет отчёт», «Как сдать»: схемы проигрываются один раз при появлении
+  // маркер «по белкам» выезжает из точки «по паспорту»: расстояние = 3 года из 15 на оси
+  const ax=document.querySelector('.axis'); const setSlide=()=>ax&&ax.style.setProperty('--slide',ax.offsetWidth*(+ax.dataset.shift||3)/15+'px'); setSlide(); addEventListener('resize',setSlide);
+  const vis=[...document.querySelectorAll('.rep,.track')];
+  if(still||!('IntersectionObserver' in window)) vis.forEach(v=>v.classList.add('in'));
+  else{const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.35});
+    vis.forEach(v=>io.observe(v))}
+
+  // плавающая навигация + текущий раздел
+  const sub=$('subnav'), links=[...sub.querySelectorAll('a')], nav=sub.querySelector('nav');
+  new IntersectionObserver(es=>sub.classList.toggle('on',!es[0].isIntersecting&&es[0].boundingClientRect.top<0)).observe(document.querySelector('.hero-stats'));
+  const secIO=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting) return;
+    links.forEach(a=>a.classList.toggle('cur',a.getAttribute('href')==='#'+e.target.id));
+    const c=sub.querySelector('.cur'); if(c) nav.scrollTo({left:c.offsetLeft-nav.clientWidth/2+c.clientWidth/2,behavior:still?'auto':'smooth'});
+  }),{rootMargin:'-45% 0px -50% 0px'});
+  links.forEach(a=>secIO.observe(document.querySelector(a.getAttribute('href'))));
+
+  // вкладки «Пациентам / Врачам»
+  const tabs=[...document.querySelectorAll('.tabs [role=tab]')];
+  function sel(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;$(x.getAttribute('aria-controls')).hidden=!on})}
+  const openDoc=()=>{if(location.hash==='#vracham') sel($('t-doc'))};
+  addEventListener('hashchange',openDoc); openDoc();
+  tabs.forEach((t,i)=>{
+    t.addEventListener('click',()=>sel(t));
+    t.addEventListener('keydown',e=>{const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){const n=tabs[(i+d+tabs.length)%tabs.length];n.focus();sel(n)}});
+  });
+})();
+</script>
+<script>
+// первый экран: обложка + цифры ровно в окно
+(()=>{const hero=document.querySelector('.hero'), hs=document.querySelector('.hero-stats'), hdr=document.querySelector('.site-header'); if(!hero) return;
+const fit=()=>{hero.style.minHeight=innerWidth>900?Math.min(620,innerHeight-hdr.offsetHeight-hs.offsetHeight)+'px':''};
+fit(); addEventListener('resize',fit); document.fonts&&document.fonts.ready.then(fit);})();
+</script>
+<script>
+// сцена «от сердца до отчёта»: вкладки, «Назад / Дальше», стрелки, свайп; автопроигрывание с паузой
+(()=>{
+  const root=document.querySelector('.how2'); if(!root) return;
+  const tabs=[...root.querySelectorAll('[role=tab]')], scenes=[...root.querySelectorAll('.scene')],
+        caps=[...root.querySelectorAll('.cap')], prog=[...root.querySelectorAll('.how2__prog i')],
+        prev=root.querySelector('[data-a=prev]'), next=root.querySelector('[data-a=next]'), play=root.querySelector('[data-a=play]'),
+        panel=root.querySelector('[role=tabpanel]'), n=tabs.length, DUR=5200;
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let cur=0, timer=0, auto=!still;
+  root.style.setProperty('--dur',DUR+'ms');
+  function go(i,focus){
+    const old=cur; cur=(i+n)%n;
+    scenes.forEach((s,k)=>{s.classList.remove('is-out','is-back','is-fade');
+      if(k===old&&k!==cur) s.classList.add(cur===old+1&&s.hasAttribute('data-soft')?'is-fade':cur>old||(old===n-1&&cur===0)?'is-out':'is-back');
+      s.classList.toggle('is-on',k===cur); s.setAttribute('aria-hidden',String(k!==cur))});
+    tabs.forEach((t,k)=>{const on=k===cur;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1});
+    caps.forEach((c,k)=>c.classList.toggle('is-on',k===cur));
+    prog.forEach((p,k)=>{p.classList.toggle('done',k<cur);p.classList.remove('cur')}); void root.offsetWidth; prog[cur].classList.add('cur');
+    panel.setAttribute('aria-labelledby',tabs[cur].id);
+    prev.disabled=cur===0; next.textContent=cur===n-1?'Сначала ↺':'Дальше →';
+    if(focus) tabs[cur].focus();
+    tabs[cur].scrollIntoView({block:'nearest',inline:'nearest'});
+    clearTimeout(timer); if(auto&&cur<n-1) timer=setTimeout(()=>go(cur+1),DUR);
+  }
+  const manual=()=>{auto=false;clearTimeout(timer);root.classList.add('manual');play.setAttribute('aria-pressed','true');play.setAttribute('aria-label','Воспроизвести')};
+  tabs.forEach((t,k)=>t.addEventListener('click',()=>{manual();go(k)}));
+  prev.addEventListener('click',()=>{manual();go(cur-1)});
+  next.addEventListener('click',()=>{manual();go(cur===n-1?0:cur+1)});
+  play.addEventListener('click',()=>{
+    if(auto){manual();return}
+    auto=true;root.classList.remove('manual','paused');play.setAttribute('aria-pressed','false');play.setAttribute('aria-label','Пауза');
+    go(cur===n-1?0:cur+1);
+  });
+  root.querySelector('[role=tablist]').addEventListener('keydown',e=>{
+    const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(d){e.preventDefault();manual();go(cur+d,true)}});
+  const stage=root.querySelector('.how2__stage'); let x0=null;
+  stage.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',e=>{if(x0===null) return; const dx=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(dx)>40){manual();go(dx<0?Math.min(cur+1,n-1):Math.max(cur-1,0))}});
+  // старт — когда сцена в зоне видимости; остановить можно кнопкой паузы или выбором шага
+  if(still){manual();go(0);return}
+  root.classList.add('paused'); go(0); clearTimeout(timer);
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();root.classList.remove('paused');go(0)}},{threshold:.4}).observe(stage);
+})();
+</script>
+<script>
+// версия Б: «Касается ли это вас?» — отметки и вывод
+(()=>{
+  const cards=[...document.querySelectorAll('.gsit')], n=document.getElementById('risk-n'), t=document.getElementById('risk-t'); if(!cards.length) return;
+  const msg=k=>k===0?'Отметьте, что про вас,\u00a0— и\u00a0мы подскажем, зачем вам этот анализ.'
+    :k<=2?'Даже один-два фактора нагружают сосуды. Анализ покажет, какие системы уже дают сдвиг и\u00a0что проверить первым.'
+    :'Несколько факторов сразу\u00a0— повод не\u00a0откладывать. Анализ покажет, какие системы сдают первыми и\u00a0что обсудить с\u00a0врачом.';
+  cards.forEach(c=>c.addEventListener('click',()=>{c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')!=='true');
+    const k=cards.filter(x=>x.getAttribute('aria-pressed')==='true').length; n.textContent=k; t.textContent=msg(k)}));
+})();
+</script>
+
+<script>
+// версия В: на телефоне разделы прячутся в кнопку «Разделы»
+(()=>{const sub=document.getElementById('subnav'), btn=sub&&sub.querySelector('.subnav__btn'); if(!btn) return;
+const set=o=>{sub.classList.toggle('open',o);btn.setAttribute('aria-expanded',String(o))};
+btn.addEventListener('click',()=>set(!sub.classList.contains('open')));
+sub.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>set(false)));
+document.addEventListener('click',e=>{if(!sub.contains(e.target)) set(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sub.classList.contains('open')){set(false);btn.focus()}});})();
+</script>
+
+</body>
+</html>
