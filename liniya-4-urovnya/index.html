@@ -330,6 +330,25 @@ section{padding:clamp(56px,8vw,104px) 0;position:relative}
 .mgrid{max-width:none!important;grid-template-columns:minmax(150px,.3fr) minmax(0,1fr)}
 @media (max-width:640px){.hero-lv{display:grid;grid-template-columns:repeat(2,auto);justify-content:center}.mgrid{grid-template-columns:minmax(0,1fr)}}
 
+/* ── v4 ── */
+.hero{position:relative;background:#F1F4FB url(img/hero-bg.webp) 50% 100%/cover no-repeat;min-height:min(86vh,820px);display:flex;align-items:flex-start}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 75% 60% at 50% 28%,rgba(244,248,254,.97) 40%,rgba(244,248,254,.75) 62%,rgba(244,248,254,0) 85%)}
+.hero .wrap{position:relative;padding-top:clamp(56px,8vw,110px);padding-bottom:48px}
+.hero h1{margin-top:0}
+@media (max-width:640px){.hero{min-height:720px;background-size:auto 46%}.hero::before{background:linear-gradient(180deg,#F4F8FE 0%,#F4F8FE 58%,rgba(244,248,254,0) 74%)}}
+.toc{position:fixed!important;left:0;right:0;top:0;transform:translateY(-110%);transition:transform .2s ease-out;box-shadow:0 6px 20px rgba(10,37,64,.08)}
+.toc.show{transform:none}
+@media (prefers-reduced-motion:reduce){.toc{transition:none}}
+.sit{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.sit li{display:flex;flex-direction:column;gap:8px;padding:22px 24px 20px;border-radius:var(--r-md);background:var(--bg);border-left:6px solid var(--c)}
+.sit b{font-size:20px;font-weight:800;line-height:1.3;letter-spacing:-.01em}
+.sit p{margin:0;font-size:17px;color:var(--ink-2)}
+.sit a{margin-top:auto;padding-top:6px;font-weight:800;font-size:16px;color:var(--ci);text-decoration:none}
+.sit a:hover{text-decoration:underline}
+@media (max-width:760px){.sit{grid-template-columns:minmax(0,1fr)}}
+.lvpic{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;background:#F1F4FB}
+.tcard .lvpic{aspect-ratio:4/3}
+
 /* ── шапка: копия шапки основного сайта genomed.ru ── */
 .site-header{background:#fff;border-bottom:1px solid #E6E9EE;padding-top:env(safe-area-inset-top,0px);position:relative;z-index:var(--z-drop)}
 .site-header__row{max-width:1320px;margin-inline:auto;padding:14px 24px;display:flex;align-items:center;gap:2rem}
@@ -435,7 +454,7 @@ section{padding:clamp(56px,8vw,104px) 0;position:relative}
     </details>
   </div>
 </header>
-<nav class="toc" aria-label="Оглавление учебника"><div class="wrap">
+<nav class="toc" aria-label="Оглавление страницы"><div class="wrap">
   <a href="#igra">Игра</a>
   <a href="#dnk" style="--c:var(--g)"><i></i>ДНК</a>
   <a href="#belki" style="--c:var(--a)"><i></i>Белки</a>
@@ -450,22 +469,28 @@ section{padding:clamp(56px,8vw,104px) 0;position:relative}
 <main id="top">
 <section class="hero" aria-labelledby="h1">
   <div class="wrap">
-    <span class="eyebrow">Короткий учебник о здоровье</span>
-    <h1 id="h1">Четыре уровня, <em>из которых состоите вы</em></h1>
-    <p class="plain">Геном, белки крови, микробиом кишечника и метаболиты — простыми словами, с фактами и игрой.</p>
-    <div class="act"><a class="btn btn--primary" href="#igra"><span>Начать с игры</span></a><a class="btn btn--white" href="#kviz">Пройти квиз</a></div>
+    <h1 id="h1">Разберитесь в своём здоровье, <em>пока ничего не болит</em></h1>
+    <p class="plain">Наследственность, сердце и сосуды, кишечник, обмен веществ. Четыре исследования Геномед — и разбор простыми словами: что это значит и что обсудить с врачом.</p>
+    <div class="act"><a class="btn btn--primary" href="#situacii"><span>Подобрать исследование</span></a><a class="btn btn--white" href="#issledovaniya">Все исследования</a></div>
     <ul class="hero-lv"><li style="--c:var(--g)">ДНК</li><li style="--c:var(--a)">Белки</li><li style="--c:var(--m)">Микробиом</li><li style="--c:var(--x)">Метаболиты</li></ul>
   </div>
-  <div class="hero-art" role="img" aria-label="Четыре прозрачных слоя: ДНК, белки, микробиом, метаболиты"></div>
 </section>
 
-<div class="statband" aria-label="Факты из учебника"><div class="wrap">
+<div class="statband" aria-label="Факты"><div class="wrap">
   <div class="sb" style="--ci:var(--g-ink)"><b>3 млрд</b><span>«букв» в геноме</span></div>
   <div class="sb" style="--ci:var(--a-ink)"><b>10 000×</b><span>может вырасти белок воспаления</span></div>
   <div class="sb" style="--ci:var(--m-ink)"><b>150×</b><span>больше генов у микробов кишечника, чем у человека</span></div>
   <div class="sb" style="--ci:var(--x-ink)"><b>2–3 ч</b><span>— и сахар после еды возвращается к исходному</span></div>
 </div></div>
 <div class="ticker" aria-hidden="true"><div>GATTACA · ATGCGTACCTAG · ДНК → РНК → БЕЛОК → МЕТАБОЛИТ · CCTAGGATTCGA · 38 ТРЛН БАКТЕРИЙ · TTAGGCATGCAA · 92 БЕЛКА · AGCTTGACCGTA · 200 000+ ВЕЩЕСТВ В БАЗЕ МЕТАБОЛИТОВ · GGATCCTTAGCA · ДНК → РНК → БЕЛОК → МЕТАБОЛИТ</div></div>
+
+<section id="situacii" aria-labelledby="h-sit" style="background:#fff">
+  <div class="wrap">
+    <div class="sec-h"><p class="section-eyebrow">С чем приходят</p><h2 id="h-sit">Узнаёте <em>себя?</em></h2>
+      <p>Найдите свою ситуацию — рядом исследование, которое поможет в ней разобраться. Результат обсуждают с врачом: исследования не ставят диагноз и не заменяют обычные анализы.</p></div>
+    <ul class="sit"><li style="--c:var(--g);--ci:var(--g-ink)"><b>У родственников были серьёзные болезни, и хочется понять, что касается вас</b><p>Ваша собственная предрасположенность — и что обсудить с врачом.</p><a href="#issledovaniya">Геноскоп →</a></li><li style="--c:var(--g);--ci:var(--g-ink)"><b>Врач назначает лекарство, а вы не знаете, подойдёт ли обычная доза</b><p>Раздел о 55 препаратах по руководствам CPIC — покажите его врачу.</p><a href="#issledovaniya">Геноскоп →</a></li><li style="--c:var(--a);--ci:var(--a-ink)"><b>У родственников были ранние инфаркты или инсульты</b><p>Ещё один взгляд на сердце и сосуды — вместе с обследованием у врача.</p><a href="#issledovaniya">Априом Кардио →</a></li><li style="--c:var(--a);--ci:var(--a-ink)"><b>Обычные анализы в норме, но хочется знать больше</b><p>92 белка крови, связанных с сердцем, сосудами и обменом веществ.</p><a href="#issledovaniya">Априом Кардио →</a></li><li style="--c:var(--m);--ci:var(--m-ink)"><b>Меняете рацион и хотите видеть, работает ли это</b><p>Повторный анализ через 3–6 месяцев после начала изменений покажет, как сдвинулся состав.</p><a href="#issledovaniya">Микробиом кишечника →</a></li><li style="--c:var(--m);--ci:var(--m-ink)"><b>Обсуждаете с врачом пробиотики и пребиотики</b><p>Основа для подбора, а не выбор наугад.</p><a href="#issledovaniya">Микробиом кишечника →</a></li><li style="--c:var(--g);--ci:var(--g-ink)"><b>Не хочется сдавать всё подряд «на всякий случай»</b><p>На какие темы обратить внимание и какие анализы обсудить с врачом.</p><a href="#issledovaniya">Геноскоп →</a></li><li style="--c:var(--x);--ci:var(--x-ink)"><b>Меняете питание, сон или нагрузки и хотите увидеть, как отвечает организм</b><p>Метаболиты меняются быстрее всего — анализ покажет обмен веществ на момент сдачи.</p><a href="#issledovaniya">Метаболом · скоро →</a></li></ul>
+  </div>
+</section>
 
 <section id="igra" aria-labelledby="h-game">
   <div class="wrap">
@@ -490,7 +515,7 @@ section{padding:clamp(56px,8vw,104px) 0;position:relative}
       <div><p class="section-eyebrow">Глава 1 · фундамент</p><h2 id="h-dnk"><em>ДНК</em> — книга рецептов в каждой клетке</h2>
         <p class="def-l">Геном — полный набор ДНК человека. Это инструкция, которую мы получаем от родителей и которая почти не меняется в течение жизни.</p></div></div>
     <div class="ch-body">
-      <div><div class="analogy"><div class="lvimg" role="img" aria-label="Голограмма: хромосомы и буквы ДНК" style="background-position:50% 100%"></div><div class="tx"><p class="k">АНАЛОГИЯ</p>
+      <div><div class="analogy"><img class="lvpic" src="img/lvl-dna.webp" alt="Спираль ДНК" loading="lazy"><div class="tx"><p class="k">АНАЛОГИЯ</p>
         <p>В каждой клетке лежит одна и та же книга рецептов. С рождения она почти не меняется, но какие рецепты и как часто идут в дело, зависит от жизни. ДНК показывает возможности и предрасположенности, а не то, что происходит сейчас.</p></div></div>
         <p class="speed"><i></i>Как меняется: не меняется — это то, с чем вы родились.</p></div>
       <div>
@@ -512,7 +537,7 @@ section{padding:clamp(56px,8vw,104px) 0;position:relative}
       <div><p class="section-eyebrow">Глава 2 · рабочие молекулы</p><h2 id="h-belki"><em>Белки</em> — работники, нанятые по рецептам</h2>
         <p class="def-l">Белки организм собирает по инструкциям из генов. В крови они переносят вещества, защищают от инфекций и передают сигналы между органами.</p></div></div>
     <div class="ch-body">
-      <div><div class="analogy"><div class="lvimg" role="img" aria-label="Голограмма: белковые молекулы" style="background-position:50% 80%"></div><div class="tx"><p class="k">АНАЛОГИЯ</p>
+      <div><div class="analogy"><img class="lvpic" src="img/lvl-protein.webp" alt="Молекула белка" loading="lazy"><div class="tx"><p class="k">АНАЛОГИЯ</p>
         <p>Если геном — книга рецептов, белки — работники кухни: повара, курьеры, охрана. По тому, кто сейчас на смене и сколько их, видно, чем занят организм. При воспалении «охраны» становится в разы больше.</p></div></div>
         <p class="speed"><i></i>Как меняется: за часы и недели — отражает то, что происходит сейчас.</p></div>
       <div>
@@ -534,7 +559,7 @@ section{padding:clamp(56px,8vw,104px) 0;position:relative}
       <div><p class="section-eyebrow">Глава 3 · соседи</p><h2 id="h-mikrobiom"><em>Микробиом</em> — соседи со своими книгами рецептов</h2>
         <p class="def-l">Микробиом кишечника — сообщество микробов, в основном бактерий, которые живут в кишечнике, вместе с их генами.</p></div></div>
     <div class="ch-body">
-      <div><div class="analogy"><div class="lvimg" role="img" aria-label="Голограмма: бактерии кишечника" style="background-position:50% 60%"></div><div class="tx"><p class="k">АНАЛОГИЯ</p>
+      <div><div class="analogy"><img class="lvpic" src="img/lvl-microbiome.webp" alt="Бактерии кишечника" loading="lazy"><div class="tx"><p class="k">АНАЛОГИЯ</p>
         <p>Соседи по кухне со своими рецептами. Они перерабатывают то, что человек сам переварить не может, например клетчатку. Часть того, что они «приготовили», попадает в общий котёл — в кровь.</p></div></div>
         <p class="speed"><i></i>Как меняется: отвечает на питание за дни, но основа держится годами.</p></div>
       <div>
@@ -556,7 +581,7 @@ section{padding:clamp(56px,8vw,104px) 0;position:relative}
       <div><p class="section-eyebrow">Глава 4 · прямо сейчас</p><h2 id="h-metabolity"><em>Метаболиты</em> — что на кухне прямо сейчас</h2>
         <p class="def-l">Метаболом — мелкие вещества обмена в крови: сахара, аминокислоты, жиры, витамины. Они появляются в работе клеток, приходят с едой, лекарствами и от кишечных микробов.</p></div></div>
     <div class="ch-body">
-      <div><div class="analogy"><div class="lvimg" role="img" aria-label="Голограмма: цикл обмена веществ" style="background-position:50% 38%"></div><div class="tx"><p class="k">АНАЛОГИЯ</p>
+      <div><div class="analogy"><img class="lvpic" src="img/lvl-metabolites.webp" alt="Молекула глюкозы — один из метаболитов" loading="lazy"><div class="tx"><p class="k">АНАЛОГИЯ</p>
         <p>Продукты и заготовки на кухне прямо сейчас: что принесли, что приготовили, что осталось. Через час после еды картина уже другая.</p></div></div>
         <p class="speed"><i></i>Как меняется: быстрее всех уровней — за часы, после каждой еды.</p></div>
       <div>
@@ -621,13 +646,13 @@ section{padding:clamp(56px,8vw,104px) 0;position:relative}
 
 <section id="issledovaniya" aria-labelledby="h-tests" style="background:#fff">
   <div class="wrap">
-    <div class="sec-h"><p class="section-eyebrow">Исследования Геномед</p><h2 id="h-tests">Для каждого уровня — <em>своё исследование</em></h2>
+    <div class="sec-h"><p class="section-eyebrow">Исследования Геномед</p><h2 id="h-tests">Какое исследование <em>подойдёт вам</em></h2>
       <p>Каждое отвечает на свой вопрос, сдать можно любое отдельно. Результаты обсуждают с врачом: обычные анализы и диспансеризацию они не заменяют.</p></div>
     <div class="tests">
-      <article class="tcard" style="--ci:var(--g-ink)"><div class="lvimg" aria-hidden="true" style="background-position:50% 100%"></div><div class="b"><p class="lv">01 · ДНК</p><h3>Геноскоп</h3><p>Весь геном по одному анализу крови: предрасположенности, лекарства, питание, сон. Отчёт дополняется без повторной сдачи.</p><p class="meta">Кровь из вены · 30 рабочих дней</p><button type="button" class="btn btn--primary cart" data-cart><span>В корзину</span></button></div></article>
-      <article class="tcard" style="--ci:var(--a-ink)"><div class="lvimg" aria-hidden="true" style="background-position:50% 80%"></div><div class="b"><p class="lv">02 · БЕЛКИ</p><h3>Априом Кардио</h3><p>92 белка крови, связанных с сердцем, сосудами и обменом веществ. Белковый профиль для разговора с врачом.</p><p class="meta">Кровь из вены · 30 рабочих дней</p><button type="button" class="btn btn--primary cart" data-cart><span>В корзину</span></button></div></article>
-      <article class="tcard" style="--ci:var(--m-ink)"><div class="lvimg" aria-hidden="true" style="background-position:50% 60%"></div><div class="b"><p class="lv">03 · МИКРОБИОМ</p><h3>Микробиом кишечника</h3><p>Кто живёт в кишечнике и что делает: состав до вида и метаболический портрет сообщества.</p><p class="meta">Сбор дома · 18 рабочих дней</p><button type="button" class="btn btn--primary cart" data-cart><span>В корзину</span></button></div></article>
-      <article class="tcard" style="--ci:var(--x-ink)"><div class="lvimg" aria-hidden="true" style="background-position:50% 38%"></div><div class="b"><p class="lv">04 · МЕТАБОЛИТЫ</p><h3>Метаболом</h3><p>Как идёт обмен веществ прямо сейчас. Исследование готовится к запуску — напишите нам, сообщим.</p><p class="meta">Скоро</p><button type="button" class="btn btn--soft cart" data-soon><span>Сообщить о запуске</span></button></div></article>
+      <article class="tcard" style="--ci:var(--g-ink)"><img class="lvpic" src="img/lvl-dna.webp" alt="" loading="lazy"><div class="b"><p class="lv">01 · ДНК</p><h3>Геноскоп</h3><p>Поможет понять, к чему вы склонны от рождения, как гены влияют на действие лекарств и на что обратить внимание. Кровь сдаётся один раз, отчёт дополняется без повторной сдачи.</p><p class="meta">Кровь из вены · 30 рабочих дней</p><button type="button" class="btn btn--primary cart" data-cart><span>В корзину</span></button></div></article>
+      <article class="tcard" style="--ci:var(--a-ink)"><img class="lvpic" src="img/lvl-protein.webp" alt="" loading="lazy"><div class="b"><p class="lv">02 · БЕЛКИ</p><h3>Априом Кардио</h3><p>Ещё один взгляд на сердце и сосуды: 92 белка крови для разговора с врачом. Не заменяет обычные анализы и диспансеризацию, а добавляет к ним данные.</p><p class="meta">Кровь из вены · 30 рабочих дней</p><button type="button" class="btn btn--primary cart" data-cart><span>В корзину</span></button></div></article>
+      <article class="tcard" style="--ci:var(--m-ink)"><img class="lvpic" src="img/lvl-microbiome.webp" alt="" loading="lazy"><div class="b"><p class="lv">03 · МИКРОБИОМ</p><h3>Микробиом кишечника</h3><p>Покажет, кто живёт в кишечнике и что делает. Основа для разговора с врачом о питании, пробиотиках и пребиотиках — вместо выбора наугад.</p><p class="meta">Сбор дома · 18 рабочих дней</p><button type="button" class="btn btn--primary cart" data-cart><span>В корзину</span></button></div></article>
+      <article class="tcard" style="--ci:var(--x-ink)"><img class="lvpic" src="img/lvl-metabolites.webp" alt="" loading="lazy"><div class="b"><p class="lv">04 · МЕТАБОЛИТЫ</p><h3>Метаболом</h3><p>Как обмен веществ отвечает на питание, сон и нагрузки. Исследование готовится к запуску — напишите нам, сообщим.</p><p class="meta">Скоро</p><button type="button" class="btn btn--soft cart" data-soon><span>Сообщить о запуске</span></button></div></article>
     </div>
   </div>
 </section>
@@ -807,6 +832,13 @@ section{padding:clamp(56px,8vw,104px) 0;position:relative}
   const upd = () => { const k = document.querySelectorAll("[data-cart][aria-pressed=true]").length; bar.hidden = !k; n.textContent = `Выбрано: ${k}`; };
   document.querySelectorAll("[data-cart]").forEach(b => b.addEventListener("click", () => { const on = b.getAttribute("aria-pressed") !== "true"; b.setAttribute("aria-pressed", String(on)); b.querySelector("span").textContent = on ? "В корзине ✓" : "В корзину"; upd(); }));
   document.querySelectorAll("[data-soon]").forEach(b => b.addEventListener("click", () => { b.querySelector("span").textContent = "Напишите нам — сообщим"; location.hash = "#cta"; }));
+})();
+
+// ── оглавление появляется, когда шапка ушла из вида ──
+(() => {
+  const toc = document.querySelector(".toc"), hero = document.querySelector(".hero");
+  if (!toc || !hero) return;
+  new IntersectionObserver(([e]) => toc.classList.toggle("show", !e.isIntersecting), { rootMargin: "-80px 0px 0px 0px" }).observe(hero);
 })();
 </script>
 </body>
