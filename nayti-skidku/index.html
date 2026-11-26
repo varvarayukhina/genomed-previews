@@ -1,0 +1,414 @@
+<!--
+  © Варвара Юхина, дизайн-система лендингов Геномед (макет «Направление: найдите скидку», промо чёрной пятницы, v2).
+  Дата создания: 2026-11-26. Все права на макет и дизайн-систему принадлежат автору;
+  использование без письменного разрешения автора не допускается.
+-->
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Направление на исследование: найдите скидку — Геномед</title>
+<meta name="description" content="Чёрная пятница в лаборатории Геномед: расшифруйте назначение врача, найдите промокод и получите скидку 10&nbsp;% на все исследования с 27 по 30 ноября 2026 года.">
+<meta property="og:title" content="Расшифруйте назначение врача — Геномед">
+<meta property="og:description" content="Врач написал назначение генетическим кодом. В середине спрятан промокод на скидку 10&nbsp;% на любое исследование Геномед до 30 ноября.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F4F8FE">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F8FE; --bg-deep:#0A2540;
+  --ink:#0A2540; --ink-2:#2E4A6B;
+  --line:#D8E4F2; --line-soft:#ECF2FB;
+  --blue:#0057FF; --blue-2:#0046CC; --cyan-soft:#B8ECFF;
+  --accent-soft:#E6F0FF;
+  --ok:#1AA06D; --ok-soft:#E4F7EF; --ok-ink:#11744F;
+  --stop:#D2453E; --stop-soft:#FDEBEA; --stop-ink:#A3302A;
+  --shadow-lg:0 24px 64px rgba(10,37,64,.12);
+  --hd:"Gilroy","Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--hd);font-weight:500;font-size:18px;line-height:1.55;color:var(--ink);background:var(--line-soft);-webkit-font-smoothing:antialiased}
+::selection{background:var(--blue);color:#fff}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+h1,h2{font-weight:800;letter-spacing:-.025em;line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+a{color:var(--blue-2);text-underline-offset:4px}
+.mono{font-family:var(--mono);font-feature-settings:"tnum" 1,"zero" 1;font-variant-numeric:tabular-nums;letter-spacing:0}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[hidden]{display:none!important}
+
+/* лист бумаги на столе */
+.desk{padding:48px 24px 64px}
+.sheet{max-width:880px;margin:0 auto;background:#fff;border-radius:8px;box-shadow:var(--shadow-lg);padding:48px 60px 40px}
+
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-bottom:22px;border-bottom:2px solid var(--ink)}
+.head__logo{display:block;height:60px;width:auto}
+.head__sub{margin-top:10px;font-size:16px;color:var(--ink-2)}
+.head__code{text-align:right;flex:none}
+.barcode{display:block;width:210px;height:46px;margin-left:auto}
+.barcode rect{fill:var(--ink)}
+.head__num{margin-top:4px;font-size:16px;font-weight:700;text-align:center;width:210px;margin-left:auto}
+.head__date{margin-top:6px;font-size:16px;color:var(--ink-2)}
+
+h1{font-size:34px;margin-top:30px}
+h1 .mono{font-weight:700;letter-spacing:-.01em;color:var(--blue-2);white-space:nowrap}
+.lead{margin-top:12px;font-size:18px;color:var(--ink-2);max-width:44em}
+
+.part{margin-top:32px}
+.part h2{font-size:21px;margin-bottom:12px}
+
+/* таблицы бланка: подписи в тонированных ячейках, как в бланке заказа */
+.kv{margin:0;border:1px solid var(--line);border-bottom:0}
+.kv>div{display:grid;grid-template-columns:240px minmax(0,1fr);border-bottom:1px solid var(--line)}
+.kv dt{padding:12px 16px;background:var(--bg);border-right:1px solid var(--line);font-size:16px;font-weight:700}
+.kv dd{margin:0;padding:12px 16px;font-weight:600;min-width:0}
+.study{width:100%;border-collapse:collapse;font-size:18px}
+.study th,.study td{border:1px solid var(--line);padding:12px 16px;text-align:left;vertical-align:top}
+.study th{background:var(--bg);font-size:16px;font-weight:700}
+.study td{font-weight:600}
+.study th:first-child{width:96px}
+.study th:nth-child(3){width:170px}
+.study th:last-child{width:96px}
+
+/* назначение: последовательность группами по 10, как в генбанке */
+.rx__note{font-size:17px;color:var(--ink-2);margin-bottom:14px}
+.seq{display:flex;flex-wrap:wrap;gap:6px 14px;padding:20px 22px;border:1px solid var(--line);background:#fff;font-size:19px;font-weight:500;line-height:1.5;letter-spacing:.06em;color:var(--ink);word-break:break-all}
+.seq span{white-space:nowrap}
+.seq mark{background:transparent;color:inherit;border-radius:3px;transition:background-color .3s var(--ease-out),color .3s var(--ease-out)}
+.seq.is-found mark{background:var(--blue);color:#fff}
+
+.find{margin-top:20px}
+.find__label{display:block;font-size:16px;font-weight:700;margin-bottom:8px}
+.find__row{display:flex;gap:12px;flex-wrap:wrap}
+.find__input{flex:1 1 220px;min-width:0;min-height:56px;padding:12px 18px;border:2px solid var(--line);border-radius:8px;font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:#fff;transition:border-color .2s ease-out}
+.find__input::placeholder{font-family:var(--hd);font-size:17px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink-2)}
+.find__input:hover{border-color:#B9CCE4}
+.find__input:focus{outline:none;border-color:var(--blue)}
+.find__input[aria-invalid="true"]{border-color:var(--stop)}
+.find__input:read-only{background:var(--ok-soft);border-color:var(--ok);color:var(--ok-ink)}
+.find__msg{margin-top:10px;font-size:17px;font-weight:600;min-height:1.55em}
+.find__msg.is-bad{color:var(--stop-ink)}
+.find__msg.is-ok{color:var(--ok-ink)}
+.link{margin-top:6px;padding:6px 0;border:0;background:none;font:700 16px var(--hd);color:var(--blue-2);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+
+/* кнопки */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:15px 26px;border-radius:100px;border:0;font:700 17px/1.2 var(--hd);letter-spacing:-.01em;text-decoration:none;cursor:pointer;transition:background-color .2s ease-out,box-shadow .2s ease-out,transform .2s var(--ease-out)}
+.btn svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s var(--ease-out)}
+.btn:active{transform:scale(.97)}
+.btn--primary{background:var(--bg-deep);color:#fff}
+.btn--primary:hover{background:var(--blue)}
+.btn--primary:hover svg{transform:translateX(3px)}
+.btn--secondary{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn--ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn--secondary:hover,.btn--ghost:hover{box-shadow:inset 0 0 0 1.5px var(--blue)}
+.btn.is-done{color:var(--ok-ink)}
+
+/* результат */
+.result{padding-top:28px;border-top:2px dashed var(--line);outline:none;animation:in .32s var(--ease-out) both}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.code{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;padding:18px 18px 18px 24px;background:var(--accent-soft);border-radius:12px}
+.code__label{font-size:16px;font-weight:700;color:var(--ink-2)}
+.code__value{margin-top:2px;font-size:46px;font-weight:700;line-height:1.1;letter-spacing:.06em}
+.result__text{margin-top:16px}
+.actions{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;margin-top:20px}
+
+/* подписи */
+.signs{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;margin-top:40px}
+.sign{display:flex;flex-direction:column;justify-content:flex-end;min-height:84px}
+.sign>p:last-child{padding-top:8px;border-top:1px solid var(--ink);font-size:16px;color:var(--ink-2)}
+.sign__ink{width:190px;height:56px;fill:none;stroke:var(--blue-2);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sign__val{font-size:18px;font-weight:700;padding-bottom:8px}
+
+.terms{padding:22px 24px;background:var(--bg);border-radius:8px}
+.terms h2{font-size:19px;margin-bottom:8px}
+.terms p{font-size:17px}
+.terms__warn{margin-top:12px;font-weight:700}
+
+.foot{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-size:16px;color:var(--ink-2)}
+.foot p+p{margin-top:6px}
+
+@media (max-width:720px){
+  .desk{padding:12px 10px 24px}
+  .sheet{padding:24px 18px 24px}
+  .head{flex-direction:column;gap:16px}
+  .head__logo{height:48px}
+  .head__code{text-align:left}
+  .barcode,.head__num{margin-left:0;width:180px}
+  .barcode{height:40px}
+  h1{font-size:27px;margin-top:22px}
+  .part{margin-top:26px}
+  .kv>div{grid-template-columns:minmax(0,1fr)}
+  .kv dt{border-right:0;padding:8px 14px}
+  .kv dd{padding:10px 14px}
+  .study,.study tbody,.study tr,.study td{display:block;width:100%}
+  .study thead{display:none}
+  .study td{display:grid;grid-template-columns:118px minmax(0,1fr);gap:10px;border-top:0;padding:10px 14px}
+  .study td:first-child{border-top:1px solid var(--line)}
+  .study td::before{content:attr(data-label);font-size:16px;font-weight:700;color:var(--ink-2)}
+  .seq{padding:16px;font-size:17px;gap:6px 12px}
+  .find__row .btn{flex:1 1 100%}
+  .code__value{font-size:40px}
+  .code .btn{width:100%}
+  .actions{grid-template-columns:minmax(0,1fr)}
+  .signs{grid-template-columns:minmax(0,1fr);gap:20px}
+  .terms{padding:18px 16px}
+}
+@media (prefers-reduced-motion:reduce){
+  .result{animation:none}
+  .btn,.btn svg,.seq mark,.find__input{transition:none}
+}
+
+</style>
+</head>
+<body>
+<main class="desk">
+  <article class="sheet" aria-labelledby="doc-h">
+    <header class="head">
+      <div class="head__brand">
+        <a href="https://genomed.ru/" aria-label="Геномед — на главную"><img class="head__logo" src="data:image/png;base64,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" alt="Геномед" width="184" height="93"></a>
+        <p class="head__sub">Медико-генетический центр и&nbsp;лаборатория</p>
+      </div>
+      <div class="head__code">
+        <svg class="barcode" viewBox="0 0 101 40" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Штрихкод направления BF-2711"><rect x="0" y="0" width="2" height="40"/><rect x="3" y="0" width="1" height="40"/><rect x="6" y="0" width="1" height="40"/><rect x="11" y="0" width="1" height="40"/><rect x="15" y="0" width="1" height="40"/><rect x="17" y="0" width="2" height="40"/><rect x="22" y="0" width="1" height="40"/><rect x="26" y="0" width="2" height="40"/><rect x="31" y="0" width="1" height="40"/><rect x="33" y="0" width="1" height="40"/><rect x="36" y="0" width="2" height="40"/><rect x="39" y="0" width="3" height="40"/><rect x="44" y="0" width="1" height="40"/><rect x="46" y="0" width="3" height="40"/><rect x="50" y="0" width="4" height="40"/><rect x="55" y="0" width="3" height="40"/><rect x="59" y="0" width="2" height="40"/><rect x="63" y="0" width="1" height="40"/><rect x="66" y="0" width="2" height="40"/><rect x="71" y="0" width="1" height="40"/><rect x="74" y="0" width="1" height="40"/><rect x="77" y="0" width="3" height="40"/><rect x="82" y="0" width="1" height="40"/><rect x="85" y="0" width="2" height="40"/><rect x="88" y="0" width="2" height="40"/><rect x="93" y="0" width="3" height="40"/><rect x="97" y="0" width="1" height="40"/><rect x="99" y="0" width="2" height="40"/></svg>
+        <p class="mono head__num">BF-2711</p>
+        <p class="head__date">Сформировано <span class="mono" id="formed">27.11.2026</span></p>
+      </div>
+    </header>
+
+    <h1 id="doc-h">Направление на&nbsp;исследование <span class="mono">BF-2711</span></h1>
+    <p class="lead">Чёрная пятница в&nbsp;Геномед. Врач написал назначение генетическим кодом, и&nbsp;где-то в&nbsp;середине спрятан промокод на&nbsp;скидку 10&nbsp;% на&nbsp;любое исследование. Найдите его и&nbsp;впишите в&nbsp;поле под назначением.</p>
+
+    <section class="part" aria-labelledby="pat-h">
+      <h2 id="pat-h">Пациент</h2>
+      <dl class="kv">
+        <div><dt>ФИО</dt><dd>Вы</dd></div>
+        <div><dt>Дата рождения</dt><dd>Не&nbsp;имеет значения</dd></div>
+        <div><dt>Причина обращения</dt><dd>Чёрная пятница</dd></div>
+      </dl>
+    </section>
+
+    <section class="part" aria-labelledby="st-h">
+      <h2 id="st-h">Исследование</h2>
+      <table class="study">
+        <thead><tr><th scope="col">Код</th><th scope="col">Исследование</th><th scope="col">Срок</th><th scope="col">Цена</th></tr></thead>
+        <tbody><tr>
+          <td data-label="Код" class="mono">2711</td>
+          <td data-label="Исследование">Поиск скидки в&nbsp;назначении врача</td>
+          <td data-label="Срок">До&nbsp;30&nbsp;ноября</td>
+          <td data-label="Цена" class="mono">0&nbsp;₽</td>
+        </tr></tbody>
+      </table>
+    </section>
+
+    <section class="part" aria-labelledby="rx-h">
+      <h2 id="rx-h">Назначение врача</h2>
+      <p class="rx__note">Почерк неразборчивый. Промокод спрятан в&nbsp;середине: это несколько знаков подряд.</p>
+      <p class="seq mono" id="seq"><span>GGGTCGTTGC</span><span>CGTACGAGTG</span><span>ACCGTTCCAC</span><span>CTAAATTTCT</span><span>CTGTGCATCC</span><span>TGCCACGCTG</span><span>TAG<mark>DNK10</mark>CC</span><span>GATCTAACAT</span><span>CCCCCCTACT</span><span>AAGATATGTC</span><span>AGGATCTCGA</span><span>CCTACTTTGA</span></p>
+
+      <form class="find" id="find" novalidate>
+        <label class="find__label" for="answer">Расшифровка назначения</label>
+        <div class="find__row">
+          <input class="find__input mono" id="answer" name="answer" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="16" placeholder="Промокод из назначения" aria-describedby="find-msg">
+          <button class="btn btn--primary" type="submit">Проверить</button>
+        </div>
+        <p class="find__msg" id="find-msg" role="status" aria-live="polite"></p>
+        <button class="link" type="button" id="reveal" hidden>Показать, где промокод</button>
+      </form>
+    </section>
+
+    <section class="part result" id="result" aria-labelledby="res-h" tabindex="-1" hidden>
+      <h2 id="res-h">Назначение расшифровано</h2>
+      <div class="code">
+        <div>
+          <p class="code__label">Промокод на&nbsp;скидку 10&nbsp;%</p>
+          <p class="code__value mono">DNK10</p>
+        </div>
+        <button class="btn btn--secondary" type="button" id="copy">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          <span>Скопировать</span>
+        </button>
+      </div>
+      <p class="result__text">Скидка действует на&nbsp;все исследования из&nbsp;прайса Геномед с&nbsp;27&nbsp;по&nbsp;30&nbsp;ноября 2026&nbsp;года. Назовите промокод менеджеру в&nbsp;мессенджере или при оформлении заказа.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="https://price.genomed.ru/" target="_blank" rel="noopener">
+          <span>Выбрать исследование</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <button class="btn btn--ghost" type="button" id="share">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+          <span>Отправить другу</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="signs">
+      <div class="sign">
+        <svg class="sign__ink" viewBox="0 0 220 64" aria-hidden="true"><path d="M8 44c10-22 20-34 26-30s-8 34-2 36 16-30 24-28-4 24 4 24 14-22 22-22 2 20 10 20 12-16 20-18 6 14 14 14 18-10 28-12 22-2 54-6"/></svg>
+        <p>Подпись врача, неразборчиво</p>
+      </div>
+      <div class="sign">
+        <p class="sign__val mono" id="signed">27.11.2026</p>
+        <p>Дата</p>
+      </div>
+    </div>
+
+    <section class="part terms" aria-labelledby="terms-h">
+      <h2 id="terms-h">Условия акции</h2>
+      <p>Скидка 10&nbsp;% по&nbsp;промокоду действует на&nbsp;все исследования из&nbsp;<a href="https://price.genomed.ru/" target="_blank" rel="noopener">прайса Геномед</a> с&nbsp;27&nbsp;по&nbsp;30&nbsp;ноября 2026&nbsp;года и&nbsp;не&nbsp;суммируется с&nbsp;другими акциями и&nbsp;скидками. Менеджер оформит заказ и&nbsp;применит скидку в&nbsp;<a href="https://t.me/genomed_b2c_bot" target="_blank" rel="noopener">Telegram</a>, <a href="https://wa.me/74956608377" target="_blank" rel="noopener">WhatsApp</a> или <a href="https://max.ru/id7701759381_bot" target="_blank" rel="noopener">Max</a>. По&nbsp;медицинским вопросам поможет врач-генетик.</p>
+      <p class="terms__warn">Имеются противопоказания, необходима консультация специалиста.</p>
+    </section>
+
+    <footer class="foot">
+      <p>ООО Геномед · ОГРН 1077763509977 · ИНН 7701759381 · Лицензия №&nbsp;Л041-01050-61/00589962 от&nbsp;28.01.2019 · 105005, г.&nbsp;Москва, ул.&nbsp;Бауманская, д.&nbsp;50/12, стр.&nbsp;1</p>
+      <p>Клиентский сервис 24/7: <a class="mono" href="tel:84956608377">8 (495) 660-83-77</a> · <a href="mailto:callcenter@genomed.ru">callcenter@genomed.ru</a> · <a href="https://genomed.ru/">genomed.ru</a></p>
+      <p>Информация носит справочный характер и&nbsp;не&nbsp;является публичной офертой. Назначение на&nbsp;бланке шуточное.</p>
+    </footer>
+  </article>
+</main>
+
+<p class="vh" id="live" role="status" aria-live="polite"></p>
+
+<script>
+(() => {
+  "use strict";
+  const CODE = "DNK10";
+  const $ = (id) => document.getElementById(id);
+  const form = $("find");
+  const input = $("answer");
+  const msg = $("find-msg");
+  const seq = $("seq");
+  const result = $("result");
+  const reveal = $("reveal");
+  const live = $("live");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let misses = 0;
+
+  const today = new Date().toLocaleDateString("ru-RU", { day: "2-digit", month: "2-digit", year: "numeric" });
+  $("formed").textContent = today;
+  $("signed").textContent = today;
+
+  // кириллицу, похожую на латиницу, приводим к коду: ДНК10 и DNK10 — одно и то же
+  const CYR = { "Д": "D", "Н": "N", "К": "K", "О": "0" };
+  const norm = (s) => s.toUpperCase().replace(/[\s\-–—_.]/g, "").replace(/[ДНКО]/g, (c) => CYR[c]).replace(/O/g, "0");
+
+  const say = (text) => { live.textContent = ""; requestAnimationFrame(() => { live.textContent = text; }); };
+  const setMsg = (text, kind) => { msg.textContent = text; msg.className = "find__msg" + (kind ? " is-" + kind : ""); };
+
+  function solve() {
+    input.value = CODE;
+    input.readOnly = true;
+    input.removeAttribute("aria-invalid");
+    form.querySelector("button[type=submit]").hidden = true;
+    reveal.hidden = true;
+    seq.classList.add("is-found");
+    setMsg("Верно, это промокод.", "ok");
+    result.hidden = false;
+    result.focus({ preventScroll: true });
+    result.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" });
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const value = norm(input.value);
+    if (!value) {
+      input.setAttribute("aria-invalid", "true");
+      setMsg("Впишите промокод, который нашли в назначении.", "bad");
+      input.focus();
+      return;
+    }
+    if (value === CODE) { solve(); return; }
+    misses += 1;
+    input.setAttribute("aria-invalid", "true");
+    setMsg(misses === 1
+      ? "Не то. Подсказка: в ДНК всего четыре буквы, A, T, G и C. Ищите знаки, которые выбиваются."
+      : "Снова не то. Промокод стоит в середине назначения, это пять знаков подряд.", "bad");
+    if (misses >= 2) reveal.hidden = false;
+    input.select();
+  });
+
+  input.addEventListener("input", () => {
+    if (input.getAttribute("aria-invalid")) { input.removeAttribute("aria-invalid"); setMsg("", ""); }
+  });
+
+  reveal.addEventListener("click", () => {
+    seq.classList.add("is-found");
+    seq.querySelector("mark").scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
+    setMsg("Промокод подсвечен в назначении. Впишите его в поле.", "");
+    reveal.hidden = true;
+    input.focus({ preventScroll: true });
+  });
+
+  async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+    document.body.append(ta);
+    ta.select();
+    const ok = document.execCommand("copy");
+    ta.remove();
+    if (!ok) throw new Error("execCommand copy returned false");
+  }
+
+  function flash(btn, text, ok) {
+    const label = btn.querySelector("span");
+    const prev = label.dataset.label || label.textContent;
+    label.dataset.label = prev;
+    label.textContent = text;
+    btn.classList.toggle("is-done", ok);
+    say(text);
+    clearTimeout(btn._t);
+    btn._t = setTimeout(() => { label.textContent = prev; btn.classList.remove("is-done"); }, 2200);
+  }
+
+  $("copy").addEventListener("click", async (e) => {
+    const btn = e.currentTarget;
+    try {
+      await copyText(CODE);
+      flash(btn, "Скопировано", true);
+    } catch (err) {
+      console.error(err);
+      flash(btn, "Не вышло, выделите код", false);
+    }
+  });
+
+  $("share").addEventListener("click", async (e) => {
+    const btn = e.currentTarget;
+    const data = {
+      title: "Расшифруйте назначение врача — Геномед",
+      text: "Врач Геномед написал назначение генетическим кодом, а в середине спрятал промокод на скидку 10 % до 30 ноября. Найдёте?",
+      url: location.href,
+    };
+    if (navigator.share) {
+      try { await navigator.share(data); }
+      catch (err) {
+        if (err.name === "AbortError") return;
+        console.error(err);
+        flash(btn, "Не получилось отправить", false);
+      }
+      return;
+    }
+    try {
+      await copyText(location.href);
+      flash(btn, "Ссылка скопирована", true);
+    } catch (err) {
+      console.error(err);
+      flash(btn, "Не вышло скопировать ссылку", false);
+    }
+  });
+})();
+
+</script>
+</body>
+</html>
