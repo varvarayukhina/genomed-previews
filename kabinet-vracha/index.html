@@ -793,39 +793,6 @@ h1 em,h2 em,h3 em{font-family:"PT Serif",Georgia,serif!important}
 </style>
 </head>
 <body>
-<!-- заставка при загрузке (26.11.2026): слайдшоу кадров из кабинета Геноскоп с резкой сменой и наездом, «Геноскоп — генетическая книга о вас».
-     Уходит, когда страница разобрана (DOMContentLoaded), не раньше одного круга кадров; при повторном заходе в той же вкладке — быстрее. Картинки не ждёт. -->
-<style>
-body:has(#zs){overflow:hidden}
-#zs{position:fixed;inset:0;z-index:1000;background:#0B1622;overflow:hidden;transition:opacity .45s ease-out}
-#zs.out{opacity:0;pointer-events:none}
-#zs .zs-f{position:absolute;inset:0}
-#zs .zs-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:zs-cut 4.20s linear infinite}
-@keyframes zs-cut{0%{opacity:1;transform:scale(1.14)}14.29%{opacity:1;transform:scale(1.04)}14.30%,100%{opacity:0;transform:scale(1.04)}}
-#zs::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,24,.35) 0%,rgba(6,14,24,.55) 55%,rgba(6,14,24,.88) 100%)}
-#zs .zs-t{position:absolute;left:clamp(20px,6vw,88px);right:20px;bottom:clamp(72px,12vh,140px);z-index:1;color:#fff;animation:zs-in .9s .15s cubic-bezier(.2,.7,.2,1) both}
-#zs .zs-t b{display:block;font-family:"Manrope",Arial,sans-serif!important;font-weight:400;font-size:clamp(56px,11vw,148px);line-height:.95;letter-spacing:-.045em}
-#zs .zs-t i{display:block;margin-top:14px;font-family:"PT Serif",Georgia,serif!important;font-style:italic;font-size:clamp(24px,3.4vw,44px);line-height:1.2;color:#D6E8F7}
-@keyframes zs-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-#zs .zs-bar{position:absolute;left:0;right:0;bottom:0;height:3px;z-index:1;background:#00C2FF;transform-origin:0 50%;animation:zs-bar 4.20s linear infinite}
-@keyframes zs-bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-#zs .zs-skip{position:absolute;right:clamp(16px,4vw,40px);top:calc(env(safe-area-inset-top,0px) + 18px);z-index:2;padding:10px 16px;border:0;border-radius:8px;background:rgba(255,255,255,.14);color:#fff;font:600 16px/1 "Manrope",Arial,sans-serif;cursor:pointer}
-#zs .zs-skip:hover{background:rgba(255,255,255,.24)}
-@media (prefers-reduced-motion:reduce){#zs .zs-f img{animation:none}#zs .zs-f img:first-child{opacity:1}#zs .zs-t,#zs .zs-bar{animation:none}}
-</style>
-<div id="zs" role="status" aria-label="Загружаем кабинет"><div class="zs-f" aria-hidden="true"><img src="../genoskop/lk/img/bio.webp" alt="" style="animation-delay:0.00s" fetchpriority="high"><img src="../genoskop/lk/img/body.webp" alt="" style="animation-delay:0.60s" fetchpriority="high"><img src="../genoskop/lk/img/doctor.webp" alt="" style="animation-delay:1.20s"><img src="../genoskop/lk/img/pgx.webp" alt="" style="animation-delay:1.80s"><img src="../genoskop/lk/img/risk.webp" alt="" style="animation-delay:2.40s"><img src="../genoskop/lk/img/diet.webp" alt="" style="animation-delay:3.00s"><img src="../genoskop/lk/img/g-share.webp" alt="" style="animation-delay:3.60s"></div>
-  <p class="zs-t"><b>Геноскоп</b><i>генетическая книга о вас</i></p><span class="zs-bar" aria-hidden="true"></span>
-  <button type="button" class="zs-skip">Пропустить</button></div>
-<script>(() => {
-  const z = document.getElementById("zs"), t0 = performance.now();
-  let seen = false;
-  try { seen = sessionStorage.getItem("zs") === "1"; sessionStorage.setItem("zs", "1"); } catch (e) { console.warn("sessionStorage недоступен:", e.message); }
-  const MIN = seen ? 800 : 4200;
-  const hide = () => { if (!z.isConnected || z.classList.contains("out")) return; z.classList.add("out"); setTimeout(() => z.remove(), 500); };
-  document.addEventListener("DOMContentLoaded", () => setTimeout(hide, Math.max(0, MIN - (performance.now() - t0))));
-  z.querySelector(".zs-skip").addEventListener("click", hide);
-})();</script>
-
 <a class="sr" href="#main">К содержанию</a>
 <div id="live" class="sr" aria-live="polite"></div>
 <header class="topbar">
