@@ -693,7 +693,7 @@ h1,.o-h1,.o-h2{hyphens:manual}
 @media (max-width:640px){.vr-pt{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px 14px}.vr-pt-acc,.vr-pt-sw{grid-column:1/-1;justify-self:start;margin-left:0}.pr{padding:16px}.pr-q{max-width:none}}
 @media (prefers-reduced-motion:reduce){.pr,.pr-f button,.vr-pt-sw,.vr-tp{transition:none}}
 
-/* разделы с оценками предрасположенностей («Выше среднего», «Предрасположенности»): меню убирается, список шире (26.11.2026) */
+/* меню убирается при переходе в раздел (26.11.2026) */
 .vr-menu{display:none}
 @media (min-width:901px){
   body.vr-wide:not(.vr-showside) .app{grid-template-columns:0 minmax(0,1fr)}
@@ -789,6 +789,25 @@ h1 em,h2 em,h3 em{font-family:"PT Serif",Georgia,serif!important}
 .hero .tr .kt .ico{color:var(--blue)}
 .hero .kread{color:var(--ink-2)}.hero .kread b{color:var(--ink)}
 .hero .tr .k,.hero .tr .kt{color:var(--ink-2)}
+
+/* 26.11.2026, вечер — убрать «ИИ-шность» (отзыв Варвары): фирменный Montserrat вместо Manrope, без курсива-антиквы
+   в заголовках, тихие ховеры. Подключается после общей темы (_tema), только в кабинете врача. */
+body *:not(svg):not(svg *){font-family:"Montserrat",Arial,sans-serif!important}
+body{letter-spacing:0}
+h1,h2,h3,h4{letter-spacing:-.02em}
+h1,.s-head h1,h2,.panel h2,.sec-h h2,.vr-sec h2{font-weight:600}
+body h1 em,body h2 em,body h3 em{font-family:"Montserrat",Arial,sans-serif!important;font-style:normal!important;font-weight:inherit;letter-spacing:inherit}
+.vr-ava{font-family:"Montserrat",Arial,sans-serif!important;font-style:normal;font-weight:600;font-size:18px}
+/* ховеры: без вспышки синим и без увеличения */
+.btn--primary::before{display:none}
+.btn--primary:hover{background:#2A3747}
+.vt-n:hover,.dli b a:hover,.vr-notes a:hover,.crumbs a:hover,.row a.t:hover,.toc-i:hover h3{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.toc-i:hover img{transform:none}
+.toc-i:hover .go{background:transparent;color:inherit;border-color:currentColor}
+.plus:hover{background:var(--bg);border-color:var(--line)}
+.btn--line:hover,.vr-f:hover,.vr-spec select:hover,.vr-sel select:hover{border-color:var(--ink-2)}
+/* Montserrat шире Manrope: колонка с именем и номером отчёта шире, чтобы дата не уходила на вторую строку */
+@media (min-width:901px){.pr{grid-template-columns:44px minmax(0,1.8fr) minmax(0,.9fr) minmax(0,1.1fr) 22px}}
 
 </style>
 </head>
@@ -1635,8 +1654,8 @@ render = function () {
   if (v === "pick") { usePt(decodeURIComponent(p)); store.set("vr.cur", CUR.id); return location.replace("#/home"); }
   $("#navPt").textContent = `Пациент: ${CUR.name}`;
   document.body.classList.toggle("vr-nopt", v === "pts");
-  // разделы с оценками предрасположенностей: меню убирается, список шире; вернуть — кнопкой «Меню»
-  document.body.classList.toggle("vr-wide", v === "high" || (v === "s" && p === "risk"));
+  // при переходе в любой раздел меню убирается (остаётся только на списке пациентов); вернуть — кнопкой «Меню»
+  document.body.classList.toggle("vr-wide", v !== "pts");
   document.body.classList.remove("vr-showside"); sideBtn();
   const VIEWS = { pts: viewPts, home: viewProfile, high: viewHigh, all: viewAll, disc: viewDisc, card: viewCard };
   if (VIEWS[v] || v === "q") {
