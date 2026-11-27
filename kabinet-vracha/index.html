@@ -1648,6 +1648,8 @@ function viewSearch(q) {
 }
 
 // ---------------------------------------------------------------- выгрузка отчёта
+// для косметолога — PDF отчёта (не книжка), для остальных специальностей отчёта пока нет — книжка
+const PDF = "kniga/" + (SPEC === "kosmetolog" ? "otchet-kosmetolog.pdf" : `kniga-${SPEC}.pdf`);
 function expDialog() {
   return `<dialog id="vrExp" aria-labelledby="vrExpH"><form method="dialog" class="vr-exp">
     <h2 id="vrExpH">Выгрузить отчёт</h2>
@@ -1656,13 +1658,13 @@ function expDialog() {
       <label class="vr-r"><input type="radio" name="scope" value="full"><span><b>Полный отчёт</b><span>все ${D.n.arts} ${plural(D.n.arts, ["статья", "статьи", "статей"])} в семи разделах</span></span></label></fieldset>
     <fieldset id="vrExtra"><legend>Добавить разделы</legend>${SG.extra.map(t => `<label class="vr-c"><input type="checkbox" name="extra" value="${esc(t)}"><span>${esc(t)}</span></label>`).join("")}</fieldset>
     <label class="vr-c vr-c-wide"><input type="checkbox" name="notes" checked><span>Добавить мои комментарии и назначения</span></label>
-    <div class="vr-exp-a"><a class="btn btn--primary" id="vrPdf" href="kniga/kniga-${SPEC}.pdf" target="_blank" rel="noopener">${I("down")}Скачать PDF</a><button class="btn btn--line" value="close">Закрыть</button></div>
+    <div class="vr-exp-a"><a class="btn btn--primary" id="vrPdf" href="${PDF}" target="_blank" rel="noopener">${I("down")}Скачать PDF</a><button class="btn btn--line" value="close">Закрыть</button></div>
     <p class="note" id="vrPdfNote"></p></form></dialog>`;
 }
 function expNote() {
   const f = $("#vrExp form"), full = f.scope.value === "full", ex = [...f.querySelectorAll('[name="extra"]:checked')].map(x => x.value);
   $("#vrExtra").disabled = full;
-  $("#vrPdfNote").textContent = `Прототип: кнопка открывает образец книжки для специальности. `
+  $("#vrPdfNote").textContent = `Прототип: кнопка открывает ${SPEC === "kosmetolog" ? "образец отчёта для косметолога" : "образец книжки для специальности"}. `
     + `В продукте PDF соберётся по выбору: ${full ? "полный отчёт" : "профиль специальности"}${!full && ex.length ? " + " + ex.join(", ") : ""}${f.notes.checked ? ", с вашими комментариями и назначениями" : ""}.`;
 }
 
